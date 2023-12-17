@@ -9,11 +9,11 @@
         Para empezar, introduce el código secreto que te proporcionará tu profesor:
       </p>
       <v-otp-input
-        v-model="opt.model"
+        v-model="otp.model"
         length="6"
-        :disabled="opt.loading"
-        :type="opt.type"
-        @finish="optOnFinish"
+        :disabled="otp.loading"
+        :type="otp.type"
+        @finish="otpOnFinish"
       />
     </v-col>
   </v-row>
@@ -22,40 +22,42 @@
 <script>
 export default {
   name: 'IndexPage',
-  data: () => ({
-    fakeTimeout: 2000,
-    opt: {
-      expected: '141592',
-      loading: false,
-      model: '',
-      type: 'password'
+  data() {
+    return {
+      fakeTimeout: 2000,
+      otp: {
+        expected: '141592',
+        loading: false,
+        model: '',
+        type: 'password'
+      }
     }
-  }),
+  },
   methods: {
-    optOnFinish (response) {
+    otpOnFinish (response) {
       this.$store.commit('index-lock/setUserKey', response)
       this.$store.commit('loading-overlay/setShow', true)
-      this.opt.loading = true
+      this.otp.loading = true
       setTimeout(() => {
-        const optSuccess = response === this.opt.expected
-        this.opt.loading = false
+        const otpSuccess = response === this.otp.expected
+        this.otp.loading = false
         this.$store.commit('loading-overlay/setShow', false)
-        this.$store.commit('snackbar/setColor', optSuccess
+        this.$store.commit('snackbar/setColor', otpSuccess
           ? 'green darken-4'
           : 'error')
-        this.$store.commit('snackbar/setTextToShow', optSuccess
+        this.$store.commit('snackbar/setTextToShow', otpSuccess
           ? this.$store.state.snackbar.text.success
           : this.$store.state.snackbar.text.error)
-        this.$store.commit('snackbar/setShowAction', !optSuccess)
-        this.$store.commit('snackbar/setTimeout', optSuccess
+        this.$store.commit('snackbar/setShowAction', !otpSuccess)
+        this.$store.commit('snackbar/setTimeout', otpSuccess
           ? 3000
           : -1)
         this.$store.commit('snackbar/setModel', true)
         setTimeout(() => {
-          if (optSuccess) {
+          if (otpSuccess) {
             this.$router.push('/actividad-1/reto-1')
           } else {
-            this.opt.model = ''
+            this.otp.model = ''
           }
         }, this.fakeTimeout)
       }, this.fakeTimeout)
