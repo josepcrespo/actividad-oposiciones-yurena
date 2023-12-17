@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center">
     <v-col class="text-center">
-      <h1>Situación de Aprendizaje</h1>
+      <h1 class="mt-8">Situación de Aprendizaje</h1>
       <h2 class="mb-4">Flora + Fauna = Álgebra</h2>
       <img src="/img/index/profe-yure.png" alt="Memoji de la profesora Yurena Cabrera Hernández" />
       <h3><em>(Yurena Cabrera Hernández)</em></h3>
@@ -23,6 +23,7 @@
 export default {
   name: 'IndexPage',
   data: () => ({
+    fakeTimeout: 2000,
     opt: {
       expected: '141592',
       loading: false,
@@ -50,16 +51,14 @@ export default {
           ? 3000
           : -1)
         this.$store.commit('snackbar/setModel', true)
-        if (optSuccess) {
-          setTimeout(() => {
+        setTimeout(() => {
+          if (optSuccess) {
             this.$router.push('/actividad-1/reto-1')
-          }, 2000)
-        }
-      }, 2000)
-    },
-    optRetry() {
-      this.opt.model = ''
-      this.$store.commit('snackbar/setModel', false)
+          } else {
+            this.opt.model = ''
+          }
+        }, this.fakeTimeout)
+      }, this.fakeTimeout)
     }
   }
 }

@@ -16,37 +16,56 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>
+              {{ item.icon }}
+            </v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>
+              {{ item.title }}
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar
+      :clipped-left="clipped"
+      fixed
+      app
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn> -->
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title>
+        {{ title }}
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-format-list-bulleted</v-icon>
+        <v-icon>
+          mdi-format-list-bulleted
+        </v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="true" temporary fixed>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      :right="true"
+      temporary
+      fixed
+    >
       <v-list>
         <v-list-item>
           <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
+            <v-icon>
+              mdi-format-list-bulleted
+            </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Contenidos</v-list-item-title>
+          <v-list-item-title>
+            Contenidos
+          </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -115,6 +134,11 @@ export default {
       title: 'Flora + Fauna = Álgebra',
     }
   },
+  methods: {
+    optRetry() {
+      this.$store.commit('snackbar/setModel', false)
+    }
+  }
 }
 </script>
 
