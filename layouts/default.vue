@@ -45,9 +45,10 @@
         </v-icon>
       </v-btn> -->
       <v-toolbar-title>
-        {{ topMenu.title }}
+        {{ topMenuTitle }}
       </v-toolbar-title>
       <v-spacer />
+      <yrn-language-switcher />
       <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
@@ -113,20 +114,14 @@ export default {
         },
       ],
       miniVariant: false,
-      rightDrawer: false,
-      topMenu: {
-        title: ''
-      }
+      rightDrawer: false
     }
   },
-  mounted() {
-    this.$set(
-      this.topMenu,
-      'title',
-      // TODO: add support for different languages
-      this.$store?.state?.learningUnit?.indexPage?.title?.es
-    )
-  },
+  computed: {
+    topMenuTitle() {
+      return this.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
+    }
+  }
 }
 </script>
 

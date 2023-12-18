@@ -10,19 +10,6 @@ export const state = () => ({
         ca: 'Memoji de Yurena.'
       }
     },
-    languages: [{
-      iso639set1Code: 'es',
-      name: {
-        es: 'Español',
-        ca: 'Castellà'
-      }
-    }, {
-      iso639set1Code: 'ca',
-      name: {
-        es: 'Catalán',
-        ca: 'Català'
-      }
-    }],
     password: {
       statement: {
         es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
@@ -40,6 +27,21 @@ export const state = () => ({
       ca: 'Situació d\'aprenentatge'
     }
   },
+  languages: [{
+    code: 'es',
+    flagCode: 'es',
+    name: {
+      es: 'Español',
+      ca: 'Castellà'
+    }
+  }, {
+    code: 'ca',
+    flagCode: 'es-ca',
+    name: {
+      es: 'Catalán',
+      ca: 'Català'
+    }
+  }],
   activities: [{
     activityId: 1,
     challenges: [{

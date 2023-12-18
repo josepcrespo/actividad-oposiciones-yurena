@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - actividad-oposiciones-yurena',
-    title: 'actividad-oposiciones-yurena',
+    titleTemplate: '%s - Situación de aprendizaje',
+    title: 'Situación de aprendizaje',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -43,16 +43,27 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://i18n.nuxtjs.org/v7/setup
+    '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
   ],
 
+  // @nuxtjs/i18n' module options
+  i18n: {
+    locales: ['es', 'ca'],
+    defaultLocale: 'es',
+    vueI18n: {
+      fallbackLocale: 'es'
+    }
+  },
+
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: 'es',
     },
   },
 

@@ -58,23 +58,19 @@ export default {
       return this.$store?.state?.learningUnit?.indexPage?.author
     },
     imageAlt() {
-      // TODO: add support for different languages
-      return this.$store?.state?.learningUnit?.indexPage?.image?.imageAlt.es
+      return this.$store?.state?.learningUnit?.indexPage?.image?.imageAlt?.[this.$i18n.locale]
     },
     imageSrc() {
       return this.$store?.state?.learningUnit?.indexPage?.image?.imageSrc
     },
     subtitle() {
-      // TODO: add support for different languages
-      return this.$store?.state?.learningUnit?.indexPage?.subtitle.es
+      return this.$store?.state?.learningUnit?.indexPage?.subtitle?.[this.$i18n.locale]
     },
     title() {
-      // TODO: add support for different languages
-      return this.$store?.state?.learningUnit?.indexPage?.title.es
+      return this.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
     },
     passwordStatement() {
-      // TODO: add support for different languages
-      return this.$store?.state?.learningUnit?.indexPage?.password?.statement.es
+      return this.$store?.state?.learningUnit?.indexPage?.password?.statement?.[this.$i18n.locale]
     },
   },
   mounted()  {
