@@ -144,23 +144,23 @@ export default {
   methods: {
     optOnFinish(response) {
       this.$store.commit('actividad-1-reto-2/setNationalParkName', response)
-      this.$store.commit('loading-overlay/setShow', true)
+      this.$store.commit('pageLoadingOverlay/setShow', true)
       this.opt.loading = true
       setTimeout(() => {
         const optSuccess = response === this.opt.expected
         this.opt.loading = false
-        this.$store.commit('loading-overlay/setShow', false)
-        this.$store.commit('snackbar/setColor', optSuccess
+        this.$store.commit('pageLoadingOverlay/setShow', false)
+        this.$store.commit('snackbarNotification/setColor', optSuccess
           ? 'green darken-4'
           : 'error')
-        this.$store.commit('snackbar/setTextToShow', optSuccess
+        this.$store.commit('snackbarNotification/setTextToShow', optSuccess
           ? this.$store.state.snackbar.text.success
           : this.$store.state.snackbar.text.error)
-        this.$store.commit('snackbar/setShowAction', !optSuccess)
-        this.$store.commit('snackbar/setTimeout', optSuccess
+        this.$store.commit('snackbarNotification/setShowAction', !optSuccess)
+        this.$store.commit('snackbarNotification/setTimeout', optSuccess
           ? 3000
           : -1)
-        this.$store.commit('snackbar/setModel', true)
+        this.$store.commit('snackbarNotification/setModel', true)
         if (optSuccess) {
           setTimeout(() => {
             // this.$router.push('/actividad-1/reto-3')

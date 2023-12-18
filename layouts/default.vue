@@ -33,15 +33,25 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+      />
+      <!-- <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+      >
+        <v-icon>
+          mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}
+        </v-icon>
       </v-btn> -->
       <v-toolbar-title>
-        {{ title }}
+        {{ topMenu.title }}
       </v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-btn
+        icon
+        @click.stop="rightDrawer = !rightDrawer"
+      >
         <v-icon>
           mdi-format-list-bulleted
         </v-icon>
@@ -72,35 +82,8 @@
     <!-- <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer> -->
-    <v-overlay
-      absolute
-      :value="$store.state['loading-overlay'].show"
-    >
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      />
-    </v-overlay>
-    <v-snackbar
-      v-model="$store.state.snackbar.model"
-      :color="$store.state.snackbar.color"
-      :timeout="$store.state.snackbar.timeout"
-      :app="$store.state.snackbar.app"
-      :top="$store.state.snackbar.top"
-      :right="$store.state.snackbar.right"
-    >
-      {{ $store.state.snackbar.text.toShow }}
-      <template #action="{ attrs }">
-        <v-btn
-          color="default"
-          v-bind="attrs"
-          :style="{ display: ($store.state.snackbar.showAction ? 'flex' : 'none') }"
-          @click="optRetry()"
-        >
-          Reintentar
-        </v-btn>
-      </template>
-    </v-snackbar>
+    <yrn-page-loading-overlay />
+    <yrn-snackbar-notification />
   </v-app>
 </template>
 
@@ -131,14 +114,19 @@ export default {
       ],
       miniVariant: false,
       rightDrawer: false,
-      title: 'Flora + Fauna = Álgebra',
+      topMenu: {
+        title: ''
+      }
     }
   },
-  methods: {
-    optRetry() {
-      this.$store.commit('snackbar/setModel', false)
-    }
-  }
+  mounted() {
+    this.$set(
+      this.topMenu,
+      'title',
+      // TODO: add support for different languages
+      this.$store?.state?.learningUnit?.indexPage?.title?.es
+    )
+  },
 }
 </script>
 

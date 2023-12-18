@@ -14,19 +14,19 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setColor(state, value) {
-    state.color = value
+  setColor(state, payload) {
+    state.color = payload
   },
-  setModel(state, value) {
-    state.model = value
+  setModel(state, payload) {
+    state.model = payload
   },
-  setShowAction(state, value) {
-    state.showAction = value
+  setShowAction(state, payload) {
+    state.showAction = payload
   },
-  setTextToShow(state, value) {
-    state.text.toShow = value
+  setTextToShow(state, payload) {
+    state.text.toShow = payload
   },
-  setTimeout(state, value) {
-    state.timeout = value
+  setTimeout(state, payload) {
+    state.timeout = payload
   },
 }

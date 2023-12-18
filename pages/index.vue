@@ -1,22 +1,39 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col class="text-center">
-      <h1 class="mt-8">Situación de Aprendizaje</h1>
-      <h2 class="mb-4">Flora + Fauna = Álgebra</h2>
-      <img src="/img/index/profe-yure.png" alt="Memoji de la profesora Yurena Cabrera Hernández" />
-      <h3><em>(Yurena Cabrera Hernández)</em></h3>
-      <p class="mt-12 mb-4">
-        Para empezar, introduce el código secreto que te proporcionará tu profesor:
-      </p>
-      <v-otp-input
-        v-model="otp.model"
-        length="6"
-        :disabled="otp.loading"
-        :type="otp.type"
-        @finish="otpOnFinish"
-      />
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-row
+      align="center"
+      align-content="center"
+      justify="center"
+    >
+      <v-col class="d-flex flex-column align-center text-center">
+        <h1 class="mt-8">
+          {{ title }}
+        </h1>
+        <h2 class="mb-4">
+          {{ subtitle }}  
+        </h2>
+        <v-img
+          max-height="320"
+          max-width="320"
+          :alt="imageAlt"
+          :src="imageSrc"
+        />
+        <h3>
+          <em>{{ author }}</em>
+        </h3>
+        <p class="mt-12 mb-4">
+          {{ passwordStatement }}
+        </p>
+        <v-otp-input
+          v-model="otp.model"
+          :length="otp.expected.length"
+          :disabled="otp.loading"
+          :type="otp.type"
+          @finish="otpOnFinish"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -24,43 +41,77 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      fakeTimeout: 2000,
+      timeout: {
+        simulated: 1500,
+        snackbarNotification: 3000
+      },
       otp: {
-        expected: '141592',
+        expected: '',
         loading: false,
         model: '',
         type: 'password'
       }
     }
   },
+  computed: {
+    author() {
+      return this.$store?.state?.learningUnit?.indexPage?.author
+    },
+    imageAlt() {
+      // TODO: add support for different languages
+      return this.$store?.state?.learningUnit?.indexPage?.image?.imageAlt.es
+    },
+    imageSrc() {
+      return this.$store?.state?.learningUnit?.indexPage?.image?.imageSrc
+    },
+    subtitle() {
+      // TODO: add support for different languages
+      return this.$store?.state?.learningUnit?.indexPage?.subtitle.es
+    },
+    title() {
+      // TODO: add support for different languages
+      return this.$store?.state?.learningUnit?.indexPage?.title.es
+    },
+    passwordStatement() {
+      // TODO: add support for different languages
+      return this.$store?.state?.learningUnit?.indexPage?.password?.statement.es
+    },
+  },
+  mounted()  {
+    this.$set(
+      this.otp,
+      'expected',
+      this.$store?.state?.learningUnit?.indexPage?.password?.expected
+    )
+  },
   methods: {
     otpOnFinish (response) {
-      this.$store.commit('index-lock/setUserKey', response)
-      this.$store.commit('loading-overlay/setShow', true)
+      this.$store.commit('learningUnit/setPasswordFromUser', response)
+      this.$store.commit('pageLoadingOverlay/setShow', true)
       this.otp.loading = true
       setTimeout(() => {
         const otpSuccess = response === this.otp.expected
         this.otp.loading = false
-        this.$store.commit('loading-overlay/setShow', false)
-        this.$store.commit('snackbar/setColor', otpSuccess
+        this.$store.commit('pageLoadingOverlay/setShow', false)
+        this.$store.commit('snackbarNotification/setColor', otpSuccess
           ? 'green darken-4'
           : 'error')
-        this.$store.commit('snackbar/setTextToShow', otpSuccess
-          ? this.$store.state.snackbar.text.success
-          : this.$store.state.snackbar.text.error)
-        this.$store.commit('snackbar/setShowAction', !otpSuccess)
-        this.$store.commit('snackbar/setTimeout', otpSuccess
-          ? 3000
+        this.$store.commit('snackbarNotification/setTextToShow', otpSuccess
+          ? this.$store.state.snackbarNotification.text.success
+          : this.$store.state.snackbarNotification.text.error)
+        this.$store.commit('snackbarNotification/setShowAction', !otpSuccess)
+        this.$store.commit('snackbarNotification/setTimeout', otpSuccess
+          ? this.timeout.snackbarNotification
           : -1)
-        this.$store.commit('snackbar/setModel', true)
+        this.$store.commit('snackbarNotification/setModel', true)
         setTimeout(() => {
           if (otpSuccess) {
-            this.$router.push('/actividad-1/reto-1')
+            this.$router.push('/activity/1/challange/1')
           } else {
             this.otp.model = ''
           }
-        }, this.fakeTimeout)
-      }, this.fakeTimeout)
+        }, this.timeout.simulated)
+      }, this.timeout.simulated)
     }
   }
 }

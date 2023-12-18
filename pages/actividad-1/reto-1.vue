@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learning-unit/getExercise'](
+      return this.$store.getters['learningUnit/getExercise'](
         activityId,
         challengeId,
         exerciseId
@@ -131,7 +131,7 @@ export default {
       return this.exercise?.sections ?? []
     },
     getSectionsWellSolved(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learning-unit/getSectionsWellSolved'](
+      return this.$store.getters['learningUnit/getSectionsWellSolved'](
         activityId,
         challengeId,
         exerciseId
@@ -139,23 +139,23 @@ export default {
     },
     optOnFinish(response) {
       this.$store.commit('actividad-1-reto-1/setUserResult', response)
-      this.$store.commit('loading-overlay/setShow', true)
+      this.$store.commit('pageLoadingOverlay/setShow', true)
       this.opt.loading = true
       setTimeout(() => {
         const optSuccess = response === this.opt.expected
         this.opt.loading = false
-        this.$store.commit('loading-overlay/setShow', false)
-        this.$store.commit('snackbar/setColor', optSuccess
+        this.$store.commit('pageLoadingOverlay/setShow', false)
+        this.$store.commit('snackbarNotification/setColor', optSuccess
           ? 'green darken-4'
           : 'error')
-        this.$store.commit('snackbar/setTextToShow', optSuccess
-          ? this.$store.state.snackbar.text.success
-          : this.$store.state.snackbar.text.error)
-        this.$store.commit('snackbar/setShowAction', !optSuccess)
-        this.$store.commit('snackbar/setTimeout', optSuccess
+        this.$store.commit('snackbarNotification/setTextToShow', optSuccess
+          ? this.$store.state.snackbarNotification.text.success
+          : this.$store.state.snackbarNotification.text.error)
+        this.$store.commit('snackbarNotification/setShowAction', !optSuccess)
+        this.$store.commit('snackbarNotification/setTimeout', optSuccess
           ? 3000
           : -1)
-        this.$store.commit('snackbar/setModel', true)
+        this.$store.commit('snackbarNotification/setModel', true)
         if (optSuccess) {
           setTimeout(() => {
             this.$router.push('/actividad-1/reto-2')
@@ -165,7 +165,7 @@ export default {
     },
     optRetry() {
       this.opt.model = ''
-      this.$store.commit('snackbar/setModel', false)
+      this.$store.commit('snackbarNotification/setModel', false)
     }
   }
 }

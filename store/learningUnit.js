@@ -1,15 +1,8 @@
-import Vue from 'vue'
+import { set } from 'vue'
 
 export const state = () => ({
   indexPage: {
-    title: {
-      es: 'Situación de aprendizaje',
-      ca: 'Situació d\'aprenentatge'
-    },
-    subtitle: {
-      es: 'Flora + Fauna = Álgebra',
-      ca: 'Flora + Fauna = Àlgebra'
-    },
+    author: 'Yurena Cabrera Hernández',
     image: {
       imageSrc: '/img/index/profe-yure.png',
       imageAlt: {
@@ -17,14 +10,34 @@ export const state = () => ({
         ca: 'Memoji de Yurena.'
       }
     },
-    author: 'Yurena Cabrera Hernández',
+    languages: [{
+      iso639set1Code: 'es',
+      name: {
+        es: 'Español',
+        ca: 'Castellà'
+      }
+    }, {
+      iso639set1Code: 'ca',
+      name: {
+        es: 'Catalán',
+        ca: 'Català'
+      }
+    }],
     password: {
       statement: {
         es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
         ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:'
       },
       expected: '141592',
-      user: ''
+      fromUser: ''
+    },
+    subtitle: {
+      es: 'Flora + Fauna = Álgebra',
+      ca: 'Flora + Fauna = Àlgebra'
+    },
+    title: {
+      es: 'Situación de aprendizaje',
+      ca: 'Situació d\'aprenentatge'
     }
   },
   activities: [{
@@ -73,7 +86,7 @@ export const state = () => ({
             ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:'
           },
           expected: '1044-271/3222-420-1',
-          user: ''
+          fromUser: ''
         },
         statement: {
           es: 'Resuelvan las siguientes ecuaciones de primer grado para encontrar la clave secreta que necesitan para descubrir la primera pista:',
@@ -84,16 +97,16 @@ export const state = () => ({
           statement: '2x + 1 = 21',
           solution: {
             expected: 10,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'b',
           statement: '7 = x + 3',
           solution: {
             expected: 4,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -103,8 +116,8 @@ export const state = () => ({
           statement: '8x – 5x = x + 8',
           solution: {
             expected: 4,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -114,8 +127,8 @@ export const state = () => ({
           statement: '3x = 9x + 12',
           solution: {
             expected: -2,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -125,8 +138,8 @@ export const state = () => ({
           statement: '3x + 6 = 2x + 13',
           solution: {
             expected: 7,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -136,8 +149,8 @@ export const state = () => ({
           statement: '5x – 7 = 2 – 4x',
           solution: {
             expected: '1/3',
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -147,8 +160,8 @@ export const state = () => ({
           statement: '5x – 8 + 2x = 7 + 4x – 9',
           solution: {
             expected: 2,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -158,8 +171,8 @@ export const state = () => ({
           statement: '3x + x + 4 = 2x + 30',
           solution: {
             expected: 22,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -169,8 +182,8 @@ export const state = () => ({
           statement: '4x + 7 – x = 5 + 2x',
           solution: {
             expected: -4,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -180,8 +193,8 @@ export const state = () => ({
           statement: '4 – 2x + 13 = 10 – 9x + 7',
           solution: {
             expected: 2,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -191,8 +204,8 @@ export const state = () => ({
           statement: '7x – 10 + x – 2 = 6x – 3 + 3x – 1',
           solution: {
             expected: 0,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           activityId: 1,
@@ -202,8 +215,8 @@ export const state = () => ({
           statement: '5x – 7 + 2x = 3x – 3 + 4x – 5 + x',
           solution: {
             expected: -1,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }]
       }]
@@ -241,7 +254,7 @@ export const state = () => ({
             ca: 'Escriviu ací la resposta:'
           },
           expected: 'El Teide',
-          user: ''
+          fromUser: ''
         }
       }, {
         exerciseId: 2,
@@ -258,64 +271,64 @@ export const state = () => ({
           statement: '2x + 1 = 21',
           solution: {
             expected: 10,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'a',
           statement: 'x + 2 = 3',
           solution: {
             expected: 1,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'b',
           statement: '27 = 3x',
           solution: {
             expected: 9,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'c',
           statement: '6x − 3 = 4x + 7',
           solution: {
             expected: 5,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'd',
           statement: '2x + 9 = 3x + 5',
           solution: {
             expected: 4,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'e',
           statement: '7 − 2x + 5 − 3x = −3',
           solution: {
             expected: 3,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'f',
           statement: '4x + 7 = 35',
           solution: {
             expected: 7,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }, {
           sectionId: 'g',
           statement: '-3 − x = −2x + 5',
           solution: {
             expected: 8,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }]
       }]
@@ -331,8 +344,8 @@ export const state = () => ({
           statement: '2x + 1 = 21',
           solution: {
             expected: 10,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }]
       }]
@@ -348,8 +361,8 @@ export const state = () => ({
           statement: '2x + 1 = 21',
           solution: {
             expected: 10,
-            user: undefined,
-            userBySteps: undefined
+            fromUser: undefined,
+            fromUserBySteps: undefined
           }
         }]
       }]
@@ -358,10 +371,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addOrUpdateSection(
-    state,
-    payload
-  ) {
+  addOrUpdateSection(state, payload) {
     const activityIndex = state.activities?.findIndex(activity => activity.activityId === payload.activityId)
 
     if (activityIndex !== -1) {
@@ -376,13 +386,20 @@ export const mutations = {
           if (sectionIndex !== -1) {
             // Update section
             // state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections[sectionIndex] = payload.section
-            Vue.set(state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections, sectionIndex, payload.section)
+            set(state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections, sectionIndex, payload.section)
           } else {
             // Add section
             state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections.push(payload.section)
           }
         }
       }
+    }
+  },
+  setPasswordFromUser(state, payload) {
+    console.log('state.indexPage.password.fromUser: %o', state.indexPage.password.fromUser)
+    console.log('payload: %o', payload)
+    if (state.indexPage?.password) {
+      set(state.indexPage.password, 'fromUser', payload)
     }
   }
 }
