@@ -83,12 +83,12 @@ export default {
   methods: {
     otpOnFinish (response) {
       this.$store.commit('learningUnit/setPasswordFromUser', response)
-      this.$store.commit('pageLoadingOverlay/setShow', true)
+      this.$store.commit('setPageLoadingOverlay', true)
       this.otp.loading = true
       setTimeout(() => {
         const otpSuccess = response === this.otp.expected
         this.otp.loading = false
-        this.$store.commit('pageLoadingOverlay/setShow', false)
+        this.$store.commit('setPageLoadingOverlay', false)
         this.$store.commit('snackbarNotification/setColor', otpSuccess
           ? 'green darken-4'
           : 'error')

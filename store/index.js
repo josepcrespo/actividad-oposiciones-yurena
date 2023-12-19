@@ -2,6 +2,9 @@
 export const strict = false
 
 export const state = () => ({
+  navigationDrawerLeft: true,
+  navigationDrawerRight: false,
+  pageLoadingOverlay: false,
   routeParams: {
     es: {
       activity: 'actividad',
@@ -11,12 +14,13 @@ export const state = () => ({
       activity: 'activitat',
       challenge: 'repte'
     }
-  },
-  navigationDrawerLeft: true,
-  navigationDrawerRight: false
+  }
 })
 
 export const mutations = {
+  setPageLoadingOverlay(state, payload) {
+    state.pageLoadingOverlay = payload
+  },
   setNavigationDrawerLeft(state, payload) {
     state.navigationDrawerLeft = payload
   },

@@ -139,12 +139,12 @@ export default {
     },
     optOnFinish(response) {
       this.$store.commit('actividad-1-reto-1/setUserResult', response)
-      this.$store.commit('pageLoadingOverlay/setShow', true)
+      this.$store.commit('setPageLoadingOverlay', true)
       this.opt.loading = true
       setTimeout(() => {
         const optSuccess = response === this.opt.expected
         this.opt.loading = false
-        this.$store.commit('pageLoadingOverlay/setShow', false)
+        this.$store.commit('setPageLoadingOverlay', false)
         this.$store.commit('snackbarNotification/setColor', optSuccess
           ? 'green darken-4'
           : 'error')

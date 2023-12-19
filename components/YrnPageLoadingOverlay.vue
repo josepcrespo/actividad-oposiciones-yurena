@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     visibilityState() {
-      return this.$store?.state?.pageLoadingOverlay?.show
+      return this.$store?.state?.pageLoadingOverlay
     }
   }
 }
