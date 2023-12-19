@@ -1,3 +1,12 @@
+<i18n lang="yaml">
+es:
+  activity: "Actividad"
+  start: "Inicio"
+ca:
+  activity: "Activitat"
+  start: "Inici"
+</i18n>
+
 <template>  
   <v-navigation-drawer
     v-model="drawerVisibility"
@@ -9,20 +18,36 @@
   >
     <v-list>
       <v-list-item
-        v-for="(item, index) in menuItems"
-        :key="index"
-        :to="item.to"
+        to="/"
         router
         exact
       >
         <v-list-item-action class="mr-4">
           <v-icon>
-            {{ item.icon }}
+            mdi-apps
           </v-icon>
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
-            {{ item.title }}
+            {{ $t('start') }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
+        v-for="(activityId, index) in activityIds"
+        :key="index"
+        :to="`/activity/${activityId}/challenge/1`"
+        router
+        exact
+      >
+        <v-list-item-action class="mr-4">
+          <v-icon>
+            mdi-chart-bubble
+          </v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ $t('activity') }} {{ activityId }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -65,6 +90,9 @@ export default {
       set(value) {
         this.$store.commit('setNavigationDrawerLeft', value)
       }
+    },
+    activityIds() {
+      return this.$store.getters['learningUnit/getActivityIds']
     }
   }
 }
