@@ -102,7 +102,7 @@ export default {
         this.$store.commit('snackbarNotification/setModel', true)
         setTimeout(() => {
           if (otpSuccess) {
-            this.$router.push('/activity/1/challange/1')
+            this.$router.push('/activity/1/challenge/1')
           } else {
             this.otp.model = ''
           }
