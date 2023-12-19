@@ -59,7 +59,7 @@ export default {
   background-size: 100%;
 
   &__wrap {
-    backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px);
   }
 }
 </style>
