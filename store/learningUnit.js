@@ -1,48 +1,6 @@
 import { set } from 'vue'
 
 export const state = () => ({
-  backgroundImage: '/img/background.png',
-  indexPage: {
-    author: 'Yurena Cabrera Hernández',
-    image: {
-      imageSrc: '/img/index/profe-yure.png',
-      imageAlt: {
-        es: 'Memoji de Yurena.',
-        ca: 'Memoji de Yurena.'
-      }
-    },
-    password: {
-      statement: {
-        es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
-        ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:'
-      },
-      expected: '141592',
-      fromUser: ''
-    },
-    subtitle: {
-      es: 'Flora + Fauna = Álgebra',
-      ca: 'Flora + Fauna = Àlgebra'
-    },
-    title: {
-      es: 'Situación de aprendizaje',
-      ca: 'Situació d\'aprenentatge'
-    }
-  },
-  languages: [{
-    code: 'es',
-    flagCode: 'es',
-    name: {
-      es: 'Español',
-      ca: 'Castellà'
-    }
-  }, {
-    code: 'ca',
-    flagCode: 'es-ca',
-    name: {
-      es: 'Catalán',
-      ca: 'Català'
-    }
-  }],
   activities: [{
     activityId: 1,
     challenges: [{
@@ -370,6 +328,48 @@ export const state = () => ({
         }]
       }]
     }]
+  }],
+  backgroundImage: '/img/background.png',
+  indexPage: {
+    author: 'Yurena Cabrera Hernández',
+    image: {
+      imageSrc: '/img/index/profe-yure.png',
+      imageAlt: {
+        es: 'Memoji de Yurena.',
+        ca: 'Memoji de Yurena.'
+      }
+    },
+    password: {
+      statement: {
+        es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
+        ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:'
+      },
+      expected: '141592',
+      fromUser: ''
+    },
+    subtitle: {
+      es: 'Flora + Fauna = Álgebra',
+      ca: 'Flora + Fauna = Àlgebra'
+    },
+    title: {
+      es: 'Situación de aprendizaje',
+      ca: 'Situació d\'aprenentatge'
+    }
+  },
+  languages: [{
+    code: 'es',
+    flagCode: 'es',
+    name: {
+      es: 'Español',
+      ca: 'Castellà'
+    }
+  }, {
+    code: 'ca',
+    flagCode: 'es-ca',
+    name: {
+      es: 'Catalán',
+      ca: 'Català'
+    }
   }]
 })
 
