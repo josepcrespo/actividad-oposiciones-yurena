@@ -80,7 +80,6 @@ export default {
   },
   methods: {
     getListItemUrl(activityId) {
-      const defaultLocale = this.$i18n.defaultLocale
       const activitySlugTranslation = this
         ?.$store
         ?.state
@@ -95,7 +94,7 @@ export default {
         ?.challenge
       let listItemUrl = `${activitySlugTranslation}/${activityId}/${challengeSlugTranslation}/1`
 
-      if (this.$i18n.locale !== defaultLocale) {
+      if (this.$i18n.locale !== this.$i18n.defaultLocale) {
         listItemUrl = `${this.$i18n.locale}/${listItemUrl}`
       }
 
