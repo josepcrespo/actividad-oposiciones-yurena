@@ -67,7 +67,11 @@ export default {
   },
   computed: {
     learningUnitLanguages() {
-      return this.$store?.state?.learningUnit?.languages ?? []
+      return this.$store
+        ?.state
+        ?.learningUnit
+        ?.languages
+        ?.filter(lang => lang.code !== this.$i18n.locale) ?? []
     }
   }
 }
