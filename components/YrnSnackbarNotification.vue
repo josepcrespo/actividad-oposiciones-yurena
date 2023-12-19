@@ -31,8 +31,13 @@ export default {
     color() {
       return this.$store?.state?.snackbarNotification?.color
     },
-    model() {
-      return this.$store?.state?.snackbarNotification?.model
+    model: {
+      get() {
+        return this.$store?.state?.snackbarNotification?.model
+      },
+      set(value) {
+        this.$store.commit('snackbarNotification/setModel', value)
+      }
     },
     right() {
       return this.$store?.state?.snackbarNotification?.right

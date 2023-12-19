@@ -387,8 +387,11 @@ export const mutations = {
 
           if (sectionIndex !== -1) {
             // Update section
-            // state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections[sectionIndex] = payload.section
-            set(state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections, sectionIndex, payload.section)
+            set(
+              state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections,
+              sectionIndex,
+              payload.section
+            )
           } else {
             // Add section
             state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections.push(payload.section)
@@ -398,8 +401,6 @@ export const mutations = {
     }
   },
   setPasswordFromUser(state, payload) {
-    console.log('state.indexPage.password.fromUser: %o', state.indexPage.password.fromUser)
-    console.log('payload: %o', payload)
     if (state.indexPage?.password) {
       set(state.indexPage.password, 'fromUser', payload)
     }
