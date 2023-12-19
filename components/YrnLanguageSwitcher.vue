@@ -1,18 +1,36 @@
+<i18n lang="yaml">
+es:
+  buttonTitle: "Idioma"
+  buttonTooltip: "Cambia el idioma"
+ca:
+  buttonTitle: "Idioma"
+  buttonTooltip: "Canvia l'idioma"
+</i18n>
+
 <template>
   <v-menu
     class="yrn-language-switcher"
     offset-y
   >
-    <template #activator="{ on, attrs }">
-      <v-btn
-        icon
-        v-bind="attrs"
-        v-on="on"
-      >
-        <v-icon>
-          mdi-translate
-        </v-icon>
-      </v-btn>
+    <template #activator="{ on: menu, attrs }">
+      <v-tooltip bottom>
+        <template #activator="{ on: tooltip }">
+          <v-btn
+            :icon="$vuetify.breakpoint.xs"
+            text
+            v-bind="attrs"
+            v-on="{ ...tooltip, ...menu }"
+          >
+            <v-icon>
+              mdi-translate
+            </v-icon>
+            <span class="ml-2 d-none d-sm-block">
+              {{ $t('buttonTitle') }}
+            </span>
+          </v-btn>
+        </template>
+        <span>{{ $t('buttonTooltip') }}</span>
+      </v-tooltip>
     </template>
     <v-list>
       <v-list-item
@@ -21,7 +39,7 @@
       >
         <v-list-item-title>
           <nuxt-link
-            class="yrn-language-switcher__link text-h6 text-decoration-none"
+            class="yrn-language-switcher__link text-h6 text-decoration-none font-weight-light"
             :to="switchLocalePath(lang.code)"
           >
             <country-flag
@@ -55,7 +73,7 @@ export default {
 .theme--dark {
   .yrn-language-switcher {
     &__link {
-        color: white;
+      color: white;
     }
   }
 }
@@ -64,7 +82,7 @@ export default {
 .theme--light {
   .yrn-language-switcher {
     &__link {
-        color: black;
+      color: black;
     }
   }
 }

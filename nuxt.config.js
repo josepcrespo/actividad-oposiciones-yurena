@@ -57,7 +57,8 @@ export default {
     defaultLocale: 'es',
     vueI18n: {
       fallbackLocale: 'es'
-    }
+    },
+    vueI18nLoader: true
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
