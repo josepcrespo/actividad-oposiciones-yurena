@@ -2,7 +2,7 @@
   <v-app dark>
     <yrn-navigation-drawer-left />
     <v-app-bar
-      :clipped-left="vAppBar.clipped"
+      :clipped-left="vAppBar.clippedLeft"
       :fixed="vAppBar.fixed"
       app
     >
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       vAppBar: {
-        clipped: true,
+        clippedLeft: true,
         fixed: true
       }
     }
