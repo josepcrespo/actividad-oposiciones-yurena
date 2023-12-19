@@ -34,7 +34,7 @@ ca:
     </template>
     <v-list>
       <v-list-item
-        v-for="lang in $store.state.learningUnit.languages"
+        v-for="lang in learningUnitLanguages"
         :key="lang.code"
       >
         <v-list-item-title>
@@ -64,6 +64,11 @@ export default {
   name: 'YrnLanguageSwitcher',
   components: {
     CountryFlag
+  },
+  computed: {
+    learningUnitLanguages() {
+      return this.$store?.state?.learningUnit?.languages ?? []
+    }
   }
 }
 </script>

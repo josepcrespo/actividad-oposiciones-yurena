@@ -1,6 +1,7 @@
 import { set } from 'vue'
 
 export const state = () => ({
+  backgroundImage: '/img/background.png',
   indexPage: {
     author: 'Yurena Cabrera Hernández',
     image: {
@@ -408,6 +409,15 @@ export const mutations = {
 }
 
 export const getters = {
+  getActivityIds(state) {
+    const activityIds = []
+
+    state.activities.forEach(activity => {
+      activityIds.push(activity.activityId)
+    })
+
+    return activityIds
+  },
   getExercise: (state) => (activityId, challengeId, exerciseId) => {
     const activityObject = state.activities?.find(activity => activity.activityId === activityId)
 

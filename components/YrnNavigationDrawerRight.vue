@@ -8,10 +8,10 @@ ca:
 <template>
   <v-navigation-drawer
     v-model="drawerVisibility"
+    class="yrn-navigation-drawer-right"
+    fixed
     :right="true"
     temporary
-    fixed
-    class="yrn-navigation-drawer-progress"
   >
     <v-list>
       <v-list-item>
@@ -30,14 +30,14 @@ ca:
 
 <script>
 export default {
-  name: 'YrnNavigationDrawerProgress',
+  name: 'YrnNavigationDrawerRight',
   computed: {
     drawerVisibility: {
       get() {
-        return this.$store?.state?.rightDrawer
+        return this.$store?.state?.navigationDrawerRight
       },
       set(value) {
-        this.$store.commit('setRightDrawer', value)
+        this.$store.commit('setNavigationDrawerRight', value)
       }
     }
   }

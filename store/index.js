@@ -2,11 +2,15 @@
 export const strict = false
 
 export const state = () => ({
-  rightDrawer: false
+  navigationDrawerLeft: true,
+  navigationDrawerRight: false
 })
 
 export const mutations = {
-  setRightDrawer(state, payload) {
-    state.rightDrawer = payload
+  setNavigationDrawerLeft(state, payload) {
+    state.navigationDrawerLeft = payload
+  },
+  setNavigationDrawerRight(state, payload) {
+    state.navigationDrawerRight = payload
   }
 }
