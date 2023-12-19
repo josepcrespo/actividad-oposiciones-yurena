@@ -6,7 +6,7 @@
       :fixed="vAppBar.fixed"
       app
     >
-      <v-app-bar-nav-icon @click.stop="toggleNavigationDrawerLeft()" />
+      <yrn-navigation-drawer-left-toggle />
       <yrn-top-menu-title />
       <v-spacer />
       <yrn-theme-toggle />
@@ -39,14 +39,6 @@ export default {
   computed: {
     backgroundImageUrl() {
       return this.$store?.state?.learningUnit?.backgroundImage
-    }
-  },
-  methods: {
-    toggleNavigationDrawerLeft() {
-      this.$store.commit(
-        'setNavigationDrawerLeft',
-        !this.$store?.state?.navigationDrawerLeft
-      )
     }
   }
 }
