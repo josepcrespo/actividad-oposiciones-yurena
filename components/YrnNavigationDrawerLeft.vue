@@ -62,23 +62,6 @@ export default {
     return {
       clipped: true,
       fixed: false,
-      menuItems: [
-        {
-          icon: 'mdi-apps',
-          title: 'Inicio',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Actividad 1',
-          to: '/actividad-1',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Actividad 2',
-          to: '/actividad-2',
-        },
-      ],
       miniVariant: false
     }
   },
