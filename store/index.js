@@ -2,6 +2,16 @@
 export const strict = false
 
 export const state = () => ({
+  routeParams: {
+    es: {
+      activity: 'actividad',
+      challenge: 'reto'
+    },
+    ca: {
+      activity: 'activitat',
+      challenge: 'repte'
+    }
+  },
   navigationDrawerLeft: true,
   navigationDrawerRight: false
 })

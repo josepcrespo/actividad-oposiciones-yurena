@@ -36,7 +36,7 @@ ca:
       <v-list-item
         v-for="(activityId, index) in activityIds"
         :key="index"
-        :to="`/activity/${activityId}/challenge/1`"
+        :to="getListItemUrl(activityId)"
         router
         exact
       >
@@ -76,6 +76,30 @@ export default {
     },
     activityIds() {
       return this.$store.getters['learningUnit/getActivityIds']
+    }
+  },
+  methods: {
+    getListItemUrl(activityId) {
+      const defaultLocale = this.$i18n.defaultLocale
+      const activitySlugTranslation = this
+        ?.$store
+        ?.state
+        ?.routeParams
+        ?.[this.$i18n.locale]
+        ?.activity
+      const challengeSlugTranslation = this
+        ?.$store
+        ?.state
+        ?.routeParams
+        ?.[this.$i18n.locale]
+        ?.challenge
+      let listItemUrl = `${activitySlugTranslation}/${activityId}/${challengeSlugTranslation}/1`
+
+      if (this.$i18n.locale !== defaultLocale) {
+        listItemUrl = `${this.$i18n.locale}/${listItemUrl}`
+      }
+
+      return `/${listItemUrl}`
     }
   }
 }

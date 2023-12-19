@@ -12,8 +12,10 @@
 <script>
 export default {
   name: 'ChallengePage',
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const { activityId, challengeId } = params
+    // This line adds translations for all app static URL slugs.
+    await store.dispatch('i18n/setRouteParams', store.state.routeParams)
     return await { activityId, challengeId }
   }
 }
