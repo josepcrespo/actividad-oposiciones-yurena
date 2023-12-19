@@ -36,9 +36,17 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: this.titleTranslation
+    }
+  },
   computed: {
     backgroundImageUrl() {
       return this.$store?.state?.learningUnit?.backgroundImage
+    },
+    titleTranslation() {
+      return this?.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
     }
   }
 }
