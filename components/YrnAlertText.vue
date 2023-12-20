@@ -40,6 +40,8 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-alert-text {
-  // Custom style
+  .v-alert {
+    color: white;
+  }
 }
 </style>
