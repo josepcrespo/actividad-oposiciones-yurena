@@ -13,10 +13,14 @@ export const state = () => ({
         }
       }, {
         type: 'yrn-image',
-        imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png',
         imageAlt: {
           es: 'Memoji del director del IES El Galeón, mostrando un mapa de las Islas Canarias con los Parques Nacionales.',
           ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.'
+        },
+        imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png',
+        linkTitle: {
+          es: 'Haz clic para ampliar el mapa.',
+          ca: 'Fes clic per ampliar el mapa.'
         },
         linkUrl: 'https://www3.gobiernodecanarias.org/medusa/ecoescuela/recursosdigitales/files/formidable/ENP-Canarias.pdf'
       }, {
@@ -191,11 +195,11 @@ export const state = () => ({
         }
       }, {
         type: 'yrn-image',
-        imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png',
         imageAlt: {
           es: 'Imagen del Parque Natural que visitó el director.',
           ca: 'Imatge del Parc Natural que va visitar el director.'
-        }
+        },
+        imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png'
       }, {
         type: 'yrn-exercise-solution-otp',
         exerciseId: 1
@@ -333,11 +337,11 @@ export const state = () => ({
   indexPage: {
     author: 'Yurena Cabrera Hernández',
     image: {
-      imageSrc: '/img/index/profe-yure.png',
       imageAlt: {
         es: 'Memoji de Yurena.',
         ca: 'Memoji de Yurena.'
-      }
+      },
+      imageSrc: '/img/index/profe-yure.png'
     },
     password: {
       statement: {
