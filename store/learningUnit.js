@@ -45,6 +45,10 @@ export const state = () => ({
       }],
       exercises: [{
         exerciseId: 1,
+        routerRedirection: {
+          activityId: 1,
+          challengeId: 2
+        },
         solution: {
           statement: {
             es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',

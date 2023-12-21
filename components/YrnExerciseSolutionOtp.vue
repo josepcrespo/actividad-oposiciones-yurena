@@ -2,11 +2,11 @@
   <v-row class="yrn-exercise-solution-otp">
     <v-col>
       <h2 class="mt-8">
-        {{ statement }}
+        {{ exerciseStatement }}
       </h2>
       <v-otp-input
         v-model="model"
-        :length="expected.length"
+        :length="exerciseSolutionExpected.length"
         :disabled="loading"
         :type="type"
         @finish="onFinish"
@@ -31,27 +31,27 @@ export default {
       required: true,
       type: [Number, String]
     },
-    expected: {
-      required: true,
-      type: String
-    },
-    mask: {
-      default: '',
-      required: false,
-      type: String
-    },
-    routerRedirection: {
-      default: () => ({
-        activityId: undefined,
-        challengeId: undefined
-      }),
-      required: false,
-      type: Object
-    },
-    statement: {
-      required: true,
-      type: String
-    }
+    // expected: {
+    //   required: true,
+    //   type: String
+    // },
+    // mask: {
+    //   default: '',
+    //   required: false,
+    //   type: String
+    // },
+    // routerRedirection: {
+    //   default: () => ({
+    //     activityId: undefined,
+    //     challengeId: undefined
+    //   }),
+    //   required: false,
+    //   type: Object
+    // },
+    // statement: {
+    //   required: true,
+    //   type: String
+    // }
   },
   data() {
     return {
@@ -61,15 +61,40 @@ export default {
       type: 'text'
     }
   },
+  computed: {
+    exercise() {
+      return this.getExercise(this.activityId, this.challengeId, this.exerciseId)
+    },
+    exerciseSolutionExpected() {
+      return this.exercise?.solution?.expected
+    },
+    exerciseSolutionMask() {
+      return this.exercise?.solution?.expectedMask
+    },
+    exerciseRouterRedirection() {
+      return this.exercise?.routerRedirection ?? {}
+    },
+    exerciseStatement() {
+      return this.exercise?.statement
+    }
+  },
   mounted() {
-    this.model = this.mask
+    this.model = this.exerciseSolutionMask
   },
   methods: {
+    getExercise(activityId, challengeId, exerciseId) {
+      return this.$store.getters['learningUnit/getExercise'](
+        activityId,
+        challengeId,
+        exerciseId
+      )
+    },
     onFinish(response) {
       this.loading = true
       this.$store.commit('setPageLoadingOverlay', true)
       // TODO: hacer una mutación dinámica de setUserResult en learningUnit Store.
       // this.$store.commit('actividad-1-reto-1/setUserResult', response)
+      // TODO: la mutación está hecha, probar si se guarda el valor correctamente.
       this.$store.commit('setExerciseSolutionFromUser', {
         activityId: this.activityId,
         challengeId: this.challengeId,
@@ -78,15 +103,15 @@ export default {
       })
       setTimeout(() => {
         const i18n = this.$i18n
-        const success = response === this.expected
+        const success = response === this.exerciseSolutionExpected
         this.loading = false
         this.$store.commit('setPageLoadingOverlay', false)
         this.$store.dispatch('snackbarNotification/show', { i18n, success })
         
         if (
           success &&
-          this.routerRedirection.activityId &&
-          this.routerRedirection.challengeId
+          this.exerciseRouterRedirection?.activityId &&
+          this.exerciseRouterRedirection?.challengeId
         ) {
           setTimeout(() => {
             this.$router.push(
