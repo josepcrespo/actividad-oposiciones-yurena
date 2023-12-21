@@ -18,7 +18,7 @@ ca:
   >
     <v-list>
       <v-list-item
-        to="/"
+        :to="getStartUrl"
         router
         exact
       >
@@ -66,6 +66,9 @@ export default {
     }
   },
   computed: {
+    activityIds() {
+      return this.$store.getters['learningUnit/getActivityIds']
+    },
     drawerVisibility: {
       get() {
         return this.$store?.state?.navigationDrawerLeft
@@ -74,31 +77,17 @@ export default {
         this.$store.commit('setNavigationDrawerLeft', value)
       }
     },
-    activityIds() {
-      return this.$store.getters['learningUnit/getActivityIds']
+    getStartUrl() {
+      return this.$store?.getters?.getLocaleUrl(this.$i18n, '/')
     }
   },
   methods: {
     getListItemUrl(activityId) {
-      const activitySlugTranslation = this
-        ?.$store
-        ?.state
-        ?.routeParams
-        ?.[this.$i18n.locale]
-        ?.activity
-      const challengeSlugTranslation = this
-        ?.$store
-        ?.state
-        ?.routeParams
-        ?.[this.$i18n.locale]
-        ?.challenge
-      let listItemUrl = `${activitySlugTranslation}/${activityId}/${challengeSlugTranslation}/1`
-
-      if (this.$i18n.locale !== this.$i18n.defaultLocale) {
-        listItemUrl = `${this.$i18n.locale}/${listItemUrl}`
-      }
-
-      return `/${listItemUrl}`
+      return this.$store?.getters?.getLocaleActivityChallengeUrl(
+        this.$i18n,
+        activityId,
+        1
+      )
     }
   }
 }

@@ -41,10 +41,7 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      timeout: {
-        simulated: 1500,
-        snackbarNotification: 3000
-      },
+      simulatedTimeout: 1500,
       otp: {
         expected: '',
         loading: false,
@@ -82,32 +79,25 @@ export default {
   },
   methods: {
     otpOnFinish (response) {
-      this.$store.commit('learningUnit/setPasswordFromUser', response)
-      this.$store.commit('setPageLoadingOverlay', true)
       this.otp.loading = true
+      this.$store.commit('setPageLoadingOverlay', true)
+      this.$store.commit('learningUnit/setPasswordFromUser', response)
       setTimeout(() => {
-        const otpSuccess = response === this.otp.expected
+        const i18n = this.$i18n
+        const success = response === this.otp.expected
         this.otp.loading = false
         this.$store.commit('setPageLoadingOverlay', false)
-        this.$store.commit('snackbarNotification/setColor', otpSuccess
-          ? 'green darken-4'
-          : 'error')
-        this.$store.commit('snackbarNotification/setTextToShow', otpSuccess
-          ? this.$store.state.snackbarNotification.text.success
-          : this.$store.state.snackbarNotification.text.error)
-        this.$store.commit('snackbarNotification/setShowAction', !otpSuccess)
-        this.$store.commit('snackbarNotification/setTimeout', otpSuccess
-          ? this.timeout.snackbarNotification
-          : -1)
-        this.$store.commit('snackbarNotification/setModel', true)
+        this.$store.dispatch('snackbarNotification/show', { i18n, success })
         setTimeout(() => {
-          if (otpSuccess) {
-            this.$router.push('/activity/1/challenge/1')
+          if (success) {
+            this.$router.push(
+              this.$store?.getters?.getLocaleActivityChallengeUrl(this.$i18n, 1, 1)
+            )
           } else {
             this.otp.model = ''
           }
-        }, this.timeout.simulated)
-      }, this.timeout.simulated)
+        }, this.simulatedTimeout)
+      }, this.simulatedTimeout)
     }
   }
 }

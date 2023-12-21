@@ -51,6 +51,7 @@ export const state = () => ({
             ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:'
           },
           expected: '1044-271/3222-420-1',
+          expectedMask: 'aabcddefffghhiijkll',
           fromUser: ''
         },
         statement: {
@@ -401,6 +402,21 @@ export const mutations = {
             // Add section
             state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections.push(payload.section)
           }
+        }
+      }
+    }
+  },
+  setExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution }) {
+    const activity = state.activities.find((a) => a.activityId === activityId);
+
+    if (activity) {
+      const challenge = activity.challenges.find((c) => c.challengeId === challengeId);
+
+      if (challenge) {
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId === exerciseId);
+
+        if (exercise && exercise.solution) {
+          set(exercise.solution, 'fromUser', solution)
         }
       }
     }

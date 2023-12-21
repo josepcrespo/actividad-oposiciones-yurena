@@ -1,3 +1,10 @@
+<i18n lang="yaml">
+es:
+  retry: "Prueba otra vez"
+ca:
+  retry: "Prova de nou"
+</i18n>
+
 <template>
   <v-snackbar
     v-model="model"
@@ -7,7 +14,9 @@
     :timeout="timeout"
     :top="top"
   >
-    {{ text }}
+    <template #default>
+        <span class="font-weight-black">{{ text }}</span>
+    </template>
     <template #action="{ attrs }">
       <v-btn
         v-bind="attrs"
@@ -15,7 +24,7 @@
         :style="{ display: (showAction ? 'flex' : 'none') }"
         @click="retry()"
       >
-        Reintentar
+        {{ $t('retry') }}
       </v-btn>
     </template>
   </v-snackbar>
