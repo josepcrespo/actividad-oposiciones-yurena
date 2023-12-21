@@ -2,7 +2,7 @@
   <v-row class="yrn-exercise">
     <v-col>
       <h2 class="mt-8 mb-4">
-        {{ statement }}
+        {{ exerciseStatement }}
       </h2>
       <yrn-exercise-sections-group-progress
         class="mb-2"
@@ -54,7 +54,7 @@ export default {
         this.exerciseId
       )
     },
-    statement() {
+    exerciseStatement() {
       return this.exercise?.statement
     }
   },
