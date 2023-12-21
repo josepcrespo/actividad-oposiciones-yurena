@@ -63,7 +63,7 @@
         />
         <yrn-exercise-sections-group-progress
           class="mt-2"
-          :current="getSectionsWellSolved(1,1,1).length"
+          :current="getExerciseSectionsWellSolved(1,1,1).length"
           :total="getExerciseSections().length"
         />
         <h2 class="mt-8">
@@ -102,7 +102,7 @@ export default {
   },
   computed: {
     sectionsWellSolved() {
-      return this.getSectionsWellSolved(
+      return this.getExerciseSectionsWellSolved(
         this.learningUnit.activityId,
         this.learningUnit.challengeId,
         this.learningUnit.exerciseId
@@ -130,8 +130,8 @@ export default {
     getExerciseSections() {
       return this.exercise?.sections ?? []
     },
-    getSectionsWellSolved(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learningUnit/getSectionsWellSolved'](
+    getExerciseSectionsWellSolved(activityId, challengeId, exerciseId) {
+      return this.$store.getters['learningUnit/getExerciseSectionsWellSolved'](
         activityId,
         challengeId,
         exerciseId

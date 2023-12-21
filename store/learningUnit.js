@@ -455,7 +455,7 @@ export const getters = {
       return {}
     }
   },
-  getSectionsWellSolved: (state, getters) => (activityId, challengeId, exerciseId) => {
+  getExerciseSectionsWellSolved: (state, getters) => (activityId, challengeId, exerciseId) => {
     const sections = getters.getExercise(activityId, challengeId, exerciseId)?.sections
     if (window?.Array?.isArray(sections)) {
       return sections.filter(section => {
