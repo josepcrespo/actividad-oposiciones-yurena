@@ -39,9 +39,7 @@ export default {
     exerciseSolutionExpected() {
       return this.exercise?.solution?.expected
     },
-    exerciseSolutionMask() {
-      return this.exercise?.solution?.expectedMask
-    },
+    // TODO: utilizar para hacer una redirección opcional.
     exerciseRouterRedirection() {
       return this.exercise?.routerRedirection ?? {}
     },
