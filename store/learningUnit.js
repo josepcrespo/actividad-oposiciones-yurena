@@ -244,7 +244,6 @@ export const state = () => ({
             ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impressionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.'
           },
           expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }],
-          expectedMask: ['abcd', 'efag', 'aecaf'],
           fromUser: []
         },
         statement: {
@@ -466,7 +465,7 @@ export const getters = {
         }
       }
     }
-    
+
     return exercise
   },
   getExerciseSectionsWellSolved: (state, getters) => (activityId, challengeId, exerciseId) => {
