@@ -30,28 +30,7 @@ export default {
     exerciseId: {
       required: true,
       type: [Number, String]
-    },
-    // expected: {
-    //   required: true,
-    //   type: String
-    // },
-    // mask: {
-    //   default: '',
-    //   required: false,
-    //   type: String
-    // },
-    // routerRedirection: {
-    //   default: () => ({
-    //     activityId: undefined,
-    //     challengeId: undefined
-    //   }),
-    //   required: false,
-    //   type: Object
-    // },
-    // statement: {
-    //   required: true,
-    //   type: String
-    // }
+    }
   },
   data() {
     return {
