@@ -2,7 +2,7 @@
   <v-row class="yrn-exercise-solution-otp">
     <v-col>
       <h2 class="mt-8">
-        {{ exerciseStatement }}
+        {{ exerciseSolutionStatement }}
       </h2>
       <v-otp-input
         v-model="model"
@@ -53,8 +53,8 @@ export default {
     exerciseRouterRedirection() {
       return this.exercise?.routerRedirection ?? {}
     },
-    exerciseStatement() {
-      return this.exercise?.statement
+    exerciseSolutionStatement() {
+      return this.exercise?.solution?.statement
     }
   },
   mounted() {
