@@ -390,16 +390,20 @@ export const state = () => ({
 
 export const mutations = {
   addOrUpdateSection(state, payload) {
-    const activityIndex = state.activities?.findIndex(activity => activity.activityId === payload.activityId)
+    // eslint-disable-next-line eqeqeq
+    const activityIndex = state.activities?.findIndex(a => a.activityId == payload.activityId)
 
     if (activityIndex !== -1) {
-      const challengeIndex = state.activities[activityIndex].challenges?.findIndex(challenge => challenge.challengeId === payload.challengeId)
+      // eslint-disable-next-line eqeqeq
+      const challengeIndex = state.activities[activityIndex].challenges?.findIndex(ch => ch.challengeId == payload.challengeId)
 
       if (challengeIndex !== -1) {
-        const exerciseIndex = state.activities[activityIndex].challenges[challengeIndex].exercises?.findIndex(exercise => exercise.exerciseId === payload.exerciseId)
+        // eslint-disable-next-line eqeqeq
+        const exerciseIndex = state.activities[activityIndex].challenges[challengeIndex].exercises?.findIndex(e => e.exerciseId == payload.exerciseId)
 
         if (exerciseIndex !== -1) {
-          const sectionIndex = state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections?.findIndex(section => section.sectionId === payload.section.sectionId)
+          // eslint-disable-next-line eqeqeq
+          const sectionIndex = state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections?.findIndex(s => s.sectionId == payload.section.sectionId)
 
           if (sectionIndex !== -1) {
             // Update section
@@ -417,13 +421,16 @@ export const mutations = {
     }
   },
   setExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution }) {
-    const activity = state.activities.find((a) => a.activityId === activityId);
+    // eslint-disable-next-line eqeqeq
+    const activity = state.activities.find((a) => a.activityId == activityId);
 
     if (activity) {
-      const challenge = activity.challenges.find((c) => c.challengeId === challengeId);
+      // eslint-disable-next-line eqeqeq
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId);
 
       if (challenge) {
-        const exercise = challenge.exercises.find((ex) => ex.exerciseId === exerciseId);
+        // eslint-disable-next-line eqeqeq
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId);
 
         if (exercise && exercise.solution) {
           set(exercise.solution, 'fromUser', solution)
@@ -448,21 +455,39 @@ export const getters = {
 
     return activityIds
   },
-  getExercise: (state) => (activityId, challengeId, exerciseId) => {
-    let exercise = {}
-    const activity = state.activities?.find(activity => activity.activityId === activityId)
+  getChallenge: (state) => (activityId, challengeId) => {
+    let challenge = null
+    // eslint-disable-next-line eqeqeq
+    const activity = state.activities.find((a) => a.activityId == activityId)
 
     if (activity) {
-      const challenge = activity.challenges?.find(challenge => challenge.challengeId === challengeId)
+      challenge =  activity.challenges.find(
+        // eslint-disable-next-line eqeqeq
+        (ch) => ch.challengeId == challengeId
+      ) ?? null
 
-      if (challenge) {
-        exercise = challenge.exercises?.find(exercise => exercise.exerciseId === exerciseId)
+      if (!challenge) {
+        // eslint-disable-next-line no-console
+        console.error(`Challenge "${challengeId}" not found on Activity "${activityId}".`)
+      }
+    }
 
-        if (exercise) {
-          // eslint-disable-next-line no-console
-          console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"
-          , Challenge "${challengeId}".`)
-        }
+    return challenge
+  },
+  getExercise: (state, getters) => (activityId, challengeId, exerciseId) => {
+    let exercise = null
+    const challenge = getters.getChallenge(activityId, challengeId)
+
+    if (challenge) {
+      exercise = challenge.exercises?.find(
+        // eslint-disable-next-line eqeqeq
+        e => e.exerciseId == exerciseId
+      ) ?? null
+
+      if (!exercise) {
+        // eslint-disable-next-line no-console
+        console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"
+        , Challenge "${challengeId}".`)
       }
     }
 
@@ -484,11 +509,16 @@ export const getters = {
     const exercise = getters.getExercise(activityId, challengeId, exerciseId)
 
     if (exercise) {
-      section = exercise.sections?.find(section => section.sectionId === sectionId)
-    } else {
-      // eslint-disable-next-line no-console
-      console.error(`Section "${sectionId}" not found on Activity "${activityId}"
-      , Challenge "${challengeId}", Exercise "${exerciseId}".`)
+      section = exercise.sections?.find(
+        // eslint-disable-next-line eqeqeq
+        s => s.sectionId == sectionId
+      ) ?? null
+    
+      if (!section) {
+        // eslint-disable-next-line no-console
+        console.error(`Section "${sectionId}" not found on Activity "${activityId}"
+        , Challenge "${challengeId}", Exercise "${exerciseId}".`)
+      }
     }
 
     return section

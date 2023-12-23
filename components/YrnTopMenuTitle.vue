@@ -1,10 +1,10 @@
 <template>
   <div class="yrn-top-menu-title d-flex">
     <v-toolbar-title class="pl-1">
-      {{ topMenuTitle }}
+      {{ title }}
     </v-toolbar-title>
-    <div class="ml-4 text-h6 font-weight-light d-none d-md-block">
-      {{ topMenuSubtitle }}
+    <div class="ml-4 text-h6 font-weight-light text-capitalize d-none d-md-block">
+      {{ subtitle }}
     </div>
 </div>  
 </template>
@@ -13,11 +13,28 @@
 export default {
   name: 'YrnTopMenuTitle',
   computed: {
-    topMenuTitle() {
+    activityTranslation() {
+      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity
+    },
+    challengeTranslation() {
+      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge
+    },
+    title() {
       return this.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
     },
-    topMenuSubtitle() {
-      return this.$store?.state?.learningUnit?.indexPage?.subtitle?.[this.$i18n.locale]
+    subtitle() {
+      let subtitle = ''
+      if (
+        this.$route.params.activityId &&
+        this.$route.params.challengeId
+      ) {
+        subtitle = `${this.activityTranslation} ${this.$route.params.activityId} / ` +
+          `${ this.challengeTranslation } ${this.$route.params.challengeId}`
+      } else {
+        subtitle = this.$store?.state?.learningUnit?.indexPage?.subtitle?.[this.$i18n.locale]
+      }
+
+      return subtitle
     }
   }
 }
