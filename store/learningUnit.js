@@ -213,7 +213,7 @@ export const state = () => ({
         class: 'yrn-math-problem',
         exerciseId: 2
       }, {
-        type: 'yrn-exercise-solution-fill-gaps',
+        type: 'yrn-exercise-solution-fill-text-gaps',
         exerciseId: 2
       }],
       exercises: [{
@@ -228,23 +228,30 @@ export const state = () => ({
         }
       }, {
         exerciseId: 2,
-        statement: {
-          es: 'Nuestro director es malísimo para recordar números pero le encantan las ecuaciones.',
-          ca: 'Resolgueu les següents equacions de primer grau per trobar la clau secreta que necessiteu per descobrir la primera pista:'
+        routerRedirection: {
+          activityId: 1,
+          challengeId: 3
         },
-        details: {
+        solution: {
+          statement: {
+            es: 'A nuestro director le cuesta recordar números enteros, pero extráñamente, le resulta muy fácil recordar ecuaciones. Ha memorizado las siguiente ecuaciones de primer grado. Resuélvanlas y podrán completar los datos en blanco del siguiente texto:',
+            ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau. Resolgueu-les i podran completar les dades en blanc del següent text:'
+          },
+          textToFillGaps: {
+            // eslint-disable-next-line no-template-curly-in-string
+            es: 'Este Parque Nacional, situado en la isla de Tenerife, fue el primero reconocido del Archipiélago Canario, en el año ${{ a }}${{ b }}${{ c }}${{ d }} y está presidido por El Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), el pico más alto de España. Con numerosas especies endémicas y una extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, es, a día de hoy, el Parque Nacional más visitado de Canarias, de España y de Europa ya que alberga uno de los más impresionantes espectáculos geológicos del mundo por la dificultad de encontrar en un espacio tan reducido, un conjunto de estas características.',
+            // eslint-disable-next-line no-template-curly-in-string
+            ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impressionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.'
+          },
+          expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }],
+          expectedMask: ['abcd', 'efag', 'aecaf'],
+          fromUser: []
+        },
+        statement: {
           es: 'Resuelvan las siguientes ecuaciones de primer grado para decubrir los datos más relevantes del Parque Natural que visitó.',
           ca: 'Resolgueu les següents equacions de primer grau per descobrir les dades més rellevants del Parc Natural que va visitar.'
         },
         sections: [{
-          sectionId: 'a',
-          statement: '2x + 1 = 21',
-          solution: {
-            expected: 10,
-            fromUser: undefined,
-            fromUserBySteps: undefined
-          }
-        }, {
           sectionId: 'a',
           statement: 'x + 2 = 3',
           solution: {
@@ -443,21 +450,24 @@ export const getters = {
     return activityIds
   },
   getExercise: (state) => (activityId, challengeId, exerciseId) => {
-    const activityObject = state.activities?.find(activity => activity.activityId === activityId)
+    let exercise = {}
+    const activity = state.activities?.find(activity => activity.activityId === activityId)
 
-    if (activityObject) {
-      const challengeObject = activityObject.challenges?.find(challenge => challenge.challengeId === challengeId)
+    if (activity) {
+      const challenge = activity.challenges?.find(challenge => challenge.challengeId === challengeId)
 
-      if (challengeObject) {
-        const exerciseObject = challengeObject.exercises?.find(exercise => exercise.exerciseId === exerciseId)
+      if (challenge) {
+        exercise = challenge.exercises?.find(exercise => exercise.exerciseId === exerciseId)
 
-        if (exerciseObject) {
-          return exerciseObject
+        if (exercise) {
+          // eslint-disable-next-line no-console
+          console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"
+          , Challenge "${challengeId}".`)
         }
       }
-    } else {
-      return {}
     }
+    
+    return exercise
   },
   getExerciseSectionsWellSolved: (state, getters) => (activityId, challengeId, exerciseId) => {
     const sections = getters.getExercise(activityId, challengeId, exerciseId)?.sections
@@ -469,5 +479,19 @@ export const getters = {
     } else {
       return []
     }
+  },
+  getExerciseSection: (state, getters) => (activityId, challengeId, exerciseId, sectionId) => {
+    let section = {}
+    const exercise = getters.getExercise(activityId, challengeId, exerciseId)
+
+    if (exercise) {
+      section = exercise.sections?.find(section => section.sectionId === sectionId)
+    } else {
+      // eslint-disable-next-line no-console
+      console.error(`Section "${sectionId}" not found on Activity "${activityId}"
+      , Challenge "${challengeId}", Exercise "${exerciseId}".`)
+    }
+
+    return section
   }
 }
