@@ -199,12 +199,12 @@ export const state = () => ({
           ca: 'Veient la imatge, ja saben quin Parc Nacional va visitar el director?'
         }
       }, {
-        type: 'yrn-image',
-        imageAlt: {
+        type: 'yrn-image-simple',
+        alt: {
           es: 'Imagen del Parque Natural que visitó el director.',
           ca: 'Imatge del Parc Natural que va visitar el director.'
         },
-        imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png'
+        src: '/img/actividad-1/reto-2/imagen-de-cabecera.png'
       }, {
         type: 'yrn-exercise-solution-otp',
         exerciseId: 1
@@ -234,8 +234,8 @@ export const state = () => ({
         },
         solution: {
           statement: {
-            es: 'A nuestro director le cuesta recordar números enteros, pero extráñamente, le resulta muy fácil recordar ecuaciones. Ha memorizado las siguiente ecuaciones de primer grado. Resuélvanlas y podrán completar los datos en blanco del siguiente texto:',
-            ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau. Resolgueu-les i podran completar les dades en blanc del següent text:'
+            es: 'A nuestro director le cuesta recordar números enteros, pero extráñamente, le resulta muy fácil recordar ecuaciones. Ha memorizado las siguientes ecuaciones de primer grado, resuélvanlas y se revelarán los datos en blanco del siguiente texto:',
+            ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau, resolgueu-les i es revelarán les dades en blanc del següent text:'
           },
           textToFillGaps: {
             // eslint-disable-next-line no-template-curly-in-string
@@ -505,7 +505,7 @@ export const getters = {
     }
   },
   getExerciseSection: (state, getters) => (activityId, challengeId, exerciseId, sectionId) => {
-    let section = {}
+    let section = null
     const exercise = getters.getExercise(activityId, challengeId, exerciseId)
 
     if (exercise) {

@@ -41,7 +41,7 @@ export default {
     },
     // TODO: utilizar para hacer una redirección opcional.
     exerciseRouterRedirection() {
-      return this.exercise?.routerRedirection ?? {}
+      return this.exercise?.routerRedirection ?? null
     },
     exerciseSolutionStatement() {
       return this.exercise?.solution?.statement?.[this.$i18n.locale]
@@ -49,9 +49,6 @@ export default {
     exerciseSolutionTextToFillGaps() {
       return this.exercise?.solution?.textToFillGaps?.[this.$i18n.locale]
     }
-  },
-  mounted() {
-    // this.model = this.exerciseSolutionMask
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {

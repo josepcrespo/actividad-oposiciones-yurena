@@ -2,8 +2,14 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Actividad: {{ activityId }}</h1>
-        <h2>Reto: {{ challengeId }}</h2>
+        <component
+          :is="item.type"
+          v-for="(item, index) in pageStructure"
+          :key="index"
+          v-bind="item"
+          :activity-id="activityId"
+          :challenge-id="challengeId"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -25,17 +31,18 @@ export default {
   },
   computed: {
     activityTranslation() {
-      const translation = this
-        ?.$store
-        ?.state
-        ?.routeParams
-        ?.[this.$i18n.locale]
-        ?.activity
+      const translation =
+        this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity
       
       return translation.charAt(0).toUpperCase() + translation.slice(1)
     },
     challengeTranslation() {
       return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge
+    },
+    pageStructure() {
+      return this.$store
+        ?.getters['learningUnit/getChallenge'](this.activityId, this.challengeId)
+        ?.pageStructure ?? []
     },
     titleTemplate() {
       return `%s - ${this.activityTranslation} ${this.activityId}, ` +

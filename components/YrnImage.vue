@@ -8,7 +8,7 @@
         :title="localizedLinkTitle"
       >
         <yrn-image-simple
-          :alt="localizedImageAlt"
+          :alt="imageAlt"
           :src="imageSrc"
         />
       </a>
@@ -21,18 +21,18 @@ export default {
   name: 'YrnImage',
   props: {
     imageAlt: {
-      default: '',
+      default: () => null,
       required: false,
-      type: String
+      type: Object
     },
     imageSrc: {
       required: true,
       type: String
     },
     linkTitle: {
-      default: '',
+      default: () => null,
       required: false,
-      type: String
+      type: Object
     },
     linkUrl: {
       required: true,
@@ -42,9 +42,6 @@ export default {
   computed: {
     localizedLinkTitle() {
       return this.linkTitle?.[this.$i18n.locale]
-    },
-    localizedImageAlt() {
-      return this.imageAlt?.[this.$i18n.locale]
     }
   }
 }

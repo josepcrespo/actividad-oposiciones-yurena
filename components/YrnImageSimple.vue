@@ -1,7 +1,7 @@
 <template>
   <v-img
     class="yrn-image-simple"
-    :alt="alt"
+    :alt="localizedAlt"
     :src="src"
   >
     <template #placeholder>
@@ -24,13 +24,18 @@ export default {
   name: 'YrnImageSimple',
   props: {
     alt: {
-      default: '',
+      default: () => null,
       required: false,
-      type: String
+      type: Object
     },
     src: {
       required: true,
       type: String
+    }
+  },
+  computed: {
+    localizedAlt() {
+      return this.alt?.[this.$i18n.locale]
     }
   }
 }

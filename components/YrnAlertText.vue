@@ -6,7 +6,7 @@
         :color="color"
       >
         <p
-          v-for="(paragraph, index) in paragraphs"
+          v-for="(paragraph, index) in localizedParagraphs"
           :key="index"
         >
           {{ paragraph }}
@@ -32,7 +32,7 @@ export default {
     },
     paragraphs: {
       required: true,
-      type: Array
+      type: Object
     }
   },
   computed: {

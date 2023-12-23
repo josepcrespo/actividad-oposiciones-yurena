@@ -51,7 +51,7 @@ export default {
       return this.exercise?.solution?.expectedMask
     },
     exerciseRouterRedirection() {
-      return this.exercise?.routerRedirection ?? {}
+      return this.exercise?.routerRedirection ?? null
     },
     exerciseSolutionStatement() {
       return this.exercise?.solution?.statement?.[this.$i18n.locale]
@@ -71,10 +71,7 @@ export default {
     onFinish(response) {
       this.loading = true
       this.$store.commit('setPageLoadingOverlay', true)
-      // TODO: hacer una mutación dinámica de setUserResult en learningUnit Store.
-      // this.$store.commit('actividad-1-reto-1/setUserResult', response)
-      // TODO: la mutación está hecha, probar si se guarda el valor correctamente.
-      this.$store.commit('setExerciseSolutionFromUser', {
+      this.$store.commit('learningUnit/setExerciseSolutionFromUser', {
         activityId: this.activityId,
         challengeId: this.challengeId,
         exerciseId: this.exerciseId,
@@ -96,8 +93,8 @@ export default {
             this.$router.push(
               this.$store?.getters?.getLocaleActivityChallengeUrl(
                 this.$i18n,
-                this.activityId,
-                this.challengeId
+                this.exerciseRouterRedirection?.activityId,
+                this.exerciseRouterRedirection?.challengeId
               )
             )
           }, this.simulatedTimeout)
