@@ -69,15 +69,15 @@ export default {
   props: {
     activityId: {
       required: true,
-      type: Number
+      type: [Number, String]
     },
     challengeId: {
       required: true,
-      type: Number
+      type: [Number, String]
     },
     exerciseId: {
       required: true,
-      type: Number
+      type: [Number, String]
     },
     section: {
       required: true,
