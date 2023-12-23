@@ -486,8 +486,8 @@ export const getters = {
 
       if (!exercise) {
         // eslint-disable-next-line no-console
-        console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"
-        , Challenge "${challengeId}".`)
+        console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"` +
+        `, Challenge "${challengeId}".`)
       }
     }
 
@@ -516,8 +516,8 @@ export const getters = {
     
       if (!section) {
         // eslint-disable-next-line no-console
-        console.error(`Section "${sectionId}" not found on Activity "${activityId}"
-        , Challenge "${challengeId}", Exercise "${exerciseId}".`)
+        console.error(`Section "${sectionId}" not found on Activity "${activityId}"` +
+        `, Challenge "${challengeId}", Exercise "${exerciseId}".`)
       }
     }
 
