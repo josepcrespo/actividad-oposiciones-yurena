@@ -5,10 +5,10 @@
         class="yrn-image__anchor-link"
         :href="linkUrl"
         target="_blank"
-        :title="linkTitle"
+        :title="localizedLinkTitle"
       >
         <yrn-image-simple
-          :alt="imageAlt"
+          :alt="localizedImageAlt"
           :src="imageSrc"
         />
       </a>
@@ -37,6 +37,14 @@ export default {
     linkUrl: {
       required: true,
       type: String
+    }
+  },
+  computed: {
+    localizedLinkTitle() {
+      return this.linkTitle?.[this.$i18n.locale]
+    },
+    localizedImageAlt() {
+      return this.imageAlt?.[this.$i18n.locale]
     }
   }
 }

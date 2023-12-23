@@ -34,6 +34,11 @@ export default {
       required: true,
       type: Array
     }
+  },
+  computed: {
+    localizedParagraphs() {
+      return this.paragraphs?.[this.$i18n.locale] ?? []
+    }
   }
 }
 </script>

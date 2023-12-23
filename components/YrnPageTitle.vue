@@ -2,7 +2,7 @@
   <v-row class="yrn-page-title">
     <v-col>
       <h1 class="my-8 d-flex justify-center">
-        {{ title }}
+        {{ localizedTitle }}
       </h1>
     </v-col>
   </v-row>
@@ -15,6 +15,11 @@ export default {
     title: {
       required: true,
       type: String
+    }
+  },
+  computed: {
+    localizedTitle() {
+      return this.title?.[this.$i18n.locale]
     }
   }
 }
