@@ -54,7 +54,7 @@ export default {
       return this.exercise?.routerRedirection ?? {}
     },
     exerciseSolutionStatement() {
-      return this.exercise?.solution?.statement
+      return this.exercise?.solution?.statement?.[this.$i18n.locale]
     }
   },
   mounted() {

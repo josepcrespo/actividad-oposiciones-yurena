@@ -55,7 +55,7 @@ export default {
       )
     },
     exerciseStatement() {
-      return this.exercise?.statement
+      return this.exercise?.statement?.[this.$i18n.locale]
     }
   },
   methods: {
