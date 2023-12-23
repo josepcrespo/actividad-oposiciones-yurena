@@ -30,6 +30,7 @@ export const mutations = {
 }
 
 export const getters = {
+  // TODO: ver si se puede refactorizar con i18n.useLocalePath() o i18n.useLocaleRoute()
   getLocaleUrl: (state) => (i18n, url) => {
     if (!url.startsWith('/')) {
       url = `/${url}`
@@ -41,6 +42,9 @@ export const getters = {
     return url
   },
   getLocaleActivityChallengeUrl: (state, getters) => (i18n, activityId, challengeId) => {
+    // TODO: ver si se puede refactorizar con i18n.useLocalePath() o i18n.useLocaleRoute()
+    // https://i18n.nuxtjs.org/getting-started/basic-usage/#url-path
+    // https://i18n.nuxtjs.org/getting-started/basic-usage/#url-path-with-route-object
     const activitySlugTranslation = state
       ?.routeParams?.[i18n.locale]?.activity
     const challengeSlugTranslation = state
