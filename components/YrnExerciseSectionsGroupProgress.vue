@@ -1,8 +1,15 @@
+<i18n lang="yaml">
+es:
+  progressTitle: "Porcentaje de ecuaciones resueltas:"
+ca:
+  progressTitle: "Percentatge d'equacions resoltes:"
+</i18n>
+
 <template>
   <v-row class="yrn-math-problems-group-progress">
     <v-col>
       <h3>
-        Porcentaje de ecuaciones resueltas:
+        {{ $t('progressTitle') }}
       </h3>
       <v-progress-linear
         v-model="progress"
