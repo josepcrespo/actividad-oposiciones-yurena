@@ -507,7 +507,6 @@ export const getters = {
   getExerciseSection: (state, getters) => (activityId, challengeId, exerciseId, sectionId) => {
     let section = null
     const exercise = getters.getExercise(activityId, challengeId, exerciseId)
-    console.info("🚀 ~ file: learningUnit.js:510 ~ exercise:", exercise)
 
     if (exercise) {
       section = exercise.sections?.find(
@@ -522,7 +521,6 @@ export const getters = {
       }
     }
 
-    console.log("🚀 ~ file: learningUnit.js:527 ~ section:", section)
     return section
   }
 }
