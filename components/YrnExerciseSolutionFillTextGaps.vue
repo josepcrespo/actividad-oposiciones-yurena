@@ -4,7 +4,6 @@
       <h2 class="mt-8 mb-4">
         {{ exerciseSolutionStatement }}
       </h2>
-      <v-btn @click="refresh()">refrescar</v-btn>
       <p
         class="font-weight-medium"
         v-html="autoFillTextGaps"
