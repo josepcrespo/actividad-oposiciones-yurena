@@ -31,14 +31,13 @@ export default {
   },
   computed: {
     autoFillTextGaps() {
-      console.info('--> autoFillTextGaps()')
-      return this.fillTextGaps(
-        this.exerciseSolutionTextToFillGaps,
-        this.solutionsFromUser
-      )
+      return this.fillTextGaps(this.exerciseSolutionTextToFillGaps)
     },
     exercise() {
       return this.getExercise(this.activityId, this.challengeId, this.exerciseId)
+    },
+    exerciseSections() {
+      return this.exercise?.sections ?? []
     },
     exerciseSolutionExpected() {
       return this.exercise?.solution?.expected
@@ -53,17 +52,15 @@ export default {
     exerciseSolutionTextToFillGaps() {
       return this.exercise?.solution?.textToFillGaps?.[this.$i18n.locale]
     },
+    /**
+     * Currently not used. Maybe useful in the future.
+     */
     solutionsFromUser() {
       const solutionsFromUser = []
       this.exerciseSolutionExpected.forEach(obj => {
         const propertyName = Object.keys(obj)[0]
         const propertyValue =
           this.getExerciseSection(propertyName)?.solution?.fromUser
-        console.info(
-          'this.getExerciseSection("%s"): %o',
-          propertyName, 
-          this.getExerciseSection(propertyName)
-        )
         const userSolution = { [propertyName]: propertyValue }
         solutionsFromUser.push(userSolution)
       })
@@ -87,29 +84,40 @@ export default {
         sectionId
       )
     },
-    fillTextGaps(textWithGaps, solutions) {
+    fillTextGaps(textWithGaps) {
       let filledText = textWithGaps
 
-      solutions.forEach(solution => {
-        const placeholder = Object.keys(solution)[0]
+      this.exerciseSections.forEach(section => {
+        const sectionId = section.sectionId
+        const expectedSolution =
+          this.getExerciseSection(sectionId)?.solution?.expected
+        const userSolution =
+          this.getExerciseSection(sectionId)?.solution?.fromUser
+        // eslint-disable-next-line eqeqeq
+        const validUserSolution = userSolution == expectedSolution
+        const backgroundColor = validUserSolution
+          ? 'green'
+          : 'deep-orange darken-4'
+        const size = String(expectedSolution).length
+        
         const placeholderSolution =
           `<input
             autocomplete="off"
-            class="yrn-exercise-solution-fill-text-gaps__input-placeholder"
-            name="placeholder-${placeholder}"
-            placeholder="${placeholder}"
+            class="yrn-exercise-solution-fill-text-gaps__input-placeholder ${backgroundColor}"
+            name="placeholder-${sectionId}"
+            placeholder="${sectionId}"
             readonly
-            size="${solution[placeholder]?.length ?? 2})"
+            size="${size}"
             type="text"
-            value="${solution[placeholder] ?? ''}"
+            value="${validUserSolution ? userSolution : ''}"
           >`
 
         // Replace placeholders with spaces, like this: ${{ placeholder }}
-        const regExp = new RegExp(`\\$\\{\\{\\s*${placeholder}\\s*\\}\\}`, 'g')
+        const regExp = new RegExp(`\\$\\{\\{\\s*${sectionId}\\s*\\}\\}`, 'g')
         filledText = filledText.replace(regExp, placeholderSolution)
         
-        // Replace placeholders WITHOUT spaces, like this: ${{placeholder}}
-        const regExpWithoutSpaces = new RegExp(`\\$\\{\\{${placeholder}\\}\\}`, 'g')
+        // Replace placeholders WITHOUT spaces, like this: ${{sectionId}}
+        const regExpWithoutSpaces = new RegExp(`\\$\\{\\{${sectionId}\\}\\}`, 'g')
         filledText = filledText.replace(regExpWithoutSpaces, placeholderSolution)
       })
 
@@ -120,6 +128,16 @@ export default {
 </script>
 
 <style lang="scss">
+.yrn-exercise-solution-fill-text-gaps {
+  &__input-placeholder {
+    padding-left: 5px;
+    padding-top: 4px;
+    border-radius: 8px;
+    height: 20px;
+    font-family: MartelSans, monospace;
+  }
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .theme--dark {
   .yrn-exercise-solution-fill-text-gaps {
