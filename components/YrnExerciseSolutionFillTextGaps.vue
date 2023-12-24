@@ -1,10 +1,14 @@
 <template>
   <v-row class="yrn-exercise-solution-fill-text-gaps">
     <v-col>
-      <h2 class="mt-8">
+      <h2 class="mt-8 mb-4">
         {{ exerciseSolutionStatement }}
       </h2>
-      <p v-html="autoFillText"></p>
+      <v-btn @click="refresh()">refrescar</v-btn>
+      <p
+        class="font-weight-medium"
+        v-html="autoFillTextGaps"
+      />
     </v-col>
   </v-row>
 </template>
@@ -27,10 +31,11 @@ export default {
     }
   },
   computed: {
-    autoFillText() {
+    autoFillTextGaps() {
+      console.info('--> autoFillTextGaps()')
       return this.fillTextGaps(
         this.exerciseSolutionTextToFillGaps,
-        this.getSolutionsFromUser()
+        this.solutionsFromUser
       )
     },
     exercise() {
@@ -48,7 +53,24 @@ export default {
     },
     exerciseSolutionTextToFillGaps() {
       return this.exercise?.solution?.textToFillGaps?.[this.$i18n.locale]
-    }
+    },
+    solutionsFromUser() {
+      const solutionsFromUser = []
+      this.exerciseSolutionExpected.forEach(obj => {
+        const propertyName = Object.keys(obj)[0]
+        const propertyValue =
+          this.getExerciseSection(propertyName)?.solution?.fromUser
+        console.info(
+          'this.getExerciseSection("%s"): %o',
+          propertyName, 
+          this.getExerciseSection(propertyName)
+        )
+        const userSolution = { [propertyName]: propertyValue }
+        solutionsFromUser.push(userSolution)
+      })
+
+      return solutionsFromUser
+    },
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
@@ -59,24 +81,12 @@ export default {
       )
     },
     getExerciseSection(sectionId) {
-      return this.$store.getters['learningUnit/getExerciseSection']({
-        activityId: this.activityId,
-        challengeId: this.challengeId,
-        exerciseId: this.exerciseId,
+      return this.$store.getters['learningUnit/getExerciseSection'](
+        this.activityId,
+        this.challengeId,
+        this.exerciseId,
         sectionId
-      })
-    },
-    getSolutionsFromUser() {
-      const solutionsFromUser = []
-      this.exerciseSolutionExpected.forEach(obj => {
-        const propertyName = Object.keys(obj)[0]
-        const propertyValue =
-          this.getExerciseSection(propertyName)?.solution?.fromUser
-        const userSolution = { [propertyName]: propertyValue }
-        solutionsFromUser.push(userSolution)
-      })
-
-      return solutionsFromUser
+      )
     },
     fillTextGaps(textWithGaps, solutions) {
       let filledText = textWithGaps
@@ -84,9 +94,16 @@ export default {
       solutions.forEach(solution => {
         const placeholder = Object.keys(solution)[0]
         const placeholderSolution =
-          `<input type="text" disabled placeholder="${solution[placeholder]}">
-            ${solution[placeholder]}
-          </input>`
+          `<input
+            autocomplete="off"
+            class="yrn-exercise-solution-fill-text-gaps__input-placeholder"
+            name="placeholder-${placeholder}"
+            placeholder="${placeholder}"
+            readonly
+            size="${solution[placeholder]?.length ?? 2})"
+            type="text"
+            value="${solution[placeholder] ?? ''}"
+          >`
 
         // Replace placeholders with spaces, like this: ${{ placeholder }}
         const regExp = new RegExp(`\\$\\{\\{\\s*${placeholder}\\s*\\}\\}`, 'g')
@@ -103,8 +120,22 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.yrn-exercise-solution-fill-text-gaps {
-  // Custom style
+<style lang="scss">
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--dark {
+  .yrn-exercise-solution-fill-text-gaps {
+    &__input-placeholder {
+      color: white !important;
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--light {
+  .yrn-exercise-solution-fill-text-gaps {
+    &__input-placeholder {
+      color: black;
+    }
+  }
 }
 </style>

@@ -114,16 +114,16 @@ export default {
         ...this.section,
         solution: {
           expected: this.section.solution.expected,
-          user: this.solution.user,
-          userBySteps: this.solution.bySteps
+          fromUser: this.solution.user,
+          fromUserBySteps: this.solution.bySteps
         }
       }
 
       this.$store.commit('learningUnit/addOrUpdateSection', {
-        section: updatedSection,
         activityId: this.activityId,
         challengeId:  this.challengeId,
-        exerciseId: this.exerciseId
+        exerciseId: this.exerciseId,
+        section: updatedSection
       })
     },
   }

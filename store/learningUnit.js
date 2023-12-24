@@ -196,7 +196,7 @@ export const state = () => ({
         type: 'yrn-page-title',
         title: {
           es: 'Viendo la imagen, ¿ya saben qué Parque Nacional visitó el director?',
-          ca: 'Veient la imatge, ja saben quin Parc Nacional va visitar el director?'
+          ca: 'Veient la imatge, ja sabeu quin Parc Nacional va visitar el director?'
         }
       }, {
         type: 'yrn-image-simple',
@@ -209,11 +209,11 @@ export const state = () => ({
         type: 'yrn-exercise-solution-otp',
         exerciseId: 1
       }, {
-        type: 'yrn-exercise',
-        class: 'yrn-math-problem',
+        type: 'yrn-exercise-solution-fill-text-gaps',
         exerciseId: 2
       }, {
-        type: 'yrn-exercise-solution-fill-text-gaps',
+        type: 'yrn-exercise',
+        class: 'yrn-math-problem',
         exerciseId: 2
       }],
       exercises: [{
@@ -243,7 +243,7 @@ export const state = () => ({
             // eslint-disable-next-line no-template-curly-in-string
             ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impressionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.'
           },
-          expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }],
+          expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }, { g: '8'}],
           fromUser: []
         },
         statement: {
@@ -498,7 +498,7 @@ export const getters = {
     if (window?.Array?.isArray(sections)) {
       return sections.filter(section => {
         // eslint-disable-next-line eqeqeq
-        return section.solution?.expected == section.solution?.user
+        return section.solution?.expected == section.solution?.fromUser
       })
     } else {
       return []
@@ -507,6 +507,7 @@ export const getters = {
   getExerciseSection: (state, getters) => (activityId, challengeId, exerciseId, sectionId) => {
     let section = null
     const exercise = getters.getExercise(activityId, challengeId, exerciseId)
+    console.info("🚀 ~ file: learningUnit.js:510 ~ exercise:", exercise)
 
     if (exercise) {
       section = exercise.sections?.find(
@@ -521,6 +522,7 @@ export const getters = {
       }
     }
 
+    console.log("🚀 ~ file: learningUnit.js:527 ~ section:", section)
     return section
   }
 }

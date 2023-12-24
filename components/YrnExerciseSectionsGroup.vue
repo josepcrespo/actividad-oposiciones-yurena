@@ -63,7 +63,7 @@ export default {
   methods: {
     getSolutionVeredict(section) {
       // eslint-disable-next-line eqeqeq
-      return section.solution.expected == section.solution.user
+      return section.solution.expected == section.solution.fromUser
     }
   }
 }
