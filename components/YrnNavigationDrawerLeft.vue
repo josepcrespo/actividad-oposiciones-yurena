@@ -5,6 +5,27 @@ es:
 ca:
   activity: "Activitat"
   start: "Inici"
+en:
+  activity: "Activity"
+  start: "Start"
+de:
+  activity: "Aktivität"
+  start: "Start"
+ru:
+  activity: "Активность"
+  start: "Начать"
+fr:
+  activity: "Activité"
+  start: "Démarrer"
+it:
+  activity: "Attività"
+  start: "Inizia"
+eu:
+  activity: "Ekintza"
+  start: "Hasieratu"
+gl:
+  activity: "Actividade"
+  start: "Inicio"
 </i18n>
 
 <template>  

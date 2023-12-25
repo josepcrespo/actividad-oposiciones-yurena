@@ -5,6 +5,27 @@ es:
 ca:
   buttonTitle: "Idioma"
   buttonTooltip: "Canvia l'idioma"
+en:
+  buttonTitle: "Language"
+  buttonTooltip: "Change the language"
+de:
+  buttonTitle: "Sprache"
+  buttonTooltip: "Sprache ändern"
+ru:
+  buttonTitle: "Язык"
+  buttonTooltip: "Изменить язык"
+fr:
+  buttonTitle: "Langage"
+  buttonTooltip: "Changer de langue"
+it:
+  buttonTitle: "Lingua"
+  buttonTooltip: "Cambia la lingua"
+eu:
+  buttonTitle: "Hizkuntza"
+  buttonTooltip: "Aldatu hizkuntza"
+gl:
+  buttonTitle: "Idioma"
+  buttonTooltip: "Cambia o idioma"
 </i18n>
 
 <template>
@@ -24,7 +45,7 @@ ca:
             <v-icon>
               mdi-translate
             </v-icon>
-            <span class="ml-2 d-none d-sm-block">
+            <span class="ml-2 d-none d-md-block">
               {{ $t('buttonTitle') }}
             </span>
           </v-btn>
@@ -43,10 +64,18 @@ ca:
             :to="switchLocalePath(lang.code)"
           >
             <country-flag
+              v-if="isRegularFlag(lang.flagCode)"
               :country="lang.flagCode"
-              :rounded="true"
+              :rounded="false"
             />
-            <span class="ml-2">
+            <v-img
+              v-else
+              class="yrn-language-switcher__regional-flag d-inline-block"
+              height="19.5"
+              width="26"
+              :src="getRegionalFlagSrc(lang.flagCode)"
+            />
+            <span :class="isRegularFlag(lang.flagCode) ? 'ml-2' : 'ml-1px'">
               {{ lang.name[$i18n.locale] }}
             </span>
           </nuxt-link>
@@ -67,17 +96,61 @@ export default {
   },
   computed: {
     learningUnitLanguages() {
-      return this.$store
+      return this.sortAlphabetically(this.$store
         ?.state
         ?.learningUnit
         ?.languages
-        ?.filter(lang => lang.code !== this.$i18n.locale) ?? []
+        ?.filter(lang => lang.code !== this.$i18n.locale) ?? [],
+        this.$i18n.locale
+      )
+    }
+  },
+  methods: {
+    getRegionalFlagSrc(flagCode) {
+      let flagIconSrc = '/img/flags/'
+
+      switch (flagCode) {
+        case 'es-eu':
+          flagIconSrc += 'basque-country.png'
+          break
+        case 'es-gl':
+          flagIconSrc += 'galicia.png'
+          break
+        default:
+          flagIconSrc = ''
+      }
+
+      return flagIconSrc
+    },
+    isRegularFlag(flagCode) {
+      return flagCode !== 'es-eu'
+        && flagCode !== 'es-gl'
+    },
+    sortAlphabetically(languagesArray, languageCode) {
+      return languagesArray.slice().sort((a, b) => {
+        const nameA = a.name[languageCode].toUpperCase()
+        const nameB = b.name[languageCode].toUpperCase()
+
+        if (nameA < nameB) {
+          return -1
+        }
+
+        if (nameA > nameB) {
+          return 1
+        }
+
+        return 0
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.ml-1px {
+  margin-left: 1px;
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .theme--dark {
   .yrn-language-switcher {

@@ -5,6 +5,27 @@ es:
 ca:
   buttonTitle: "Aspecte"
   buttonTooltip: "Alterna entre colors clars i foscos"
+en:
+  buttonTitle: "Appearance"
+  buttonTooltip: "Toggle between light and dark colors"
+de:
+  buttonTitle: "Erscheinungsbild"
+  buttonTooltip: "Umschalten zwischen hellen und dunklen Farben"
+ru:
+  buttonTitle: "Внешний вид"
+  buttonTooltip: "Переключение между светлыми и темными цветами"
+fr:
+  buttonTitle: "Apparence"
+  buttonTooltip: "Basculer entre des couleurs claires et sombres"
+it:
+  buttonTitle: "Aspetto"
+  buttonTooltip: "Passa tra colori chiari e scuri"
+eu:
+  buttonTitle: "Itxura"
+  buttonTooltip: "Aldatu argi eta ilun koloreen artean"
+gl:
+  buttonTitle: "Aparencia"
+  buttonTooltip: "Alternar entre cores claras e escuras"
 </i18n>
 
 <template>
@@ -24,7 +45,7 @@ ca:
         <v-icon v-if="$vuetify.theme.dark">
           mdi-lightbulb-off-outline
         </v-icon>
-        <span class="ml-2 d-none d-sm-block">
+        <span class="ml-2 d-none d-md-block">
           {{ $t('buttonTitle') }}
         </span>
       </v-btn>

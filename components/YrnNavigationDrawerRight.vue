@@ -3,6 +3,20 @@ es:
   drawerTitle: "Progreso"
 ca:
   drawerTitle: "Progrés"
+en:
+  drawerTitle: "Progress"
+de:
+  drawerTitle: "Fortschritt"
+ru:
+  drawerTitle: "Прогресс"
+fr:
+  drawerTitle: "Progrès"
+it:
+  drawerTitle: "Progresso"
+eu:
+  drawerTitle: "Egiten"
+gl:
+  drawerTitle: "Progreso"
 </i18n>
 
 <template>

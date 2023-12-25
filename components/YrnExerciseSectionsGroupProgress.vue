@@ -3,6 +3,20 @@ es:
   progressTitle: "Porcentaje de ecuaciones resueltas:"
 ca:
   progressTitle: "Percentatge d'equacions resoltes:"
+en:
+  progressTitle: "Percentage of solved equations:"
+de:
+  progressTitle: "Prozentsatz gelöster Gleichungen:"
+ru:
+  progressTitle: "Процент решенных уравнений:"
+fr:
+  progressTitle: "Pourcentage d'équations résolues:"
+it:
+  progressTitle: "Percentuale di equazioni risolte:"
+eu:
+  progressTitle: "Ebaki diren ekuazioen ehunekoa:"
+gl:
+  progressTitle: "Porcentaxe de ecuacións resoltas:"
 </i18n>
 
 <template>

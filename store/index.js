@@ -13,6 +13,34 @@ export const state = () => ({
     ca: {
       activity: 'activitat',
       challenge: 'repte'
+    },
+    de: {
+      activity: 'aktivität',
+      challenge: 'herausforderung'
+    },
+    en: {
+      activity: 'activity',
+      challenge: 'challenge'
+    },
+    fr: {
+      activity: 'activité',
+      challenge: 'défi'
+    },
+    it: {
+      activity: 'attività',
+      challenge: 'sfida'
+    },
+    ru: {
+      activity: 'деятельность',
+      challenge: 'вызов'
+    },
+    eu: {
+      activity: 'ekintza',
+      challenge: 'erronka'
+    },
+    gl: {
+      activity: 'actividade',
+      challenge: 'reto'
     }
   }
 })

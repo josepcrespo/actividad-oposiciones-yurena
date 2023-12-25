@@ -3,6 +3,20 @@ es:
   retry: "Prueba otra vez"
 ca:
   retry: "Prova de nou"
+en:
+  retry: "Try again"
+de:
+  retry: "Versuche es erneut"
+ru:
+  retry: "Попробуйте снова"
+fr:
+  retry: "Réessayer"
+it:
+  retry: "Riprova"
+eu:
+  retry: "Saiatu berriro"
+gl:
+  retry: "Téntao de novo"
 </i18n>
 
 <template>
