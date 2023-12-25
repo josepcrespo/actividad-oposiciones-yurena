@@ -75,7 +75,7 @@ gl:
               width="26"
               :src="getRegionalFlagSrc(lang.flagCode)"
             />
-            <span :class="isRegularFlag(lang.flagCode) ? 'ml-2' : 'ml-1px'">
+            <span :class="isRegularFlag(lang.flagCode) ? 'ml-2' : 'ml-2px'">
               {{ lang.name[$i18n.locale] }}
             </span>
           </nuxt-link>
@@ -147,8 +147,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ml-1px {
-  margin-left: 1px;
+.ml-2px {
+  margin-left: 2px;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
