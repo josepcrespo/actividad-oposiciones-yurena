@@ -545,7 +545,7 @@ export const state = () => ({
     flagCode: 'gb',
     name: {
       es: 'Inglés',
-      ca: 'Anglès',
+      ca: 'Anglés',
       en: 'English',
       de: 'Englisch',
       ru: 'Английский',
