@@ -639,7 +639,6 @@ export const state = () => ({
       gl: 'Galego'
     }
   }]
-
 })
 
 export const mutations = {
