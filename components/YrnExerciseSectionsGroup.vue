@@ -56,7 +56,7 @@ export default {
   computed: {
     isWellSolved() {
       return (section) => {
-        return this.getSolutionVeredict(section)
+        return this.getSolutionVerdict(section)
       }
     }
   },
@@ -64,7 +64,7 @@ export default {
     getSectionStatement(section) {
       return section?.statement?.[this.$i18n.locale]
     },
-    getSolutionVeredict(section) {
+    getSolutionVerdict(section) {
       // eslint-disable-next-line eqeqeq
       return section.solution.expected == section.solution.fromUser
     }
