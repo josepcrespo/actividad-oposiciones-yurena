@@ -38,7 +38,7 @@ zh:
 ro:
   activity: "Activitate"
   start: "Începe"
-jp:
+ja:
   activity: "アクティビティ"
   start: "開始"
 </i18n>

@@ -38,7 +38,7 @@ zh:
 ro:
   buttonTitle: "Progres"
   buttonTooltip: "Arată progresul în situația de învățare"
-jp:
+ja:
   buttonTitle: "進捗"
   buttonTooltip: "学習状況の進捗を表示"
 </i18n>

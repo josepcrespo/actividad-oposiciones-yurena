@@ -8,6 +8,7 @@ export const state = () => ({
       pageStructure: [{
         type: 'yrn-page-title',
         title: {
+          ar: 'ما هو الحديقة الوطنية التي زارها المدير؟',
           ca: 'Quin Parc Nacional va visitar el director?',
           de: 'Welchen Nationalpark hat der Direktor besucht?',
           en: 'Which National Park did the director visit?',
@@ -16,11 +17,16 @@ export const state = () => ({
           fr: 'Quel parc national le directeur a-t-il visité?',
           gl: '¿Qué Parque Nacional visitou o director?',
           it: 'Quale Parco Nazionale ha visitato il direttore?',
-          ru: 'Какой национальный парк посетил директор?'
+          ja: 'ディレクターはどの国立公園を訪れましたか？',
+          pt: 'Qual Parque Nacional o diretor visitou?',
+          ro: 'Ce parc național a vizitat directorul?',
+          ru: 'Какой национальный парк посетил директор?',
+          zh: '主任访问了哪个国家公园？'
         }
       }, {
         type: 'yrn-image',
         imageAlt: {
+          ar: 'Memoji لمدير IES El Galeón ، يظهر خريطة جزر الكناري مع الحدائق الوطنية.',
           ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.',
           de: 'Memoji des Direktors des IES El Galeón zeigt eine Karte der Kanarischen Inseln mit den Nationalparks.',
           en: 'Memoji of the director of IES El Galeón, showing a map of the Canary Islands with the National Parks.',
@@ -29,10 +35,15 @@ export const state = () => ({
           fr: 'Memoji du directeur de l\'IES El Galeón, montrant une carte des îles Canaries avec les parcs nationaux.',
           gl: 'Memoji do director do IES El Galeón, mostrando un mapa das Illas Canarias cos Parques Nacionais.',
           it: 'Memoji del direttore dell\'IES El Galeón, che mostra una mappa delle Isole Canarie con i Parchi Nazionali.',
-          ru: 'Memoji директора IES El Galeón, показывающий карту Канарских островов с национальными парками.'
+          ja: 'IES El GaleónのディレクターのMemoji、カナリア諸島の地図を表示して国立公園を示しています。',
+          pt: 'Memoji do diretor do IES El Galeón, mostrando um mapa das Ilhas Canárias com os Parques Nacionais.',
+          ro: 'Memoji al directorului IES El Galeón, arătând o hartă a Insulelor Canare cu Parcurile Naționale.',
+          ru: 'Memoji директора IES El Galeón, показывающий карту Канарских островов с национальными парками.',
+          zh: 'IES El Galeón的主任Memoji，展示了加那利群岛的地图，标有国家公园。'
         },
         imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png',
         linkTitle: {
+          ar: 'انقر لتكبير الخريطة.',
           ca: 'Fes clic per ampliar el mapa.',
           de: 'Klicken Sie hier, um die Karte zu vergrößern.',
           en: 'Click to enlarge the map.',
@@ -41,12 +52,20 @@ export const state = () => ({
           fr: 'Cliquez pour agrandir la carte.',
           gl: 'Fai clic para ampliar o mapa.',
           it: 'Clicca per ingrandire la mappa.',
-          ru: 'Нажмите, чтобы увеличить карту.'
+          ja: '地図を拡大するにはクリックしてください。',
+          pt: 'Clique para ampliar o mapa.',
+          ro: 'Faceți clic pentru a mări harta.',
+          ru: 'Нажмите, чтобы увеличить карту.',
+          zh: '点击以放大地图。'
         },
         linkUrl: 'https://www3.gobiernodecanarias.org/medusa/ecoescuela/recursosdigitales/files/formidable/ENP-Canarias.pdf'
       }, {
         type: 'yrn-alert-text',
         paragraphs: {
+          ar: [
+            'خلال عطلة نهاية الأسبوع، زار مديرنا أحد الحدائق الوطنية في جزرنا.',
+            'هل سيكونون قادرين على معرفة أي واحد؟'
+          ],
           ca: [
             'Durant el cap de setmana, el nostre director ha visitat un dels Parcs Nacionals de les nostres illes.',
             'Seran capaços d\'esbrinar quin?'
@@ -79,9 +98,25 @@ export const state = () => ({
             'Durante il fine settimana, il nostro direttore ha visitato uno dei Parchi Nazionali delle nostre isole.',
             'Riusciranno a capire quale?'
           ],
+          ja: [
+            '週末には、当社のディレクターが島の国立公園の1つを訪れました。',
+            '彼らはそれがどれかを見分けることができるでしょうか？'
+          ],
+          pt: [
+            'Durante o fim de semana, nosso diretor visitou um dos Parques Nacionais de nossas ilhas.',
+            'Eles serão capazes de descobrir qual?'
+          ],
+          ro: [
+            'În timpul weekendului, directorul nostru a vizitat unul dintre Parcurile Naționale ale insulelor noastre.',
+            'Vor reuși să afle care?'
+          ],
           ru: [
             'В выходные наш директор посетил один из национальных парков наших островов.',
             'Смогут ли они выяснить, который?'
+          ],
+          zh: [
+            '在周末，我们的主任参观了我们岛上的一个国家公园。',
+            '他们能弄清楚是哪一个吗？'
           ]
         }
       }, {
@@ -100,30 +135,40 @@ export const state = () => ({
         },
         solution: {
           statement: {
-            es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',
+            ar: 'الكتابة هنا مفتاح السر باستخدام حلول المعادلات:',
             ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
-            en: 'Write the secret key here using the solutions of the equations:',
             de: 'Schreiben Sie hier den geheimen Schlüssel unter Verwendung der Lösungen der Gleichungen:',
-            ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
-            fr: 'Écrivez ici la clé secrète en utilisant les solutions des équations:',
-            it: 'Scrivi qui la chiave segreta usando le soluzioni delle equazioni:',
+            en: 'Write the secret key here using the solutions of the equations:',
+            es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',
             eu: 'Idatzi hemen sekretu gakoa ekuazioen soluzioak erabiliz:',
-            gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:'
+            fr: 'Écrivez ici la clé secrète en utilisant les solutions des équations:',
+            gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:',
+            it: 'Scrivi qui la chiave segreta usando le soluzioni delle equazioni:',
+            ja: 'ここに方程式の解を使用して秘密鍵を書いてください:',
+            pt: 'Escreva a chave secreta aqui usando as soluções das equações:',
+            ro: 'Scrieți aici cheia secretă folosind soluțiile ecuațiilor:',
+            ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
+            zh: '使用方程式的解在此处写入秘钥：'
           },
           expected: '1044-271/3222-420-1',
           expectedMask: 'aabcddefffghhiijkll',
           fromUser: ''
         },
         statement: {
-          es: 'Resuelvan las siguientes ecuaciones de primer grado para encontrar la clave secreta que necesitan para descubrir la primera pista:',
+          ar: 'حل المعادلات من الدرجة الأولى التالية للعثور على المفتاح السري الذي تحتاجونه لاكتشاف أول إشارة:',
           ca: 'Resolgueu les següents equacions de primer grau per trobar la clau secreta que necessiteu per descobrir la primera pista:',
-          en: 'Solve the following first-degree equations to find the secret key you need to discover the first clue:',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um den geheimen Schlüssel zu finden, den Sie benötigen, um den ersten Hinweis zu entdecken:',
-          ru: 'Решите следующие уравнения первой степени, чтобы найти секретный ключ, который вам нужен для обнаружения первой подсказки:',
-          fr: 'Résolvez les équations du premier degré suivantes pour trouver la clé secrète dont vous avez besoin pour découvrir la première indice:',
-          it: 'Risolvete le seguenti equazioni di primo grado per trovare la chiave segreta necessaria per scoprire la prima traccia:',
+          en: 'Solve the following first-degree equations to find the secret key you need to discover the first clue:',
+          es: 'Resuelvan las siguientes ecuaciones de primer grado para encontrar la clave secreta que necesitan para descubrir la primera pista:',
           eu: 'Zuzendu azpiko lehen graduaren ekuazioak, sekretu gakoa aurkitu ahal izateko lehenengo pistaren pista:',
-          gl: 'Resolva as seguintes ecuacións de primeiro grao para atopar a chave secreta que necesitan para descubrir a primeira pista:'
+          fr: 'Résolvez les équations du premier degré suivantes pour trouver la clé secrète dont vous avez besoin pour découvrir la première indice:',
+          gl: 'Resolva as seguintes ecuacións de primeiro grao para atopar a chave secreta que necesitan para descubrir a primeira pista:',
+          it: 'Risolvete le seguenti equazioni di primo grado per trovare la chiave segreta necessaria per scoprire la prima traccia:',
+          ja: '最初の手がかりを発見するために必要な秘密のキーを見つけるために、次の一次方程式を解いてください：',
+          pt: 'Resolva as seguintes equações de primeiro grau para encontrar a chave secreta que você precisa para descobrir a primeira pista:',
+          ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a găsi cheia secretă de care aveți nevoie pentru a descoperi prima indiciu:',
+          ru: 'Решите следующие уравнения первой степени, чтобы найти секретный ключ, который вам нужен для обнаружения первой подсказки:',
+          zh: '解以下一次方程，找到您需要发现第一个线索的秘密密钥：'
         },
         sections: [{
           sectionId: 'a',
@@ -266,7 +311,11 @@ export const state = () => ({
           fr: 'En regardant l\'image, savez-vous déjà quel parc national le directeur a visité?',
           gl: 'Ao ver a imaxe, xa sabes que Parque Nacional visitou o director?',
           it: 'Guardando l\'immagine, già sai quale Parco Nazionale ha visitato il direttore?',
-          ru: 'Глядя на изображение, вы уже знаете, какой национальный парк посетил директор?'
+          ja: '画像を見て、あなたはすでにディレクターが訪れた国立公園を知っていますか？',
+          pt: 'Olhando para a imagem, já sabem qual Parque Nacional o diretor visitou?',
+          ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
+          ru: 'Глядя на изображение, вы уже знаете, какой национальный парк посетил директор?',
+          zh: '看着这张图片，你们已经知道主任参观了哪个国家公园吗？'
         }
       }, {
         type: 'yrn-image-simple',
@@ -279,7 +328,11 @@ export const state = () => ({
           fr: 'Image du parc naturel que le directeur a visité.',
           gl: 'Imaxe do Parque Natural que o director visitou.',
           it: 'Immagine del Parco Naturale che il direttore ha visitato.',
-          ru: 'Изображение природного парка, который посетил директор.'
+          ja: 'ディレクターが訪れた自然公園の画像。',
+          pt: 'Imagem do Parque Natural que o diretor visitou.',
+          ro: 'Imaginea Parcului Natural pe care directorul l-a vizitat.',
+          ru: 'Изображение природного парка, который посетил директор.',
+          zh: '董事访问的自然公园的图像。'
         },
         src: '/img/actividad-1/reto-2/imagen-de-cabecera.png'
       }, {
@@ -305,7 +358,11 @@ export const state = () => ({
             fr: 'Écrivez la réponse ici :',
             gl: 'Escribe aquí a resposta:',
             it: 'Scrivi la risposta qui:',
-            ru: 'Напишите ответ здесь:'
+            ja: 'ここに回答を書いてください:',
+            pt: 'Escreva a resposta aqui:',
+            ro: 'Scrieți răspunsul aici:',
+            ru: 'Напишите ответ здесь:',
+            zh: '在这里写答案：'
           },
           expected: 'El Teide',
           fromUser: ''
@@ -326,7 +383,11 @@ export const state = () => ({
             fr: 'Notre directeur a du mal à se souvenir des nombres entiers, mais étrangement, il trouve très facile de se souvenir des équations. Il a mémorisé les équations du premier degré suivantes, résolvez-les et les données en blanc du texte suivant seront révélées :',
             gl: 'O noso director ten dificultades para lembrar números enteiros, pero curiosamente, resultálle moi fácil lembrar ecuacións. Memorizou as seguintes ecuacións de primeiro grao, resólveas e revelaranse os datos en branco do seguinte texto:',
             it: 'Il nostro direttore ha difficoltà a ricordare i numeri interi, ma stranamente trova molto facile ricordare le equazioni. Ha memorizzato le seguenti equazioni di primo grado, risolvetle e i dati vuoti nel testo successivo saranno rivelati:',
-            ru: 'Нашему директору трудно запоминать целые числа, но странно, что ему очень легко запомнить уравнения. Он выучил следующие уравнения первой степени, решите и оголтелые данные в следующем тексте будут раскрываться:'
+            ja: 'この画像を見て、あなたはすでにディレクターがどの国立公園を訪れたかを知っていますか？',
+            pt: 'Ao ver a imagem, você já sabe qual Parque Nacional o diretor visitou?',
+            ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
+            ru: 'Нашему директору трудно запоминать целые числа, но странно, что ему очень легко запомнить уравнения. Он выучил следующие уравнения первой степени, решите и оголтелые данные в следующем тексте будут раскрываться:',
+            zh: '我们的主任很难记住整数，但奇怪的是，他发现记住方程式很容易。 你已经记住了下面的一次方程，求解它们，就会显示出下面文本的空白数据:'
           },
           textToFillGaps: {
             // eslint-disable-next-line no-template-curly-in-string
@@ -346,12 +407,21 @@ export const state = () => ({
             // eslint-disable-next-line no-template-curly-in-string
             it: 'Questo Parco Nazionale, situato sull\'isola di Tenerife, è stato il primo riconosciuto nell\'Arcipelago delle Canarie, nell\'anno ${{ a }}${{ b }}${{ c }}${{ d }} ed è presieduto da El Teide ({{ e }}${{ f }}${{ a }}${{ g }} metri), la vetta più alta della Spagna. Con numerose specie endemiche e un\'estensione di ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ettari, è, fino ad oggi, il Parco Nazionale più visitato delle Canarie, della Spagna e dell\'Europa in quanto ospita uno degli spettacoli geologici più impressionanti al mondo, data la difficoltà di trovare in uno spazio così ridotto, un insieme di queste caratteristiche.',
             // eslint-disable-next-line no-template-curly-in-string
-            ru: 'Этот национальный парк, расположенный на острове Тенерифе, был первым, признанным на Канарских островах в ${{ a }}${{ b }}${{ c }}${{ d }} году, и возглавляется Эль Тейде ({{ e }}${{ f }}${{ a }}${{ g }} метров), самой высокой вершиной Испании. С многочисленными эндемичными видами и площадью ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} гектаров, это, до сих пор, самый посещаемый национальный парк Канарских островов, Испании и Европы, поскольку здесь находится одно из самых впечатляющих геологических зрелищ в мире, из-за сложности найти в таком ограниченном пространстве набор этих характеристик.'
+            ja: 'テネリフェ島にあるこの国立公園は、${{ a }}${{ b }}${{ c }}${{ d }} 年にカナリア諸島で最初に認定され、管理されています。スペイン最高峰のテイデ（${{ e }}${{ f }}${{ a }}${{ g }} メートル）を越えます。 数多くの固有種が生息し、${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ヘクタールの面積を誇るこの公園は、現在国立公園となっています。このような小さな空間で一連の特徴を見つけるのは難しいため、世界で最も印象的な地質学的光景の 1 つがあるため、カナリア諸島、スペイン、ヨーロッパで最も多くの人が訪れます。',
+            // eslint-disable-next-line no-template-curly-in-string
+            pt: 'Este Parque Nacional, localizado na ilha de Tenerife, foi o primeiro reconhecido no Arquipélago das Canárias, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e é presidido ao longo do Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico mais alto da Espanha. Com inúmeras espécies endêmicas e uma área de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, é, hoje, o Parque Nacional mais visitado nas Ilhas Canárias, Espanha e Europa por albergar um dos espetáculos geológicos mais impressionantes do mundo pela dificuldade de encontrar um conjunto destas características num espaço tão pequeno.',
+            // eslint-disable-next-line no-template-curly-in-string
+            ro: 'Acest Parc Național, situat pe insula Tenerife, a fost primul recunoscut în Arhipelagul Canare, în anul ${{ a }}${{ b }}${{ c }}${{ d }} și este prezidat peste Teide (${{ e }}${{ f }}${{ a }}${{ g }} metri), cel mai înalt vârf din Spania. Cu numeroase specii endemice și o suprafață de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectare, este, astăzi, Parcul Național cel mai vizitat în Insulele Canare, Spania și Europa deoarece găzduiește unul dintre cele mai impresionante spectacole geologice din lume din cauza dificultății de a găsi un set de aceste caracteristici într-un spațiu atât de mic.',
+            // eslint-disable-next-line no-template-curly-in-string
+            ru: 'Этот национальный парк, расположенный на острове Тенерифе, был первым, признанным на Канарских островах в ${{ a }}${{ b }}${{ c }}${{ d }} году, и возглавляется Эль Тейде ({{ e }}${{ f }}${{ a }}${{ g }} метров), самой высокой вершиной Испании. С многочисленными эндемичными видами и площадью ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} гектаров, это, до сих пор, самый посещаемый национальный парк Канарских островов, Испании и Европы, поскольку здесь находится одно из самых впечатляющих геологических зрелищ в мире, из-за сложности найти в таком ограниченном пространстве набор этих характеристик.',
+            // eslint-disable-next-line no-template-curly-in-string
+            zh: '该国家公园位于特内里费岛，是加那利群岛第一个国家公园，于 ${{ a }}${{ b }}${{ c }}${{ d }} 年获得认可，并由越过西班牙最高峰泰德峰（${{ e }}${{ f }}${{ a }}${{ g }} 米）。 这里拥有众多特有物种，面积 ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} 公顷，如今已成为国家公园加那利群岛、西班牙和欧洲参观人数最多，因为它拥有世界上最令人印象深刻的地质奇观之一，因为在如此小的空间内很难找到一组这些特征。'
           },
-          expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }, { g: '8'}],
+          expected: [{ a: '1' }, { b: '9' }, { c: '5' }, { d: '4' }, { e: '3' }, { f: '7' }, { g: '8' }],
           fromUser: []
         },
         statement: {
+          ar: 'حل المعادلات من الدرجة الأولى التالية لاكتشاف البيانات الأكثر صلة من الحديقة الطبيعية التي زارها.',
           ca: 'Resolgueu les següents equacions de primer grau per descobrir les dades més rellevants del Parc Natural que va visitar.',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um die relevantesten Daten des Naturparks zu entdecken, den er besucht hat.',
           en: 'Solve the following first-degree equations to discover the most relevant data from the Natural Park he visited.',
@@ -360,7 +430,11 @@ export const state = () => ({
           fr: 'Résolvez les équations du premier degré suivantes pour découvrir les données les plus pertinentes du parc naturel qu\'il a visité.',
           gl: 'Resolve as seguintes ecuacións de primeiro grao para atopar os datos máis relevantes do Parque Natural que visitou.',
           it: 'Risolvere le seguenti equazioni di primo grado per scoprire i dati più rilevanti del Parco Naturale che ha visitato.',
-          ru: 'Решите следующие уравнения первой степени, чтобы открыть наиболее актуальные данные из природного парка, который он посетил.'
+          ru: 'Решите следующие уравнения первой степени, чтобы открыть наиболее актуальные данные из природного парка, который он посетил.',
+          ja: '彼が訪れた自然公園から最も関連性のあるデータを発見するには、次の1次方程式を解いてください。',
+          pt: 'Resolva as seguintes equações de primeiro grau para descobrir os dados mais relevantes do Parque Natural que ele visitou.',
+          ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a descoperi datele cele mai relevante din Parcul Natural pe care l-a vizitat.',
+          zh: '解这些一次方程，以发现他参观的自然公园最相关的数据。'
         },
         sections: [{
           sectionId: 'a',
@@ -462,54 +536,74 @@ export const state = () => ({
     author: 'Yurena Cabrera Hernández',
     image: {
       imageAlt: {
-        es: 'Memoji de Yurena.',
+        ar: 'Memoji de Yurena.',
         ca: 'Memoji de Yurena.',
+        de: 'Yurens Memoji.',
         en: 'Yurena\'s Memoji.',
-        de: 'Yurenas Memoji.',
-        ru: 'Мемоджи Юрены.',
-        fr: 'Memoji de Yurena.',
-        it: 'Memoji di Yurena.',
+        es: 'Memoji de Yurena.',
         eu: 'Yurena-ren Memoji-a.',
-        gl: 'Memoji de Yurena.'
+        fr: 'Memoji de Yurena.',
+        gl: 'Memoji de Yurena.',
+        it: 'Memoji di Yurena.',
+        ja: 'YurenaのMemoji。',
+        pt: 'Memoji de Yurena.',
+        ro: 'Memoji de Yurena.',
+        ru: 'Мемоджи Юрены.',
+        zh: 'Yurena的Memoji。'
       },
       imageSrc: '/img/index/profe-yure.png'
     },
     password: {
       statement: {
-        es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
+        ar: ':للبدء، أدخل الرمز السري الذي سيقدمه لك معلمك',
         ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:',
-        en: 'To begin, enter the secret code provided by your teacher:',
         de: 'Um zu beginnen, geben Sie den geheimen Code ein, den Ihnen Ihr Lehrer gegeben hat:',
-        ru: 'Для начала введите секретный код, который предоставит вам ваш учитель:',
-        fr: 'Pour commencer, entrez le code secret fourni par votre professeur:',
-        it: 'Per iniziare, inserisci il codice segreto fornito dal tuo insegnante:',
+        en: 'To begin, enter the secret code provided by your teacher:',
+        es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
         eu: 'Hasi hasteko, sartu zure irakasleak emandako kode sekretua:',
-        gl: 'Para comezar, introduce o código secreto que che proporcionará o teu profesor:'
+        fr: 'Pour commencer, entrez le code secret fourni par votre professeur:',
+        gl: 'Para comezar, introduce o código secreto que che proporcionará o teu profesor:',
+        it: 'Per iniziare, inserisci il codice segreto fornito dal tuo insegnante:',
+        ja: '：始めるには、教師から提供された秘密コードを入力してください',
+        pt: 'Para começar, insira o código secreto fornecido pelo seu professor:',
+        ro: 'Pentru a începe, introduceți codul secret furnizat de profesorul dumneavoastră:',
+        ru: 'Для начала введите секретный код, который предоставит вам ваш учитель:',
+        zh: '：开始时，请输入您老师提供的秘密代码'
       },
       expected: '141592',
       fromUser: ''
     },
     subtitle: {
-      es: 'Flora + Fauna = Álgebra',
+      ar: '=الجبر فونا + فلورا',
       ca: 'Flora + Fauna = Àlgebra',
-      en: 'Flora + Fauna = Algebra',
       de: 'Flora + Fauna = Algebra',
-      ru: 'Флора + Фауна = Алгебра',
-      fr: 'Flore + Faune = Algèbre',
-      it: 'Flora + Fauna = Algebra',
+      en: 'Flora + Fauna = Algebra',
+      es: 'Flora + Fauna = Álgebra',
       eu: 'Landareak + Fauna = Álgebra',
-      gl: 'Flora + Fauna = Álxebra'
+      fr: 'Flore + Faune = Algèbre',
+      gl: 'Flora + Fauna = Álxebra',
+      it: 'Flora + Fauna = Algebra',
+      ja: 'フローラ + ファウナ = 代数',
+      pt: 'Flora + Fauna = Álgebra',
+      ro: 'Flora + Fauna = Algebră',
+      ru: 'Флора + Фауна = Алгебра',
+      zh: '植物相 + 动物相 = 代数'
     },
     title: {
-      es: 'Situación de aprendizaje',
+      ar: ':موقف التعلم',
       ca: 'Situació d\'aprenentatge',
-      en: 'Learning Situation',
       de: 'Lernsituation',
-      ru: 'Образовательная ситуация',
-      fr: 'Situation d\'apprentissage',
-      it: 'Situazione di apprendimento',
+      en: 'Learning Situation',
+      es: 'Situación de aprendizaje',
       eu: 'Ikasketa-egoera',
-      gl: 'Situação de aprendizaxe'
+      fr: 'Situation d\'apprentissage',
+      gl: 'Situação de aprendizaxe',
+      it: 'Situazione di apprendimento',
+      ja: '学習シチュエーション',
+      pt: 'Situação de Aprendizagem',
+      ro: 'Situație de învățare',
+      ru: 'Образовательная ситуация',
+      zh: '学习情境'
     }
   },
   languages: [{
@@ -525,7 +619,7 @@ export const state = () => ({
       fr: 'Arabe',
       gl: 'Árabe',
       it: 'Arabo',
-      jp: 'アラビア語',
+      ja: 'アラビア語',
       pt: 'Árabe',
       ro: 'Arabă',
       ru: 'Арабский',
@@ -544,7 +638,7 @@ export const state = () => ({
       fr: 'Catalan',
       gl: 'Catalán',
       it: 'Catalano',
-      jp: 'カタラン語',
+      ja: 'カタラン語',
       pt: 'Catalão',
       ro: 'Catalan',
         ru: 'Каталанский',
@@ -563,9 +657,9 @@ export const state = () => ({
         fr: 'Allemand',
         gl: 'Alemán',
         it: 'Tedesco',
-        jp: 'ドイツ語',
-        pt: 'Alemão',
-        ro: 'Germană',
+      ja: 'ドイツ語',
+      pt: 'Alemão',
+      ro: 'Germană',
       ru: 'Немецкий',
       zh: '德语'
     }
@@ -582,7 +676,7 @@ export const state = () => ({
       fr: 'Anglais',
       gl: 'Inglés',
       it: 'Inglese',
-      jp: '英语',
+      ja: '英语',
       pt: 'Inglês',
       ro: 'Engleză',
       ru: 'Английский',
@@ -601,7 +695,7 @@ export const state = () => ({
       fr: 'Espagnol',
       gl: 'Español',
       it: 'Spagnolo',
-      jp: '西班牙语',
+      ja: '西班牙语',
       pt: 'Espanhol',
       ro: 'Spaniol',
         ru: 'Испанский',
@@ -620,7 +714,7 @@ export const state = () => ({
         fr: 'Basque',
         gl: 'Vasco',
         it: 'Basco',
-      jp: '巴斯克语',
+      ja: '巴斯克语',
       pt: 'Basco',
       ro: 'Bască',
       ru: 'Баскский',
@@ -639,7 +733,7 @@ export const state = () => ({
       fr: 'Francese',
       gl: 'Francés',
       it: 'Francese',
-      jp: '法语',
+      ja: '法语',
       pt: 'Francês',
       ro: 'Franceză',
         ru: 'Французский',
@@ -658,7 +752,7 @@ export const state = () => ({
         fr: 'Galicien',
         gl: 'Galego',
         it: 'Galiziano',
-      jp: '加利西亚语',
+      ja: '加利西亚语',
       pt: 'Galego',
       ro: 'Galiciană',
       ru: 'Галисийский',
@@ -677,26 +771,26 @@ export const state = () => ({
       fr: 'Italien',
       gl: 'Italiano',
       it: 'Italiano',
-      jp: '意大利语',
+      ja: '意大利语',
       pt: 'Italiano',
       ro: 'Italiană',
         ru: 'Итальянский',
         zh: '意大利语'
       }
     }, {
-      code: 'jp',
-      flagCode: 'jp',
-      name: {
-        ar: 'اليابانية',
-        ca: 'Japonès',
-        de: 'Japanisch',
-        en: 'Japanese',
-        es: 'Japonés',
-        eu: 'Japoniera',
-        fr: 'Japonais',
-        gl: 'Xaponés',
-        it: 'Giapponese',
-      jp: '日语',
+    code: 'ja',
+    flagCode: 'jp',
+    name: {
+      ar: 'اليابانية',
+      ca: 'Japonès',
+      de: 'Japanisch',
+      en: 'Japanese',
+      es: 'Japonés',
+      eu: 'Japoniera',
+      fr: 'Japonais',
+      gl: 'Xaponés',
+      it: 'Giapponese',
+      ja: '日语',
       pt: 'Japonês',
       ro: 'Japoneză',
         ru: 'Японский',
@@ -715,9 +809,9 @@ export const state = () => ({
         fr: 'Portugais',
         gl: 'Portugués',
         it: 'Portoghese',
-      jp: '葡萄牙语',
-      pt: 'Português',
-      ro: 'Portugheză',
+        ja: '葡萄牙语',
+        pt: 'Português',
+        ro: 'Portugheză',
         ru: 'Португальский',
         zh: '葡萄牙语'
       }
@@ -734,7 +828,7 @@ export const state = () => ({
         fr: 'Roumain',
         gl: 'Rumano',
         it: 'Rumeno',
-      jp: '罗马尼亚语',
+      ja: '罗马尼亚语',
       pt: 'Romeno',
       ro: 'Română',
       ru: 'Румынский',
@@ -753,7 +847,7 @@ export const state = () => ({
       fr: 'Russe',
       gl: 'Ruso',
       it: 'Russo',
-      jp: '俄语',
+      ja: '俄语',
       pt: 'Russo',
       ro: 'Rusă',
       ru: 'Русский',
@@ -772,7 +866,7 @@ export const state = () => ({
       fr: 'Chinois',
       gl: 'Chinés',
       it: 'Cinese',
-      jp: '中文',
+      ja: '中文',
       pt: 'Chinês',
       ro: 'Chineză',
       ru: 'Китайский',
@@ -854,7 +948,7 @@ export const getters = {
     const activity = state.activities.find((a) => a.activityId == activityId)
 
     if (activity) {
-      challenge =  activity.challenges.find(
+      challenge = activity.challenges.find(
         // eslint-disable-next-line eqeqeq
         (ch) => ch.challengeId == challengeId
       ) ?? null
@@ -880,7 +974,7 @@ export const getters = {
       if (!exercise) {
         // eslint-disable-next-line no-console
         console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"` +
-        `, Challenge "${challengeId}".`)
+          `, Challenge "${challengeId}".`)
       }
     }
 
@@ -906,11 +1000,11 @@ export const getters = {
         // eslint-disable-next-line eqeqeq
         s => s.sectionId == sectionId
       ) ?? null
-    
+
       if (!section) {
         // eslint-disable-next-line no-console
         console.error(`Section "${sectionId}" not found on Activity "${activityId}"` +
-        `, Challenge "${challengeId}", Exercise "${exerciseId}".`)
+          `, Challenge "${challengeId}", Exercise "${exerciseId}".`)
       }
     }
 

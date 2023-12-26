@@ -25,7 +25,7 @@ zh:
   retry: "再试一次"
 ro:
   retry: "Încearcă din nou"
-jp:
+ja:
   retry: "もう一度試す"
 </i18n>
 

@@ -64,7 +64,7 @@ ro:
   activityElement: "Activitate {activityId}"
   challengeElement: "Provocare {challengeId}"
   exerciseElement: "Exercițiu {exerciseId}"
-jp:
+ja:
   drawerTitle: "進捗"
   activityElement: "アクティビティ {activityId}"
   challengeElement: "チャレンジ {challengeId}"
