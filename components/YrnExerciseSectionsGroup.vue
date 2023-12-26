@@ -19,7 +19,7 @@
             label
             text-color="white"
           >
-            x = {{ section.solution.expected }}
+            x = {{ getExpectedSolution(section) }}
           </v-chip>
         </div>
       </v-expansion-panel-header>
@@ -61,8 +61,12 @@ export default {
     }
   },
   methods: {
+    getExpectedSolution(section) {
+      return section?.solution?.expected
+    },
     getSectionStatement(section) {
       return section?.statement?.[this.$i18n.locale]
+        ?? section?.statement
     },
     getSolutionVerdict(section) {
       // eslint-disable-next-line eqeqeq
@@ -77,7 +81,7 @@ export default {
   &__expansion-panel-header {
     font-family: MartelSans, monospace;
     font-size: 22px;
-    
+
     i {
       font-family: MartelSans, monospace;
       font-size: 30px;

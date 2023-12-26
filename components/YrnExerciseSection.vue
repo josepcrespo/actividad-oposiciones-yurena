@@ -16,7 +16,7 @@
             </v-icon>
           </v-btn>
           <h3 class="ml-4">
-            {{ getSectionStatement(section) }}
+            {{ sectionStatement }}
           </h3>
         </v-col>
       </v-row>
@@ -106,6 +106,12 @@ export default {
       }
     }
   },
+  computed: {
+    sectionStatement() {
+      return this.section?.statement?.[this.$i18n.locale]
+        ?? this.section?.statement
+    }
+  },
   methods: {
     handleTextFieldInput(value) {
       // Si quisiéramos guardar solo cuando el resultado es válido:
@@ -125,9 +131,6 @@ export default {
         exerciseId: this.exerciseId,
         section: updatedSection
       })
-    },
-    getSectionStatement(section) {
-      return section?.statement?.[this.$i18n.locale]
     }
   }
 }
