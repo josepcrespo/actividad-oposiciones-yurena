@@ -2,9 +2,9 @@
 es:
   buttonTitle: "Progreso"
   buttonTooltip: "Muestra el progreso en la situación de aprendizaje"
-# ca:
-#   buttonTitle: "Progrés"
-#   buttonTooltip: "Mostra el progrés en la situació d'aprenentatge"
+ca:
+  buttonTitle: "Progrés"
+  buttonTooltip: "Mostra el progrés en la situació d'aprenentatge"
 en:
   buttonTitle: "Progress"
   buttonTooltip: "Show progress in the learning situation"
@@ -20,27 +20,27 @@ fr:
 it:
   buttonTitle: "Progresso"
   buttonTooltip: "Mostra il progresso nella situazione di apprendimento"
-# eu:
-#   buttonTitle: "Egiten"
-#   buttonTooltip: "Erakutsi ikaskuntza-situan egindako aurrerapena"
-# gl:
-#   buttonTitle: "Progreso"
-#   buttonTooltip: "Amosar o progreso na situación de aprendizaxe"
-# pt:
-#   buttonTitle: "Progresso"
-#   buttonTooltip: "Mostrar o progresso na situação de aprendizagem"
+eu:
+  buttonTitle: "Egiten"
+  buttonTooltip: "Erakutsi ikaskuntza-situan egindako aurrerapena"
+gl:
+  buttonTitle: "Progreso"
+  buttonTooltip: "Amosar o progreso na situación de aprendizaxe"
+pt:
+  buttonTitle: "Progresso"
+  buttonTooltip: "Mostrar o progresso na situação de aprendizagem"
 ar:
   buttonTitle: ":التقدم"
   buttonTooltip: "عرض التقدم في الحالة التعلمية"
 zh:
   buttonTitle: "进展"
   buttonTooltip: "显示学习情况中的进展"
-# ro:
-#   buttonTitle: "Progres"
-#   buttonTooltip: "Arată progresul în situația de învățare"
-# ja:
-#   buttonTitle: "進捗"
-#   buttonTooltip: "学習状況の進捗を表示"
+ro:
+  buttonTitle: "Progres"
+  buttonTooltip: "Arată progresul în situația de învățare"
+ja:
+  buttonTitle: "進捗"
+  buttonTooltip: "学習状況の進捗を表示"
 </i18n>
 
 <template>

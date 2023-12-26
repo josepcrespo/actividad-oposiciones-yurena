@@ -53,17 +53,17 @@ export default {
   i18n: {
     locales: [
       'ar', // Arabic
-      // 'ca', // Catalan
+      'ca', // Catalan
       'de', // German
       'en', // English
       'es', // Spanish
-      // 'eu', // Basque
+      'eu', // Basque
       'fr', // French
-      // 'gl', // Galician
+      'gl', // Galician
       'it', // Italian
-      // 'ja', // Japanese
-      // 'pt', // Portuguese
-      // 'ro', // Romanian
+      'ja', // Japanese
+      'pt', // Portuguese
+      'ro', // Romanian
       'ru', // Russian
       'zh'  // Chinese (simplified)
     ],

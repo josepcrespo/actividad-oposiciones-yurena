@@ -9,17 +9,17 @@ export const state = () => ({
         type: 'yrn-page-title',
         title: {
           ar: 'ما هو الحديقة الوطنية التي زارها المدير؟',
-          // ca: 'Quin Parc Nacional va visitar el director?',
+          ca: 'Quin Parc Nacional va visitar el director?',
           de: 'Welchen Nationalpark hat der Direktor besucht?',
           en: 'Which National Park did the director visit?',
           es: '¿Qué Parque Nacional visitó el director?',
-          // eu: 'Zer Parke Nazional bisitatu du zuzendaria?',
+          eu: 'Zer Parke Nazional bisitatu du zuzendaria?',
           fr: 'Quel parc national le directeur a-t-il visité?',
-          // gl: '¿Qué Parque Nacional visitou o director?',
+          gl: '¿Qué Parque Nacional visitou o director?',
           it: 'Quale Parco Nazionale ha visitato il direttore?',
-          // ja: 'ディレクターはどの国立公園を訪れましたか？',
-          // pt: 'Qual Parque Nacional o diretor visitou?',
-          // ro: 'Ce parc național a vizitat directorul?',
+          ja: 'ディレクターはどの国立公園を訪れましたか？',
+          pt: 'Qual Parque Nacional o diretor visitou?',
+          ro: 'Ce parc național a vizitat directorul?',
           ru: 'Какой национальный парк посетил директор?',
           zh: '主任访问了哪个国家公园？'
         }
@@ -27,34 +27,34 @@ export const state = () => ({
         type: 'yrn-image',
         imageAlt: {
           ar: 'Memoji لمدير IES El Galeón ، يظهر خريطة جزر الكناري مع الحدائق الوطنية.',
-          // ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.',
+          ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.',
           de: 'Memoji des Direktors des IES El Galeón zeigt eine Karte der Kanarischen Inseln mit den Nationalparks.',
           en: 'Memoji of the director of IES El Galeón, showing a map of the Canary Islands with the National Parks.',
           es: 'Memoji del director del IES El Galeón, mostrando un mapa de las Islas Canarias con los Parques Nacionales.',
-          // eu: 'IES El Galeón ikasketetako zuzendaria, Kanari uharteetako mapa bat erakusten, Nazioarteko Parkak barne.',
+          eu: 'IES El Galeón ikasketetako zuzendaria, Kanari uharteetako mapa bat erakusten, Nazioarteko Parkak barne.',
           fr: 'Memoji du directeur de l\'IES El Galeón, montrant une carte des îles Canaries avec les parcs nationaux.',
-          // gl: 'Memoji do director do IES El Galeón, mostrando un mapa das Illas Canarias cos Parques Nacionais.',
+          gl: 'Memoji do director do IES El Galeón, mostrando un mapa das Illas Canarias cos Parques Nacionais.',
           it: 'Memoji del direttore dell\'IES El Galeón, che mostra una mappa delle Isole Canarie con i Parchi Nazionali.',
-          // ja: 'IES El GaleónのディレクターのMemoji、カナリア諸島の地図を表示して国立公園を示しています。',
-          // pt: 'Memoji do diretor do IES El Galeón, mostrando um mapa das Ilhas Canárias com os Parques Nacionais.',
-          // ro: 'Memoji al directorului IES El Galeón, arătând o hartă a Insulelor Canare cu Parcurile Naționale.',
+          ja: 'IES El GaleónのディレクターのMemoji、カナリア諸島の地図を表示して国立公園を示しています。',
+          pt: 'Memoji do diretor do IES El Galeón, mostrando um mapa das Ilhas Canárias com os Parques Nacionais.',
+          ro: 'Memoji al directorului IES El Galeón, arătând o hartă a Insulelor Canare cu Parcurile Naționale.',
           ru: 'Memoji директора IES El Galeón, показывающий карту Канарских островов с национальными парками.',
           zh: 'IES El Galeón的主任Memoji，展示了加那利群岛的地图，标有国家公园。'
         },
         imageSrc: '/img/actividad-1/reto-1/imagen-de-cabecera.png',
         linkTitle: {
           ar: 'انقر لتكبير الخريطة.',
-          // ca: 'Fes clic per ampliar el mapa.',
+          ca: 'Fes clic per ampliar el mapa.',
           de: 'Klicken Sie hier, um die Karte zu vergrößern.',
           en: 'Click to enlarge the map.',
           es: 'Haz clic para ampliar el mapa.',
-          // eu: 'Egin klik hemen maparen tamaina handitzeko.',
+          eu: 'Egin klik hemen maparen tamaina handitzeko.',
           fr: 'Cliquez pour agrandir la carte.',
-          // gl: 'Fai clic para ampliar o mapa.',
+          gl: 'Fai clic para ampliar o mapa.',
           it: 'Clicca per ingrandire la mappa.',
-          // ja: '地図を拡大するにはクリックしてください。',
-          // pt: 'Clique para ampliar o mapa.',
-          // ro: 'Faceți clic pentru a mări harta.',
+          ja: '地図を拡大するにはクリックしてください。',
+          pt: 'Clique para ampliar o mapa.',
+          ro: 'Faceți clic pentru a mări harta.',
           ru: 'Нажмите, чтобы увеличить карту.',
           zh: '点击以放大地图。'
         },
@@ -66,10 +66,10 @@ export const state = () => ({
             'خلال عطلة نهاية الأسبوع، زار مديرنا أحد الحدائق الوطنية في جزرنا.',
             'هل سيكونون قادرين على معرفة أي واحد؟'
           ],
-          // ca: [
-          //   'Durant el cap de setmana, el nostre director ha visitat un dels Parcs Nacionals de les nostres illes.',
-          //   'Seran capaços d\'esbrinar quin?'
-          // ],
+          ca: [
+            'Durant el cap de setmana, el nostre director ha visitat un dels Parcs Nacionals de les nostres illes.',
+            'Seran capaços d\'esbrinar quin?'
+          ],
           de: [
             'Während des Wochenendes hat unser Direktor einen der Nationalparks unserer Inseln besucht.',
             'Werden sie herausfinden können, welcher?'
@@ -82,34 +82,34 @@ export const state = () => ({
             'Durante el fin de semana, nuestro director ha visitado uno de los Parques Nacionales de nuestras islas.',
             '¿Serán capaces de averiguar cuál?'
           ],
-          // eu: [
-          //   'Asteburuan, gure zuzendaria gure uharteetako Nazioarteko Parketako bat bisitatu du.',
-          //   'Zer atera dezakete?'
-          // ],
+          eu: [
+            'Asteburuan, gure zuzendaria gure uharteetako Nazioarteko Parketako bat bisitatu du.',
+            'Zer atera dezakete?'
+          ],
           fr: [
             'Pendant le week-end, notre directeur a visité l\'un des parcs nationaux de nos îles.',
             'Pourront-ils découvrir lequel?'
           ],
-          // gl: [
-          //   'Durante o fin de semana, o noso director visitou un dos Parques Nacionais das nosas illas.',
-          //   'Serán quen de descubrir cal?'
-          // ],
+          gl: [
+            'Durante o fin de semana, o noso director visitou un dos Parques Nacionais das nosas illas.',
+            'Serán quen de descubrir cal?'
+          ],
           it: [
             'Durante il fine settimana, il nostro direttore ha visitato uno dei Parchi Nazionali delle nostre isole.',
             'Riusciranno a capire quale?'
           ],
-          // ja: [
-          //   '週末には、当社のディレクターが島の国立公園の1つを訪れました。',
-          //   '彼らはそれがどれかを見分けることができるでしょうか？'
-          // ],
-          // pt: [
-          //   'Durante o fim de semana, nosso diretor visitou um dos Parques Nacionais de nossas ilhas.',
-          //   'Eles serão capazes de descobrir qual?'
-          // ],
-          // ro: [
-          //   'În timpul weekendului, directorul nostru a vizitat unul dintre Parcurile Naționale ale insulelor noastre.',
-          //   'Vor reuși să afle care?'
-          // ],
+          ja: [
+            '週末には、当社のディレクターが島の国立公園の1つを訪れました。',
+            '彼らはそれがどれかを見分けることができるでしょうか？'
+          ],
+          pt: [
+            'Durante o fim de semana, nosso diretor visitou um dos Parques Nacionais de nossas ilhas.',
+            'Eles serão capazes de descobrir qual?'
+          ],
+          ro: [
+            'În timpul weekendului, directorul nostru a vizitat unul dintre Parcurile Naționale ale insulelor noastre.',
+            'Vor reuși să afle care?'
+          ],
           ru: [
             'В выходные наш директор посетил один из национальных парков наших островов.',
             'Смогут ли они выяснить, который?'
@@ -136,17 +136,17 @@ export const state = () => ({
         solution: {
           statement: {
             ar: 'الكتابة هنا مفتاح السر باستخدام حلول المعادلات:',
-            // ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
+            ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
             de: 'Schreiben Sie hier den geheimen Schlüssel unter Verwendung der Lösungen der Gleichungen:',
             en: 'Write the secret key here using the solutions of the equations:',
             es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',
-            // eu: 'Idatzi hemen sekretu gakoa ekuazioen soluzioak erabiliz:',
+            eu: 'Idatzi hemen sekretu gakoa ekuazioen soluzioak erabiliz:',
             fr: 'Écrivez ici la clé secrète en utilisant les solutions des équations:',
-            // gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:',
+            gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:',
             it: 'Scrivi qui la chiave segreta usando le soluzioni delle equazioni:',
-            // ja: 'ここに方程式の解を使用して秘密鍵を書いてください:',
-            // pt: 'Escreva a chave secreta aqui usando as soluções das equações:',
-            // ro: 'Scrieți aici cheia secretă folosind soluțiile ecuațiilor:',
+            ja: 'ここに方程式の解を使用して秘密鍵を書いてください:',
+            pt: 'Escreva a chave secreta aqui usando as soluções das equações:',
+            ro: 'Scrieți aici cheia secretă folosind soluțiile ecuațiilor:',
             ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
             zh: '使用方程式的解在此处写入秘钥：'
           },
@@ -156,17 +156,17 @@ export const state = () => ({
         },
         statement: {
           ar: 'حل المعادلات من الدرجة الأولى التالية للعثور على المفتاح السري الذي تحتاجونه لاكتشاف أول إشارة:',
-          // ca: 'Resolgueu les següents equacions de primer grau per trobar la clau secreta que necessiteu per descobrir la primera pista:',
+          ca: 'Resolgueu les següents equacions de primer grau per trobar la clau secreta que necessiteu per descobrir la primera pista:',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um den geheimen Schlüssel zu finden, den Sie benötigen, um den ersten Hinweis zu entdecken:',
           en: 'Solve the following first-degree equations to find the secret key you need to discover the first clue:',
           es: 'Resuelvan las siguientes ecuaciones de primer grado para encontrar la clave secreta que necesitan para descubrir la primera pista:',
-          // eu: 'Zuzendu azpiko lehen graduaren ekuazioak, sekretu gakoa aurkitu ahal izateko lehenengo pistaren pista:',
+          eu: 'Zuzendu azpiko lehen graduaren ekuazioak, sekretu gakoa aurkitu ahal izateko lehenengo pistaren pista:',
           fr: 'Résolvez les équations du premier degré suivantes pour trouver la clé secrète dont vous avez besoin pour découvrir la première indice:',
-          // gl: 'Resolva as seguintes ecuacións de primeiro grao para atopar a chave secreta que necesitan para descubrir a primeira pista:',
+          gl: 'Resolva as seguintes ecuacións de primeiro grao para atopar a chave secreta que necesitan para descubrir a primeira pista:',
           it: 'Risolvete le seguenti equazioni di primo grado per trovare la chiave segreta necessaria per scoprire la prima traccia:',
-          // ja: '最初の手がかりを発見するために必要な秘密のキーを見つけるために、次の一次方程式を解いてください：',
-          // pt: 'Resolva as seguintes equações de primeiro grau para encontrar a chave secreta que você precisa para descobrir a primeira pista:',
-          // ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a găsi cheia secretă de care aveți nevoie pentru a descoperi prima indiciu:',
+          ja: '最初の手がかりを発見するために必要な秘密のキーを見つけるために、次の一次方程式を解いてください：',
+          pt: 'Resolva as seguintes equações de primeiro grau para encontrar a chave secreta que você precisa para descobrir a primeira pista:',
+          ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a găsi cheia secretă de care aveți nevoie pentru a descoperi prima indiciu:',
           ru: 'Решите следующие уравнения первой степени, чтобы найти секретный ключ, который вам нужен для обнаружения первой подсказки:',
           zh: '解以下一次方程，找到您需要发现第一个线索的秘密密钥：'
         },
@@ -303,34 +303,34 @@ export const state = () => ({
       pageStructure: [{
         type: 'yrn-page-title',
         title: {
-          // ca: 'Veient la imatge, ja sabeu quin Parc Nacional va visitar el director?',
+          ca: 'Veient la imatge, ja sabeu quin Parc Nacional va visitar el director?',
           de: 'Beim Anblick des Bildes, wisst ihr schon, welchen Nationalpark der Direktor besucht hat?',
           en: 'Looking at the image, do you already know which National Park the director visited?',
           es: 'Viendo la imagen, ¿ya saben qué Parque Nacional visitó el director?',
-          // eu: 'Irudia ikustean, jadanik badakizu zuzendariak zein Parke Nazional bisitatu duen?',
+          eu: 'Irudia ikustean, jadanik badakizu zuzendariak zein Parke Nazional bisitatu duen?',
           fr: 'En regardant l\'image, savez-vous déjà quel parc national le directeur a visité?',
-          // gl: 'Ao ver a imaxe, xa sabes que Parque Nacional visitou o director?',
+          gl: 'Ao ver a imaxe, xa sabes que Parque Nacional visitou o director?',
           it: 'Guardando l\'immagine, già sai quale Parco Nazionale ha visitato il direttore?',
-          // ja: '画像を見て、あなたはすでにディレクターが訪れた国立公園を知っていますか？',
-          // pt: 'Olhando para a imagem, já sabem qual Parque Nacional o diretor visitou?',
-          // ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
+          ja: '画像を見て、あなたはすでにディレクターが訪れた国立公園を知っていますか？',
+          pt: 'Olhando para a imagem, já sabem qual Parque Nacional o diretor visitou?',
+          ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
           ru: 'Глядя на изображение, вы уже знаете, какой национальный парк посетил директор?',
           zh: '看着这张图片，你们已经知道主任参观了哪个国家公园吗？'
         }
       }, {
         type: 'yrn-image-simple',
         alt: {
-          // ca: 'Imatge del Parc Natural que va visitar el director.',
+          ca: 'Imatge del Parc Natural que va visitar el director.',
           de: 'Bild des Naturparks, den der Direktor besucht hat.',
           en: 'Image of the Natural Park that the director visited.',
           es: 'Imagen del Parque Natural que visitó el director.',
-          // eu: 'Zuzendariak bisitatu zuen Natural Parkea irudia.',
+          eu: 'Zuzendariak bisitatu zuen Natural Parkea irudia.',
           fr: 'Image du parc naturel que le directeur a visité.',
-          // gl: 'Imaxe do Parque Natural que o director visitou.',
+          gl: 'Imaxe do Parque Natural que o director visitou.',
           it: 'Immagine del Parco Naturale che il direttore ha visitato.',
-          // ja: 'ディレクターが訪れた自然公園の画像。',
-          // pt: 'Imagem do Parque Natural que o diretor visitou.',
-          // ro: 'Imaginea Parcului Natural pe care directorul l-a vizitat.',
+          ja: 'ディレクターが訪れた自然公園の画像。',
+          pt: 'Imagem do Parque Natural que o diretor visitou.',
+          ro: 'Imaginea Parcului Natural pe care directorul l-a vizitat.',
           ru: 'Изображение природного парка, который посетил директор.',
           zh: '董事访问的自然公园的图像。'
         },
@@ -350,17 +350,17 @@ export const state = () => ({
         exerciseId: 1,
         solution: {
           statement: {
-            // ca: 'Escriviu ací la resposta:',
+            ca: 'Escriviu ací la resposta:',
             de: 'Schreiben Sie hier die Antwort:',
             en: 'Write the answer here:',
             es: 'Escriban aquí la respuesta:',
-            // eu: 'Idatzi hemen erantzuna:',
+            eu: 'Idatzi hemen erantzuna:',
             fr: 'Écrivez la réponse ici :',
-            // gl: 'Escribe aquí a resposta:',
+            gl: 'Escribe aquí a resposta:',
             it: 'Scrivi la risposta qui:',
-            // ja: 'ここに回答を書いてください:',
-            // pt: 'Escreva a resposta aqui:',
-            // ro: 'Scrieți răspunsul aici:',
+            ja: 'ここに回答を書いてください:',
+            pt: 'Escreva a resposta aqui:',
+            ro: 'Scrieți răspunsul aici:',
             ru: 'Напишите ответ здесь:',
             zh: '在这里写答案：'
           },
@@ -375,17 +375,17 @@ export const state = () => ({
         },
         solution: {
           statement: {
-            // ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau, resolgueu-les i es revelarán les dades en blanc del següent text:',
+            ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau, resolgueu-les i es revelarán les dades en blanc del següent text:',
             de: 'Unser Direktor hat Schwierigkeiten, sich an ganze Zahlen zu erinnern, aber seltsamerweise fällt es ihm sehr leicht, Gleichungen zu merken. Er hat die folgenden Gleichungen ersten Grades auswendig gelernt, löst sie und die Daten im nächsten Text werden sichtbar:',
             en: 'Our director has trouble remembering whole numbers, but strangely, he finds it very easy to remember equations. He has memorized the following first-degree equations, solve them, and the blank data in the next text will be revealed:',
             es: 'A nuestro director le cuesta recordar números enteros, pero extrañamente, le resulta muy fácil recordar ecuaciones. Ha memorizado las siguientes ecuaciones de primer grado, resuélvanlas y se revelarán los datos en blanco del siguiente texto:',
-            // eu: 'Gure zuzendariak zenbaki osoak gogoratzeak zailtasuna du, baina ohiz, ekuazioak gogoratzea oso erraza zaio. Azken mailako ekuazio hauek memoriatu ditu, beren konplexutasuna ulertzeko, eta hurrengo testuaren hutsuneak agerikoak izango dira:',
+            eu: 'Gure zuzendariak zenbaki osoak gogoratzeak zailtasuna du, baina ohiz, ekuazioak gogoratzea oso erraza zaio. Azken mailako ekuazio hauek memoriatu ditu, beren konplexutasuna ulertzeko, eta hurrengo testuaren hutsuneak agerikoak izango dira:',
             fr: 'Notre directeur a du mal à se souvenir des nombres entiers, mais étrangement, il trouve très facile de se souvenir des équations. Il a mémorisé les équations du premier degré suivantes, résolvez-les et les données en blanc du texte suivant seront révélées :',
-            // gl: 'O noso director ten dificultades para lembrar números enteiros, pero curiosamente, resultálle moi fácil lembrar ecuacións. Memorizou as seguintes ecuacións de primeiro grao, resólveas e revelaranse os datos en branco do seguinte texto:',
+            gl: 'O noso director ten dificultades para lembrar números enteiros, pero curiosamente, resultálle moi fácil lembrar ecuacións. Memorizou as seguintes ecuacións de primeiro grao, resólveas e revelaranse os datos en branco do seguinte texto:',
             it: 'Il nostro direttore ha difficoltà a ricordare i numeri interi, ma stranamente trova molto facile ricordare le equazioni. Ha memorizzato le seguenti equazioni di primo grado, risolvetle e i dati vuoti nel testo successivo saranno rivelati:',
-            // ja: 'この画像を見て、あなたはすでにディレクターがどの国立公園を訪れたかを知っていますか？',
-            // pt: 'Ao ver a imagem, você já sabe qual Parque Nacional o diretor visitou?',
-            // ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
+            ja: 'この画像を見て、あなたはすでにディレクターがどの国立公園を訪れたかを知っていますか？',
+            pt: 'Ao ver a imagem, você já sabe qual Parque Nacional o diretor visitou?',
+            ro: 'Privind imaginea, știți deja ce Parc Național a vizitat directorul?',
             ru: 'Нашему директору трудно запоминать целые числа, но странно, что ему очень легко запомнить уравнения. Он выучил следующие уравнения первой степени, решите и оголтелые данные в следующем тексте будут раскрываться:',
             zh: '我们的主任很难记住整数，但奇怪的是，他发现记住方程式很容易。 你已经记住了下面的一次方程，求解它们，就会显示出下面文本的空白数据:'
           },
@@ -393,25 +393,25 @@ export const state = () => ({
             // eslint-disable-next-line no-template-curly-in-string
             es: 'Este Parque Nacional, situado en la isla de Tenerife, fue el primero reconocido del Archipiélago Canario, en el año ${{ a }}${{ b }}${{ c }}${{ d }} y está presidido por El Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), el pico más alto de España. Con numerosas especies endémicas y una extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, es, a día de hoy, el Parque Nacional más visitado de Canarias, de España y de Europa ya que alberga uno de los más impresionantes espectáculos geológicos del mundo por la dificultad de encontrar en un espacio tan reducido, un conjunto de estas características.',
             // eslint-disable-next-line no-template-curly-in-string
-            // ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impresionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.',
+            ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impresionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.',
             // eslint-disable-next-line no-template-curly-in-string
             de: 'Dieser Nationalpark, der sich auf der Insel Teneriffa befindet, wurde im Jahr ${{ a }}${{ b }}${{ c }}${{ d }} als erster auf den Kanarischen Inseln anerkannt und wird vom Teide ({{ e }}${{ f }}${{ a }}${{ g }} Meter), dem höchsten Gipfel Spaniens, präsidiert. Mit zahlreichen endemischen Arten und einer Ausdehnung von ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} Hektar ist er heute der meistbesuchte Nationalpark der Kanaren, Spaniens und Europas, da er eine der beeindruckendsten geologischen Shows der Welt beherbergt, aufgrund der Schwierigkeit, in einem so begrenzten Raum eine solche Vielfalt zu finden.',
             // eslint-disable-next-line no-template-curly-in-string
             en: 'This National Park, located on the island of Tenerife, was the first recognized in the Canary Archipelago, in the year ${{ a }}${{ b }}${{ c }}${{ d }} and is presided over by El Teide (${{ e }}${{ f }}${{ a }}${{ g }} meters), the highest peak in Spain. With numerous endemic species and an extension of ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, it is, to this day, the most visited National Park in the Canary Islands, Spain, and Europe as it hosts one of the most impressive geological spectacles in the world, due to the difficulty of finding in such a reduced space, a set of these characteristics.',
             // eslint-disable-next-line no-template-curly-in-string
-            // eu: 'Tenerife uhartean kokatutako Parke Nazional hau, Kanariar Arxipelagoan lehenengo agertu zen, ${{ a }}${{ b }}${{ c }}${{ d }} urtean, eta El Teidek (${{ e }}${{ f }}${{ a }}${{ g }} metro) zuzendua du. Espainiako mendi altuena da. Espezie endemiko ugarirekin eta ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hektareko zabalerarekin, gaur egun Kanarietako, Espainiako eta Europako Parke Nazionalik bisitatuenetarikoa da, munduko geologia ikusgarrienetakoenetako bat ospatzen baitu, espazio hain estu batean, ezaugarrien talde bat aurkitzearen zailtasunagatik.',
+            eu: 'Tenerife uhartean kokatutako Parke Nazional hau, Kanariar Arxipelagoan lehenengo agertu zen, ${{ a }}${{ b }}${{ c }}${{ d }} urtean, eta El Teidek (${{ e }}${{ f }}${{ a }}${{ g }} metro) zuzendua du. Espainiako mendi altuena da. Espezie endemiko ugarirekin eta ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hektareko zabalerarekin, gaur egun Kanarietako, Espainiako eta Europako Parke Nazionalik bisitatuenetarikoa da, munduko geologia ikusgarrienetakoenetako bat ospatzen baitu, espazio hain estu batean, ezaugarrien talde bat aurkitzearen zailtasunagatik.',
             // eslint-disable-next-line no-template-curly-in-string
             fr: 'Ce parc national, situé sur l\'île de Tenerife, a été le premier reconnu de l\'archipel des Canaries, en ${{ a }}${{ b }}${{ c }}${{ d }} et est présidé par El Teide ({{ e }}${{ f }}${{ a }}${{ g }} mètres), le plus haut sommet d\'Espagne. Avec de nombreuses espèces endémiques et une superficie de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, c\'est, à ce jour, le parc national le plus visité des îles Canaries, d\'Espagne et d\'Europe, car il abrite l\'un des spectacles géologiques les plus impressionnants du monde en raison de la difficulté de trouver dans un espace aussi réduit, un ensemble de ces caractéristiques.',
             // eslint-disable-next-line no-template-curly-in-string
-            // gl: 'Este Parque Nacional, situado na illa de Tenerife, foi o primeiro recoñecido do Arquipélago Canario, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e está presidido polo Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico máis alto de España. Con numerosas especies endémicas e unha extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, é, a día de hoxe, o Parque Nacional máis visitado das Canarias, de España e de Europa xa que alberga un dos máis impresionantes espectáculos xeolóxicos do mundo pola dificultade de atopar nun espazo tan reducido, un conxunto destas características.',
+            gl: 'Este Parque Nacional, situado na illa de Tenerife, foi o primeiro recoñecido do Arquipélago Canario, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e está presidido polo Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico máis alto de España. Con numerosas especies endémicas e unha extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, é, a día de hoxe, o Parque Nacional máis visitado das Canarias, de España e de Europa xa que alberga un dos máis impresionantes espectáculos xeolóxicos do mundo pola dificultade de atopar nun espazo tan reducido, un conxunto destas características.',
             // eslint-disable-next-line no-template-curly-in-string
             it: 'Questo Parco Nazionale, situato sull\'isola di Tenerife, è stato il primo riconosciuto nell\'Arcipelago delle Canarie, nell\'anno ${{ a }}${{ b }}${{ c }}${{ d }} ed è presieduto da El Teide ({{ e }}${{ f }}${{ a }}${{ g }} metri), la vetta più alta della Spagna. Con numerose specie endemiche e un\'estensione di ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ettari, è, fino ad oggi, il Parco Nazionale più visitato delle Canarie, della Spagna e dell\'Europa in quanto ospita uno degli spettacoli geologici più impressionanti al mondo, data la difficoltà di trovare in uno spazio così ridotto, un insieme di queste caratteristiche.',
             // eslint-disable-next-line no-template-curly-in-string
-            // ja: 'テネリフェ島にあるこの国立公園は、${{ a }}${{ b }}${{ c }}${{ d }} 年にカナリア諸島で最初に認定され、管理されています。スペイン最高峰のテイデ（${{ e }}${{ f }}${{ a }}${{ g }} メートル）を越えます。 数多くの固有種が生息し、${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ヘクタールの面積を誇るこの公園は、現在国立公園となっています。このような小さな空間で一連の特徴を見つけるのは難しいため、世界で最も印象的な地質学的光景の 1 つがあるため、カナリア諸島、スペイン、ヨーロッパで最も多くの人が訪れます。',
+            ja: 'テネリフェ島にあるこの国立公園は、${{ a }}${{ b }}${{ c }}${{ d }} 年にカナリア諸島で最初に認定され、管理されています。スペイン最高峰のテイデ（${{ e }}${{ f }}${{ a }}${{ g }} メートル）を越えます。 数多くの固有種が生息し、${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ヘクタールの面積を誇るこの公園は、現在国立公園となっています。このような小さな空間で一連の特徴を見つけるのは難しいため、世界で最も印象的な地質学的光景の 1 つがあるため、カナリア諸島、スペイン、ヨーロッパで最も多くの人が訪れます。',
             // eslint-disable-next-line no-template-curly-in-string
-            // pt: 'Este Parque Nacional, localizado na ilha de Tenerife, foi o primeiro reconhecido no Arquipélago das Canárias, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e é presidido ao longo do Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico mais alto da Espanha. Com inúmeras espécies endêmicas e uma área de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, é, hoje, o Parque Nacional mais visitado nas Ilhas Canárias, Espanha e Europa por albergar um dos espetáculos geológicos mais impressionantes do mundo pela dificuldade de encontrar um conjunto destas características num espaço tão pequeno.',
+            pt: 'Este Parque Nacional, localizado na ilha de Tenerife, foi o primeiro reconhecido no Arquipélago das Canárias, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e é presidido ao longo do Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico mais alto da Espanha. Com inúmeras espécies endêmicas e uma área de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, é, hoje, o Parque Nacional mais visitado nas Ilhas Canárias, Espanha e Europa por albergar um dos espetáculos geológicos mais impressionantes do mundo pela dificuldade de encontrar um conjunto destas características num espaço tão pequeno.',
             // eslint-disable-next-line no-template-curly-in-string
-            // ro: 'Acest Parc Național, situat pe insula Tenerife, a fost primul recunoscut în Arhipelagul Canare, în anul ${{ a }}${{ b }}${{ c }}${{ d }} și este prezidat peste Teide (${{ e }}${{ f }}${{ a }}${{ g }} metri), cel mai înalt vârf din Spania. Cu numeroase specii endemice și o suprafață de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectare, este, astăzi, Parcul Național cel mai vizitat în Insulele Canare, Spania și Europa deoarece găzduiește unul dintre cele mai impresionante spectacole geologice din lume din cauza dificultății de a găsi un set de aceste caracteristici într-un spațiu atât de mic.',
+            ro: 'Acest Parc Național, situat pe insula Tenerife, a fost primul recunoscut în Arhipelagul Canare, în anul ${{ a }}${{ b }}${{ c }}${{ d }} și este prezidat peste Teide (${{ e }}${{ f }}${{ a }}${{ g }} metri), cel mai înalt vârf din Spania. Cu numeroase specii endemice și o suprafață de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectare, este, astăzi, Parcul Național cel mai vizitat în Insulele Canare, Spania și Europa deoarece găzduiește unul dintre cele mai impresionante spectacole geologice din lume din cauza dificultății de a găsi un set de aceste caracteristici într-un spațiu atât de mic.',
             // eslint-disable-next-line no-template-curly-in-string
             ru: 'Этот национальный парк, расположенный на острове Тенерифе, был первым, признанным на Канарских островах в ${{ a }}${{ b }}${{ c }}${{ d }} году, и возглавляется Эль Тейде ({{ e }}${{ f }}${{ a }}${{ g }} метров), самой высокой вершиной Испании. С многочисленными эндемичными видами и площадью ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} гектаров, это, до сих пор, самый посещаемый национальный парк Канарских островов, Испании и Европы, поскольку здесь находится одно из самых впечатляющих геологических зрелищ в мире, из-за сложности найти в таком ограниченном пространстве набор этих характеристик.',
             // eslint-disable-next-line no-template-curly-in-string
@@ -422,18 +422,18 @@ export const state = () => ({
         },
         statement: {
           ar: 'حل المعادلات من الدرجة الأولى التالية لاكتشاف البيانات الأكثر صلة من الحديقة الطبيعية التي زارها.',
-          // ca: 'Resolgueu les següents equacions de primer grau per descobrir les dades més rellevants del Parc Natural que va visitar.',
+          ca: 'Resolgueu les següents equacions de primer grau per descobrir les dades més rellevants del Parc Natural que va visitar.',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um die relevantesten Daten des Naturparks zu entdecken, den er besucht hat.',
           en: 'Solve the following first-degree equations to discover the most relevant data from the Natural Park he visited.',
           es: 'Resuelvan las siguientes ecuaciones de primer grado para descubrir los datos más relevantes del Parque Natural que visitó.',
-          // eu: 'Lehen graduaren ekuazioak konpontzi, zuzeneko gakoa aurkitzeko behar duzun sekretuak aurkitu behar duzu.',
+          eu: 'Lehen graduaren ekuazioak konpontzi, zuzeneko gakoa aurkitzeko behar duzun sekretuak aurkitu behar duzu.',
           fr: 'Résolvez les équations du premier degré suivantes pour découvrir les données les plus pertinentes du parc naturel qu\'il a visité.',
-          // gl: 'Resolve as seguintes ecuacións de primeiro grao para atopar os datos máis relevantes do Parque Natural que visitou.',
+          gl: 'Resolve as seguintes ecuacións de primeiro grao para atopar os datos máis relevantes do Parque Natural que visitou.',
           it: 'Risolvere le seguenti equazioni di primo grado per scoprire i dati più rilevanti del Parco Naturale che ha visitato.',
           ru: 'Решите следующие уравнения первой степени, чтобы открыть наиболее актуальные данные из природного парка, который он посетил.',
-          // ja: '彼が訪れた自然公園から最も関連性のあるデータを発見するには、次の1次方程式を解いてください。',
-          // pt: 'Resolva as seguintes equações de primeiro grau para descobrir os dados mais relevantes do Parque Natural que ele visitou.',
-          // ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a descoperi datele cele mai relevante din Parcul Natural pe care l-a vizitat.',
+          ja: '彼が訪れた自然公園から最も関連性のあるデータを発見するには、次の1次方程式を解いてください。',
+          pt: 'Resolva as seguintes equações de primeiro grau para descobrir os dados mais relevantes do Parque Natural que ele visitou.',
+          ro: 'Rezolvați următoarele ecuații de gradul întâi pentru a descoperi datele cele mai relevante din Parcul Natural pe care l-a vizitat.',
           zh: '解这些一次方程，以发现他参观的自然公园最相关的数据。'
         },
         sections: [{
@@ -537,17 +537,17 @@ export const state = () => ({
     image: {
       imageAlt: {
         ar: 'Memoji de Yurena.',
-        // ca: 'Memoji de Yurena.',
+        ca: 'Memoji de Yurena.',
         de: 'Yurens Memoji.',
         en: 'Yurena\'s Memoji.',
         es: 'Memoji de Yurena.',
-        // eu: 'Yurena-ren Memoji-a.',
+        eu: 'Yurena-ren Memoji-a.',
         fr: 'Memoji de Yurena.',
-        // gl: 'Memoji de Yurena.',
+        gl: 'Memoji de Yurena.',
         it: 'Memoji di Yurena.',
-        // ja: 'YurenaのMemoji。',
-        // pt: 'Memoji de Yurena.',
-        // ro: 'Memoji de Yurena.',
+        ja: 'YurenaのMemoji。',
+        pt: 'Memoji de Yurena.',
+        ro: 'Memoji de Yurena.',
         ru: 'Мемоджи Юрены.',
         zh: 'Yurena的Memoji。'
       },
@@ -556,17 +556,17 @@ export const state = () => ({
     password: {
       statement: {
         ar: ':للبدء، أدخل الرمز السري الذي سيقدمه لك معلمك',
-        // ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:',
+        ca: 'Per començar, introdueix el codi secret que et proporcionarà el teu professor:',
         de: 'Um zu beginnen, geben Sie den geheimen Code ein, den Ihnen Ihr Lehrer gegeben hat:',
         en: 'To begin, enter the secret code provided by your teacher:',
         es: 'Para empezar, introduce el código secreto que te proporcionará tu profesor:',
-        // eu: 'Hasi hasteko, sartu zure irakasleak emandako kode sekretua:',
+        eu: 'Hasi hasteko, sartu zure irakasleak emandako kode sekretua:',
         fr: 'Pour commencer, entrez le code secret fourni par votre professeur:',
-        // gl: 'Para comezar, introduce o código secreto que che proporcionará o teu profesor:',
+        gl: 'Para comezar, introduce o código secreto que che proporcionará o teu profesor:',
         it: 'Per iniziare, inserisci il codice segreto fornito dal tuo insegnante:',
-        // ja: '：始めるには、教師から提供された秘密コードを入力してください',
-        // pt: 'Para começar, insira o código secreto fornecido pelo seu professor:',
-        // ro: 'Pentru a începe, introduceți codul secret furnizat de profesorul dumneavoastră:',
+        ja: '：始めるには、教師から提供された秘密コードを入力してください',
+        pt: 'Para começar, insira o código secreto fornecido pelo seu professor:',
+        ro: 'Pentru a începe, introduceți codul secret furnizat de profesorul dumneavoastră:',
         ru: 'Для начала введите секретный код, который предоставит вам ваш учитель:',
         zh: '：开始时，请输入您老师提供的秘密代码'
       },
@@ -575,319 +575,304 @@ export const state = () => ({
     },
     subtitle: {
       ar: '=الجبر فونا + فلورا',
-      // ca: 'Flora + Fauna = Àlgebra',
+      ca: 'Flora + Fauna = Àlgebra',
       de: 'Flora + Fauna = Algebra',
       en: 'Flora + Fauna = Algebra',
       es: 'Flora + Fauna = Álgebra',
-      // eu: 'Landareak + Fauna = Álgebra',
+      eu: 'Landareak + Fauna = Álgebra',
       fr: 'Flore + Faune = Algèbre',
-      // gl: 'Flora + Fauna = Álxebra',
+      gl: 'Flora + Fauna = Álxebra',
       it: 'Flora + Fauna = Algebra',
-      // ja: 'フローラ + ファウナ = 代数',
-      // pt: 'Flora + Fauna = Álgebra',
-      // ro: 'Flora + Fauna = Algebră',
+      ja: 'フローラ + ファウナ = 代数',
+      pt: 'Flora + Fauna = Álgebra',
+      ro: 'Flora + Fauna = Algebră',
       ru: 'Флора + Фауна = Алгебра',
       zh: '植物相 + 动物相 = 代数'
     },
     title: {
       ar: ':موقف التعلم',
-      // ca: 'Situació d\'aprenentatge',
+      ca: 'Situació d\'aprenentatge',
       de: 'Lernsituation',
       en: 'Learning Situation',
       es: 'Situación de aprendizaje',
-      // eu: 'Ikasketa-egoera',
+      eu: 'Ikasketa-egoera',
       fr: 'Situation d\'apprentissage',
-      // gl: 'Situação de aprendizaxe',
+      gl: 'Situação de aprendizaxe',
       it: 'Situazione di apprendimento',
-      // ja: '学習シチュエーション',
-      // pt: 'Situação de Aprendizagem',
-      // ro: 'Situație de învățare',
+      ja: '学習シチュエーション',
+      pt: 'Situação de Aprendizagem',
+      ro: 'Situație de învățare',
       ru: 'Образовательная ситуация',
       zh: '学习情境'
     }
   },
-  languages: [
-    {
-      code: 'ar',
-      flagCode: 'ma', // Morocco flag code
-      name: {
-        ar: 'العربية',
-        // ca: 'Àrab',
-        de: 'Arabisch',
-        en: 'Arabic',
-        es: 'Árabe',
-        // eu: 'Arabiera',
-        fr: 'Arabe',
-        // // gl: 'Árabe',
-        it: 'Arabo',
-        // ja: 'アラビア語',
-        // pt: 'Árabe',
-        // ro: 'Arabă',
-        ru: 'Арабский',
-        zh: '阿拉伯语'
+  languages: [{
+    code: 'ar',
+    flagCode: 'ma', // Morocco flag code
+    name: {
+      ar: 'العربية',
+      ca: 'Àrab',
+      de: 'Arabisch',
+      en: 'Arabic',
+      es: 'Árabe',
+      eu: 'Arabiera',
+      fr: 'Arabe',
+      gl: 'Árabe',
+      it: 'Arabo',
+      ja: 'アラビア語',
+      pt: 'Árabe',
+      ro: 'Arabă',
+      ru: 'Арабский',
+      zh: '阿拉伯语'
+    }
+  }, {
+    code: 'ca',
+    flagCode: 'es-ca',
+    name: {
+      ar: 'الكاتالونية',
+      ca: 'Català',
+      de: 'Katalanisch',
+      en: 'Catalan',
+      es: 'Catalán',
+      eu: 'Katalana',
+      fr: 'Catalan',
+      gl: 'Catalán',
+      it: 'Catalano',
+      ja: 'カタラン語',
+      pt: 'Catalão',
+      ro: 'Catalan',
+        ru: 'Каталанский',
+        zh: '加泰罗尼亚语'
       }
-    },
-    // {
-    //   code: 'ca',
-    //   flagCode: 'es-ca',
-    //   name: {
-    //     ar: 'الكاتالونية',
-    //     ca: 'Català',
-    //     de: 'Katalanisch',
-    //     en: 'Catalan',
-    //     es: 'Catalán',
-    //     eu: 'Katalana',
-    //     fr: 'Catalan',
-    //     gl: 'Catalán',
-    //     it: 'Catalano',
-    //     ja: 'カタラン語',
-    //     pt: 'Catalão',
-    //     ro: 'Catalan',
-    //     ru: 'Каталанский',
-    //     zh: '加泰罗尼亚语'
-    //   }
-    // },
-    {
+    }, {
       code: 'de',
       flagCode: 'de',
       name: {
         ar: 'الألمانية',
-        // ca: 'Alemany',
+        ca: 'Alemany',
         de: 'Deutsch',
         en: 'German',
         es: 'Alemán',
-        // eu: 'Alemaniarra',
+        eu: 'Alemaniarra',
         fr: 'Allemand',
-        // gl: 'Alemán',
+        gl: 'Alemán',
         it: 'Tedesco',
-        // ja: 'ドイツ語',
-        // pt: 'Alemão',
-        // ro: 'Germană',
-        ru: 'Немецкий',
-        zh: '德语'
-      }
-    },
-    {
-      code: 'en',
-      flagCode: 'gb',
-      name: {
-        ar: 'الإنجليزية',
-        // ca: 'Anglés',
-        de: 'Englisch',
-        en: 'English',
-        es: 'Inglés',
-        // eu: 'Ingelesa',
-        fr: 'Anglais',
-        // gl: 'Inglés',
-        it: 'Inglese',
-        // ja: '英语',
-        // pt: 'Inglês',
-        // ro: 'Engleză',
-        ru: 'Английский',
-        zh: '英语'
-      }
-    },
-    {
-      code: 'es',
-      flagCode: 'es',
-      name: {
-        ar: 'الإسبانية',
-        // ca: 'Castellà',
-        de: 'Spanisch',
-        en: 'Spanish',
-        es: 'Español',
-        // eu: 'Espainiera',
-        fr: 'Espagnol',
-        // gl: 'Español',
-        it: 'Spagnolo',
-        // ja: '西班牙语',
-        // pt: 'Espanhol',
-        // ro: 'Spaniol',
+      ja: 'ドイツ語',
+      pt: 'Alemão',
+      ro: 'Germană',
+      ru: 'Немецкий',
+      zh: '德语'
+    }
+  }, {
+    code: 'en',
+    flagCode: 'gb',
+    name: {
+      ar: 'الإنجليزية',
+      ca: 'Anglés',
+      de: 'Englisch',
+      en: 'English',
+      es: 'Inglés',
+      eu: 'Ingelesa',
+      fr: 'Anglais',
+      gl: 'Inglés',
+      it: 'Inglese',
+      ja: '英语',
+      pt: 'Inglês',
+      ro: 'Engleză',
+      ru: 'Английский',
+      zh: '英语'
+    }
+  }, {
+    code: 'es',
+    flagCode: 'es',
+    name: {
+      ar: 'الإسبانية',
+      ca: 'Castellà',
+      de: 'Spanisch',
+      en: 'Spanish',
+      es: 'Español',
+      eu: 'Espainiera',
+      fr: 'Espagnol',
+      gl: 'Español',
+      it: 'Spagnolo',
+      ja: '西班牙语',
+      pt: 'Espanhol',
+      ro: 'Spaniol',
         ru: 'Испанский',
         zh: '西班牙语'
       }
-    },
-    // {
-    //   code: 'eu',
-    //   flagCode: 'es-eu',
-    //   name: {
-    //     ar: 'الباسكية',
-    //     ca: 'Basc',
-    //     de: 'Baskisch',
-    //     en: 'Basque',
-    //     es: 'Vasco',
-    //     eu: 'Euskara',
-    //     fr: 'Basque',
-    //     gl: 'Vasco',
-    //     it: 'Basco',
-    //     ja: '巴斯克语',
-    //     pt: 'Basco',
-    //     ro: 'Bască',
-    //     ru: 'Баскский',
-    //     zh: '巴斯克语'
-    //   }
-    // },
-    {
-      code: 'fr',
-      flagCode: 'fr',
+    }, {
+      code: 'eu',
+      flagCode: 'es-eu',
       name: {
-        ar: 'الفرنسية',
-        // ca: 'Francès',
-        de: 'Französisch',
-        en: 'French',
-        es: 'Francés',
-        // eu: 'Frantsesa',
-        fr: 'Francese',
-        // gl: 'Francés',
-        it: 'Francese',
-        // ja: '法语',
-        // pt: 'Francês',
-        // ro: 'Franceză',
+        ar: 'الباسكية',
+        ca: 'Basc',
+        de: 'Baskisch',
+        en: 'Basque',
+        es: 'Vasco',
+        eu: 'Euskara',
+        fr: 'Basque',
+        gl: 'Vasco',
+        it: 'Basco',
+      ja: '巴斯克语',
+      pt: 'Basco',
+      ro: 'Bască',
+      ru: 'Баскский',
+      zh: '巴斯克语'
+    }
+  }, {
+    code: 'fr',
+    flagCode: 'fr',
+    name: {
+      ar: 'الفرنسية',
+      ca: 'Francès',
+      de: 'Französisch',
+      en: 'French',
+      es: 'Francés',
+      eu: 'Frantsesa',
+      fr: 'Francese',
+      gl: 'Francés',
+      it: 'Francese',
+      ja: '法语',
+      pt: 'Francês',
+      ro: 'Franceză',
         ru: 'Французский',
         zh: '法语'
       }
-    },
-    // {
-    //   code: 'gl',
-    //   flagCode: 'es-gl',
-    //   name: {
-    //     ar: 'الجاليكية',
-    //     ca: 'Gallec',
-    //     de: 'Galizisch',
-    //     en: 'Galician',
-    //     es: 'Gallego',
-    //     eu: 'Galiziarra',
-    //     fr: 'Galicien',
-    //     gl: 'Galego',
-    //     it: 'Galiziano',
-    //     ja: '加利西亚语',
-    //     pt: 'Galego',
-    //     ro: 'Galiciană',
-    //     ru: 'Галисийский',
-    //     zh: '加利西亚语'
-    //   }
-    // },
-    {
-      code: 'it',
-      flagCode: 'it',
+    }, {
+      code: 'gl',
+      flagCode: 'es-gl',
       name: {
-        ar: 'الإيطالية',
-        // ca: 'Italià',
-        de: 'Italienisch',
-        en: 'Italian',
-        es: 'Italiano',
-        // eu: 'Italiera',
-        fr: 'Italien',
-        // gl: 'Italiano',
-        it: 'Italiano',
-        // ja: '意大利语',
-        // pt: 'Italiano',
-        // ro: 'Italiană',
+        ar: 'الجاليكية',
+        ca: 'Gallec',
+        de: 'Galizisch',
+        en: 'Galician',
+        es: 'Gallego',
+        eu: 'Galiziarra',
+        fr: 'Galicien',
+        gl: 'Galego',
+        it: 'Galiziano',
+      ja: '加利西亚语',
+      pt: 'Galego',
+      ro: 'Galiciană',
+      ru: 'Галисийский',
+      zh: '加利西亚语'
+    }
+  }, {
+    code: 'it',
+    flagCode: 'it',
+    name: {
+      ar: 'الإيطالية',
+      ca: 'Italià',
+      de: 'Italienisch',
+      en: 'Italian',
+      es: 'Italiano',
+      eu: 'Italiera',
+      fr: 'Italien',
+      gl: 'Italiano',
+      it: 'Italiano',
+      ja: '意大利语',
+      pt: 'Italiano',
+      ro: 'Italiană',
         ru: 'Итальянский',
         zh: '意大利语'
       }
-    },
-    // {
-    //   code: 'ja',
-    //   flagCode: 'jp',
-    //   name: {
-    //     ar: 'اليابانية',
-    //     ca: 'Japonès',
-    //     de: 'Japanisch',
-    //     en: 'Japanese',
-    //     es: 'Japonés',
-    //     eu: 'Japoniera',
-    //     fr: 'Japonais',
-    //     gl: 'Xaponés',
-    //     it: 'Giapponese',
-    //     ja: '日语',
-    //     pt: 'Japonês',
-    //     ro: 'Japoneză',
-    //     ru: 'Японский',
-    //     zh: '日语'
-    //   }
-    // },
-    // {
-    //   code: 'pt',
-    //   flagCode: 'pt',
-    //   name: {
-    //     ar: 'البرتغالية',
-    //     ca: 'Portuguès',
-    //     de: 'Portugiesisch',
-    //     en: 'Portuguese',
-    //     es: 'Portugués',
-    //     eu: 'Portugesa',
-    //     fr: 'Portugais',
-    //     gl: 'Portugués',
-    //     it: 'Portoghese',
-    //     ja: '葡萄牙语',
-    //     pt: 'Português',
-    //     ro: 'Portugheză',
-    //     ru: 'Португальский',
-    //     zh: '葡萄牙语'
-    //   }
-    // },
-    // {
-    //   code: 'ro',
-    //   flagCode: 'ro',
-    //   name: {
-    //     ar: 'الرومانية',
-    //     ca: 'Romanès',
-    //     de: 'Rumänisch',
-    //     en: 'Romanian',
-    //     es: 'Rumano',
-    //     eu: 'Errumaniera',
-    //     fr: 'Roumain',
-    //     gl: 'Rumano',
-    //     it: 'Rumeno',
-    //     ja: '罗马尼亚语',
-    //     pt: 'Romeno',
-    //     ro: 'Română',
-    //     ru: 'Румынский',
-    //     zh: '罗马尼亚语'
-    //   }
-    // },
-    {
-      code: 'ru',
-      flagCode: 'ru',
-      name: {
-        ar: 'الروسية',
-        // ca: 'Rus',
-        de: 'Russisch',
-        en: 'Russian',
-        es: 'Ruso',
-        // eu: 'Errusiera',
-        fr: 'Russe',
-        // gl: 'Ruso',
-        it: 'Russo',
-        // ja: '俄语',
-        // pt: 'Russo',
-        // ro: 'Rusă',
-        ru: 'Русский',
-        zh: '俄语'
+    }, {
+    code: 'ja',
+    flagCode: 'jp',
+    name: {
+      ar: 'اليابانية',
+      ca: 'Japonès',
+      de: 'Japanisch',
+      en: 'Japanese',
+      es: 'Japonés',
+      eu: 'Japoniera',
+      fr: 'Japonais',
+      gl: 'Xaponés',
+      it: 'Giapponese',
+      ja: '日语',
+      pt: 'Japonês',
+      ro: 'Japoneză',
+        ru: 'Японский',
+        zh: '日语'
       }
-    },
-    {
-      code: 'zh',
-      flagCode: 'cn',
+    }, {
+      code: 'pt',
+      flagCode: 'pt',
       name: {
-        ar: 'الصينية',
-        // ca: 'Xinés',
-        de: 'Chinesisch',
-        en: 'Chinese',
-        es: 'Chino',
-        // eu: 'Txinera',
-        fr: 'Chinois',
-        // gl: 'Chinés',
-        it: 'Cinese',
-        // ja: '中文',
-        // pt: 'Chinês',
-        // ro: 'Chineză',
-        ru: 'Китайский',
-        zh: '中文'
+        ar: 'البرتغالية',
+        ca: 'Portuguès',
+        de: 'Portugiesisch',
+        en: 'Portuguese',
+        es: 'Portugués',
+        eu: 'Portugesa',
+        fr: 'Portugais',
+        gl: 'Portugués',
+        it: 'Portoghese',
+        ja: '葡萄牙语',
+        pt: 'Português',
+        ro: 'Portugheză',
+        ru: 'Португальский',
+        zh: '葡萄牙语'
       }
+    }, {
+      code: 'ro',
+      flagCode: 'ro',
+      name: {
+        ar: 'الرومانية',
+        ca: 'Romanès',
+        de: 'Rumänisch',
+        en: 'Romanian',
+        es: 'Rumano',
+        eu: 'Errumaniera',
+        fr: 'Roumain',
+        gl: 'Rumano',
+        it: 'Rumeno',
+      ja: '罗马尼亚语',
+      pt: 'Romeno',
+      ro: 'Română',
+      ru: 'Румынский',
+      zh: '罗马尼亚语'
     }
-  ]
+  }, {
+    code: 'ru',
+    flagCode: 'ru',
+    name: {
+      ar: 'الروسية',
+      ca: 'Rus',
+      de: 'Russisch',
+      en: 'Russian',
+      es: 'Ruso',
+      eu: 'Errusiera',
+      fr: 'Russe',
+      gl: 'Ruso',
+      it: 'Russo',
+      ja: '俄语',
+      pt: 'Russo',
+      ro: 'Rusă',
+      ru: 'Русский',
+      zh: '俄语'
+    }
+  }, {
+    code: 'zh',
+    flagCode: 'cn',
+    name: {
+      ar: 'الصينية',
+      ca: 'Xinés',
+      de: 'Chinesisch',
+      en: 'Chinese',
+      es: 'Chino',
+      eu: 'Txinera',
+      fr: 'Chinois',
+      gl: 'Chinés',
+      it: 'Cinese',
+      ja: '中文',
+      pt: 'Chinês',
+      ro: 'Chineză',
+      ru: 'Китайский',
+      zh: '中文'
+    }
+  }]
 })
 
 export const mutations = {
