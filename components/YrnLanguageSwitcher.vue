@@ -2,9 +2,9 @@
 es:
   buttonTitle: "Idioma"
   buttonTooltip: "Cambia el idioma"
-ca:
-  buttonTitle: "Idioma"
-  buttonTooltip: "Canvia l'idioma"
+# ca:
+#   buttonTitle: "Idioma"
+#   buttonTooltip: "Canvia l'idioma"
 en:
   buttonTitle: "Language"
   buttonTooltip: "Change the language"
@@ -20,27 +20,27 @@ fr:
 it:
   buttonTitle: "Lingua"
   buttonTooltip: "Cambia la lingua"
-eu:
-  buttonTitle: "Hizkuntza"
-  buttonTooltip: "Aldatu hizkuntza"
-gl:
-  buttonTitle: "Idioma"
-  buttonTooltip: "Cambia o idioma"
-pt:
-  buttonTitle: "Idioma"
-  buttonTooltip: "Mudar o idioma"
+# eu:
+#   buttonTitle: "Hizkuntza"
+#   buttonTooltip: "Aldatu hizkuntza"
+# gl:
+#   buttonTitle: "Idioma"
+#   buttonTooltip: "Cambia o idioma"
+# pt:
+#   buttonTitle: "Idioma"
+#   buttonTooltip: "Mudar o idioma"
 ar:
   buttonTitle: ":اللغة"
   buttonTooltip: "غيّر اللغة"
 zh:
   buttonTitle: "语言"
   buttonTooltip: "更改语言"
-ro:
-  buttonTitle: "Limbă"
-  buttonTooltip: "Schimbă limba"
-ja:
-  buttonTitle: "言語"
-  buttonTooltip: "言語を変更"
+# ro:
+#   buttonTitle: "Limbă"
+#   buttonTooltip: "Schimbă limba"
+# ja:
+#   buttonTitle: "言語"
+#   buttonTooltip: "言語を変更"
 </i18n>
 
 <template>

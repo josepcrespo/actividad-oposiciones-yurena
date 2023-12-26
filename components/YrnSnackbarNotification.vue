@@ -1,8 +1,8 @@
 <i18n lang="yaml">
 es:
   retry: "Prueba otra vez"
-ca:
-  retry: "Prova de nou"
+# ca:
+#   retry: "Prova de nou"
 en:
   retry: "Try again"
 de:
@@ -13,20 +13,20 @@ fr:
   retry: "Réessayer"
 it:
   retry: "Riprova"
-eu:
-  retry: "Saiatu berriro"
-gl:
-  retry: "Téntao de novo"
-pt:
-  retry: "Tentar novamente"
+# eu:
+#   retry: "Saiatu berriro"
+# gl:
+#   retry: "Téntao de novo"
+# pt:
+#   retry: "Tentar novamente"
 ar:
   retry: "حاول مرة أخرى"
 zh:
   retry: "再试一次"
-ro:
-  retry: "Încearcă din nou"
-ja:
-  retry: "もう一度試す"
+# ro:
+#   retry: "Încearcă din nou"
+# ja:
+#   retry: "もう一度試す"
 </i18n>
 
 <template>

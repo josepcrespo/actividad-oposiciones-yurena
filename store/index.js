@@ -11,11 +11,11 @@ export const state = () => ({
       activity: 'نشاط',
       language: 'لغة'
     },
-    ca: {
-      activity: 'activitat',
-      challenge: 'repte',
-      language: 'idioma'
-    },
+    // ca: {
+    //   activity: 'activitat',
+    //   challenge: 'repte',
+    //   language: 'idioma'
+    // },
     de: {
       activity: 'aktivität',
       challenge: 'herausforderung',
@@ -31,41 +31,41 @@ export const state = () => ({
       challenge: 'reto',
       language: 'idioma'
     },
-    eu: {
-      activity: 'ekintza',
-      challenge: 'erronka',
-      language: 'hizkuntza'
-    },
+    // eu: {
+    //   activity: 'ekintza',
+    //   challenge: 'erronka',
+    //   language: 'hizkuntza'
+    // },
     fr: {
       activity: 'activité',
       challenge: 'défi',
       language: 'langue'
     },
-    gl: {
-      activity: 'actividade',
-      challenge: 'reto',
-      language: 'lingua'
-    },
+    // gl: {
+    //   activity: 'actividade',
+    //   challenge: 'reto',
+    //   language: 'lingua'
+    // },
     it: {
       activity: 'attività',
       challenge: 'sfida',
       language: 'lingua'
     },
-    ja: {
-      activity: 'アクティビティ',
-      challenge: 'チャレンジ',
-      language: '言語'
-    },
-    pt: {
-      activity: 'atividade',
-      challenge: 'desafio',
-      language: 'língua'
-    },
-    ro: {
-      activity: 'activitate',
-      challenge: 'provocare',
-      language: 'limbă'
-    },
+    // ja: {
+    //   activity: 'アクティビティ',
+    //   challenge: 'チャレンジ',
+    //   language: '言語'
+    // },
+    // pt: {
+    //   activity: 'atividade',
+    //   challenge: 'desafio',
+    //   language: 'língua'
+    // },
+    // ro: {
+    //   activity: 'activitate',
+    //   challenge: 'provocare',
+    //   language: 'limbă'
+    // },
     ru: {
       activity: 'деятельность',
       challenge: 'вызов',

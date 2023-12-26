@@ -2,9 +2,9 @@
 es:
   buttonTitle: "Aspecto"
   buttonTooltip: "Alterna entre colores claros y oscuros"
-ca:
-  buttonTitle: "Aspecte"
-  buttonTooltip: "Alterna entre colors clars i foscos"
+# ca:
+#   buttonTitle: "Aspecte"
+#   buttonTooltip: "Alterna entre colors clars i foscos"
 en:
   buttonTitle: "Appearance"
   buttonTooltip: "Toggle between light and dark colors"
@@ -20,27 +20,27 @@ fr:
 it:
   buttonTitle: "Aspetto"
   buttonTooltip: "Passa tra colori chiari e scuri"
-eu:
-  buttonTitle: "Itxura"
-  buttonTooltip: "Aldatu argi eta ilun koloreen artean"
-gl:
-  buttonTitle: "Aparencia"
-  buttonTooltip: "Alternar entre cores claras e escuras"
-pt:
-  buttonTitle: "Aparência"
-  buttonTooltip: "Alternar entre cores claras e escuras"
+# eu:
+#   buttonTitle: "Itxura"
+#   buttonTooltip: "Aldatu argi eta ilun koloreen artean"
+# gl:
+#   buttonTitle: "Aparencia"
+#   buttonTooltip: "Alternar entre cores claras e escuras"
+# pt:
+#   buttonTitle: "Aparência"
+#   buttonTooltip: "Alternar entre cores claras e escuras"
 ar:
   buttonTitle: "المظهر"
   buttonTooltip: "التبديل بين الألوان الفاتحة والداكنة"
 zh:
   buttonTitle: "外观"
   buttonTooltip: "在浅色和深色之间切换"
-ro:
-  buttonTitle: "Aspect"
-  buttonTooltip: "Comută între culori deschise și închise"
-ja:
-  buttonTitle: "外観"
-  buttonTooltip: "明るい色と暗い色の切り替え"
+# ro:
+#   buttonTitle: "Aspect"
+#   buttonTooltip: "Comută între culori deschise și închise"
+# ja:
+#   buttonTitle: "外観"
+#   buttonTooltip: "明るい色と暗い色の切り替え"
 </i18n>
 
 <template>

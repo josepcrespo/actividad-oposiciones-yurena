@@ -2,9 +2,9 @@
 es:
   activity: "Actividad"
   start: "Inicio"
-ca:
-  activity: "Activitat"
-  start: "Inici"
+# ca:
+#   activity: "Activitat"
+#   start: "Inici"
 en:
   activity: "Activity"
   start: "Start"
@@ -20,27 +20,27 @@ fr:
 it:
   activity: "Attività"
   start: "Inizia"
-eu:
-  activity: "Ekintza"
-  start: "Hasieratu"
-gl:
-  activity: "Actividade"
-  start: "Inicio"
-pt:
-  activity: "Atividade"
-  start: "Início"
+# eu:
+#   activity: "Ekintza"
+#   start: "Hasieratu"
+# gl:
+#   activity: "Actividade"
+#   start: "Inicio"
+# pt:
+#   activity: "Atividade"
+#   start: "Início"
 ar:
   activity: ":النشاط"
   start: "ابدأ"
 zh:
   activity: "活动"
   start: "开始"
-ro:
-  activity: "Activitate"
-  start: "Începe"
-ja:
-  activity: "アクティビティ"
-  start: "開始"
+# ro:
+#   activity: "Activitate"
+#   start: "Începe"
+# ja:
+#   activity: "アクティビティ"
+#   start: "開始"
 </i18n>
 
 <template>  
