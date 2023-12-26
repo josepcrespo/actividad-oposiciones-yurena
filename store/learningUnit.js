@@ -608,7 +608,7 @@ export const state = () => ({
   },
   languages: [{
     code: 'ar',
-    flagCode: 'ar',
+    flagCode: 'ma', // Morocco flag code
     name: {
       ar: 'العربية',
       ca: 'Àrab',
@@ -858,7 +858,7 @@ export const state = () => ({
     flagCode: 'cn',
     name: {
       ar: 'الصينية',
-      ca: 'Xinès',
+      ca: 'Xinés',
       de: 'Chinesisch',
       en: 'Chinese',
       es: 'Chino',

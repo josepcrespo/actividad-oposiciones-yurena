@@ -126,10 +126,13 @@ export default {
 
       switch (flagCode) {
         case 'es-eu':
-          flagIconSrc += 'basque-country.png'
+          flagIconSrc += 'basque.png'
           break
         case 'es-gl':
-          flagIconSrc += 'galicia.png'
+          flagIconSrc += 'galician.png'
+          break
+        case 'ma':
+          flagIconSrc += 'arabic.png'
           break
         default:
           flagIconSrc = ''
@@ -140,21 +143,14 @@ export default {
     isRegularFlag(flagCode) {
       return flagCode !== 'es-eu'
         && flagCode !== 'es-gl'
+        && flagCode !== 'ma'
     },
     sortAlphabetically(languagesArray, languageCode) {
       return languagesArray.slice().sort((a, b) => {
-        const nameA = a.name[languageCode].toUpperCase()
-        const nameB = b.name[languageCode].toUpperCase()
+        const stringA = a.name[languageCode].toUpperCase()
+        const stringB = b.name[languageCode].toUpperCase()
 
-        if (nameA < nameB) {
-          return -1
-        }
-
-        if (nameA > nameB) {
-          return 1
-        }
-
-        return 0
+        return stringA.localeCompare(stringB, undefined, { sensitivity: 'base' })
       })
     }
   }
