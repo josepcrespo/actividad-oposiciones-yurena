@@ -76,13 +76,13 @@ gl:
     </v-list>
     <!-- Learning Unit Activities List -->
     <v-treeview
+      v-model="treeviewActiveItems"
       activatable
       dense
       disabled
       open-all
       open-on-click
       selectable
-      selected-color="green"
       :items="treeviewItems"
     />
   </v-navigation-drawer>
@@ -91,6 +91,11 @@ gl:
 <script>
 export default {
   name: 'YrnNavigationDrawerRight',
+  data() {
+    return {
+      treeviewActiveItems: []
+    }
+  },
   computed: {
     drawerVisibility: {
       get() {
@@ -108,7 +113,7 @@ export default {
 
       this.learningUnitActivities.forEach(activity => {
         const activityItem = {
-          id: activity.activityId,
+          id: String(activity.activityId),
           name: this.$t('activityElement', { activityId: activity.activityId })
         }
 
@@ -121,7 +126,7 @@ export default {
 
           activity.challenges.forEach(challenge => {
             const challengeItem = {
-              id: challenge.challengeId,
+              id: `${activity.activityId}.${challenge.challengeId}`,
               name: this.$t('challengeElement', { challengeId: challenge.challengeId })
             }
 
@@ -133,10 +138,17 @@ export default {
               const exercisesArray = []
 
               challenge.exercises.forEach(exercise => {
-                exercisesArray.push({
-                  id: exercise.exerciseId,
+                const exerciseTreeviewId =
+                  `${activity.activityId}.${challenge.challengeId}.${exercise.exerciseId}`
+                const exerciseItem = {
+                  id: exerciseTreeviewId,
                   name: this.$t('exerciseElement', { exerciseId: exercise.exerciseId })
-                })
+                }
+                exercisesArray.push(exerciseItem)
+                // eslint-disable-next-line eqeqeq
+                if (exercise.solution?.expected == exercise.solution?.fromUser) {
+                  this.treeviewActiveItems.push(exerciseTreeviewId)
+                }
               })
               challengeItem.children = exercisesArray
             }
@@ -152,3 +164,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--dark.v-icon.v-icon.v-icon--disabled.mdi-checkbox-marked {
+  color: #4CAF50 !important;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--light.v-icon.v-icon.v-icon--disabled.mdi-checkbox-marked {
+  color: #4CAF50 !important;
+}
+</style>
