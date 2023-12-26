@@ -6,42 +6,76 @@ export const state = () => ({
   navigationDrawerRight: false,
   pageLoadingOverlay: false,
   routeParams: {
-    es: {
-      activity: 'actividad',
-      challenge: 'reto'
+    ar: {
+      challenge: 'تحدي',
+      activity: 'نشاط',
+      language: 'لغة'
     },
     ca: {
       activity: 'activitat',
-      challenge: 'repte'
+      challenge: 'repte',
+      language: 'idioma'
     },
     de: {
       activity: 'aktivität',
-      challenge: 'herausforderung'
+      challenge: 'herausforderung',
+      language: 'sprache'
     },
     en: {
       activity: 'activity',
-      challenge: 'challenge'
+      challenge: 'challenge',
+      language: 'language'
     },
-    fr: {
-      activity: 'activité',
-      challenge: 'défi'
-    },
-    it: {
-      activity: 'attività',
-      challenge: 'sfida'
-    },
-    ru: {
-      activity: 'деятельность',
-      challenge: 'вызов'
+    es: {
+      activity: 'actividad',
+      challenge: 'reto',
+      language: 'idioma'
     },
     eu: {
       activity: 'ekintza',
-      challenge: 'erronka'
+      challenge: 'erronka',
+      language: 'hizkuntza'
+    },
+    fr: {
+      activity: 'activité',
+      challenge: 'défi',
+      language: 'langue'
     },
     gl: {
       activity: 'actividade',
-      challenge: 'reto'
-    }
+      challenge: 'reto',
+      language: 'lingua'
+    },
+    it: {
+      activity: 'attività',
+      challenge: 'sfida',
+      language: 'lingua'
+    },
+    ja: {
+      activity: 'アクティビティ',
+      challenge: 'チャレンジ',
+      language: '言語'
+    },
+    pt: {
+      activity: 'atividade',
+      challenge: 'desafio',
+      language: 'língua'
+    },
+    ro: {
+      activity: 'activitate',
+      challenge: 'provocare',
+      language: 'limbă'
+    },
+    ru: {
+      activity: 'деятельность',
+      challenge: 'вызов',
+      language: 'язык'
+    },
+    zh: {
+      activity: '活动',
+      challenge: '挑战',
+      language: '语言'
+    },
   }
 })
 
