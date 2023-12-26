@@ -528,7 +528,8 @@ export const state = () => ({
       jp: 'アラビア語',
       pt: 'Árabe',
       ro: 'Arabă',
-      ru: 'Арабский'
+      ru: 'Арабский',
+      zh: '阿拉伯语'
     }
   }, {
     code: 'ca',
@@ -543,10 +544,11 @@ export const state = () => ({
       fr: 'Catalan',
       gl: 'Catalán',
       it: 'Catalano',
-        jp: 'カタラン語',
-        pt: 'Catalão',
-        ro: 'Catalan',
-        ru: 'Каталанский'
+      jp: 'カタラン語',
+      pt: 'Catalão',
+      ro: 'Catalan',
+        ru: 'Каталанский',
+        zh: '加泰罗尼亚语'
       }
     }, {
       code: 'de',
@@ -564,7 +566,8 @@ export const state = () => ({
         jp: 'ドイツ語',
         pt: 'Alemão',
         ro: 'Germană',
-        ru: 'Немецкий'
+      ru: 'Немецкий',
+      zh: '德语'
     }
   }, {
     code: 'en',
@@ -579,28 +582,30 @@ export const state = () => ({
       fr: 'Anglais',
       gl: 'Inglés',
       it: 'Inglese',
-      jp: '英語',
+      jp: '英语',
       pt: 'Inglês',
       ro: 'Engleză',
-      ru: 'Английский'
+      ru: 'Английский',
+      zh: '英语'
     }
   }, {
     code: 'es',
     flagCode: 'es',
     name: {
-        ar: 'الإسبانية',
-        ca: 'Castellà',
-        de: 'Spanisch',
-        en: 'Spanish',
-        es: 'Español',
-        eu: 'Espainiera',
-        fr: 'Espagnol',
-        gl: 'Español',
-        it: 'Spagnolo',
-        jp: 'スペイン語',
-        pt: 'Espanhol',
-        ro: 'Spaniol',
-        ru: 'Испанский'
+      ar: 'الإسبانية',
+      ca: 'Castellà',
+      de: 'Spanisch',
+      en: 'Spanish',
+      es: 'Español',
+      eu: 'Espainiera',
+      fr: 'Espagnol',
+      gl: 'Español',
+      it: 'Spagnolo',
+      jp: '西班牙语',
+      pt: 'Espanhol',
+      ro: 'Spaniol',
+        ru: 'Испанский',
+        zh: '西班牙语'
       }
     }, {
       code: 'eu',
@@ -615,10 +620,11 @@ export const state = () => ({
         fr: 'Basque',
         gl: 'Vasco',
         it: 'Basco',
-        jp: 'バスク語',
-        pt: 'Basco',
-        ro: 'Bască',
-        ru: 'Баскский'
+      jp: '巴斯克语',
+      pt: 'Basco',
+      ro: 'Bască',
+      ru: 'Баскский',
+      zh: '巴斯克语'
     }
   }, {
     code: 'fr',
@@ -633,10 +639,11 @@ export const state = () => ({
       fr: 'Francese',
       gl: 'Francés',
       it: 'Francese',
-        jp: 'フランス語',
-        pt: 'Francês',
-        ro: 'Franceză',
-        ru: 'Французский'
+      jp: '法语',
+      pt: 'Francês',
+      ro: 'Franceză',
+        ru: 'Французский',
+        zh: '法语'
       }
     }, {
       code: 'gl',
@@ -651,10 +658,11 @@ export const state = () => ({
         fr: 'Galicien',
         gl: 'Galego',
         it: 'Galiziano',
-        jp: 'ガリシア語',
-        pt: 'Galego',
-        ro: 'Galiciană',
-        ru: 'Галисийский'
+      jp: '加利西亚语',
+      pt: 'Galego',
+      ro: 'Galiciană',
+      ru: 'Галисийский',
+      zh: '加利西亚语'
     }
   }, {
     code: 'it',
@@ -669,10 +677,11 @@ export const state = () => ({
       fr: 'Italien',
       gl: 'Italiano',
       it: 'Italiano',
-        jp: 'イタリア語',
-        pt: 'Italiano',
-        ro: 'Italiană',
-        ru: 'Итальянский'
+      jp: '意大利语',
+      pt: 'Italiano',
+      ro: 'Italiană',
+        ru: 'Итальянский',
+        zh: '意大利语'
       }
     }, {
       code: 'jp',
@@ -687,10 +696,11 @@ export const state = () => ({
         fr: 'Japonais',
         gl: 'Xaponés',
         it: 'Giapponese',
-        jp: '日本語',
-        pt: 'Japonês',
-        ro: 'Japoneză',
-        ru: 'Японский'
+      jp: '日语',
+      pt: 'Japonês',
+      ro: 'Japoneză',
+        ru: 'Японский',
+        zh: '日语'
       }
     }, {
       code: 'pt',
@@ -705,10 +715,11 @@ export const state = () => ({
         fr: 'Portugais',
         gl: 'Portugués',
         it: 'Portoghese',
-        jp: 'ポルトガル語',
-        pt: 'Português',
-        ro: 'Portugheză',
-        ru: 'Португальский'
+      jp: '葡萄牙语',
+      pt: 'Português',
+      ro: 'Portugheză',
+        ru: 'Португальский',
+        zh: '葡萄牙语'
       }
     }, {
       code: 'ro',
@@ -723,10 +734,11 @@ export const state = () => ({
         fr: 'Roumain',
         gl: 'Rumano',
         it: 'Rumeno',
-        jp: 'ルーマニア語',
-        pt: 'Romeno',
-        ro: 'Română',
-        ru: 'Румынский'
+      jp: '罗马尼亚语',
+      pt: 'Romeno',
+      ro: 'Română',
+      ru: 'Румынский',
+      zh: '罗马尼亚语'
     }
   }, {
     code: 'ru',
@@ -741,10 +753,11 @@ export const state = () => ({
       fr: 'Russe',
       gl: 'Ruso',
       it: 'Russo',
-      jp: 'ロシア語',
+      jp: '俄语',
       pt: 'Russo',
       ro: 'Rusă',
-      ru: 'Русский'
+      ru: 'Русский',
+      zh: '俄语'
     }
   }, {
     code: 'zh',
@@ -759,10 +772,11 @@ export const state = () => ({
       fr: 'Chinois',
       gl: 'Chinés',
       it: 'Cinese',
-      jp: '中国語',
+      jp: '中文',
       pt: 'Chinês',
       ro: 'Chineză',
-      ru: 'Китайский'
+      ru: 'Китайский',
+      zh: '中文'
     }
   }]
 })
