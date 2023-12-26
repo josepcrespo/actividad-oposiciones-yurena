@@ -10,7 +10,7 @@
             <v-icon class="mr-4">
               {{ section.sectionId }})
             </v-icon>
-            {{ section.statement }}
+            {{ getSectionStatement(section) }}
           </div>
           <v-chip
             v-show="isWellSolved(section)"
@@ -61,6 +61,9 @@ export default {
     }
   },
   methods: {
+    getSectionStatement(section) {
+      return section?.statement?.[this.$i18n.locale]
+    },
     getSolutionVeredict(section) {
       // eslint-disable-next-line eqeqeq
       return section.solution.expected == section.solution.fromUser

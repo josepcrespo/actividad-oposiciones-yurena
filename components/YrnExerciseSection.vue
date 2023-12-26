@@ -16,7 +16,7 @@
             </v-icon>
           </v-btn>
           <h3 class="ml-4">
-            {{ section.statement }}
+            {{ getSectionStatement(section) }}
           </h3>
         </v-col>
       </v-row>
@@ -126,6 +126,9 @@ export default {
         section: updatedSection
       })
     },
+    getSectionStatement(section) {
+      return section?.statement?.[this.$i18n.locale]
+    }
   }
 }
 </script>
