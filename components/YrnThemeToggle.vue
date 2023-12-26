@@ -38,7 +38,7 @@ zh:
 ro:
   buttonTitle: "Aspect"
   buttonTooltip: "Comută între culori deschise și închise"
-ja:
+jp:
   buttonTitle: "外観"
   buttonTooltip: "明るい色と暗い色の切り替え"
 </i18n>

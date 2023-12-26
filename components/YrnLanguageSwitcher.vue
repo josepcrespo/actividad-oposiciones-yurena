@@ -38,7 +38,7 @@ zh:
 ro:
   buttonTitle: "Limbă"
   buttonTooltip: "Schimbă limba"
-ja:
+jp:
   buttonTitle: "言語"
   buttonTooltip: "言語を変更"
 </i18n>

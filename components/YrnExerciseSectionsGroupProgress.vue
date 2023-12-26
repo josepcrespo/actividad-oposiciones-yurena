@@ -25,7 +25,7 @@ zh:
   progressTitle: "已解方程的百分比:"
 ro:
   progressTitle: "Procentajul ecuațiilor rezolvate:"
-ja:
+jp:
   progressTitle: "解かれた方程式の割合:"
 
 </i18n>

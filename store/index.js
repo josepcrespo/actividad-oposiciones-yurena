@@ -51,7 +51,7 @@ export const state = () => ({
       challenge: 'sfida',
       language: 'lingua'
     },
-    ja: {
+    jp: {
       activity: 'アクティビティ',
       challenge: 'チャレンジ',
       language: '言語'

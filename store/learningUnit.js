@@ -525,7 +525,7 @@ export const state = () => ({
       fr: 'Arabe',
       gl: 'Árabe',
       it: 'Arabo',
-      ja: 'アラビア語',
+      jp: 'アラビア語',
       pt: 'Árabe',
       ro: 'Arabă',
       ru: 'Арабский'
@@ -543,7 +543,7 @@ export const state = () => ({
       fr: 'Catalan',
       gl: 'Catalán',
       it: 'Catalano',
-        ja: 'カタラン語',
+        jp: 'カタラン語',
         pt: 'Catalão',
         ro: 'Catalan',
         ru: 'Каталанский'
@@ -561,7 +561,7 @@ export const state = () => ({
         fr: 'Allemand',
         gl: 'Alemán',
         it: 'Tedesco',
-        ja: 'ドイツ語',
+        jp: 'ドイツ語',
         pt: 'Alemão',
         ro: 'Germană',
         ru: 'Немецкий'
@@ -579,7 +579,7 @@ export const state = () => ({
       fr: 'Anglais',
       gl: 'Inglés',
       it: 'Inglese',
-      ja: '英語',
+      jp: '英語',
       pt: 'Inglês',
       ro: 'Engleză',
       ru: 'Английский'
@@ -597,7 +597,7 @@ export const state = () => ({
         fr: 'Espagnol',
         gl: 'Español',
         it: 'Spagnolo',
-        ja: 'スペイン語',
+        jp: 'スペイン語',
         pt: 'Espanhol',
         ro: 'Spaniol',
         ru: 'Испанский'
@@ -615,7 +615,7 @@ export const state = () => ({
         fr: 'Basque',
         gl: 'Vasco',
         it: 'Basco',
-        ja: 'バスク語',
+        jp: 'バスク語',
         pt: 'Basco',
         ro: 'Bască',
         ru: 'Баскский'
@@ -633,7 +633,7 @@ export const state = () => ({
       fr: 'Francese',
       gl: 'Francés',
       it: 'Francese',
-        ja: 'フランス語',
+        jp: 'フランス語',
         pt: 'Francês',
         ro: 'Franceză',
         ru: 'Французский'
@@ -651,7 +651,7 @@ export const state = () => ({
         fr: 'Galicien',
         gl: 'Galego',
         it: 'Galiziano',
-        ja: 'ガリシア語',
+        jp: 'ガリシア語',
         pt: 'Galego',
         ro: 'Galiciană',
         ru: 'Галисийский'
@@ -669,7 +669,7 @@ export const state = () => ({
       fr: 'Italien',
       gl: 'Italiano',
       it: 'Italiano',
-        ja: 'イタリア語',
+        jp: 'イタリア語',
         pt: 'Italiano',
         ro: 'Italiană',
         ru: 'Итальянский'
@@ -687,7 +687,7 @@ export const state = () => ({
         fr: 'Japonais',
         gl: 'Xaponés',
         it: 'Giapponese',
-        ja: '日本語',
+        jp: '日本語',
         pt: 'Japonês',
         ro: 'Japoneză',
         ru: 'Японский'
@@ -705,7 +705,7 @@ export const state = () => ({
         fr: 'Portugais',
         gl: 'Portugués',
         it: 'Portoghese',
-        ja: 'ポルトガル語',
+        jp: 'ポルトガル語',
         pt: 'Português',
         ro: 'Portugheză',
         ru: 'Португальский'
@@ -723,7 +723,7 @@ export const state = () => ({
         fr: 'Roumain',
         gl: 'Rumano',
         it: 'Rumeno',
-        ja: 'ルーマニア語',
+        jp: 'ルーマニア語',
         pt: 'Romeno',
         ro: 'Română',
         ru: 'Румынский'
@@ -741,7 +741,7 @@ export const state = () => ({
       fr: 'Russe',
       gl: 'Ruso',
       it: 'Russo',
-      ja: 'ロシア語',
+      jp: 'ロシア語',
       pt: 'Russo',
       ro: 'Rusă',
       ru: 'Русский'
@@ -759,7 +759,7 @@ export const state = () => ({
       fr: 'Chinois',
       gl: 'Chinés',
       it: 'Cinese',
-      ja: '中国語',
+      jp: '中国語',
       pt: 'Chinês',
       ro: 'Chineză',
       ru: 'Китайский'
