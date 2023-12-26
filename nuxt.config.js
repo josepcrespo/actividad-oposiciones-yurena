@@ -51,7 +51,22 @@ export default {
 
   // @nuxtjs/i18n' module options
   i18n: {
-    locales: ['es', 'ca', 'de', 'en', 'fr', 'it', 'ru', 'eu', 'gl'],
+    locales: [
+      'ar', // Arabic
+      'ca', // Catalan
+      'de', // German
+      'en', // English
+      'es', // Spanish
+      'eu', // Basque
+      'fr', // French
+      'gl', // Galician
+      'it', // Italian
+      'ja', // Japanese
+      'pt', // Portuguese
+      'ro', // Romanian
+      'ru', // Russian
+      'zh'  // Chinese (simplified)
+    ],
     defaultLocale: 'es',
     vueI18n: {
       fallbackLocale: 'es'

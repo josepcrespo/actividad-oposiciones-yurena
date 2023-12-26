@@ -513,130 +513,256 @@ export const state = () => ({
     }
   },
   languages: [{
-    code: 'es',
-    flagCode: 'es',
+    code: 'ar',
+    flagCode: 'ar',
     name: {
-      es: 'Español',
-      ca: 'Castellà',
-      en: 'Spanish',
-      de: 'Spanisch',
-      ru: 'Испанский',
-      fr: 'Espagnol',
-      it: 'Spagnolo',
-      eu: 'Espainiera',
-      gl: 'Español'
+      ar: 'العربية',
+      ca: 'Àrab',
+      de: 'Arabisch',
+      en: 'Arabic',
+      es: 'Árabe',
+      eu: 'Arabiera',
+      fr: 'Arabe',
+      gl: 'Árabe',
+      it: 'Arabo',
+      ja: 'アラビア語',
+      pt: 'Árabe',
+      ro: 'Arabă',
+      ru: 'Арабский'
     }
   }, {
     code: 'ca',
     flagCode: 'es-ca',
     name: {
-      es: 'Catalán',
+      ar: 'الكاتالونية',
       ca: 'Català',
-      en: 'Catalan',
       de: 'Katalanisch',
-      ru: 'Каталанский',
-      fr: 'Catalan',
-      it: 'Catalano',
+      en: 'Catalan',
+      es: 'Catalán',
       eu: 'Katalana',
-      gl: 'Catalán'
+      fr: 'Catalan',
+      gl: 'Catalán',
+      it: 'Catalano',
+        ja: 'カタラン語',
+        pt: 'Catalão',
+        ro: 'Catalan',
+        ru: 'Каталанский'
+      }
+    }, {
+      code: 'de',
+      flagCode: 'de',
+      name: {
+        ar: 'الألمانية',
+        ca: 'Alemany',
+        de: 'Deutsch',
+        en: 'German',
+        es: 'Alemán',
+        eu: 'Alemaniarra',
+        fr: 'Allemand',
+        gl: 'Alemán',
+        it: 'Tedesco',
+        ja: 'ドイツ語',
+        pt: 'Alemão',
+        ro: 'Germană',
+        ru: 'Немецкий'
     }
   }, {
     code: 'en',
     flagCode: 'gb',
     name: {
-      es: 'Inglés',
+      ar: 'الإنجليزية',
       ca: 'Anglés',
-      en: 'English',
       de: 'Englisch',
-      ru: 'Английский',
-      fr: 'Anglais',
-      it: 'Inglese',
+      en: 'English',
+      es: 'Inglés',
       eu: 'Ingelesa',
-      gl: 'Inglés'
+      fr: 'Anglais',
+      gl: 'Inglés',
+      it: 'Inglese',
+      ja: '英語',
+      pt: 'Inglês',
+      ro: 'Engleză',
+      ru: 'Английский'
     }
   }, {
-    code: 'de',
-    flagCode: 'de',
+    code: 'es',
+    flagCode: 'es',
     name: {
-      es: 'Alemán',
-      ca: 'Alemany',
-      en: 'German',
-      de: 'Deutsch',
-      ru: 'Немецкий',
-      fr: 'Allemand',
-      it: 'Tedesco',
-      eu: 'Alemaniarra',
-      gl: 'Alemán'
+        ar: 'الإسبانية',
+        ca: 'Castellà',
+        de: 'Spanisch',
+        en: 'Spanish',
+        es: 'Español',
+        eu: 'Espainiera',
+        fr: 'Espagnol',
+        gl: 'Español',
+        it: 'Spagnolo',
+        ja: 'スペイン語',
+        pt: 'Espanhol',
+        ro: 'Spaniol',
+        ru: 'Испанский'
+      }
+    }, {
+      code: 'eu',
+      flagCode: 'es-eu',
+      name: {
+        ar: 'الباسكية',
+        ca: 'Basc',
+        de: 'Baskisch',
+        en: 'Basque',
+        es: 'Vasco',
+        eu: 'Euskara',
+        fr: 'Basque',
+        gl: 'Vasco',
+        it: 'Basco',
+        ja: 'バスク語',
+        pt: 'Basco',
+        ro: 'Bască',
+        ru: 'Баскский'
     }
   }, {
     code: 'fr',
     flagCode: 'fr',
     name: {
-      es: 'Francés',
+      ar: 'الفرنسية',
       ca: 'Francès',
-      en: 'French',
       de: 'Französisch',
-      ru: 'Французский',
-      fr: 'Francese',
-      it: 'Francese',
+      en: 'French',
+      es: 'Francés',
       eu: 'Frantsesa',
-      gl: 'Francés'
+      fr: 'Francese',
+      gl: 'Francés',
+      it: 'Francese',
+        ja: 'フランス語',
+        pt: 'Francês',
+        ro: 'Franceză',
+        ru: 'Французский'
+      }
+    }, {
+      code: 'gl',
+      flagCode: 'es-gl',
+      name: {
+        ar: 'الجاليكية',
+        ca: 'Gallec',
+        de: 'Galizisch',
+        en: 'Galician',
+        es: 'Gallego',
+        eu: 'Galiziarra',
+        fr: 'Galicien',
+        gl: 'Galego',
+        it: 'Galiziano',
+        ja: 'ガリシア語',
+        pt: 'Galego',
+        ro: 'Galiciană',
+        ru: 'Галисийский'
     }
   }, {
     code: 'it',
     flagCode: 'it',
     name: {
-      es: 'Italiano',
+      ar: 'الإيطالية',
       ca: 'Italià',
-      en: 'Italian',
       de: 'Italienisch',
-      ru: 'Итальянский',
-      fr: 'Italien',
-      it: 'Italiano',
+      en: 'Italian',
+      es: 'Italiano',
       eu: 'Italiera',
-      gl: 'Italiano'
+      fr: 'Italien',
+      gl: 'Italiano',
+      it: 'Italiano',
+        ja: 'イタリア語',
+        pt: 'Italiano',
+        ro: 'Italiană',
+        ru: 'Итальянский'
+      }
+    }, {
+      code: 'jp',
+      flagCode: 'jp',
+      name: {
+        ar: 'اليابانية',
+        ca: 'Japonès',
+        de: 'Japanisch',
+        en: 'Japanese',
+        es: 'Japonés',
+        eu: 'Japoniera',
+        fr: 'Japonais',
+        gl: 'Xaponés',
+        it: 'Giapponese',
+        ja: '日本語',
+        pt: 'Japonês',
+        ro: 'Japoneză',
+        ru: 'Японский'
+      }
+    }, {
+      code: 'pt',
+      flagCode: 'pt',
+      name: {
+        ar: 'البرتغالية',
+        ca: 'Portuguès',
+        de: 'Portugiesisch',
+        en: 'Portuguese',
+        es: 'Portugués',
+        eu: 'Portugesa',
+        fr: 'Portugais',
+        gl: 'Portugués',
+        it: 'Portoghese',
+        ja: 'ポルトガル語',
+        pt: 'Português',
+        ro: 'Portugheză',
+        ru: 'Португальский'
+      }
+    }, {
+      code: 'ro',
+      flagCode: 'ro',
+      name: {
+        ar: 'الرومانية',
+        ca: 'Romanès',
+        de: 'Rumänisch',
+        en: 'Romanian',
+        es: 'Rumano',
+        eu: 'Errumaniera',
+        fr: 'Roumain',
+        gl: 'Rumano',
+        it: 'Rumeno',
+        ja: 'ルーマニア語',
+        pt: 'Romeno',
+        ro: 'Română',
+        ru: 'Румынский'
     }
   }, {
     code: 'ru',
     flagCode: 'ru',
     name: {
-      es: 'Ruso',
+      ar: 'الروسية',
       ca: 'Rus',
-      en: 'Russian',
       de: 'Russisch',
-      ru: 'Русский',
-      fr: 'Russe',
-      it: 'Russo',
+      en: 'Russian',
+      es: 'Ruso',
       eu: 'Errusiera',
-      gl: 'Ruso'
+      fr: 'Russe',
+      gl: 'Ruso',
+      it: 'Russo',
+      ja: 'ロシア語',
+      pt: 'Russo',
+      ro: 'Rusă',
+      ru: 'Русский'
     }
   }, {
-    code: 'eu',
-    flagCode: 'es-eu',
+    code: 'zh',
+    flagCode: 'cn',
     name: {
-      es: 'Vasco',
-      ca: 'Basc',
-      en: 'Basque',
-      de: 'Baskisch',
-      ru: 'Баскский',
-      fr: 'Basque',
-      it: 'Basco',
-      eu: 'Euskara',
-      gl: 'Vasco'
-    }
-  }, {
-    code: 'gl',
-    flagCode: 'es-gl',
-    name: {
-      ca: 'Gallec',
-      es: 'Gallego',
-      en: 'Galician',
-      de: 'Galizisch',
-      ru: 'Галисийский',
-      fr: 'Galicien',
-      it: 'Galiziano',
-      eu: 'Galiziarra',
-      gl: 'Galego'
+      ar: 'الصينية',
+      ca: 'Xinès',
+      de: 'Chinesisch',
+      en: 'Chinese',
+      es: 'Chino',
+      eu: 'Txinera',
+      fr: 'Chinois',
+      gl: 'Chinés',
+      it: 'Cinese',
+      ja: '中国語',
+      pt: 'Chinês',
+      ro: 'Chineză',
+      ru: 'Китайский'
     }
   }]
 })
