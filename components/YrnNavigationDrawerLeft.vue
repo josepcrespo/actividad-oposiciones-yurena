@@ -26,6 +26,21 @@ eu:
 gl:
   activity: "Actividade"
   start: "Inicio"
+pt:
+  activity: "Atividade"
+  start: "Início"
+ar:
+  activity: ":النشاط"
+  start: "ابدأ"
+zh:
+  activity: "活动"
+  start: "开始"
+ro:
+  activity: "Activitate"
+  start: "Începe"
+ja:
+  activity: "アクティビティ"
+  start: "開始"
 </i18n>
 
 <template>  

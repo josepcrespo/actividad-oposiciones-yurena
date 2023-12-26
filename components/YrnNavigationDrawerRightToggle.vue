@@ -26,6 +26,21 @@ eu:
 gl:
   buttonTitle: "Progreso"
   buttonTooltip: "Amosar o progreso na situación de aprendizaxe"
+pt:
+  buttonTitle: "Progresso"
+  buttonTooltip: "Mostrar o progresso na situação de aprendizagem"
+ar:
+  buttonTitle: ":التقدم"
+  buttonTooltip: "عرض التقدم في الحالة التعلمية"
+zh:
+  buttonTitle: "进展"
+  buttonTooltip: "显示学习情况中的进展"
+ro:
+  buttonTitle: "Progres"
+  buttonTooltip: "Arată progresul în situația de învățare"
+ja:
+  buttonTitle: "進捗"
+  buttonTooltip: "学習状況の進捗を表示"
 </i18n>
 
 <template>
