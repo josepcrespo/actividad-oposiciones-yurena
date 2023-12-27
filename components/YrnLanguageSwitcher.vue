@@ -30,7 +30,7 @@ pt:
   buttonTitle: "Idioma"
   buttonTooltip: "Mudar o idioma"
 ar:
-  buttonTitle: ":اللغة"
+  buttonTitle: "اللغة"
   buttonTooltip: "غيّر اللغة"
 zh:
   buttonTitle: "语言"
@@ -39,8 +39,8 @@ ro:
   buttonTitle: "Limbă"
   buttonTooltip: "Schimbă limba"
 ja:
-  buttonTitle: "言語"
-  buttonTooltip: "言語を変更"
+  buttonTitle: "ランゲージ"
+  buttonTooltip: "言語を変更する"
 </i18n>
 
 <template>
@@ -60,7 +60,7 @@ ja:
             <v-icon>
               mdi-translate
             </v-icon>
-            <span class="ml-2 d-none d-md-block">
+            <span class="mx-2 d-none d-md-block">
               {{ $t('buttonTitle') }}
             </span>
           </v-btn>
