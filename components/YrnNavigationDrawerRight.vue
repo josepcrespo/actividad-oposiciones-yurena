@@ -50,7 +50,7 @@ pt:
   challengeElement: "Desafio {challengeId}"
   exerciseElement: "Exercício {exerciseId}"
 ar:
-  drawerTitle: ":التقدم"
+  drawerTitle: "التقدم"
   activityElement: "{activityId} النشاط"
   challengeElement: "{challengeId} التحدي"
   exerciseElement: "{exerciseId} التمرين"
@@ -65,7 +65,7 @@ ro:
   challengeElement: "Provocare {challengeId}"
   exerciseElement: "Exercițiu {exerciseId}"
 ja:
-  drawerTitle: "進捗"
+  drawerTitle: "プログレソ"
   activityElement: "アクティビティ {activityId}"
   challengeElement: "チャレンジ {challengeId}"
   exerciseElement: "エクササイズ {exerciseId}"
@@ -76,7 +76,7 @@ ja:
     v-model="drawerVisibility"
     class="yrn-navigation-drawer-right"
     fixed
-    :right="true"
+    :right="!rtlLanguage"
     temporary
   >
     <v-list>
@@ -92,7 +92,7 @@ ja:
       </v-list-item>
     </v-list>
     <!-- Learning Unit Activities List -->
-    <v-treeview
+    <!-- <v-treeview
       v-model="treeviewActiveItems"
       activatable
       dense
@@ -101,7 +101,7 @@ ja:
       open-on-click
       selectable
       :items="treeviewItems"
-    />
+    /> -->
   </v-navigation-drawer>
 </template>
 
@@ -122,62 +122,65 @@ export default {
         this.$store.commit('setNavigationDrawerRight', value)
       }
     },
-    learningUnitActivities() {
-      return this.$store.state.learningUnit.activities ?? []
-    },
-    treeviewItems() {
-      const activitiesArray = []
-
-      this.learningUnitActivities.forEach(activity => {
-        const activityItem = {
-          id: String(activity.activityId),
-          name: this.$t('activityElement', { activityId: activity.activityId })
-        }
-
-        if (
-          activity.challenges &&
-          window?.Array?.isArray(activity.challenges) &&
-          activity.challenges.length
-        ) {
-          const challengesArray = []
-
-          activity.challenges.forEach(challenge => {
-            const challengeItem = {
-              id: `${activity.activityId}.${challenge.challengeId}`,
-              name: this.$t('challengeElement', { challengeId: challenge.challengeId })
-            }
-
-            if (
-              challenge.exercises &&
-              window?.Array?.isArray(challenge.exercises) &&
-              challenge.exercises.length
-            ) {
-              const exercisesArray = []
-
-              challenge.exercises.forEach(exercise => {
-                const exerciseTreeviewId =
-                  `${activity.activityId}.${challenge.challengeId}.${exercise.exerciseId}`
-                const exerciseItem = {
-                  id: exerciseTreeviewId,
-                  name: this.$t('exerciseElement', { exerciseId: exercise.exerciseId })
-                }
-                exercisesArray.push(exerciseItem)
-                // eslint-disable-next-line eqeqeq
-                if (exercise.solution?.expected == exercise.solution?.fromUser) {
-                  this.treeviewActiveItems.push(exerciseTreeviewId)
-                }
-              })
-              challengeItem.children = exercisesArray
-            }
-            challengesArray.push(challengeItem)
-          })
-          activityItem.children = challengesArray
-        }
-        activitiesArray.push(activityItem)
-      })
-
-      return activitiesArray
+    rtlLanguage() {
+      return this.$store?.state?.rtlLanguage ?? false
     }
+    // learningUnitActivities() {
+    //   return this.$store.state.learningUnit.activities ?? []
+    // },
+    // treeviewItems() {
+    //   const activitiesArray = []
+
+    //   this.learningUnitActivities.forEach(activity => {
+    //     const activityItem = {
+    //       id: String(activity.activityId),
+    //       name: this.$t('activityElement', { activityId: activity.activityId })
+    //     }
+
+    //     if (
+    //       activity.challenges &&
+    //       window?.Array?.isArray(activity.challenges) &&
+    //       activity.challenges.length
+    //     ) {
+    //       const challengesArray = []
+
+    //       activity.challenges.forEach(challenge => {
+    //         const challengeItem = {
+    //           id: `${activity.activityId}.${challenge.challengeId}`,
+    //           name: this.$t('challengeElement', { challengeId: challenge.challengeId })
+    //         }
+
+    //         if (
+    //           challenge.exercises &&
+    //           window?.Array?.isArray(challenge.exercises) &&
+    //           challenge.exercises.length
+    //         ) {
+    //           const exercisesArray = []
+
+    //           challenge.exercises.forEach(exercise => {
+    //             const exerciseTreeviewId =
+    //               `${activity.activityId}.${challenge.challengeId}.${exercise.exerciseId}`
+    //             const exerciseItem = {
+    //               id: exerciseTreeviewId,
+    //               name: this.$t('exerciseElement', { exerciseId: exercise.exerciseId })
+    //             }
+    //             exercisesArray.push(exerciseItem)
+    //             // eslint-disable-next-line eqeqeq
+    //             if (exercise.solution?.expected == exercise.solution?.fromUser) {
+    //               this.treeviewActiveItems.push(exerciseTreeviewId)
+    //             }
+    //           })
+    //           challengeItem.children = exercisesArray
+    //         }
+    //         challengesArray.push(challengeItem)
+    //       })
+    //       activityItem.children = challengesArray
+    //     }
+    //     activitiesArray.push(activityItem)
+    //   })
+
+    //   return activitiesArray
+    // }
   }
 }
 </script>

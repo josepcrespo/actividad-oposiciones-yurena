@@ -24,7 +24,9 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/i18n.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -52,20 +54,34 @@ export default {
   // @nuxtjs/i18n' module options
   i18n: {
     locales: [
-      'ar', // Arabic
-      'ca', // Catalan
-      'de', // German
-      'en', // English
-      'es', // Spanish
-      'eu', // Basque
-      'fr', // French
-      'gl', // Galician
-      'it', // Italian
-      'ja', // Japanese
-      'pt', // Portuguese
-      'ro', // Romanian
-      'ru', // Russian
-      'zh'  // Chinese (simplified)
+      // Arabic
+      { code: 'ar', dir: 'rtl' },
+      // Catalan
+      { code: 'ca' },
+      // German
+      { code: 'de' },
+      // English
+      { code: 'en' },
+      // Spanish
+      { code: 'es' },
+      // Basque
+      { code: 'eu' },
+      // French
+      { code: 'fr' },
+      // Galician
+      { code: 'gl' },
+      // Italian
+      { code: 'it' },
+      // Japanese
+      { code: 'ja' },
+      // Portuguese
+      { code: 'pt' },
+      // Romanian
+      { code: 'ro' },
+      // Russian
+      { code: 'ru' },
+      // Chinese (simplified)
+      { code: 'zh' }
     ],
     defaultLocale: 'es',
     vueI18n: {
@@ -87,6 +103,8 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
+    // TODO: asignar dinámicamente al cargar la página por primera vez.
+    rtl: false,
     theme: {
       dark: true,
       themes: {

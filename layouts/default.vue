@@ -1,10 +1,11 @@
 <template>
   <v-app dark>
-    <yrn-navigation-drawer-left />
     <v-app-bar
+      :app="vAppBar.app"
       :clipped-left="vAppBar.clippedLeft"
+      :clipped-right="vAppBar.clippedRight"
+      :elevate-on-scroll="vAppBar.elevateOnScroll"
       :fixed="vAppBar.fixed"
-      app
     >
       <yrn-navigation-drawer-left-toggle />
       <yrn-top-menu-title />
@@ -16,6 +17,7 @@
     <v-main :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
       <Nuxt />
     </v-main>
+    <yrn-navigation-drawer-left />
     <yrn-navigation-drawer-right />
     <yrn-page-loading-overlay />
     <yrn-snackbar-notification />
@@ -31,7 +33,9 @@ export default {
   data() {
     return {
       vAppBar: {
+        app: true,
         clippedLeft: true,
+        elevateOnScroll: true,
         fixed: true
       }
     }
@@ -45,21 +49,36 @@ export default {
     backgroundImageUrl() {
       return this.$store?.state?.learningUnit?.backgroundImage
     },
+    isRtlLanguage() {
+      return this.$i18n?.localeProperties?.dir === 'rtl'
+    },
     titleTranslation() {
       return this?.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
     }
+  },
+  created() {
+    this.$vuetify.rtl = this.isRtlLanguage
+    this.$store.commit('setRtlLanguage', this.isRtlLanguage)
   }
 }
 </script>
 
 <style lang="scss">
-.v-main {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: 100%;
+.v-application {
+  .v-app-bar {
+    // This is important to see the top menu bar using the full viewport width,
+    // when using any `<v-navigation-drawer />` positioned on the right side.
+    right: 0 !important;
+  }
 
-  &__wrap {
-    backdrop-filter: blur(8px);
+  .v-main {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    &__wrap {
+      backdrop-filter: blur(8px);
+    }
   }
 }
 </style>

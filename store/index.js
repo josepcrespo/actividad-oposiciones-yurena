@@ -2,9 +2,11 @@
 export const strict = false
 
 export const state = () => ({
+  rtlLanguage: false,
   navigationDrawerLeft: true,
   navigationDrawerRight: false,
   pageLoadingOverlay: false,
+  // TODO: refactorizar y llevar a un store independiente "i18n.js"
   routeParams: {
     ar: {
       challenge: 'تحدي',
@@ -80,6 +82,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setRtlLanguage(state, payload) {
+    state.rtlLanguage = payload
+  },
   setPageLoadingOverlay(state, payload) {
     state.pageLoadingOverlay = payload
   },

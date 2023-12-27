@@ -30,7 +30,7 @@ pt:
   activity: "Atividade"
   start: "Início"
 ar:
-  activity: ":النشاط"
+  activity: "النشاط"
   start: "ابدأ"
 zh:
   activity: "活动"
@@ -40,21 +40,20 @@ ro:
   start: "Începe"
 ja:
   activity: "アクティビティ"
-  start: "開始"
+  start: "始める"
 </i18n>
 
-<template>  
+<template>
   <v-navigation-drawer
     v-model="drawerVisibility"
     class="yrn-navigation-drawer-left"
     :clipped="clipped"
-    :fixed="fixed"
-    :mini-variant="miniVariant"
+    :right="rtlLanguage"
     app
   >
     <v-list>
       <v-list-item
-        :to="getStartUrl"
+        :to="startUrl"
         router
         exact
       >
@@ -96,9 +95,7 @@ export default {
   name: 'YrnNavigationDrawerLeft',
   data() {
     return {
-      clipped: true,
-      fixed: false,
-      miniVariant: false
+      clipped: true
     }
   },
   computed: {
@@ -113,8 +110,11 @@ export default {
         this.$store.commit('setNavigationDrawerLeft', value)
       }
     },
-    getStartUrl() {
+    startUrl() {
       return this.$store?.getters?.getLocaleUrl(this.$i18n, '/')
+    },
+    rtlLanguage() {
+      return this.$store?.state?.rtlLanguage ?? false
     }
   },
   methods: {
