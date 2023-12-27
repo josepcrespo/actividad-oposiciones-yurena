@@ -103,7 +103,7 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
-    // TODO: asignar dinámicamente al cargar la página por primera vez.
+    // Debe asignarse dinámicamente al cargar la página por primera vez.
     rtl: false,
     theme: {
       dark: true,
