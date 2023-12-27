@@ -20,14 +20,13 @@ gl:
 pt:
   progressTitle: "Percentagem de equações resolvidas:"
 ar:
-  progressTitle: "نسبة المعادلات المحلولة:"
+  progressTitle: ":نسبة المعادلات المحلولة"
 zh:
   progressTitle: "已解方程的百分比:"
 ro:
   progressTitle: "Procentajul ecuațiilor rezolvate:"
 ja:
   progressTitle: "解かれた方程式の割合:"
-
 </i18n>
 
 <template>

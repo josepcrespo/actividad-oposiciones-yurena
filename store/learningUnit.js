@@ -26,7 +26,7 @@ export const state = () => ({
       }, {
         type: 'yrn-image',
         imageAlt: {
-          ar: 'Memoji لمدير IES El Galeón ، يظهر خريطة جزر الكناري مع الحدائق الوطنية.',
+          ar: 'Memoji لمدير IES El Galeón ، يظهر خريطة جزر الكناري مع الحدائق الوطنية',
           ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.',
           de: 'Memoji des Direktors des IES El Galeón zeigt eine Karte der Kanarischen Inseln mit den Nationalparks.',
           en: 'Memoji of the director of IES El Galeón, showing a map of the Canary Islands with the National Parks.',
@@ -135,7 +135,7 @@ export const state = () => ({
         },
         solution: {
           statement: {
-            ar: 'الكتابة هنا مفتاح السر باستخدام حلول المعادلات:',
+            ar: ':الكتابة هنا مفتاح السر باستخدام حلول المعادلات',
             ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
             de: 'Schreiben Sie hier den geheimen Schlüssel unter Verwendung der Lösungen der Gleichungen:',
             en: 'Write the secret key here using the solutions of the equations:',
@@ -155,7 +155,7 @@ export const state = () => ({
           fromUser: ''
         },
         statement: {
-          ar: 'حل المعادلات من الدرجة الأولى التالية للعثور على المفتاح السري الذي تحتاجونه لاكتشاف أول إشارة:',
+          ar: ':حل المعادلات من الدرجة الأولى التالية للعثور على المفتاح السري الذي تحتاجونه لاكتشاف أول إشارة',
           ca: 'Resolgueu les següents equacions de primer grau per trobar la clau secreta que necessiteu per descobrir la primera pista:',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um den geheimen Schlüssel zu finden, den Sie benötigen, um den ersten Hinweis zu entdecken:',
           en: 'Solve the following first-degree equations to find the secret key you need to discover the first clue:',
@@ -303,6 +303,7 @@ export const state = () => ({
       pageStructure: [{
         type: 'yrn-page-title',
         title: {
+          ar: 'بالنظر إلى الصورة، هل تعرف بالفعل أي حديقة وطنية زارها المدير؟',
           ca: 'Veient la imatge, ja sabeu quin Parc Nacional va visitar el director?',
           de: 'Beim Anblick des Bildes, wisst ihr schon, welchen Nationalpark der Direktor besucht hat?',
           en: 'Looking at the image, do you already know which National Park the director visited?',
@@ -320,6 +321,7 @@ export const state = () => ({
       }, {
         type: 'yrn-image-simple',
         alt: {
+          ar: '.صورة للحديقة الطبيعية التي زارها المخرج',
           ca: 'Imatge del Parc Natural que va visitar el director.',
           de: 'Bild des Naturparks, den der Direktor besucht hat.',
           en: 'Image of the Natural Park that the director visited.',
@@ -350,6 +352,7 @@ export const state = () => ({
         exerciseId: 1,
         solution: {
           statement: {
+            ar: ':اكتب الجواب هنا',
             ca: 'Escriviu ací la resposta:',
             de: 'Schreiben Sie hier die Antwort:',
             en: 'Write the answer here:',
@@ -375,6 +378,7 @@ export const state = () => ({
         },
         solution: {
           statement: {
+            ar: ':يواجه مديرنا صعوبة في تذكر الأعداد الصحيحة، ولكن الغريب أنه يجد أنه من السهل جدًا تذكر المعادلات. لقد حفظت معادلات الدرجة الأولى التالية، قم بحلها وستظهر البيانات الفارغة للنص التالي',
             ca: 'Al nostre director li costa recordar números enters però, estranyament, li resulta molt fàcil recordar equacions. Ha memoritzat les següents equacions de primer grau, resolgueu-les i es revelarán les dades en blanc del següent text:',
             de: 'Unser Direktor hat Schwierigkeiten, sich an ganze Zahlen zu erinnern, aber seltsamerweise fällt es ihm sehr leicht, Gleichungen zu merken. Er hat die folgenden Gleichungen ersten Grades auswendig gelernt, löst sie und die Daten im nächsten Text werden sichtbar:',
             en: 'Our director has trouble remembering whole numbers, but strangely, he finds it very easy to remember equations. He has memorized the following first-degree equations, solve them, and the blank data in the next text will be revealed:',
@@ -391,7 +395,7 @@ export const state = () => ({
           },
           textToFillGaps: {
             // eslint-disable-next-line no-template-curly-in-string
-            es: 'Este Parque Nacional, situado en la isla de Tenerife, fue el primero reconocido del Archipiélago Canario, en el año ${{ a }}${{ b }}${{ c }}${{ d }} y está presidido por El Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), el pico más alto de España. Con numerosas especies endémicas y una extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, es, a día de hoy, el Parque Nacional más visitado de Canarias, de España y de Europa ya que alberga uno de los más impresionantes espectáculos geológicos del mundo por la dificultad de encontrar en un espacio tan reducido, un conjunto de estas características.',
+            es: 'هذه الحديقة الوطنية، التي تقع في جزيرة تينيريفي، كانت أول حديقة معترف بها في أرخبيل الكناري، في العام ${{ a }}${{ b }}${{ c }}${{ d }} وتترأسها عبر تيد (${{ e }}${{ f }}${{ a }}${{ g }} متر)، وهي أعلى قمة في إسبانيا. مع العديد من الأنواع المستوطنة ومساحة ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} هكتار، أصبحت اليوم الحديقة الوطنية الأكثر زيارة في جزر الكناري وإسبانيا وأوروبا حيث أنها تضم ​​واحدة من أكثر المناظر الجيولوجية إثارة للإعجاب في العالم بسبب صعوبة العثور على مجموعة من هذه الخصائص في مثل هذه المساحة الصغيرة.',
             // eslint-disable-next-line no-template-curly-in-string
             ca: 'Aquest Parc Nacional, situat a l\'illa de Tenerife, va ser el primer reconegut de l\'Arxipèlag Canari, l\'any ${{ a }}${{ b }}${{ c }}${{ d }} i està presidit pel Teide (${{ e }}${{ f }}${{ a }}${{ g }} metres), el pic més alt d\'Espanya. Amb nombroses espècies endèmiques i una extensió de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectàrees, és, a dia d\'avui, el Parc Nacional més visitat de Canàries, d\'Espanya i d\'Europa ja que alberga un dels més impresionants espectacles geològics del món per la dificultat de trobar en un espai tan reduït un conjunt d\'aquestes característiques.',
             // eslint-disable-next-line no-template-curly-in-string
@@ -421,7 +425,7 @@ export const state = () => ({
           fromUser: []
         },
         statement: {
-          ar: 'حل المعادلات من الدرجة الأولى التالية لاكتشاف البيانات الأكثر صلة من الحديقة الطبيعية التي زارها.',
+          ar: '.حل المعادلات من الدرجة الأولى التالية لاكتشاف البيانات الأكثر صلة من الحديقة الطبيعية التي زارها',
           ca: 'Resolgueu les següents equacions de primer grau per descobrir les dades més rellevants del Parc Natural que va visitar.',
           de: 'Lösen Sie die folgenden Gleichungen ersten Grades, um die relevantesten Daten des Naturparks zu entdecken, den er besucht hat.',
           en: 'Solve the following first-degree equations to discover the most relevant data from the Natural Park he visited.',
@@ -536,7 +540,7 @@ export const state = () => ({
     author: 'Yurena Cabrera Hernández',
     image: {
       imageAlt: {
-        ar: 'Memoji de Yurena.',
+        ar: '.Yurena إيموجي دي',
         ca: 'Memoji de Yurena.',
         de: 'Yurens Memoji.',
         en: 'Yurena\'s Memoji.',
@@ -574,7 +578,7 @@ export const state = () => ({
       fromUser: ''
     },
     subtitle: {
-      ar: '=الجبر فونا + فلورا',
+      ar: 'النباتات + الحيوانات = الجبر',
       ca: 'Flora + Fauna = Àlgebra',
       de: 'Flora + Fauna = Algebra',
       en: 'Flora + Fauna = Algebra',
@@ -590,7 +594,7 @@ export const state = () => ({
       zh: '植物相 + 动物相 = 代数'
     },
     title: {
-      ar: ':موقف التعلم',
+      ar: 'موقف التعلم',
       ca: 'Situació d\'aprenentatge',
       de: 'Lernsituation',
       en: 'Learning Situation',

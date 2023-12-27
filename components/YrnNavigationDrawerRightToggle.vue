@@ -1,7 +1,7 @@
 <i18n lang="yaml">
 es:
   buttonTitle: "Progreso"
-  buttonTooltip: "Muestra el progreso en la situación de aprendizaje"
+  buttonTooltip: "Muestra el progreso en la Situación de Aprendizaje"
 ca:
   buttonTitle: "Progrés"
   buttonTooltip: "Mostra el progrés en la situació d'aprenentatge"
@@ -30,17 +30,17 @@ pt:
   buttonTitle: "Progresso"
   buttonTooltip: "Mostrar o progresso na situação de aprendizagem"
 ar:
-  buttonTitle: ":التقدم"
+  buttonTitle: "التقدم"
   buttonTooltip: "عرض التقدم في الحالة التعلمية"
 zh:
   buttonTitle: "进展"
-  buttonTooltip: "显示学习情况中的进展"
+  buttonTooltip: "显示“学习情况”的进展"
 ro:
   buttonTitle: "Progres"
   buttonTooltip: "Arată progresul în situația de învățare"
 ja:
-  buttonTitle: "進捗"
-  buttonTooltip: "学習状況の進捗を表示"
+  buttonTitle: "プログレソ"
+  buttonTooltip: "「学習状況」の進捗状況を表示します。"
 </i18n>
 
 <template>
@@ -60,7 +60,7 @@ ja:
         <v-icon>
           mdi-format-list-bulleted
         </v-icon>
-        <span class="ml-2 d-none d-md-block">
+        <span class="mx-2 d-none d-md-block">
           {{ $t('buttonTitle') }}
         </span>
       </v-btn>

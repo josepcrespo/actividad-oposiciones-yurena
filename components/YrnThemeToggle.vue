@@ -39,8 +39,8 @@ ro:
   buttonTitle: "Aspect"
   buttonTooltip: "Comută între culori deschise și închise"
 ja:
-  buttonTitle: "外観"
-  buttonTooltip: "明るい色と暗い色の切り替え"
+  buttonTitle: "アスペクト"
+  buttonTooltip: "明るい色と暗い色を交互に使用する"
 </i18n>
 
 <template>
@@ -60,7 +60,7 @@ ja:
         <v-icon v-if="$vuetify.theme.dark">
           mdi-lightbulb-off-outline
         </v-icon>
-        <span class="ml-2 d-none d-md-block">
+        <span class="mx-2 d-none d-md-block">
           {{ $t('buttonTitle') }}
         </span>
       </v-btn>
