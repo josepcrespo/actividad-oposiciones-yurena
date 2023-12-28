@@ -50,7 +50,6 @@ ja:
   >
     <template #activator="{ on, attrs }">
       <v-btn
-        class="ml-1"
         :icon="$vuetify.breakpoint.xs"
         text
         v-bind="attrs"
@@ -60,7 +59,7 @@ ja:
         <v-icon>
           mdi-format-list-bulleted
         </v-icon>
-        <span class="mx-2 d-none d-md-block">
+        <span class="mx-1 d-none d-md-block">
           {{ $t('buttonTitle') }}
         </span>
       </v-btn>

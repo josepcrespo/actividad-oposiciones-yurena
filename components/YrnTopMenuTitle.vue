@@ -1,7 +1,7 @@
 <template>
   <div class="yrn-top-menu-title d-flex">
     <v-toolbar-title
-      class="yrn-top-menu-title__title pl-1 d-none d-sm-block"
+      class="yrn-top-menu-title__title pl-1 d-none d-md-block"
       :title="title"
     >
       {{ title }}

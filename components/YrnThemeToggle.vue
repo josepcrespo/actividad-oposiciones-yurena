@@ -47,7 +47,7 @@ ja:
   <v-tooltip bottom>
     <template #activator="{ on, attrs }">
       <v-btn
-        class="mr-1"
+        class="mx-2"
         :icon="$vuetify.breakpoint.xs"
         text
         v-bind="attrs"
@@ -60,7 +60,7 @@ ja:
         <v-icon v-if="$vuetify.theme.dark">
           mdi-lightbulb-off-outline
         </v-icon>
-        <span class="mx-2 d-none d-md-block">
+        <span class="mx-1 d-none d-md-block">
           {{ $t('buttonTitle') }}
         </span>
       </v-btn>

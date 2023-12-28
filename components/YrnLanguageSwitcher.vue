@@ -44,60 +44,78 @@ ja:
 </i18n>
 
 <template>
-  <v-menu
+  <v-select
+    v-model="currentLanguage"
+    append-icon=""
+    background-color="transparent"
     class="yrn-language-switcher"
-    offset-y
+    :color="$vuetify.theme.dark ? 'white' : 'black'"
+    dense
+    flat
+    hide-details
+    hide-selected
+    :items="vSelectItems"
+    item-text="name"
+    item-value="code"
+    :label="vSelectLabel"
+    :menu-props="{
+      closeOnContentClick: true,
+      disableKeys: false,
+      maxHeight: $vuetify?.breakpoint?.xs ? 284 : 380
+    }"
+    return-object
+    solo
+    @change="onSelectChange"
   >
-    <template #activator="{ on: menu, attrs }">
+    <template #selection>
       <v-tooltip bottom>
-        <template #activator="{ on: tooltip }">
+        <template #activator="{ on, attrs }">
           <v-btn
+            v-bind="attrs"
             :icon="$vuetify.breakpoint.xs"
             text
-            v-bind="attrs"
-            v-on="{ ...tooltip, ...menu }"
+            v-on="on"
           >
             <v-icon>
               mdi-translate
             </v-icon>
-            <span class="mx-2 d-none d-md-block">
-              {{ $t('buttonTitle') }}
+            <span class="mx-1 d-none d-md-block">
+              {{ currentLanguageName }}
             </span>
           </v-btn>
         </template>
         <span>{{ $t('buttonTooltip') }}</span>
       </v-tooltip>
     </template>
-    <v-list>
+    <template #item="{ item, on }">
+      <!-- v-on="on" es necesario para que pase el evento al componente padre
+        `v-select` y, pueda disparar el evento `@change`. -->
       <v-list-item
-        v-for="lang in learningUnitLanguages"
-        :key="lang.code"
+        ripple
+        v-on="on"
       >
-        <v-list-item-title>
-          <nuxt-link
-            class="yrn-language-switcher__link text-h6 text-decoration-none font-weight-light"
-            :to="switchLocalePath(lang.code)"
-          >
-            <country-flag
-              v-if="isRegularFlag(lang.flagCode)"
-              :country="lang.flagCode"
-              :rounded="false"
-            />
-            <v-img
-              v-else
-              class="yrn-language-switcher__regional-flag d-inline-block"
-              height="19.5"
-              width="26"
-              :src="getRegionalFlagSrc(lang.flagCode)"
-            />
-            <span :class="isRegularFlag(lang.flagCode) ? 'ml-2' : 'ml-2px'">
-              {{ lang.name[$i18n.locale] }}
-            </span>
-          </nuxt-link>
-        </v-list-item-title>
+        <v-list-item-action>
+          <country-flag
+            v-if="isRegularFlag(item.flagCode)"
+            :country="item.flagCode"
+            :rounded="false"
+          />
+          <v-img
+            v-else
+            class="yrn-language-switcher__regional-flag d-inline-block"
+            height="19.5"
+            width="26"
+            :src="getRegionalFlagSrc(item.flagCode)"
+          />
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ item.name }}
+          </v-list-item-title>
+        </v-list-item-content>
       </v-list-item>
-    </v-list>
-  </v-menu>
+    </template>
+  </v-select>
 </template>
 
 <script>
@@ -109,18 +127,52 @@ export default {
   components: {
     CountryFlag
   },
+  data() {
+    return {
+      currentLanguage: {
+        code: 'es',
+        flagCode: 'es',
+        name: 'ESPAÑOL'
+      }
+    }
+  },
   computed: {
+    currentLanguageName() {
+      return this.getLanguageByCode(this.$i18n.locale)?.name
+    },
     learningUnitLanguages() {
       return this.sortAlphabetically(this.$store
         ?.state
         ?.learningUnit
-        ?.languages
-        ?.filter(lang => lang.code !== this.$i18n.locale) ?? [],
+        ?.languages ?? [],
         this.$i18n.locale
       )
+    },
+    vSelectItems() {
+      return this.learningUnitLanguages.map(language => {
+        console.info('this.$i18n.locale: %s', this.$i18n.locale)
+        const translation = language?.name?.[this.$i18n.locale]?.toUpperCase()
+        console.info('translation: %s', translation)
+        const name = translation ?? language?.name?.es?.toUpperCase()
+        return {
+          ...language,
+          name
+        }
+      })
+    },
+    vSelectLabel() {
+      return this.$t?.('buttonTitle')?.toUpperCase() ?? ''
     }
   },
+  created() {
+    this.currentLanguage = this.getLanguageByCode(this.$i18n.locale)
+  },
   methods: {
+    getLanguageByCode(languageCode) {
+      return this.vSelectItems.find(language => {
+        return language.code === languageCode
+      })
+    },
     getRegionalFlagSrc(flagCode) {
       let flagIconSrc = '/img/flags/'
 
@@ -145,6 +197,20 @@ export default {
         && flagCode !== 'es-gl'
         && flagCode !== 'ma'
     },
+    onSelectChange() {
+      /**
+       * Ejecuta código después de que Vue.js ha completado su ciclo de vida y,
+       * ha actualizado el DOM, $nextTick te permite esperar hasta ese momento.
+       */
+      this.$nextTick(() => {
+        // https://i18n.nuxtjs.org/v7/lang-switcher
+        // https://i18n.nuxtjs.org/v7/basic-usage#nuxt-link
+        // https://i18n.nuxtjs.org/api/nuxt#switchlocalepath
+        console.info('this.currentLanguage.name: %o', this.currentLanguage.name)
+        const localizedUrl = this.switchLocalePath(this.currentLanguage.code)
+        this.$router.push(localizedUrl)
+      })
+    },
     sortAlphabetically(languagesArray, languageCode) {
       return languagesArray.slice().sort((a, b) => {
         const stringA = a.name[languageCode].toUpperCase()
@@ -158,10 +224,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ml-2px {
-  margin-left: 2px;
-}
-
 /* stylelint-disable-next-line selector-class-pattern */
 .theme--dark {
   .yrn-language-switcher {
@@ -176,6 +238,35 @@ export default {
   .yrn-language-switcher {
     &__link {
       color: black;
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.v-input {
+  width: 0;
+  max-width: 185px;
+
+  &__slot {
+    padding: 0 !important;
+  }
+
+  .v-select {
+    &__slot {
+      .v-select {
+        &__selections {
+          justify-content: flex-end;
+          
+          span {
+            width: 100%;
+          }
+
+          input {
+            display: none !important;
+          }
+        }
+      }
     }
   }
 }

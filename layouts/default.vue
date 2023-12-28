@@ -10,8 +10,8 @@
       <yrn-navigation-drawer-left-toggle />
       <yrn-top-menu-title />
       <v-spacer />
-      <yrn-theme-toggle />
       <yrn-language-switcher />
+      <yrn-theme-toggle />
       <yrn-navigation-drawer-right-toggle />
     </v-app-bar>
     <v-main :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
