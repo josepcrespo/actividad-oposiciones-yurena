@@ -61,7 +61,7 @@ ja:
     :menu-props="{
       closeOnContentClick: true,
       disableKeys: false,
-      maxHeight: $vuetify?.breakpoint?.xs ? 335 : 378
+      maxHeight: $vuetify.breakpoint.xs ? 335 : 378
     }"
     return-object
     solo
@@ -207,7 +207,6 @@ export default {
         // https://i18n.nuxtjs.org/v7/lang-switcher
         // https://i18n.nuxtjs.org/v7/basic-usage#nuxt-link
         // https://i18n.nuxtjs.org/api/nuxt#switchlocalepath
-        console.info('this.currentLanguage.name: %o', this.currentLanguage.name)
         const localizedUrl = this.switchLocalePath(this.currentLanguage.code)
         this.$router.push(localizedUrl)
       })
