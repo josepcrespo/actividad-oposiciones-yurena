@@ -151,9 +151,7 @@ export default {
     },
     vSelectItems() {
       return this.learningUnitLanguages.map(language => {
-        console.info('this.$i18n.locale: %s', this.$i18n.locale)
         const translation = language?.name?.[this.$i18n.locale]?.toUpperCase()
-        console.info('translation: %s', translation)
         const name = translation ?? language?.name?.es?.toUpperCase()
         return {
           ...language,
