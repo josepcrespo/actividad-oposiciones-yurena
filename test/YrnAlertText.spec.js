@@ -10,6 +10,7 @@ const localVue
 localVue.use(Vuetify)
 
 describe('YrnAlertText', () => {
+  const rootClass = 'yrn-alert-text'
   const propsData = {
     paragraphs: {
       en: [
@@ -19,8 +20,8 @@ describe('YrnAlertText', () => {
       es: [
         'Párrafo en español 1',
         'Párrafo en español 2'
-      ],
-    },
+      ]
+    }
   }
   const mocks = { $i18n: { locale: 'es' } }
 
@@ -38,7 +39,6 @@ describe('YrnAlertText', () => {
       mocks
     })
 
-    // Renders correctly
     expect(wrapper.vm).toBeTruthy()
   })
 
@@ -50,7 +50,7 @@ describe('YrnAlertText', () => {
       mocks
     })
 
-    expect(wrapper.classes('yrn-alert-text')).toBe(true)
+    expect(wrapper.classes(rootClass)).toBe(true)
   })
 
   test('computed property `localizedParagraphs` returns the correct value.', () => {
