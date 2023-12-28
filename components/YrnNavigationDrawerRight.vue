@@ -86,22 +86,22 @@ ja:
             mdi-format-list-bulleted
           </v-icon>
         </v-list-item-action>
-        <v-list-item-title>
+        <v-list-item-title class="text-uppercase font-weight-medium">
           {{ $t('drawerTitle') }}
         </v-list-item-title>
       </v-list-item>
     </v-list>
     <!-- Learning Unit Activities List -->
-    <!-- <v-treeview
-      v-model="treeviewActiveItems"
+    <v-treeview
+      v-model="treeview.activeItems"
       activatable
       dense
       disabled
       open-all
       open-on-click
       selectable
-      :items="treeviewItems"
-    /> -->
+      :items="treeview.items"
+    />
   </v-navigation-drawer>
 </template>
 
@@ -119,73 +119,82 @@ export default {
         return this.$store?.state?.navigationDrawerRight
       },
       set(value) {
-        this.$store.commit('setNavigationDrawerRight', value)
+        this.$store?.commit('setNavigationDrawerRight', value)
       }
     },
     rtlLanguage() {
       return this.$store?.state?.rtlLanguage ?? false
+    },
+    learningUnitActivities() {
+      return this.$store?.state?.learningUnit?.activities ?? []
+    },
+    treeview() {
+      const items = []
+      const activeItems = []
+
+      this.learningUnitActivities.forEach(activity => {
+        const activityItem = {
+          id: String(activity.activityId),
+          name: this.$t('activityElement', { activityId: activity.activityId })
+        }
+
+        if (
+          activity.challenges &&
+          window?.Array?.isArray(activity.challenges) &&
+          activity.challenges.length
+        ) {
+          const challengesArray = []
+
+          activity.challenges.forEach(challenge => {
+            const challengeItem = {
+              id: `${activity.activityId}.${challenge.challengeId}`,
+              name: this.$t('challengeElement', { challengeId: challenge.challengeId })
+            }
+
+            if (
+              challenge.exercises &&
+              window?.Array?.isArray(challenge.exercises) &&
+              challenge.exercises.length
+            ) {
+              const exercisesArray = []
+
+              challenge.exercises.forEach(exercise => {
+                const exerciseTreeviewId =
+                  `${activity.activityId}.${challenge.challengeId}.${exercise.exerciseId}`
+                const exerciseItem = {
+                  id: exerciseTreeviewId,
+                  name: this.$t('exerciseElement', { exerciseId: exercise.exerciseId })
+                }
+                exercisesArray.push(exerciseItem)
+                // eslint-disable-next-line eqeqeq
+                if (exercise.solution?.expected == exercise.solution?.fromUser) {
+                  activeItems.push(exerciseTreeviewId)
+                }
+              })
+              challengeItem.children = exercisesArray
+            }
+            challengesArray.push(challengeItem)
+          })
+          activityItem.children = challengesArray
+        }
+        items.push(activityItem)
+      })
+
+      return { items, activeItems }
     }
-    // learningUnitActivities() {
-    //   return this.$store.state.learningUnit.activities ?? []
-    // },
-    // treeviewItems() {
-    //   const activitiesArray = []
-
-    //   this.learningUnitActivities.forEach(activity => {
-    //     const activityItem = {
-    //       id: String(activity.activityId),
-    //       name: this.$t('activityElement', { activityId: activity.activityId })
-    //     }
-
-    //     if (
-    //       activity.challenges &&
-    //       window?.Array?.isArray(activity.challenges) &&
-    //       activity.challenges.length
-    //     ) {
-    //       const challengesArray = []
-
-    //       activity.challenges.forEach(challenge => {
-    //         const challengeItem = {
-    //           id: `${activity.activityId}.${challenge.challengeId}`,
-    //           name: this.$t('challengeElement', { challengeId: challenge.challengeId })
-    //         }
-
-    //         if (
-    //           challenge.exercises &&
-    //           window?.Array?.isArray(challenge.exercises) &&
-    //           challenge.exercises.length
-    //         ) {
-    //           const exercisesArray = []
-
-    //           challenge.exercises.forEach(exercise => {
-    //             const exerciseTreeviewId =
-    //               `${activity.activityId}.${challenge.challengeId}.${exercise.exerciseId}`
-    //             const exerciseItem = {
-    //               id: exerciseTreeviewId,
-    //               name: this.$t('exerciseElement', { exerciseId: exercise.exerciseId })
-    //             }
-    //             exercisesArray.push(exerciseItem)
-    //             // eslint-disable-next-line eqeqeq
-    //             if (exercise.solution?.expected == exercise.solution?.fromUser) {
-    //               this.treeviewActiveItems.push(exerciseTreeviewId)
-    //             }
-    //           })
-    //           challengeItem.children = exercisesArray
-    //         }
-    //         challengesArray.push(challengeItem)
-    //       })
-    //       activityItem.children = challengesArray
-    //     }
-    //     activitiesArray.push(activityItem)
-    //   })
-
-    //   return activitiesArray
-    // }
   }
 }
 </script>
 
 <style lang="scss">
+.yrn-navigation-drawer-right {
+  .v-list-item {
+    &__title {
+      letter-spacing: 0.0893em;
+    }
+  }
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .theme--dark.v-icon.v-icon.v-icon--disabled.mdi-checkbox-marked {
   color: #4CAF50 !important;
