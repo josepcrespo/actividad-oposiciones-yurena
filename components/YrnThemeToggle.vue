@@ -48,7 +48,7 @@ ja:
     <template #activator="{ on, attrs }">
       <v-btn
         class="mx-2"
-        :icon="$vuetify.breakpoint.xs"
+        :icon="$vuetify.breakpoint.smAndDown"
         text
         v-bind="attrs"
         v-on="on"

@@ -7,7 +7,7 @@
       {{ title }}
     </v-toolbar-title>
     <div
-      class="yrn-top-menu-title__subtitle ml-4 text-h6 font-weight-light text-capitalize"
+      class="yrn-top-menu-title__subtitle ml-1 ml-md-4 text-h6 font-weight-light text-capitalize"
       :title="subtitle"
     >
       {{ subtitle }}

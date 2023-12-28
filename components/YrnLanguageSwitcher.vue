@@ -61,7 +61,7 @@ ja:
     :menu-props="{
       closeOnContentClick: true,
       disableKeys: false,
-      maxHeight: $vuetify?.breakpoint?.xs ? 284 : 380
+      maxHeight: $vuetify?.breakpoint?.xs ? 335 : 378
     }"
     return-object
     solo
@@ -72,7 +72,7 @@ ja:
         <template #activator="{ on, attrs }">
           <v-btn
             v-bind="attrs"
-            :icon="$vuetify.breakpoint.xs"
+            :icon="$vuetify.breakpoint.smAndDown"
             text
             v-on="on"
           >
@@ -94,11 +94,12 @@ ja:
         ripple
         v-on="on"
       >
-        <v-list-item-action>
+        <v-list-item-action class="d-inline-flex">
           <country-flag
             v-if="isRegularFlag(item.flagCode)"
             :country="item.flagCode"
             :rounded="false"
+            class="yrn-language-switcher__regular-flag"
           />
           <v-img
             v-else
@@ -244,6 +245,19 @@ export default {
 </style>
 
 <style lang="scss">
+.yrn-language-switcher {
+  &__regular-flag {
+    margin: -9.91px -0.9em -0.6em -0.7em !important;
+    outline-style: auto;
+  }
+
+  &__regional-flag {
+    margin-left: 2px;
+    outline-color: darkgrey;
+    outline-style: auto;
+  }
+}
+
 .yrn-language-switcher.v-input {
   width: 0;
   max-width: 185px;
@@ -251,22 +265,23 @@ export default {
   /* stylelint-disable selector-class-pattern */
   .v-input__slot {
     padding: 0 !important;
-  }
 
-  .v-select {
-    &__slot {
-      .v-select {
-        &__selections {
-          justify-content: flex-end;
-          
-          .v-btn {
-            span {
-              width: 100%;
+    /** Select button */
+    .v-select {
+      &__slot {
+        .v-select {
+          &__selections {
+            justify-content: flex-end;
+            
+            .v-btn {
+              span {
+                width: 100%;
+              }
             }
-          }
 
-          input {
-            display: none;
+            input {
+              display: none;
+            }
           }
         }
       }
