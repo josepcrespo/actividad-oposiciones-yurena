@@ -130,11 +130,11 @@ export default {
 <style lang="scss">
 .yrn-exercise-solution-fill-text-gaps {
   &__input-placeholder {
-    padding-left: 5px;
-    padding-top: 4px;
-    border-radius: 8px;
-    height: 20px;
+    border-radius: 10px;
     font-family: MartelSans, monospace;
+    height: 20px;
+    padding: 10px 2px 6px;
+    text-align: center;
   }
 }
 
