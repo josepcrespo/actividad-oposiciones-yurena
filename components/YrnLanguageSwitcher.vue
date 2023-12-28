@@ -244,11 +244,12 @@ export default {
 </style>
 
 <style lang="scss">
-.v-input {
+.yrn-language-switcher.v-input {
   width: 0;
   max-width: 185px;
 
-  &__slot {
+  /* stylelint-disable selector-class-pattern */
+  .v-input__slot {
     padding: 0 !important;
   }
 
@@ -258,12 +259,14 @@ export default {
         &__selections {
           justify-content: flex-end;
           
-          span {
-            width: 100%;
+          .v-btn {
+            span {
+              width: 100%;
+            }
           }
 
           input {
-            display: none !important;
+            display: none;
           }
         }
       }
