@@ -70,14 +70,14 @@ export default {
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learningUnit/getExercise'](
+      return this.$store?.getters['learningUnit/getExercise'](
         activityId,
         challengeId,
         exerciseId
       )
     },
     getExerciseSection(sectionId) {
-      return this.$store.getters['learningUnit/getExerciseSection'](
+      return this.$store?.getters['learningUnit/getExerciseSection'](
         this.activityId,
         this.challengeId,
         this.exerciseId,

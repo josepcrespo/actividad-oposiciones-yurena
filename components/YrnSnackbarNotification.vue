@@ -69,7 +69,7 @@ export default {
         return this.$store?.state?.snackbarNotification?.model
       },
       set(value) {
-        this.$store.commit('snackbarNotification/setModel', value)
+        this.$store?.commit('snackbarNotification/setModel', value)
       }
     },
     right() {
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     retry() {
-      this.$store.commit('snackbarNotification/setModel', false)
+      this.$store?.commit('snackbarNotification/setModel', false)
     }
   }
 }

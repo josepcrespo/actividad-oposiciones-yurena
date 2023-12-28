@@ -58,7 +58,7 @@ export default {
   },
   created() {
     this.$vuetify.rtl = this.isRtlLanguage
-    this.$store.commit('setRtlLanguage', this.isRtlLanguage)
+    this.$store?.commit('setRtlLanguage', this.isRtlLanguage)
   }
 }
 </script>

@@ -125,7 +125,7 @@ export default {
         }
       }
 
-      this.$store.commit('learningUnit/addOrUpdateSection', {
+      this.$store?.commit('learningUnit/addOrUpdateSection', {
         activityId: this.activityId,
         challengeId:  this.challengeId,
         exerciseId: this.exerciseId,

@@ -7,7 +7,7 @@ export default {
   name: 'YrnNavigationDrawerLeftToggle',
   methods: {
     toggleNavigationDrawerLeft() {
-      this.$store.commit(
+      this.$store?.commit(
         'setNavigationDrawerLeft',
         !this.$store?.state?.navigationDrawerLeft
       )

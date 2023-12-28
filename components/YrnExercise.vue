@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learningUnit/getExercise'](
+      return this.$store?.getters['learningUnit/getExercise'](
         activityId,
         challengeId,
         exerciseId
@@ -70,7 +70,7 @@ export default {
       return this.exercise?.sections ?? []
     },
     getExerciseSectionsWellSolved(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learningUnit/getExerciseSectionsWellSolved'](
+      return this.$store?.getters['learningUnit/getExerciseSectionsWellSolved'](
         activityId,
         challengeId,
         exerciseId

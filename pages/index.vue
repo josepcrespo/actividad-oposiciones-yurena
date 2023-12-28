@@ -80,14 +80,14 @@ export default {
   methods: {
     otpOnFinish (response) {
       this.otp.loading = true
-      this.$store.commit('setPageLoadingOverlay', true)
-      this.$store.commit('learningUnit/setPasswordFromUser', response)
+      this.$store?.commit('setPageLoadingOverlay', true)
+      this.$store?.commit('learningUnit/setPasswordFromUser', response)
       setTimeout(() => {
         const i18n = this.$i18n
         const success = response === this.otp.expected
         this.otp.loading = false
-        this.$store.commit('setPageLoadingOverlay', false)
-        this.$store.dispatch('snackbarNotification/show', { i18n, success })
+        this.$store?.commit('setPageLoadingOverlay', false)
+        this.$store?.dispatch('snackbarNotification/show', { i18n, success })
         setTimeout(() => {
           if (success) {
             this.$router.push(

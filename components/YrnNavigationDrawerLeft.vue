@@ -100,14 +100,14 @@ export default {
   },
   computed: {
     activityIds() {
-      return this.$store.getters['learningUnit/getActivityIds']
+      return this.$store?.getters['learningUnit/getActivityIds']
     },
     drawerVisibility: {
       get() {
         return this.$store?.state?.navigationDrawerLeft
       },
       set(value) {
-        this.$store.commit('setNavigationDrawerLeft', value)
+        this.$store?.commit('setNavigationDrawerLeft', value)
       }
     },
     startUrl() {

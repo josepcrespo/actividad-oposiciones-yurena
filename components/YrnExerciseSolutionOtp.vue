@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
-      return this.$store.getters['learningUnit/getExercise'](
+      return this.$store?.getters['learningUnit/getExercise'](
         activityId,
         challengeId,
         exerciseId
@@ -70,8 +70,8 @@ export default {
     },
     onFinish(response) {
       this.loading = true
-      this.$store.commit('setPageLoadingOverlay', true)
-      this.$store.commit('learningUnit/setExerciseSolutionFromUser', {
+      this.$store?.commit('setPageLoadingOverlay', true)
+      this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
         activityId: this.activityId,
         challengeId: this.challengeId,
         exerciseId: this.exerciseId,
@@ -81,8 +81,8 @@ export default {
         const i18n = this.$i18n
         const success = response === this.exerciseSolutionExpected
         this.loading = false
-        this.$store.commit('setPageLoadingOverlay', false)
-        this.$store.dispatch('snackbarNotification/show', { i18n, success })
+        this.$store?.commit('setPageLoadingOverlay', false)
+        this.$store?.dispatch('snackbarNotification/show', { i18n, success })
         
         if (
           success &&
