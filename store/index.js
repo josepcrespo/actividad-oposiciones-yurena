@@ -6,7 +6,9 @@ export const state = () => ({
   navigationDrawerLeft: true,
   navigationDrawerRight: false,
   pageLoadingOverlay: false,
-  // TODO: refactorizar y llevar a un store independiente "i18n.js"
+  // https://i18n.nuxtjs.org/v7/lang-switcher#dynamic-route-parameters
+  // @nuxtjs/i18n's store module exposes a routeParams state property that will
+  // be merged with route params when generating lang switch routes with switchLocalePath().
   routeParams: {
     ar: {
       challenge: 'تحدي',
