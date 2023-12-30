@@ -77,7 +77,7 @@ ja:
       >
         <v-list-item-action class="mr-4">
           <v-icon>
-            mdi-chart-bubble
+            mdi-text-box-edit-outline
           </v-icon>
         </v-list-item-action>
         <v-list-item-content>
