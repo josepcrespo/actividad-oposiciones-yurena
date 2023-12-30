@@ -61,7 +61,7 @@ ja:
     :menu-props="{
       closeOnContentClick: true,
       disableKeys: false,
-      maxHeight: $vuetify.breakpoint.xs ? 335 : 378
+      maxHeight: '95vh'
     }"
     return-object
     solo
