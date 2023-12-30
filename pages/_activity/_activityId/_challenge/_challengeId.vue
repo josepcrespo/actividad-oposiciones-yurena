@@ -18,6 +18,7 @@
 <script>
 export default {
   name: 'ChallengePage',
+  middleware: 'activity-challenge',
   async asyncData({ params, store }) {
     const { activityId, challengeId } = params
     // This line adds translations for all app static URL slugs.
