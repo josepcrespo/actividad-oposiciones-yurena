@@ -44,12 +44,10 @@ ja:
 </i18n>
 
 <template>
-  <v-tooltip
-    class="yrn-navigation-drawer-right-toggle"
-    bottom
-  >
+  <v-tooltip bottom>
     <template #activator="{ on, attrs }">
       <v-btn
+        class="yrn-navigation-drawer-right-toggle px-2"
         :icon="$vuetify.breakpoint.smAndDown"
         text
         v-bind="attrs"

@@ -47,7 +47,7 @@ ja:
   <v-tooltip bottom>
     <template #activator="{ on, attrs }">
       <v-btn
-      class="mx-1 mx-sm-2"
+      class="yrn-theme-toggle px-2 mx-1 mx-sm-2"
       :icon="$vuetify.breakpoint.smAndDown"
       text
         v-bind="attrs"
