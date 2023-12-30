@@ -12,6 +12,7 @@
       <v-spacer />
       <yrn-language-switcher />
       <yrn-theme-toggle />
+      <yrn-achievements-toggle />
       <yrn-navigation-drawer-right-toggle />
     </v-app-bar>
     <v-main :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
