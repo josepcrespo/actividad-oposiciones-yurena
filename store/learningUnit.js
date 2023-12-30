@@ -915,15 +915,15 @@ export const mutations = {
   },
   setExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution }) {
     // eslint-disable-next-line eqeqeq
-    const activity = state.activities.find((a) => a.activityId == activityId);
+    const activity = state.activities.find((a) => a.activityId == activityId)
 
     if (activity) {
       // eslint-disable-next-line eqeqeq
-      const challenge = activity.challenges.find((c) => c.challengeId == challengeId);
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
 
       if (challenge) {
         // eslint-disable-next-line eqeqeq
-        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId);
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
 
         if (exercise && exercise.solution) {
           set(exercise.solution, 'fromUser', solution)
@@ -939,6 +939,16 @@ export const mutations = {
 }
 
 export const getters = {
+  getActivity: (state) => (activityId) => {
+    const activity =
+      state.activities.find((a) => a.activityId === activityId)
+
+    if (!activity) {
+      console.error(`Activity "${activityId}" not found on this learning unit.`);
+    }
+
+    return activity
+  },
   getActivityIds(state) {
     const activityIds = []
 
@@ -949,7 +959,7 @@ export const getters = {
     return activityIds
   },
   getChallenge: (state) => (activityId, challengeId) => {
-    let challenge = null
+    let challenge
     // eslint-disable-next-line eqeqeq
     const activity = state.activities.find((a) => a.activityId == activityId)
 
@@ -957,7 +967,7 @@ export const getters = {
       challenge = activity.challenges.find(
         // eslint-disable-next-line eqeqeq
         (ch) => ch.challengeId == challengeId
-      ) ?? null
+      )
 
       if (!challenge) {
         // eslint-disable-next-line no-console
@@ -968,14 +978,14 @@ export const getters = {
     return challenge
   },
   getExercise: (state, getters) => (activityId, challengeId, exerciseId) => {
-    let exercise = null
+    let exercise
     const challenge = getters.getChallenge(activityId, challengeId)
 
     if (challenge) {
       exercise = challenge.exercises?.find(
         // eslint-disable-next-line eqeqeq
         e => e.exerciseId == exerciseId
-      ) ?? null
+      )
 
       if (!exercise) {
         // eslint-disable-next-line no-console
@@ -998,14 +1008,14 @@ export const getters = {
     }
   },
   getExerciseSection: (state, getters) => (activityId, challengeId, exerciseId, sectionId) => {
-    let section = null
+    let section
     const exercise = getters.getExercise(activityId, challengeId, exerciseId)
 
     if (exercise) {
       section = exercise.sections?.find(
         // eslint-disable-next-line eqeqeq
         s => s.sectionId == sectionId
-      ) ?? null
+      )
 
       if (!section) {
         // eslint-disable-next-line no-console
@@ -1015,5 +1025,26 @@ export const getters = {
     }
 
     return section
+  },
+  isChallengeSolved: (state, getters) => (activityId, challengeId) => {
+    const challenge = getters.getChallenge(activityId, challengeId)
+
+    if (challenge) {
+      const exercises = challenge.exercises
+
+      if (exercises && window?.Array.isArray(exercises)) {
+        return exercises.every((exercise) => {
+          // eslint-disable-next-line eqeqeq
+          return exercise.solution?.expected == exercise.solution?.fromUser
+        })
+      }
+    }
+
+    // If challenge is not found or the exercises array is not present,
+    // consider the challenge not solved.
+    return false
+  },
+  hasValidIndexPagePassword(state) {
+    return state?.indexPage?.password?.fromUser === state?.indexPage?.password?.expected
   }
 }
