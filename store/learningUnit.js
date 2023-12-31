@@ -944,7 +944,7 @@ export const getters = {
       state.activities.find((a) => a.activityId === activityId)
 
     if (!activity) {
-      console.error(`Activity "${activityId}" not found on this learning unit.`);
+      console.warn(`Activity "${activityId}" not found on this learning unit.`);
     }
 
     return activity
@@ -971,7 +971,7 @@ export const getters = {
 
       if (!challenge) {
         // eslint-disable-next-line no-console
-        console.error(`Challenge "${challengeId}" not found on Activity "${activityId}".`)
+        console.warn(`Challenge "${challengeId}" not found on Activity "${activityId}".`)
       }
     }
 
@@ -989,7 +989,7 @@ export const getters = {
 
       if (!exercise) {
         // eslint-disable-next-line no-console
-        console.error(`Exercise "${exerciseId}" not found on Activity "${activityId}"` +
+        console.warn(`Exercise "${exerciseId}" not found on Activity "${activityId}"` +
           `, Challenge "${challengeId}".`)
       }
     }
@@ -1019,7 +1019,7 @@ export const getters = {
 
       if (!section) {
         // eslint-disable-next-line no-console
-        console.error(`Section "${sectionId}" not found on Activity "${activityId}"` +
+        console.warn(`Section "${sectionId}" not found on Activity "${activityId}"` +
           `, Challenge "${challengeId}", Exercise "${exerciseId}".`)
       }
     }
