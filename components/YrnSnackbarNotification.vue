@@ -1,32 +1,32 @@
 <i18n lang="yaml">
-es:
-  retry: "Prueba otra vez"
-ca:
-  retry: "Prova de nou"
-en:
-  retry: "Try again"
-de:
-  retry: "Versuche es erneut"
-ru:
-  retry: "Попробуйте снова"
-fr:
-  retry: "Réessayer"
-it:
-  retry: "Riprova"
-eu:
-  retry: "Saiatu berriro"
-gl:
-  retry: "Téntao de novo"
-pt:
-  retry: "Tentar novamente"
 ar:
   retry: "حاول مرة أخرى"
-zh:
-  retry: "再试一次"
-ro:
-  retry: "Încearcă din nou"
+ca:
+  retry: "Prova de nou"
+de:
+  retry: "Versuche es erneut"
+en:
+  retry: "Try again"
+es:
+  retry: "Prueba otra vez"
+eu:
+  retry: "Saiatu berriro"
+fr:
+  retry: "Réessayer"
+gl:
+  retry: "Téntao de novo"
+it:
+  retry: "Riprova"
 ja:
   retry: "もう一度試す"
+pt:
+  retry: "Tentar novamente"
+ro:
+  retry: "Încearcă din nou"
+ru:
+  retry: "Попробуйте снова"
+zh:
+  retry: "再试一次"
 </i18n>
 
 <template>

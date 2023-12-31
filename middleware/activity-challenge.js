@@ -31,8 +31,6 @@ export default function ({ app, from, redirect, route, store }) {
         prevActivityId, prevChallenge.challengeId)
     }
   }
-
-  console.info('app: %o', app)
   
   if (!isChallengeSolved) {
     let localizedRedirectionPath = ''
@@ -70,11 +68,11 @@ export default function ({ app, from, redirect, route, store }) {
     }
 
     if (localizedRedirectionPath) {
-      const notificationMessage = 'Sorry, you can not access this route yet.'
-      store.commit('snackbarNotification/setTextToShow', notificationMessage)
-      store.commit('snackbarNotification/setColor', 'deep-orange darken-4')
-      store.commit('snackbarNotification/setModel', true)
-      store.commit('snackbarNotification/setShowAction', false)
+      store?.dispatch('snackbarNotification/show', {
+        i18n: app.i18n,
+        success: false,
+        defaultTextKey: 'errorAccessRoute'
+      })
       
       return redirect(localizedRedirectionPath)
     }
