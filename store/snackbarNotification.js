@@ -42,7 +42,7 @@ export const state = () => ({
       fr: {
         error: 'Mmm... ce n\'est pas ce à quoi je m\'attendais... 😔',
         errorAccessRoute: "Désolé, vous ne pouvez pas accéder à cette route pour l'instant.",
-        success: 'Bien joué !'
+        success: 'Bien joué!'
       },
       gl: {
         error: 'Mmm... iso non é o que esperaba... 😔',
