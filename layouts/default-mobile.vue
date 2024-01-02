@@ -40,6 +40,10 @@
         <span>Progreso</span>
         <v-icon>mdi-format-list-bulleted</v-icon>
       </v-btn>
+      <v-btn value="noOption" class="d-none">
+        <span>noOptionBtn</span>
+        <v-icon>mdi-apps</v-icon>
+      </v-btn>
     </v-bottom-navigation>
     <yrn-navigation-drawer-left />
     <yrn-navigation-drawer-right />
@@ -87,8 +91,27 @@ export default {
     this.$store?.commit('setRtlLanguage', this.isRtlLanguage)
   },
   methods: {
-    onVBottomNavigationChange() {
-      console.info(this.vBottomNavigation.value)
+    toggleNavigationDrawerRight() {
+      this.$store?.commit(
+        'setNavigationDrawerRight',
+        !this.$store?.state?.navigationDrawerRight
+      )
+    },
+    onVBottomNavigationChange(btnValue) {
+      switch (btnValue) {
+        case 'language':
+          break
+        case 'theme':
+          break
+        case 'achievements':
+          break
+        case 'progress':
+          this.toggleNavigationDrawerRight()
+          break
+        default:
+          break
+      }
+      this.vBottomNavigation.value = 'hidden'
     }
   }
 }
