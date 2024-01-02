@@ -1,30 +1,24 @@
 <template>
   <v-app dark>
-    <v-app-bar
-      :app="vAppBar.app"
-      :clipped-left="vAppBar.clippedLeft"
-      :clipped-right="vAppBar.clippedRight"
-      :elevate-on-scroll="vAppBar.elevateOnScroll"
-      :fixed="vAppBar.fixed"
-    >
-      <yrn-navigation-drawer-left-toggle />
-      <yrn-top-menu-title />
-      <v-spacer />
-      <yrn-language-switcher />
-      <yrn-theme-toggle />
-      <yrn-achievements-toggle />
-      <yrn-navigation-drawer-right-toggle />
-    </v-app-bar>
+    <yrn-app-bar>
+      <template #rightAlignedContent>
+        <v-spacer />
+        <yrn-language-switcher />
+        <yrn-theme-toggle />
+        <yrn-achievements-toggle />
+        <yrn-navigation-drawer-right-toggle />
+      </template>
+    </yrn-app-bar>
     <v-main :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
       <Nuxt />
     </v-main>
+    <!-- <v-footer :absolute="!fixed" app>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer> -->
     <yrn-navigation-drawer-left />
     <yrn-navigation-drawer-right />
     <yrn-page-loading-overlay />
     <yrn-snackbar-notification />
-    <!-- <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
   </v-app>
 </template>
 
