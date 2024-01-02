@@ -14,15 +14,16 @@
       <Nuxt />
     </v-main>
     <v-bottom-navigation
+      v-model="vBottomNavigation.value"
       :app="vBottomNavigation.app"
       :grow="vBottomNavigation.grow"
-      :value="vBottomNavigation.value"
+      @change="onVBottomNavigationChange"
     >
-      <v-btn>
+      <v-btn value="language">
         <span>Idioma</span>
         <v-icon>mdi-translate</v-icon>
       </v-btn>
-      <v-btn>
+      <v-btn value="theme">
         <span>Apariencia</span>
         <v-icon v-if="$vuetify.theme.dark">
           mdi-lightbulb-off-outline
@@ -31,11 +32,11 @@
           mdi-lightbulb-on-outline
         </v-icon>
       </v-btn>
-      <v-btn>
+      <v-btn value="achievements">
         <span>Logros</span>
         <v-icon>mdi-star-face</v-icon>
       </v-btn>
-      <v-btn>
+      <v-btn value="progress">
         <span>Progreso</span>
         <v-icon>mdi-format-list-bulleted</v-icon>
       </v-btn>
@@ -44,9 +45,6 @@
     <yrn-navigation-drawer-right />
     <yrn-page-loading-overlay />
     <yrn-snackbar-notification />
-    <!-- <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
   </v-app>
 </template>
 
@@ -64,7 +62,7 @@ export default {
       vBottomNavigation: {
         app: true,
         grow: true,
-        value: 0
+        value: undefined
       }
     }
   },
@@ -87,26 +85,11 @@ export default {
   created() {
     this.$vuetify.rtl = this.isRtlLanguage
     this.$store?.commit('setRtlLanguage', this.isRtlLanguage)
-  }
-}
-</script>
-
-<style lang="scss">
-.v-application {
-  .v-app-bar {
-    // This is important to see the top menu bar using the full viewport width,
-    // when using any `<v-navigation-drawer />` positioned on the right side.
-    right: 0 !important;
-  }
-
-  .v-main {
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100%;
-
-    &__wrap {
-      backdrop-filter: blur(8px);
+  },
+  methods: {
+    onVBottomNavigationChange() {
+      console.info(this.vBottomNavigation.value)
     }
   }
 }
-</style>
+</script>

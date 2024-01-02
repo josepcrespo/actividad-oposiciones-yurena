@@ -1,6 +1,25 @@
 @import './fonts.scss';
 
 p {
-  font-size: medium;
+  font-size: larger;
   min-width: 250px;
+}
+
+.v-application {
+  .v-app-bar {
+    // This is important to see the top menu bar using the full viewport width,
+    // when using any `<v-navigation-drawer />` positioned on the right side.
+    right: 0 !important;
+  }
+
+  .v-main {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    &__wrap {
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+  }
 }

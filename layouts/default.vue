@@ -63,23 +63,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.v-application {
-  .v-app-bar {
-    // This is important to see the top menu bar using the full viewport width,
-    // when using any `<v-navigation-drawer />` positioned on the right side.
-    right: 0 !important;
-  }
-
-  .v-main {
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100%;
-
-    &__wrap {
-      backdrop-filter: blur(8px);
-    }
-  }
-}
-</style>
