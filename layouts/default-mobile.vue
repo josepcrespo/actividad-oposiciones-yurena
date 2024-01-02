@@ -40,10 +40,6 @@
         <span>Progreso</span>
         <v-icon>mdi-format-list-bulleted</v-icon>
       </v-btn>
-      <v-btn value="noOption" class="d-none">
-        <span>noOptionBtn</span>
-        <v-icon>mdi-apps</v-icon>
-      </v-btn>
     </v-bottom-navigation>
     <yrn-navigation-drawer-left />
     <yrn-navigation-drawer-right />
@@ -97,11 +93,15 @@ export default {
         !this.$store?.state?.navigationDrawerRight
       )
     },
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    },
     onVBottomNavigationChange(btnValue) {
       switch (btnValue) {
         case 'language':
           break
         case 'theme':
+          this.toggleTheme()
           break
         case 'achievements':
           break
@@ -111,7 +111,9 @@ export default {
         default:
           break
       }
-      this.vBottomNavigation.value = 'hidden'
+      this.$nextTick(() => {
+        this.vBottomNavigation.value = undefined
+      })
     }
   }
 }
