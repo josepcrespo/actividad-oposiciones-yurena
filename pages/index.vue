@@ -39,8 +39,12 @@
 <script>
 export default {
   name: 'IndexPage',
+  layout(context) {
+    return context?.$vuetify?.breakpoint?.xs ? 'default-mobile' : 'default'
+  },
   data() {
     return {
+      isWindowNarrow: window?.innerWidth < 600,
       simulatedTimeout: 1500,
       otp: {
         expected: '',
@@ -70,14 +74,29 @@ export default {
       return this.$store?.state?.learningUnit?.indexPage?.password?.statement?.[this.$i18n.locale]
     },
   },
-  mounted()  {
+  beforeMount() {
+    this.initializeWindowResize()
+  },
+  mounted() {
     this.$set(
       this.otp,
       'expected',
       this.$store?.state?.learningUnit?.indexPage?.password?.expected
     )
   },
+  beforeDestroy() {
+    this.$store.dispatch(
+      'windowResize/destroyWindowResize',
+      this.handleWindowResize
+    )
+  },
   methods: {
+    initializeWindowResize() {
+      this.handleWindowResize = this.$store.dispatch(
+        'windowResize/initializeWindowResize',
+        this
+      )
+    },
     otpOnFinish (response) {
       this.otp.loading = true
       this.$store?.commit('setPageLoadingOverlay', true)

@@ -18,6 +18,9 @@
 <script>
 export default {
   name: 'ChallengePage',
+  layout(context) {
+    return context?.$vuetify?.breakpoint?.xs ? 'default-mobile' : 'default'
+  },
   middleware: 'activity-challenge',
   async asyncData({ params, store }) {
     const { activityId, challengeId } = params
@@ -48,6 +51,23 @@ export default {
     titleTemplate() {
       return `%s - ${this.activityTranslation} ${this.activityId}, ` +
         `${ this.challengeTranslation } ${ this.challengeId }`
+    }
+  },
+  beforeMount() {
+    this.initializeWindowResize()
+  },
+  beforeDestroy() {
+    this.$store.dispatch(
+      'windowResize/destroyWindowResize',
+      this.handleWindowResize
+    )
+  },
+  methods: {
+    initializeWindowResize() {
+      this.handleWindowResize = this.$store.dispatch(
+        'windowResize/initializeWindowResize',
+        this
+      )
     }
   }
 }
