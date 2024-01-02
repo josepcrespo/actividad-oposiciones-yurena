@@ -74,7 +74,7 @@ export default {
   name: 'YrnThemeToggle',
   methods: {
     toggleTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }
