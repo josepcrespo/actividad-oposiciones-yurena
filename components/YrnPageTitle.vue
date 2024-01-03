@@ -1,7 +1,7 @@
 <template>
   <v-row class="yrn-page-title">
     <v-col>
-      <h1 class="my-8 d-flex justify-center">
+      <h1 class="my-8 d-flex justify-center text-center">
         {{ localizedTitle }}
       </h1>
     </v-col>
