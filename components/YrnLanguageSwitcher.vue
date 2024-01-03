@@ -96,19 +96,7 @@ ja:
         v-on="on"
       >
         <v-list-item-action class="d-inline-flex">
-          <country-flag
-            v-if="isRegularFlag(item.flagCode)"
-            :country="item.flagCode"
-            :rounded="false"
-            class="yrn-language-switcher__regular-flag"
-          />
-          <v-img
-            v-else
-            class="yrn-language-switcher__regional-flag d-inline-block"
-            height="19.5"
-            width="26"
-            :src="getRegionalFlagSrc(item.flagCode)"
-          />
+          <yrn-country-flag :flag-code="item.flagCode" />
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
@@ -121,14 +109,8 @@ ja:
 </template>
 
 <script>
-// https://github.com/ubaldop/vue-country-flag
-import CountryFlag from 'vue-country-flag'
-
 export default {
   name: 'YrnLanguageSwitcher',
-  components: {
-    CountryFlag
-  },
   data() {
     return {
       currentLanguage: {
@@ -172,30 +154,6 @@ export default {
       return this.vSelectItems.find(language => {
         return language.code === languageCode
       })
-    },
-    getRegionalFlagSrc(flagCode) {
-      let flagIconSrc = '/img/flags/'
-
-      switch (flagCode) {
-        case 'es-eu':
-          flagIconSrc += 'basque.png'
-          break
-        case 'es-gl':
-          flagIconSrc += 'galician.png'
-          break
-        case 'ma':
-          flagIconSrc += 'arabic.png'
-          break
-        default:
-          flagIconSrc = ''
-      }
-
-      return flagIconSrc
-    },
-    isRegularFlag(flagCode) {
-      return flagCode !== 'es-eu'
-        && flagCode !== 'es-gl'
-        && flagCode !== 'ma'
     },
     onSelectChange() {
       /**
@@ -243,19 +201,6 @@ export default {
 </style>
 
 <style lang="scss">
-.yrn-language-switcher {
-  &__regular-flag {
-    margin: -9.91px -0.9em -0.6em -0.7em !important;
-    outline-style: auto;
-  }
-
-  &__regional-flag {
-    margin-left: 2px;
-    outline-color: darkgrey;
-    outline-style: auto;
-  }
-}
-
 .yrn-language-switcher.v-input {
   width: 0;
   max-width: 185px;
