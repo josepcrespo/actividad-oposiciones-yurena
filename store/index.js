@@ -2,10 +2,11 @@
 export const strict = false
 
 export const state = () => ({
-  rtlLanguage: false,
+  languageSwitcherDialog: false,
   navigationDrawerLeft: true,
   navigationDrawerRight: false,
   pageLoadingOverlay: false,
+  rtlLanguage: false,
   // https://i18n.nuxtjs.org/v7/lang-switcher#dynamic-route-parameters
   // @nuxtjs/i18n's store module exposes a routeParams state property that will
   // be merged with route params when generating lang switch routes with switchLocalePath().
@@ -84,17 +85,20 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setRtlLanguage(state, payload) {
-    state.rtlLanguage = payload
-  },
-  setPageLoadingOverlay(state, payload) {
-    state.pageLoadingOverlay = payload
+  setLanguageSwitcherDialog(state, payload) {
+    state.languageSwitcherDialog = payload
   },
   setNavigationDrawerLeft(state, payload) {
     state.navigationDrawerLeft = payload
   },
   setNavigationDrawerRight(state, payload) {
     state.navigationDrawerRight = payload
+  },
+  setPageLoadingOverlay(state, payload) {
+    state.pageLoadingOverlay = payload
+  },
+  setRtlLanguage(state, payload) {
+    state.rtlLanguage = payload
   }
 }
 

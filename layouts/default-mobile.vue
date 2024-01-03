@@ -5,6 +5,7 @@
       <Nuxt />
     </v-main>
     <yrn-bottom-navigation />
+    <yrn-language-switcher-dialog />
     <yrn-navigation-drawer-left />
     <yrn-navigation-drawer-right />
     <yrn-page-loading-overlay />

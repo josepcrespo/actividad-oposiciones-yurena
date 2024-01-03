@@ -74,26 +74,23 @@ zh:
     :grow="vBottomNavigation.grow"
     @change="onVBottomNavigationChange"
   >
-    <v-btn value="language">
-      <span>{{ $t('language')}}</span>
-      <v-icon>mdi-translate</v-icon>
-    </v-btn>
-    <v-btn value="theme">
-      <span>{{ $t('theme') }}</span>
-      <v-icon v-if="$vuetify.theme.dark">
-        mdi-lightbulb-off-outline
-      </v-icon>
-      <v-icon v-else>
-        mdi-lightbulb-on-outline
-      </v-icon>
-    </v-btn>
-    <v-btn value="achievements">
-      <span>{{ $t('achievements') }}</span>
-      <v-icon>mdi-star-face</v-icon>
-    </v-btn>
-    <v-btn value="progress">
-      <span>{{ $t('progress') }}</span>
-      <v-icon>mdi-format-list-bulleted</v-icon>
+    <v-btn
+      v-for="(button, index) in vBottomNavigation.buttons"
+      :key="index"
+      :value="button.value"
+    >
+      <span>{{ $t(button.value) }}</span>
+      <template v-if="button.value !== 'theme'">
+        <v-icon>{{ button.icon }}</v-icon>
+      </template>
+      <template v-else>
+          <v-icon v-if="$vuetify.theme.dark">
+            {{ button.iconDark }}
+          </v-icon>
+          <v-icon v-else>
+            {{ button.iconLight }}
+          </v-icon>
+      </template>
     </v-btn>
   </v-bottom-navigation>
 </template>
@@ -105,12 +102,29 @@ export default {
     return {
       vBottomNavigation: {
         app: true,
+        buttons: [{
+          icon: 'mdi-translate',
+          value: 'language'
+        }, {
+          iconDark: 'mdi-lightbulb-off-outline',
+          iconLight: 'mdi-lightbulb-on-outline',
+          value: 'theme'
+        }, {
+          icon: 'mdi-star-face',
+          value: 'achievements'
+        }, {
+          icon: 'mdi-format-list-bulleted',
+          value: 'progress'
+        }],
         grow: true,
         value: undefined
       }
     }
   },
   methods: {
+    toggleLanguageSwitcherDialog() {
+      this.$store?.commit('setLanguageSwitcherDialog', true)
+    },
     toggleNavigationDrawerRight() {
       this.$store?.commit(
         'setNavigationDrawerRight',
@@ -123,6 +137,7 @@ export default {
     onVBottomNavigationChange(btnValue) {
       switch (btnValue) {
         case 'language':
+          this.toggleLanguageSwitcherDialog()
           break
         case 'theme':
           this.toggleTheme()
