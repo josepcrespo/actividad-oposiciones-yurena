@@ -38,6 +38,7 @@ zh:
   >
     <v-card>
       <v-toolbar
+        class="yrn-language-switcher-dialog__v-toolbar"
         color="default"
         max-height="56px"
       >
@@ -51,7 +52,7 @@ zh:
           {{ $t('dialogTitle') }}
         </v-toolbar-title>
       </v-toolbar>
-      <v-simple-table class="mt-8">
+      <v-simple-table class="mt-14">
         <template #default>
           <tbody>
             <tr
@@ -129,6 +130,12 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-language-switcher-dialog {
+  &__v-toolbar {
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+  }
+
   &__table-row {
     cursor: pointer;
   }
