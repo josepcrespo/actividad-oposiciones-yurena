@@ -17,6 +17,7 @@
 </template>
 
 <script>
+// https://github.com/ubaldop/vue-country-flag
 import CountryFlag from 'vue-country-flag'
 
 export default {
