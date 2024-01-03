@@ -38,7 +38,7 @@ zh:
   >
     <v-card>
       <v-toolbar
-        color="primary"
+        color="default"
         max-height="56px"
       >
         <v-btn
