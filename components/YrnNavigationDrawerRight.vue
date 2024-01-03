@@ -91,6 +91,7 @@ ja:
         </v-list-item-title>
       </v-list-item>
     </v-list>
+    <v-divider class="yrn-navigation-drawer-right__v-divider mb-4" />
     <!-- Learning Unit Activities List -->
     <v-treeview
       v-model="treeview.activeItems"
@@ -186,15 +187,22 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .yrn-navigation-drawer-right {
   .v-list-item {
     &__title {
       letter-spacing: 0.0893em;
     }
   }
-}
 
+  &__v-divider {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+</style>
+
+<style>
 /* stylelint-disable-next-line selector-class-pattern */
 .theme--dark.v-icon.v-icon.v-icon--disabled.mdi-checkbox-marked {
   color: #4CAF50 !important;
