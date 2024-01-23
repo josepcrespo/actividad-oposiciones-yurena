@@ -20,8 +20,11 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
+    "sortablejs": "^1.15.1",
+    "uuid": "^9.0.1",
     "vue": "^2.7.10",
     "vue-country-flag": "^2.3.2",
+    "vue-draggable-plus": "^0.3.4",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
     "vuetify": "^2.6.10"

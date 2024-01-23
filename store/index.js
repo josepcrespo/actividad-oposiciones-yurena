@@ -2,6 +2,7 @@
 export const strict = false
 
 export const state = () => ({
+  isDraggingAnItem: false,
   languageSwitcherDialog: false,
   navigationDrawerLeft: true,
   navigationDrawerRight: false,
@@ -85,6 +86,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setIsDraggingAnItem(state, payload) {
+    state.isDraggingAnItem = payload
+  },
   setLanguageSwitcherDialog(state, payload) {
     state.languageSwitcherDialog = payload
   },

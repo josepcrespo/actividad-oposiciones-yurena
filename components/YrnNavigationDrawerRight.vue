@@ -109,11 +109,6 @@ ja:
 <script>
 export default {
   name: 'YrnNavigationDrawerRight',
-  data() {
-    return {
-      treeviewActiveItems: []
-    }
-  },
   computed: {
     drawerVisibility: {
       get() {

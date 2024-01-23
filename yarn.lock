@@ -11290,6 +11290,11 @@ sort-keys@^2.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
+sortablejs@^1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.15.1.tgz#9a35f52cdff449fb42ea8ecf222f3468d76e0a47"
+  integrity sha512-P5Cjvb0UG1ZVNiDPj/n4V+DinttXG6K8n7vM/HQf0C25K3YKQTQY6fsr/sEGsJGpQ9exmPxluHxKBc0mLKU1lQ==
+
 source-list-map@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"
@@ -12530,6 +12535,11 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
 
+uuid@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
+
 v8-to-istanbul@^9.0.1:
   version "9.1.3"
   resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-9.1.3.tgz#ea456604101cd18005ac2cae3cdd1aa058a6306b"
@@ -12589,6 +12599,11 @@ vue-country-flag@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/vue-country-flag/-/vue-country-flag-2.3.2.tgz#db500a8ee287675b2990360b6fa100cdf7d444c2"
   integrity sha512-YhSS+GbLT9tp8tjMXxJKlqpBUd6dbhQJrttKj8ZbHtBocorIomFDMVMxraWVMs3hxaCW6SsAYaREkoYM00ORiA==
+
+vue-draggable-plus@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/vue-draggable-plus/-/vue-draggable-plus-0.3.4.tgz#8ca0089223302b9152abbc0e713fbefaaae284b9"
+  integrity sha512-3HyaQiJZLrhr6fdD66cS2O4HOsxyo8rfrdcvFctmsduRnBTMYwPsLmONN1WU7RGWHQoBBodt5l2PeRCvblgP3A==
 
 vue-eslint-parser@^9.0.3, vue-eslint-parser@^9.3.1:
   version "9.3.2"

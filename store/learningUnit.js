@@ -187,9 +187,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'c',
           statement: '8x – 5x = x + 8',
           solution: {
@@ -198,9 +195,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'd',
           statement: '3x = 9x + 12',
           solution: {
@@ -209,9 +203,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'e',
           statement: '3x + 6 = 2x + 13',
           solution: {
@@ -220,9 +211,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'f',
           statement: '5x – 7 = 2 – 4x',
           solution: {
@@ -231,9 +219,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'g',
           statement: '5x – 8 + 2x = 7 + 4x – 9',
           solution: {
@@ -242,9 +227,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'h',
           statement: '3x + x + 4 = 2x + 30',
           solution: {
@@ -253,9 +235,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'i',
           statement: '4x + 7 – x = 5 + 2x',
           solution: {
@@ -264,9 +243,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'j',
           statement: '4 – 2x + 13 = 10 – 9x + 7',
           solution: {
@@ -275,9 +251,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'k',
           statement: '7x – 10 + x – 2 = 6x – 3 + 3x – 1',
           solution: {
@@ -286,9 +259,6 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }, {
-          activityId: 1,
-          challengeId: 1,
-          exerciseId: 1,
           sectionId: 'l',
           statement: '5x – 7 + 2x = 3x – 3 + 4x – 5 + x',
           solution: {
@@ -321,6 +291,7 @@ export const state = () => ({
       }, {
         type: 'yrn-image-simple',
         alt: {
+          // TODO: cambiar todas las traducciones: "Parque Natural", por "Parque Nacional".
           ar: '.صورة للحديقة الطبيعية التي زارها المخرج',
           ca: 'Imatge del Parc Natural que va visitar el director.',
           de: 'Bild des Naturparks, den der Direktor besucht hat.',
@@ -372,10 +343,6 @@ export const state = () => ({
         }
       }, {
         exerciseId: 2,
-        routerRedirection: {
-          activityId: 1,
-          challengeId: 3
-        },
         solution: {
           statement: {
             ar: ':يواجه مديرنا صعوبة في تذكر الأعداد الصحيحة، ولكن الغريب أنه يجد أنه من السهل جدًا تذكر المعادلات. لقد حفظت معادلات الدرجة الأولى التالية، قم بحلها وستظهر البيانات الفارغة للنص التالي',
@@ -501,35 +468,294 @@ export const state = () => ({
         }]
       }
       ]
-    }]
-  }, {
-    activityId: 2,
-    challenges: [{
-      challengeId: 1,
+    }, {
+      challengeId: 3,
+      pageStructure: [{
+        type: 'yrn-page-title',
+        title: {
+          en: 'Keep learning about the environment',
+          es: 'Seguimos aprendiendo sobre el entorno',
+          ar: 'نستمر في التعلم حول البيئة',
+          eu: 'Ingurumenari buruz ikasten jarraitzen',
+          ca: 'Continuem aprenent sobre l\'entorn',
+          fr: 'Continuons à apprendre sur l\'environnement',
+          gl: 'Seguimos aprendendo sobre o entorno',
+          de: 'Weiter lernen über die Umgebung',
+          it: 'Continua ad imparare sull\'ambiente',
+          ja: '環境について学び続けます',
+          pt: 'Continuar a aprender sobre o ambiente',
+          ro: 'Continuăm să învățăm despre mediu',
+          ru: 'Продолжаем учиться о среде',
+          zh: '继续学习有关环境的知识'
+        }
+      }, {
+        type: 'yrn-image-simple',
+        alt: {
+          ar: 'نظرة عامة على حديقة تيدي الوطنية',
+          ca: 'Una panoràmica del Parc Nacional del Teide',
+          de: 'Ein Überblick über den Nationalpark Teide',
+          en: 'An Overview of Teide National Park',
+          es: 'Una panorámica del Parque Nacional del Teide',
+          eu: 'Teidego Parke Nazionalaren Panoramikoa',
+          fr: 'Un aperçu du Parc national du Teide',
+          gl: 'Unha panorámica do Parque Nacional do Teide',
+          it: 'Una panoramica del Parco Nazionale del Teide',
+          ja: 'テイデ国立公園の概要',
+          pt: 'Uma visão geral do Parque Nacional do Teide',
+          ro: 'Privire de ansamblu asupra Parcului Național Teide',
+          ru: 'Обзор Национального парка Тейде',
+          zh: '特纳德国家公园概览'
+        },
+        src: '/img/actividad-1/reto-3/imagen-de-cabecera.png',
+        maxHeight: '480'
+      }, {
+        type: 'yrn-exercise',
+        class: 'yrn-math-problem',
+        exerciseId: 1
+      }, {
+        type: 'yrn-custom-drag-and-drop-solution',
+        exerciseId: 1
+      }],
       exercises: [{
         exerciseId: 1,
+        solution: {
+          statement: {
+            ar: "سيقوم المدير بالتحقق مما إذا كانوا قد قاموا بمطابقة كل مصطلح مع صورته المقابلة بشكل جيد وسيخبرهم بمزيد من التفاصيل حول هذه الكائنات الحيوية والنباتات.",
+            ca: "El Director comprovarà si han emparellat bé cada terme amb la imatge corresponent i els explicarà més sobre aquestes espècies animals i vegetals.",
+            de: "Der Direktor wird überprüfen, ob sie jeden Begriff gut mit seinem entsprechenden Bild abgeglichen haben, und ihnen mehr über diese Tier- und Pflanzenarten erzählen.",
+            en: "The Director will check if they have matched each term well with its corresponding image and will tell them more about these animal and plant species.",
+            es: 'El Director comprobará si han emparejado bien cada término con su correspondiente imágen y les contará más acerca de estas especies animales y vegetales.',
+            eu: "Zuzendaria egiaztatuko du ea ondo elkartu duten bakoitzeko terminoa bere irudiekin eta espezie animal eta landareei buruz gehiago kontatuko die.",
+            fr: "Le Directeur vérifiera s'ils ont bien associé chaque terme à son image correspondante et leur en dira plus sur ces espèces animales et végétales.",
+            gl: "O Director comprobará se emparellaron ben cada termo coa súa imaxe correspondente e lles contará máis sobre estas especies animais e vexetais.",
+            it: "Il Direttore verificherà se hanno abbinato bene ogni termine con la sua immagine corrispondente e racconterà loro di più su queste specie animali e vegetali.",
+            ja: "ディレクターは、各用語を対応する画像とよく一致させたかどうかを確認し、これらの動植物についてさらに詳しく語ります。",
+            pt: "O Diretor verificará se eles combinaram bem cada termo com sua imagem correspondente e contará mais sobre essas espécies animais e vegetais.",
+            ro: "Directorul va verifica dacă au potrivit bine fiecare termen cu imaginea sa corespunzătoare și le va spune mai multe despre aceste specii de animale și plante.",
+            ru: "Директор проверит, правильно ли они соотнесли каждый термин с его соответствующим изображением, и расскажет им больше об этих видах животных и растений.",
+            zh: "主管将检查他们是否将每个术语与其相应的图像匹配得很好，并将告诉他们更多关于这些动植物物种的信息。"
+          },
+          expected: 'groupByName',
+          items: [{
+            id: '1',
+            image: '/img/actividad-1/reto-3/1-retamar.jpg',
+            name: {
+              ar: 'ريتامار ديل تيدي',
+              ca: 'Retamar del Teide',
+              de: 'Retamar vom Teide',
+              en: 'Retamar of Teide',
+              es: 'Retamar del Teide',
+              eu: 'Teideko Retamar',
+              fr: 'Retamar du Teide',
+              gl: 'Retamar do Teide',
+              it: 'Retamar del Teide',
+              ja: 'テイデのレタマル',
+              pt: 'Retamar do Teide',
+              ro: 'Retamar din Teide',
+              ru: 'Ретамар дель Тейде',
+              zh: '泰德的雷塔马尔'
+            }
+          }, {
+            id: '2',
+            image: '/img/actividad-1/reto-3/2-alheli.jpg',
+            name: {
+              ar: 'الجناح من تايدي',
+              ca: 'Alhelí del Teide',
+              de: 'Alpenveilchen vom Teide',
+              en: 'Wallflower of Teide',
+              es: 'Alhelí del Teide',
+              eu: 'Teideko alhelí',
+              fr: 'Giroflée du Teide',
+              gl: 'Alhelí do Teide',
+              it: 'Viola del Teide',
+              ja: 'テイデのナズナ',
+              pt: 'Alhelí do Teide',
+              ro: 'Alhelí din Teide',
+              ru: 'Мать-и-мачеха Тейде',
+              zh: '泰德的石竹'
+            }
+          }, {
+            id: '3',
+            image: '/img/actividad-1/reto-3/3-margarita.jpg',
+            name: {
+              ar: 'مارغريتا ديل تيدي',
+              ca: 'Margarita del Teide',
+              de: 'Gänseblümchen vom Teide',
+              en: 'Daisy of Teide',
+              es: 'Margarita del Teide',
+              eu: 'Teideko maragarita',
+              fr: 'Marguerite du Teide',
+              gl: 'Margarita do Teide',
+              it: 'Margherita del Teide',
+              ja: 'テイデのデイジー',
+              pt: 'Margarita do Teide',
+              ro: 'Margarita din Teide',
+              ru: 'Маргарита Тейде',
+              zh: '泰德的雏菊'
+            }
+          }, {
+            id: '4',
+            image: '/img/actividad-1/reto-3/4-violeta.jpg',
+            name: {
+              ar: 'فيوليتا ديل تيدي',
+              ca: 'Violeta del Teide',
+              de: 'Veilchen vom Teide',
+              en: 'Violet of Teide',
+              es: 'Violeta del Teide',
+              eu: 'Teideko bioleta',
+              fr: 'Violette du Teide',
+              gl: 'Violeta do Teide',
+              it: 'Viola del Teide',
+              ja: 'テイデのバイオレット',
+              pt: 'Violeta do Teide',
+              ro: 'Violeta din Teide',
+              ru: 'Фиалка Тейде',
+              zh: '泰德的紫罗兰'
+            }
+
+          }, {
+            id: '5',
+            image: '/img/actividad-1/reto-3/5-tajinaste.jpg',
+            name: {
+              ar: 'تاخيناستي روخو ديل تيدي',
+              ca: 'Tajinaste Roig del Teide',
+              de: 'Roter Tajinaste vom Teide',
+              en: 'Red Tajinaste of Teide',
+              es: 'Tajinaste Rojo del Teide',
+              eu: 'Teideko Tajinaste Gorria',
+              fr: 'Tajinaste Rouge du Teide',
+              gl: 'Tajinaste Vermello do Teide',
+              it: 'Tajinaste Rosso del Teide',
+              ja: 'テイデの赤いタヒナステ',
+              pt: 'Tajinaste Vermelho do Teide',
+              ro: 'Tajinaste Roșu din Teide',
+              ru: 'Красный Тахинасте Тейде',
+              zh: '泰德的红色塔希纳斯特'
+            }
+          }, {
+            id: '6',
+            image: '/img/actividad-1/reto-3/6-abeja.jpg',
+            name: {
+              ar: 'نحلة',
+              ca: 'Abella',
+              de: 'Biene',
+              en: 'Bee',
+              es: 'Abeja',
+              eu: 'Erle',
+              fr: 'Abeille',
+              gl: 'Abella',
+              it: 'Ape',
+              ja: '蜂',
+              pt: 'Abelha',
+              ro: 'Albină',
+              ru: 'Пчела',
+              zh: '蜜蜂'
+            }
+          }, {
+            id: '7',
+            image: '/img/actividad-1/reto-3/7-tijereta.jpg',
+            name: {
+              ar: 'القرقف الوطني',
+              ca: 'Tijereta endèmica',
+              de: 'Endemische Ohrwurm',
+              en: 'Endemic earwig',
+              es: 'Tijereta endémica',
+              eu: 'Aurrera joan',
+              fr: 'Perce-oreille endémique',
+              gl: 'Tixeireta endémica',
+              it: 'Cimice endemica',
+              ja: '固有の耳くそ虫',
+              pt: 'Percevejo endêmico',
+              ro: 'Viespe ureche endemica',
+              ru: 'Эндемичная уховертка',
+              zh: '地方性蠼螋'
+            }
+          }, {
+            id: '8',
+            image: '/img/actividad-1/reto-3/8-lagarto-tizon.jpg',
+            name: {
+              ar: 'سحلية تيزون',
+              ca: 'Sargantana Tizón',
+              de: 'Eidechse Tizon',
+              en: 'Lizard Tizon',
+              es: 'Lagarto Tizón',
+              eu: 'Musker Tizon',
+              fr: 'Lézard Tizon',
+              gl: 'Lagarto Tizon',
+              it: 'Lucertola Tizon',
+              ja: 'トカゲ・ティゾン',
+              pt: 'Lagarto Tizon',
+              ro: 'Soparla Tizon',
+              ru: 'Ящерица Тизон',
+              zh: '蜥蜴蒂松'
+            }
+          }],
+          fromUser: []
+        },
+        statement: {
+          es: 'Si quieren que el Director les ayude a conocer la flora y fauna más relevante del Parque Nacional del Teide, primero resuelvan las siguientes ecuaciones de primer grado:'
+        },
         sections: [{
           sectionId: 'a',
-          statement: '2x + 1 = 21',
+          statement: 'x + 4 = 5',
           solution: {
-            expected: 10,
+            expected: 1,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
-        }]
-      }]
-    }]
-  }, {
-    activityId: 3,
-    challenges: [{
-      challengeId: 1,
-      exercises: [{
-        exerciseId: 1,
-        sections: [{
-          sectionId: 'a',
-          statement: '2x + 1 = 21',
+        }, {
+          sectionId: 'b',
+          statement: '4x + 3 = 3x + 5',
           solution: {
-            expected: 10,
+            expected: 2,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'c',
+          statement: 'x - 8 = 2x - 11',
+          solution: {
+            expected: 3,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'd',
+          statement: '4x - 2 = x + 10',
+          solution: {
+            expected: 4,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'e',
+          statement: 'x + 2x + 3x - 1 = 4x + 9',
+          solution: {
+            expected: 5,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'f',
+          statement: '48 - 3x = 5x',
+          solution: {
+            expected: 6,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'g',
+          statement: '10x - 15 = 4x + 27',
+          solution: {
+            expected: 7,
+            fromUser: undefined,
+            fromUserBySteps: undefined
+          }
+        }, {
+          sectionId: 'h',
+          statement: 'x + 1 = 2x - 7',
+          solution: {
+            expected: 8,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -647,22 +873,22 @@ export const state = () => ({
       ja: 'カタラン語',
       pt: 'Catalão',
       ro: 'Catalan',
-        ru: 'Каталанский',
-        zh: '加泰罗尼亚语'
-      }
-    }, {
-      code: 'de',
-      flagCode: 'de',
-      name: {
-        ar: 'الألمانية',
-        ca: 'Alemany',
-        de: 'Deutsch',
-        en: 'German',
-        es: 'Alemán',
-        eu: 'Alemaniarra',
-        fr: 'Allemand',
-        gl: 'Alemán',
-        it: 'Tedesco',
+      ru: 'Каталанский',
+      zh: '加泰罗尼亚语'
+    }
+  }, {
+    code: 'de',
+    flagCode: 'de',
+    name: {
+      ar: 'الألمانية',
+      ca: 'Alemany',
+      de: 'Deutsch',
+      en: 'German',
+      es: 'Alemán',
+      eu: 'Alemaniarra',
+      fr: 'Allemand',
+      gl: 'Alemán',
+      it: 'Tedesco',
       ja: 'ドイツ語',
       pt: 'Alemão',
       ro: 'Germană',
@@ -704,22 +930,22 @@ export const state = () => ({
       ja: '西班牙语',
       pt: 'Espanhol',
       ro: 'Spaniol',
-        ru: 'Испанский',
-        zh: '西班牙语'
-      }
-    }, {
-      code: 'eu',
-      flagCode: 'es-eu',
-      name: {
-        ar: 'الباسكية',
-        ca: 'Basc',
-        de: 'Baskisch',
-        en: 'Basque',
-        es: 'Vasco',
-        eu: 'Euskara',
-        fr: 'Basque',
-        gl: 'Vasco',
-        it: 'Basco',
+      ru: 'Испанский',
+      zh: '西班牙语'
+    }
+  }, {
+    code: 'eu',
+    flagCode: 'es-eu',
+    name: {
+      ar: 'الباسكية',
+      ca: 'Basc',
+      de: 'Baskisch',
+      en: 'Basque',
+      es: 'Vasco',
+      eu: 'Euskara',
+      fr: 'Basque',
+      gl: 'Vasco',
+      it: 'Basco',
       ja: '巴斯克语',
       pt: 'Basco',
       ro: 'Bască',
@@ -742,22 +968,22 @@ export const state = () => ({
       ja: '法语',
       pt: 'Francês',
       ro: 'Franceză',
-        ru: 'Французский',
-        zh: '法语'
-      }
-    }, {
-      code: 'gl',
-      flagCode: 'es-gl',
-      name: {
-        ar: 'الجاليكية',
-        ca: 'Gallec',
-        de: 'Galizisch',
-        en: 'Galician',
-        es: 'Gallego',
-        eu: 'Galiziarra',
-        fr: 'Galicien',
-        gl: 'Galego',
-        it: 'Galiziano',
+      ru: 'Французский',
+      zh: '法语'
+    }
+  }, {
+    code: 'gl',
+    flagCode: 'es-gl',
+    name: {
+      ar: 'الجاليكية',
+      ca: 'Gallec',
+      de: 'Galizisch',
+      en: 'Galician',
+      es: 'Gallego',
+      eu: 'Galiziarra',
+      fr: 'Galicien',
+      gl: 'Galego',
+      it: 'Galiziano',
       ja: '加利西亚语',
       pt: 'Galego',
       ro: 'Galiciană',
@@ -780,10 +1006,10 @@ export const state = () => ({
       ja: '意大利语',
       pt: 'Italiano',
       ro: 'Italiană',
-        ru: 'Итальянский',
-        zh: '意大利语'
-      }
-    }, {
+      ru: 'Итальянский',
+      zh: '意大利语'
+    }
+  }, {
     code: 'ja',
     flagCode: 'jp',
     name: {
@@ -799,41 +1025,41 @@ export const state = () => ({
       ja: '日语',
       pt: 'Japonês',
       ro: 'Japoneză',
-        ru: 'Японский',
-        zh: '日语'
-      }
-    }, {
-      code: 'pt',
-      flagCode: 'pt',
-      name: {
-        ar: 'البرتغالية',
-        ca: 'Portuguès',
-        de: 'Portugiesisch',
-        en: 'Portuguese',
-        es: 'Portugués',
-        eu: 'Portugesa',
-        fr: 'Portugais',
-        gl: 'Portugués',
-        it: 'Portoghese',
-        ja: '葡萄牙语',
-        pt: 'Português',
-        ro: 'Portugheză',
-        ru: 'Португальский',
-        zh: '葡萄牙语'
-      }
-    }, {
-      code: 'ro',
-      flagCode: 'ro',
-      name: {
-        ar: 'الرومانية',
-        ca: 'Romanès',
-        de: 'Rumänisch',
-        en: 'Romanian',
-        es: 'Rumano',
-        eu: 'Errumaniera',
-        fr: 'Roumain',
-        gl: 'Rumano',
-        it: 'Rumeno',
+      ru: 'Японский',
+      zh: '日语'
+    }
+  }, {
+    code: 'pt',
+    flagCode: 'pt',
+    name: {
+      ar: 'البرتغالية',
+      ca: 'Portuguès',
+      de: 'Portugiesisch',
+      en: 'Portuguese',
+      es: 'Portugués',
+      eu: 'Portugesa',
+      fr: 'Portugais',
+      gl: 'Portugués',
+      it: 'Portoghese',
+      ja: '葡萄牙语',
+      pt: 'Português',
+      ro: 'Portugheză',
+      ru: 'Португальский',
+      zh: '葡萄牙语'
+    }
+  }, {
+    code: 'ro',
+    flagCode: 'ro',
+    name: {
+      ar: 'الرومانية',
+      ca: 'Romanès',
+      de: 'Rumänisch',
+      en: 'Romanian',
+      es: 'Rumano',
+      eu: 'Errumaniera',
+      fr: 'Roumain',
+      gl: 'Rumano',
+      it: 'Rumeno',
       ja: '罗马尼亚语',
       pt: 'Romeno',
       ro: 'Română',
@@ -882,33 +1108,20 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addOrUpdateSection(state, payload) {
+  addOrUpdateExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution, solutionIndex }) {
     // eslint-disable-next-line eqeqeq
-    const activityIndex = state.activities?.findIndex(a => a.activityId == payload.activityId)
+    const activity = state.activities.find((a) => a.activityId == activityId)
 
-    if (activityIndex !== -1) {
+    if (activity) {
       // eslint-disable-next-line eqeqeq
-      const challengeIndex = state.activities[activityIndex].challenges?.findIndex(ch => ch.challengeId == payload.challengeId)
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
 
-      if (challengeIndex !== -1) {
+      if (challenge) {
         // eslint-disable-next-line eqeqeq
-        const exerciseIndex = state.activities[activityIndex].challenges[challengeIndex].exercises?.findIndex(e => e.exerciseId == payload.exerciseId)
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
 
-        if (exerciseIndex !== -1) {
-          // eslint-disable-next-line eqeqeq
-          const sectionIndex = state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections?.findIndex(s => s.sectionId == payload.section.sectionId)
-
-          if (sectionIndex !== -1) {
-            // Update section
-            set(
-              state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections,
-              sectionIndex,
-              payload.section
-            )
-          } else {
-            // Add section
-            state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections.push(payload.section)
-          }
+        if (exercise && exercise.solution) {
+          exercise.solution.fromUser[solutionIndex] = solution
         }
       }
     }
@@ -934,6 +1147,33 @@ export const mutations = {
   setPasswordFromUser(state, payload) {
     if (state.indexPage?.password) {
       set(state.indexPage.password, 'fromUser', payload)
+    }
+  },
+  setSection(state, payload) {
+    // eslint-disable-next-line eqeqeq
+    const activityIndex = state.activities?.findIndex(a => a.activityId == payload.activityId)
+
+    if (activityIndex !== -1) {
+      // eslint-disable-next-line eqeqeq
+      const challengeIndex = state.activities[activityIndex].challenges?.findIndex(ch => ch.challengeId == payload.challengeId)
+
+      if (challengeIndex !== -1) {
+        // eslint-disable-next-line eqeqeq
+        const exerciseIndex = state.activities[activityIndex].challenges[challengeIndex].exercises?.findIndex(e => e.exerciseId == payload.exerciseId)
+
+        if (exerciseIndex !== -1) {
+          // eslint-disable-next-line eqeqeq
+          const sectionIndex = state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections?.findIndex(s => s.sectionId == payload.section.sectionId)
+
+          if (sectionIndex !== -1) {
+            set(
+              state.activities[activityIndex].challenges[challengeIndex].exercises[exerciseIndex].sections,
+              sectionIndex,
+              payload.section
+            )
+          }
+        }
+      }
     }
   }
 }
@@ -1034,8 +1274,31 @@ export const getters = {
 
       if (exercises && window?.Array.isArray(exercises)) {
         return exercises.every((exercise) => {
-          // eslint-disable-next-line eqeqeq
-          return exercise.solution?.expected == exercise.solution?.fromUser
+          if (
+            exercise.sections &&
+            exercise.solution &&
+            typeof exercise.solution === 'string'
+          ) {
+            return exercise.sections.length ===
+              getters.getExerciseSectionsWellSolved(
+                activityId, challengeId, exercise.exerciseId
+              )?.length &&
+              // eslint-disable-next-line eqeqeq
+              exercise.solution?.expected == exercise.solution?.fromUser
+          } else if (exercise.sections) {
+            return exercise.sections.length ===
+              getters.getExerciseSectionsWellSolved(
+                activityId, challengeId, exercise.exerciseId
+              )?.length
+          } else if (
+            exercise.solution &&
+            typeof exercise.solution.expected === 'string'
+          ) {
+            // eslint-disable-next-line eqeqeq
+            return exercise.solution?.expected == exercise.solution?.fromUser
+          } else {
+            return false
+          }
         })
       }
     }

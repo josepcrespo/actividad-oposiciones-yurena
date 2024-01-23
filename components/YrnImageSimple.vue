@@ -2,6 +2,7 @@
   <v-img
     class="yrn-image-simple"
     :alt="localizedAlt"
+    :max-height="maxHeight"
     :src="src"
   >
     <template #placeholder>
@@ -27,6 +28,11 @@ export default {
       default: () => null,
       required: false,
       type: Object
+    },
+    maxHeight: {
+      default: undefined,
+      required: false,
+      type: [Number, String]
     },
     src: {
       required: true,
