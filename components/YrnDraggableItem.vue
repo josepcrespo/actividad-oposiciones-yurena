@@ -97,6 +97,10 @@ export default {
 
   .v-image {
     border: 1px solid rgb(85 85 85 / 50%);
+    box-shadow: none;
+    transition-duration: 0.28s;
+    transition-property: box-shadow, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .v-chip:active {
