@@ -42,7 +42,7 @@ zh:
       <v-row class="my-0">
         <v-col
           cols="12"
-          class="d-flex justify-center"
+          class="d-flex justify-center pt-0"
         >
           <div
             class="text-subtitle-2 font-weight-light text-center"
@@ -84,7 +84,7 @@ zh:
         <v-col
           v-for="(otherItem, otherItemIndex) in others"
           :key="`${otherItemIndex}--${otherItem.id}`"
-          class="d-flex justify-center"
+          class="d-flex justify-center pb-0"
           cols="12"
         >
           <v-chip
