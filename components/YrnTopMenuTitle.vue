@@ -49,23 +49,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Add ellipsis when text overflow.
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .yrn-top-menu-title {
   /**
    * Por la razón que sea, estas reglas deben estar también en el contenedor.
    */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @extend %ellipsis;
 
   /**
    * El componente `<v-toolbar-title /> ya aplica las declaraciones (`overflow`,
    * `text-overflow` y, `white-space`) apropiadas.
    */
-
   &__subtitle {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @extend %ellipsis;
   }
 }
 </style>

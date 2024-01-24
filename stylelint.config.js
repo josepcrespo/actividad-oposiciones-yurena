@@ -6,6 +6,8 @@ module.exports = {
     'stylelint-config-prettier',
   ],
   // add your custom config here
-  // https://stylelint.io/user-guide/configuration
-  rules: {},
+  // https://stylelint.io/user-guide/configure#rules
+  rules: {
+    "at-rule-no-unknown": [true, { "ignoreAtRules": ["extend"] }]
+  }
 }
