@@ -34,7 +34,7 @@ export default {
         this.$route.params.activityId &&
         this.$route.params.challengeId
       ) {
-        subtitle = this.capitalizeWords(
+        subtitle = this.$capitalizeWords(
           `${this.activityTranslation} ${this.$route.params.activityId} / ` +
           `${this.challengeTranslation} ${this.$route.params.challengeId}`
         )
@@ -43,13 +43,6 @@ export default {
       }
 
       return subtitle
-    }
-  },
-  methods: {
-    capitalizeWords(string) {
-      return string.replace(/\b\w/g, function (match) {
-        return match.toUpperCase()
-      })
     }
   }
 }
