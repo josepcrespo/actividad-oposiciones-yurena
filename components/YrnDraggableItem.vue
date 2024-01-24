@@ -96,7 +96,7 @@ export default {
   }
 
   .v-image {
-    border: 1px solid #555;
+    border: 1px solid rgb(85 85 85 / 50%);
   }
 
   .v-chip:active {

@@ -260,8 +260,11 @@ export default {
 .yrn-drop-items-area {
   height: auto;
   flex-basis: min-content;
-  
+
   // min-width: 250px;
+  .v-image {
+    border: 1px solid rgb(85 85 85 / 50%);
+  }
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
