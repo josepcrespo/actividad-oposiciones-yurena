@@ -20,26 +20,26 @@ export default {
   name: 'YrnTopMenuTitle',
   computed: {
     activityTranslation() {
-      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity
+      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity ?? ''
     },
     challengeTranslation() {
-      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge
+      return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge ?? ''
     },
     title() {
-      return this.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale]
+      return this.$store?.state?.learningUnit?.indexPage?.title?.[this.$i18n.locale] ?? ''
     },
     subtitle() {
-      let subtitle = ''
-      if (
-        this.$route.params.activityId &&
-        this.$route.params.challengeId
-      ) {
+      const { activityId, challengeId } = this.$route.params
+      let subtitle
+
+      if (activityId && challengeId) {
         subtitle = this.$capitalizeWords(
-          `${this.activityTranslation} ${this.$route.params.activityId} / ` +
-          `${this.challengeTranslation} ${this.$route.params.challengeId}`
+          `${this.activityTranslation} ${activityId} / ` +
+          `${this.challengeTranslation} ${challengeId}`
         )
       } else {
         subtitle = this.$store?.state?.learningUnit?.indexPage?.subtitle?.[this.$i18n.locale]
+          ?? ''
       }
 
       return subtitle
