@@ -539,22 +539,22 @@ export const state = () => ({
           expected: 'groupByName',
           items: [{
             id: '1',
-            image: '/img/actividad-1/reto-3/1-retamar.jpg',
+            image: '/img/actividad-1/reto-3/1-retama.jpg',
             name: {
-              ar: 'ريتامار ديل تيدي',
-              ca: 'Retamar del Teide',
-              de: 'Retamar vom Teide',
-              en: 'Retamar of Teide',
-              es: 'Retamar del Teide',
-              eu: 'Teideko Retamar',
-              fr: 'Retamar du Teide',
-              gl: 'Retamar do Teide',
-              it: 'Retamar del Teide',
-              ja: 'テイデのレタマル',
-              pt: 'Retamar do Teide',
-              ro: 'Retamar din Teide',
-              ru: 'Ретамар дель Тейде',
-              zh: '泰德的雷塔马尔'
+              ar: 'ريتاما ديل تيدي',
+              ca: 'Retama del Teide',
+              de: 'Retama vom Teide',
+              en: 'Retama of Teide',
+              es: 'Retama del Teide',
+              eu: 'Teideko Retama',
+              fr: 'Retama du Teide',
+              gl: 'Retama do Teide',
+              it: 'Retama del Teide',
+              ja: 'テイデのレタマ',
+              pt: 'Retama do Teide',
+              ro: 'Retama din Teide',
+              ru: 'Ретама дель Тейде',
+              zh: '泰德的雷塔马'
             }
           }, {
             id: '2',
