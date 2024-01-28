@@ -72,7 +72,7 @@ zh:
 </i18n>
 
 <template>
-  <v-row class="yrn-custom-drag-and-drop rounded-lg mt-4">
+  <v-row class="yrn-custom-drag-and-drop rounded-lg mt-4 mx-0">
     <v-col class="yrn-custom-drag-and-drop__title-and-settings d-flex align-center">
       <h2>
         {{ $t('title') }}
