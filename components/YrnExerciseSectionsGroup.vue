@@ -1,3 +1,4 @@
+<!-- deepcode ignore WrongNumberOfArguments: <The computed property uses a "hidden" "section" property defined internally> -->
 <template>
   <v-expansion-panels class="yrn-exercise-sections-group">
     <v-expansion-panel
