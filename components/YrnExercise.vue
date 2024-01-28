@@ -13,6 +13,7 @@
         :activity-id="activityId"
         :challenge-id="challengeId"
         :exercise="exercise"
+        :shuffled="shuffled"
       />
       <yrn-exercise-sections-group-progress
         class="mt-2"
@@ -39,6 +40,11 @@ export default {
       required: true,
       type: [Number, String]
     },
+    shuffled: {
+      default: false,
+      required: false,
+      type: Boolean
+    }
   },
   computed: {
     exercise() {

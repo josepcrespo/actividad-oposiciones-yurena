@@ -234,7 +234,7 @@ export default {
     },
   },
   mounted() {
-    this.items = this.shuffleArray(
+    this.items = this.$shuffleArray(
       this.$store.getters['learningUnit/getExercise'](
         this.activityId,
         this.challengeId,
@@ -269,17 +269,12 @@ export default {
     },
     resetDropItemAreas() {
       this.allPairsAreTwins = undefined
-      this.items = this.shuffleArray(this.items)
+      this.items = this.$shuffleArray(this.items)
       this.$refs?.dropAreas?.forEach(dropArea => {
         if (dropArea && typeof dropArea.reset === 'function') {
           dropArea.reset()
         }
       })
-    },
-    shuffleArray(array) {
-      const newArray = array.slice()
-
-      return newArray.sort(() => Math.random() - 0.5)
     }
   }
 }

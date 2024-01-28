@@ -511,7 +511,8 @@ export const state = () => ({
       }, {
         type: 'yrn-exercise',
         class: 'yrn-math-problem',
-        exerciseId: 1
+        exerciseId: 1,
+        shuffled: true
       }, {
         type: 'yrn-custom-drag-and-drop-solution',
         exerciseId: 1
