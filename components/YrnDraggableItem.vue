@@ -10,7 +10,7 @@
       :src="item.image"
       @mouseover="onMouseOver"
       @mouseleave="onMouseLeave"
-      @dragend="onDragEnd($event)"
+      @dragend="onDragEnd()"
       @dragstart="onDragStart($event, item, visibleProperty)"
     />
     <v-chip
@@ -22,7 +22,7 @@
       text-color="default"
       @mouseover="onMouseOver"
       @mouseleave="onMouseLeave"
-      @dragend="onDragEnd($event)"
+      @dragend="onDragEnd()"
       @dragstart="onDragStart($event, item, visibleProperty)"
     >
       {{ getItemVisibleProperty(item) }}
