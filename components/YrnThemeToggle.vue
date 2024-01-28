@@ -54,11 +54,8 @@ ja:
         v-on="on"
         @click.stop="toggleTheme()"
       >
-        <v-icon v-if="!$vuetify.theme.dark">
-          mdi-lightbulb-on-outline
-        </v-icon>
-        <v-icon v-if="$vuetify.theme.dark">
-          mdi-lightbulb-off-outline
+        <v-icon>
+          {{ icon }}
         </v-icon>
         <span class="mx-1 d-none d-md-block">
           {{ $t('buttonTitle') }}
@@ -72,6 +69,13 @@ ja:
 <script>
 export default {
   name: 'YrnThemeToggle',
+  computed: {
+    icon() {
+      return this.$vuetify.theme.dark
+        ? 'mdi-lightbulb-off-outline'
+        : 'mdi-lightbulb-on-outline'
+    }
+  },
   methods: {
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
