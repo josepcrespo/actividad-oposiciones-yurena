@@ -72,6 +72,8 @@ zh:
 </i18n>
 
 <template>
+  <!-- https://vuejs.org/guide/built-ins/transition#named-transitions -->
+  <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-row
       v-if="exerciseSections.length === exerciseSectionsWellSolved.length"
