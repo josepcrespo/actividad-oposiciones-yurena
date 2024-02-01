@@ -13,19 +13,22 @@ export default ({ app }, inject) => {
           if (matchingVoice) {
             resolve(matchingVoice)
           } else {
-            setTimeout(checkVoices, 100)
+            requestAnimationFrame(checkVoices)
           }
         }
 
         if (window.speechSynthesis.onvoiceschanged !== undefined) {
-          window.speechSynthesis.onvoiceschanged = checkVoices
+          window.speechSynthesis.addEventListener(
+            'voiceschanged',
+            checkVoices
+          )
         } else {
           checkVoices()
         }
       })
     }
 
-    if ('speechSynthesis' in window) {
+    if (window.speechSynthesis) {
       const message = new SpeechSynthesisUtterance()
       message.lang = app.i18n?.locale
       message.pitch = 1
