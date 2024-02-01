@@ -39,7 +39,12 @@ export default ({ app }, inject) => {
       getMessageVoice(app.i18n?.locale).then(voice => {
         if (voice) {
           message.voice = voice
+          window.speechSynthesis.cancel()
+          console.log('start speak')
           window.speechSynthesis.speak(message)
+          message.onend = () => {
+            window.speechSynthesis.cancel()
+          }
         } else {
           alert('Sorry, there is no available voice for your language.')
         }
