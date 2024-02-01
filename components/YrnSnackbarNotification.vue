@@ -1,55 +1,69 @@
 <i18n lang="yaml">
-ar:
-  retry: "حاول مرة أخرى"
-ca:
-  retry: "Prova de nou"
-de:
-  retry: "Versuche es erneut"
-en:
-  retry: "Try again"
 es:
-  retry: "Prueba otra vez"
+  closeBtn: "Cerrar"
+ar:
+  closeBtn: "أغلق"
+ca:
+  closeBtn: "Tanca"
+de:
+  closeBtn: "Schließen"
+en:
+  closeBtn: "Close"
 eu:
-  retry: "Saiatu berriro"
+  closeBtn: "Itxi"
 fr:
-  retry: "Réessayer"
+  closeBtn: "Fermer"
 gl:
-  retry: "Téntao de novo"
+  closeBtn: "Pechar"
 it:
-  retry: "Riprova"
+  closeBtn: "Chiudi"
 ja:
-  retry: "もう一度試す"
+  closeBtn: "閉じる"
 pt:
-  retry: "Tentar novamente"
+  closeBtn: "Fechar"
 ro:
-  retry: "Încearcă din nou"
+  closeBtn: "Închide"
 ru:
-  retry: "Попробуйте снова"
+  closeBtn: "Закрыть"
 zh:
-  retry: "再试一次"
+  closeBtn: "关闭"
 </i18n>
 
 <template>
   <v-snackbar
     v-model="model"
     :app="app"
+    class="yrn-snackbar-notification"
     :color="color"
+    elevation="6"
     :right="right"
+    :rounded="rounded"
     :timeout="timeout"
     :top="top"
   >
     <template #default>
-        <span class="font-weight-black">{{ text }}</span>
+      <span class="font-weight-black">
+        {{ text }}
+      </span>
     </template>
     <template #action="{ attrs }">
       <v-btn
         v-bind="attrs"
-        color="default"
-        :style="{ display: (showAction ? 'flex' : 'none') }"
-        @click="retry()"
+        class="yrn-snackbar-notification__close-btn"
+        :color="$vuetify.theme.dark ? 'white' : 'black'"
+        icon
+        @click="closeSnackbarNotification()"
       >
-        {{ $t('retry') }}
+        <v-icon>
+          mdi-close-circle
+        </v-icon>
       </v-btn>
+      <yrn-memoji
+        class="yrn-snackbar-notification__memoji"
+        height="128"
+        :memoji-name="memojiName"
+        width="128"
+      />
     </template>
   </v-snackbar>
 </template>
@@ -72,11 +86,14 @@ export default {
         this.$store?.commit('snackbarNotification/setModel', value)
       }
     },
+    memojiName() {
+      return this.$store?.state?.snackbarNotification?.memojiName
+    },
     right() {
       return this.$store?.state?.snackbarNotification?.right
     },
-    showAction() {
-      return this.$store?.state?.snackbarNotification?.showAction
+    rounded() {
+      return this.$store?.state?.snackbarNotification?.rounded
     },
     text() {
       return this.$store?.state?.snackbarNotification?.text?.toShow
@@ -89,9 +106,71 @@ export default {
     }
   },
   methods: {
-    retry() {
+    closeSnackbarNotification() {
       this.$store?.commit('snackbarNotification/setModel', false)
     }
   }
 }
 </script>
+
+<style lang="scss">
+.yrn-snackbar-notification {
+  .v-snack {
+    &__content {
+      padding-right: 128px;
+    }
+
+    &__action {
+      display: flex;
+
+      .v-image {
+        position: absolute;
+        right: 0;
+      }
+
+      .v-btn {
+        left: -18px;
+        position: absolute;
+        top: -18px;
+
+        &__content {
+          background-color: white;
+          border-radius: 100%;
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--dark {
+  .yrn-snackbar-notification {
+    .v-snack {
+      &__action {
+        .v-btn {
+          &__content {
+            background-color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--light {
+  .yrn-snackbar-notification {
+    .v-snack {
+      &__action {
+        .v-btn {
+          &__content {
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

@@ -80,9 +80,16 @@ export default {
       setTimeout(() => {
         const i18n = this.$i18n
         const success = response === this.exerciseSolutionExpected
+        const memojiName = success
+          ? 'director-bien'
+          : 'director-mal'
         this.loading = false
         this.$store?.commit('setPageLoadingOverlay', false)
-        this.$store?.dispatch('snackbarNotification/show', { i18n, success })
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n,
+          memojiName,
+          success
+        })
         
         if (
           success &&
