@@ -17,7 +17,11 @@ export default ({ app }, inject) => {
           }
         }
 
-        checkVoices()
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+          window.speechSynthesis.onvoiceschanged = checkVoices
+        } else {
+          checkVoices()
+        }
       })
     }
 
