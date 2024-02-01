@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="yrn-collection-card mx-auto pb-1 my-4"
+    class="yrn-collection-card mx-2 my-6"
     elevation="5"
     max-width="320"
     rounded="xl"
@@ -47,10 +47,23 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-collection-card {
-  .v-card {
-    &__text {
-      height: 200px;
-      overflow-y: auto;
+  &.v-card {
+    max-height: 500px;
+    overflow-y: clip;
+
+    .v-image {
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        height: 100% !important;
+      }
+    }
+
+    .v-card {
+      &__text {
+        height: 200px;
+        overflow-y: auto;
+      }
     }
   }
 }
