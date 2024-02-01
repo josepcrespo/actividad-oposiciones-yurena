@@ -14,12 +14,21 @@
       @mouseover="handleMouseOver"
     />
     <v-card-title>
-      {{ title }}
+      <div>{{ title }}</div>
+      <v-btn
+        class="float-right"
+        icon
+        @click="$textToSpeech(text)"
+      >
+        <v-icon>
+          mdi-account-voice
+        </v-icon>
+      </v-btn>
     </v-card-title>
     <v-card-subtitle>
       {{ subtitle }}
     </v-card-subtitle>
-    <v-divider></v-divider>
+    <v-divider/>
     <v-card-text>
       {{ text }}
     </v-card-text>
@@ -48,7 +57,7 @@ export default {
   },
   methods: {
     handleMouseOver($event) {
-      const vCardElement = $event.currentTarget.closest('.yrn-collection-card')
+      const vCardElement = $event.currentTarget.closest('.v-card')
 
       vCardElement.scrollTop = 0
     }
@@ -67,6 +76,11 @@ export default {
       &:hover {
         height: 100% !important;
       }
+    }
+
+    .v-btn {
+      position: absolute;
+      right: 16px;
     }
   }
 }
