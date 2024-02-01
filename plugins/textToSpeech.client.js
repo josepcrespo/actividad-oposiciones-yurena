@@ -25,14 +25,13 @@ export default ({ app }, inject) => {
       const message = new SpeechSynthesisUtterance()
       message.lang = app.i18n?.locale
       message.pitch = 1
-      message.rate = 0.9
+      message.rate = 0.6
       message.text = text
       message.volume = 1
 
       getMessageVoice(app.i18n?.locale).then(voice => {
         if (voice) {
           message.voice = voice
-          console.info('message:', message)
           window.speechSynthesis.speak(message)
         } else {
           alert('Sorry, there is no available voice for your language.')
