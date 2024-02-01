@@ -2,12 +2,16 @@
   <v-card
     class="yrn-collection-card mx-2 my-6"
     elevation="5"
+    max-height="480"
     max-width="320"
+    min-height="480"
+    min-width="320"
     rounded="xl"
   >
     <v-img
       :src="image"
       height="200px"
+      @mouseover="handleMouseOver"
     />
     <v-card-title>
       {{ title }}
@@ -41,6 +45,13 @@ export default {
       required: true,
       type: String
     }
+  },
+  methods: {
+    handleMouseOver($event) {
+      const vCardElement = $event.currentTarget.closest('.yrn-collection-card')
+
+      vCardElement.scrollTop = 0
+    }
   }
 }
 </script>
@@ -48,21 +59,13 @@ export default {
 <style lang="scss" scoped>
 .yrn-collection-card {
   &.v-card {
-    max-height: 500px;
-    overflow-y: clip;
+    overflow-y: auto;
 
     .v-image {
-      transition: all 0.5s ease-in-out;
+      transition: all 0.25s ease-in-out;
 
       &:hover {
         height: 100% !important;
-      }
-    }
-
-    .v-card {
-      &__text {
-        height: 200px;
-        overflow-y: auto;
       }
     }
   }
