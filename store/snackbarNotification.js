@@ -83,7 +83,7 @@ export const state = () => ({
     },
     toShow: ''
   },
-  timeout: -1
+  timeout: 5000
 })
 
 export const mutations = {
