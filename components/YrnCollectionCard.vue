@@ -13,7 +13,7 @@
       height="200px"
       @mouseover="handleMouseOver"
     />
-    <v-card-title>
+    <v-card-title class="d-flex align-start">
       <div>{{ title }}</div>
       <v-btn
         class="float-right"
@@ -69,6 +69,15 @@ export default {
 .yrn-collection-card {
   &.v-card {
     overflow-y: auto;
+
+    .v-card {
+      &__title {
+        div {
+          max-width: 240px;
+          word-break: normal;
+        }
+      }
+    }
 
     .v-image {
       transition: all 0.25s ease-in-out;
