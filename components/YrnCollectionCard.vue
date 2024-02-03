@@ -67,6 +67,8 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-collection-card {
+  user-select: none;
+  
   &.v-card {
     overflow-y: auto;
 
