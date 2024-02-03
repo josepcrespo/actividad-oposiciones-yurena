@@ -72,6 +72,18 @@ export default {
     height: 100% !important;
     width: 100% !important;
   }
+
+  // Top card of the stack
+  &__card:nth-of-type(2) {
+    filter: blur(0);
+  }
+
+  &__card:nth-of-type(3),
+  &__card:nth-of-type(4),
+  &__card:nth-of-type(5),
+  &__card:nth-of-type(6) {
+    filter: blur(2px);
+  }
 }
 
 @media (width <  600px) {
