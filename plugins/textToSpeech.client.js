@@ -1,3 +1,5 @@
+// Cross browser text to speech (TTS)
+// https://github.com/tom-s/speak-tts
 import Speech from 'speak-tts'
 
 export default ({ app }, inject) => {
