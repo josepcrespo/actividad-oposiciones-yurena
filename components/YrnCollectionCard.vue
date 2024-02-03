@@ -16,6 +16,16 @@
     <v-card-title class="d-flex align-start">
       <div>{{ title }}</div>
       <v-btn
+        class="float-right mr-10"
+        icon
+        :href="link"
+        :target="target"
+      >
+        <v-icon>
+          mdi-web
+        </v-icon>
+      </v-btn>
+      <v-btn
         class="float-right"
         icon
         @click="$textToSpeech(text)"
@@ -42,8 +52,17 @@ export default {
       required: true,
       type: String
     },
+    link: {
+      required: true,
+      type: String
+    },
     subtitle: {
       required: true,
+      type: String
+    },
+    target: {
+      default: '_blank',
+      required: false,
       type: String
     },
     text: {
@@ -68,14 +87,14 @@ export default {
 <style lang="scss" scoped>
 .yrn-collection-card {
   user-select: none;
-  
+
   &.v-card {
     overflow-y: auto;
 
     .v-card {
       &__title {
         div {
-          max-width: 240px;
+          max-width: 210px;
           word-break: normal;
         }
       }
