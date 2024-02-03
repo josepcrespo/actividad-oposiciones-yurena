@@ -1,56 +1,105 @@
+import Speech from 'speak-tts'
+
 export default ({ app }, inject) => {
-  inject('textToSpeech', (text) => {
+  inject('textToSpeech', (text, debug) => {
     if (typeof text !== 'string') return null
 
-    function getMessageVoice(locale) {
-      return new Promise(resolve => {
-        const checkVoices = () => {
-          const voicesArray = window.speechSynthesis.getVoices()
-          const matchingVoice = voicesArray.find(voice => {
-            return voice.lang?.startsWith(locale)
-          })
+    function getCurrentLanguageVoice(voices) {
+      voices = voices ?? []
+      let locale
+      switch (app.i18n.locale) {
+        case 'en':
+          locale = 'en-GB'
+          break
+        case 'es':
+          locale = 'es-ES'
+          break
+        default:
+          // All other languages don't have different locales,
+          // so the language code is enough
+          locale = app.i18n.locale
+      }
 
-          if (matchingVoice) {
-            resolve(matchingVoice)
-          } else {
-            requestAnimationFrame(checkVoices)
-          }
-        }
-
-        if (window.speechSynthesis.onvoiceschanged !== undefined) {
-          window.speechSynthesis.addEventListener(
-            'voiceschanged',
-            checkVoices
-          )
-        } else {
-          checkVoices()
-        }
+      return voices.find(voice => {
+        return voice.lang?.startsWith(locale)
       })
     }
 
-    if (window.speechSynthesis) {
-      const message = new SpeechSynthesisUtterance()
-      message.lang = app.i18n?.locale
-      message.pitch = 1
-      message.rate = 0.6
-      message.text = text
-      message.volume = 1
+    debug = debug || false
+    const speech = new Speech()
 
-      getMessageVoice(app.i18n?.locale).then(voice => {
-        if (voice) {
-          message.voice = voice
-          window.speechSynthesis.cancel()
-          console.log('start speak')
-          window.speechSynthesis.speak(message)
-          message.onend = () => {
-            window.speechSynthesis.cancel()
+    if (speech.hasBrowserSupport()) {
+      if (speech.speaking()) {
+        speech.cancel()
+      }
+      speech.init({
+        lang: app.i18n.locale,
+        listeners: {
+          onvoiceschanged: (voices) => {
+            if (debug) {
+              // eslint-disable-next-line no-console
+              console.debug('Event voiceschanged', voices)
+              const currentLanguageVoice = getCurrentLanguageVoice(voices)
+              if (currentLanguageVoice) {
+                speech.setVoice(currentLanguageVoice.name)
+              } else {
+                window?.alert('Sorry, the current page language don\'t support text to speech on this web browser.')
+              }
+            }
           }
-        } else {
-          alert('Sorry, there is no available voice for your language.')
+        },
+        pitch: 1,
+        queue: false,
+        rate: 0.6,
+        splitSentences: true,
+        volume: 1
+      }).then((data) => {
+        if (getCurrentLanguageVoice(data.voices)) {
+          speech.speak({
+            listeners: {
+              onstart: () => {
+                if (debug) {
+                  // eslint-disable-next-line no-console
+                  console.debug('Speech started')
+                }
+              },
+              onend: () => {
+                if (debug) {
+                  // eslint-disable-next-line no-console
+                  console.debug('Speech finished')
+                }
+                speech.cancel()
+              },
+              onresume: () => {
+                if (debug) {
+                  // eslint-disable-next-line no-console
+                  console.debug('Speech resumed')
+                }
+              },
+              onboundary: (event) => {
+                if (debug) {
+                  // eslint-disable-next-line no-console
+                  console.debug(`${event.name} boundary reached after ${event.elapsedTime} milliseconds`)
+                }
+              }
+            },
+            text
+          }).then(() => {
+            if (debug) {
+              // eslint-disable-next-line no-console
+              console.debug('Success reading text aloud!')
+            }
+          }).catch(e => {
+            // eslint-disable-next-line no-console
+            console.error('Error on speech.speak() %o', e)
+          })
         }
+      }).catch(e => {
+        // eslint-disable-next-line no-console
+        console.error('Error on speech.init() %o', e)
       })
     } else {
-      alert('Sorry, your browser doesn\'t support text to speech!')
+      window?.alert('Sorry, your browser doesn\'t support text to speech!')
     }
   })
 }
