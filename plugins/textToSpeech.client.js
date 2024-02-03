@@ -2,32 +2,37 @@
 // https://github.com/tom-s/speak-tts
 import Speech from 'speak-tts'
 
-export default ({ app }, inject) => {
-  
+export default ({ app }, inject) => {  
+  const speech = new Speech()
+
+  /**
+   * Returns the voice object that matches the current language locale.
+   * 
+   * @param {Array} voices  - An array of voice objects.
+   * @returns {Object}      - The voice object that matches the current language locale, or undefined if not found.
+   */
+  function getCurrentLanguageVoice(voices) {
+    voices = voices ?? []
+    const localeLookup = {
+      'en': 'en-GB',
+      'es': 'es-ES'
+    }
+    const locale = localeLookup[app.i18n.locale] || app.i18n.locale
+
+    return voices.find(voice => {
+      return voice.lang?.startsWith(locale)
+    })
+  }
+
   /**
    * Converts text to speech using the speak-tts library.
    * 
-   * @param {string} text - The text to be converted to speech.
-   * @param {boolean} [debug=false] - Whether to enable debug mode.
+   * @param {string} text             - The text to be converted to speech.
+   * @param {boolean} [debug=false]   - Whether to enable debug mode.
    * @returns {void}
    */
   inject('textToSpeech', (text, debug = false) => {
     if (typeof text !== 'string') return null
-
-    function getCurrentLanguageVoice(voices) {
-      voices = voices ?? []
-      const localeLookup = {
-        'en': 'en-GB',
-        'es': 'es-ES'
-      }
-      const locale = localeLookup[app.i18n.locale] || app.i18n.locale
-
-      return voices.find(voice => {
-        return voice.lang?.startsWith(locale)
-      })
-    }
-
-    const speech = new Speech()
 
     if (speech.hasBrowserSupport()) {
       if (speech.speaking()) {
