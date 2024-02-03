@@ -3,31 +3,30 @@
 import Speech from 'speak-tts'
 
 export default ({ app }, inject) => {
-  inject('textToSpeech', (text, debug) => {
+  
+  /**
+   * Converts text to speech using the speak-tts library.
+   * 
+   * @param {string} text - The text to be converted to speech.
+   * @param {boolean} [debug=false] - Whether to enable debug mode.
+   * @returns {void}
+   */
+  inject('textToSpeech', (text, debug = false) => {
     if (typeof text !== 'string') return null
 
     function getCurrentLanguageVoice(voices) {
       voices = voices ?? []
-      let locale
-      switch (app.i18n.locale) {
-        case 'en':
-          locale = 'en-GB'
-          break
-        case 'es':
-          locale = 'es-ES'
-          break
-        default:
-          // All other languages don't have different locales,
-          // so the language code is enough
-          locale = app.i18n.locale
+      const localeLookup = {
+        'en': 'en-GB',
+        'es': 'es-ES'
       }
+      const locale = localeLookup[app.i18n.locale] || app.i18n.locale
 
       return voices.find(voice => {
         return voice.lang?.startsWith(locale)
       })
     }
 
-    debug = debug || false
     const speech = new Speech()
 
     if (speech.hasBrowserSupport()) {
