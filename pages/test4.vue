@@ -40,6 +40,10 @@
 </template>
 
 <script>
+/** 
+ * @link https://rodleviton.github.io/vue-card-stack/
+ * @link https://github.com/rodleviton/vue-card-stack/
+ */
 import VueCardStack from 'vue-card-stack'
 
 export default {
