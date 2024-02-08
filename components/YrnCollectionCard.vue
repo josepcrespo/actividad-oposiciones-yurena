@@ -98,6 +98,10 @@ export default {
           word-break: normal;
         }
       }
+
+      &__text {
+        font-family: monospace;
+      }
     }
 
     .v-image {
