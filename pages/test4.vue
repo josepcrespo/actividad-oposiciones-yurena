@@ -88,7 +88,6 @@ export default {
   },
   methods: {
     handleMove(movement) {
-      console.log("🚀 ~ handleOnMove ~ movement:", movement)
       if (movement < 0) {
         this.isCardMovedLeft = true
         this.isCardMovedRight = false
