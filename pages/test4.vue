@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="mb-10">
     <v-col
       class="d-flex justify-center"
       cols="12"
@@ -22,10 +22,16 @@
         :max-visible-cards="6"
         :scale-multiplier="0.5"
         :stack-width="$vuetify.breakpoint.xs ? 0 : 480"
-        style="height: 525px;"
+        style="height: 530px;"
+        @move="handleMove"
       >
         <template #card="{ card }">
           <yrn-collection-card
+            :class="{
+              'top-card-moved-left': isCardMovedLeft,
+              'top-card-moved-right': isCardMovedRight,
+              'top-card-stopped': isCardStopped,
+            }"
             :image="card.image"
             :link="card.link"
             :subtitle="card.scientificName"
@@ -33,6 +39,20 @@
             :title="card.name[$i18n.locale]"
             style="height: 100%; width: 100%;"
           />
+        </template>
+        <template #nav="{ onNext, onPrevious }">
+          <nav>
+            <v-btn icon @click="onPrevious">
+              <v-icon>
+                mdi-chevron-left
+              </v-icon>
+            </v-btn>
+            <v-btn icon @click="onNext">
+              <v-icon>
+                mdi-chevron-right
+              </v-icon>
+            </v-btn>
+          </nav>
         </template>
       </vue-card-stack>
     </v-col>
@@ -50,6 +70,13 @@ export default {
   components: {
     VueCardStack
   },
+  data() {
+    return {
+      isCardMovedLeft: false, 
+      isCardMovedRight: false,
+      isCardStopped: true
+    }
+  },
   computed: {
     cards() {
       return this.$store?.getters['learningUnit/getExercise'](
@@ -57,6 +84,24 @@ export default {
         3,
         1
       )?.solution?.items
+    }
+  },
+  methods: {
+    handleMove(movement) {
+      console.log("🚀 ~ handleOnMove ~ movement:", movement)
+      if (movement < 0) {
+        this.isCardMovedLeft = true
+        this.isCardMovedRight = false
+        this.isCardStopped = false
+      } else if (movement > 0) {
+        this.isCardMovedLeft = false
+        this.isCardMovedRight = true
+        this.isCardStopped = false
+      } else {
+        this.isCardMovedLeft = false
+        this.isCardMovedRight = false
+        this.isCardStopped = true
+      }
     }
   }
 }
@@ -66,16 +111,16 @@ export default {
 .vue-card-stack {
   &__wrapper {
     width: 85vw;
+
+    nav {
+      position: relative;
+      top: -40px;
+    }
   }
 
   &__stack {
     height: 100% !important;
     width: 100% !important;
-  }
-
-  // Top card of the stack
-  &__card:nth-of-type(2) {
-    filter: blur(0);
   }
 
   &__card:nth-of-type(3),
@@ -84,9 +129,47 @@ export default {
   &__card:nth-of-type(6) {
     filter: blur(2px);
   }
+
+  // Mixin for transforming top cards of the stack
+  @mixin transformTopCard($scale, $rotate) {
+    transform: scale($scale) rotate($rotate);
+  }
+
+  // Top cards of the stack
+  &__card:nth-of-type(1),
+  &__card:nth-of-type(2) {
+    filter: blur(0);
+    
+    .yrn-collection-card {
+      transition: transform 0.2s ease 0s;
+
+      &.top-card-stopped {
+        @include transformTopCard(1, 0);
+      }
+    }
+  }
+
+  // Card coming from the right side, outside the stack,
+  // that will be placed on top of the stack
+  &__card:nth-of-type(1) {
+    .yrn-collection-card {
+      &.top-card-moved-left {
+        @include transformTopCard(1.1, 5deg);
+      }
+    }
+  }
+
+  // Visible top card of the stack
+  &__card:nth-of-type(2) {
+    .yrn-collection-card {
+      &.top-card-moved-right {
+        @include transformTopCard(1.1, -5deg);
+      }
+    }
+  }
 }
 
-@media (width <  600px) {
+@media (width <=  599px) {
   .vue-card-stack {
     &__wrapper {
       width: 100vw;
