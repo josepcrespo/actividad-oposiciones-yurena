@@ -131,8 +131,8 @@ export default {
   }
 
   // Mixin for transforming top cards of the stack
-  @mixin transformTopCard($scale, $rotate) {
-    transform: scale($scale) rotate($rotate);
+  @mixin transform-top-card($scale, $rotate, $translateY) {
+    transform: scale($scale) rotate($rotate) translateY($translateY);
   }
 
   // Top cards of the stack
@@ -144,7 +144,7 @@ export default {
       transition: transform 0.2s ease 0s;
 
       &.top-card-stopped {
-        @include transformTopCard(1, 0);
+        @include transform-top-card(1, 0, 0);
       }
     }
   }
@@ -154,7 +154,7 @@ export default {
   &__card:nth-of-type(1) {
     .yrn-collection-card {
       &.top-card-moved-left {
-        @include transformTopCard(1.1, 5deg);
+        @include transform-top-card(1.05, 3deg, -20px);
       }
     }
   }
@@ -163,7 +163,7 @@ export default {
   &__card:nth-of-type(2) {
     .yrn-collection-card {
       &.top-card-moved-right {
-        @include transformTopCard(1.1, -5deg);
+        @include transform-top-card(1.05, -3deg, -20px);
       }
     }
   }

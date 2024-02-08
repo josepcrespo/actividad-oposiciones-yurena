@@ -8,6 +8,12 @@ module.exports = {
   // add your custom config here
   // https://stylelint.io/user-guide/configure#rules
   rules: {
-    "at-rule-no-unknown": [true, { "ignoreAtRules": ["extend"] }]
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "extend",
+        "include",
+        "mixin"
+      ]
+    }]
   }
 }
