@@ -57,7 +57,7 @@ export default ({ app }, inject) => {
         pitch: 1,
         queue: false,
         rate: 0.6,
-        splitSentences: true,
+        splitSentences: false,
         volume: 1
       }).then((data) => {
         if (getCurrentLanguageVoice(data.voices)) {
