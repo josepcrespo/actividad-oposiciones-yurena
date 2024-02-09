@@ -516,6 +516,9 @@ export const state = () => ({
       }, {
         type: 'yrn-custom-drag-and-drop-solution',
         exerciseId: 1
+      }, {
+        type: 'yrn-stack-of-cards',
+        exerciseId: 1
       }],
       exercises: [{
         exerciseId: 1,
@@ -840,10 +843,10 @@ export const state = () => ({
         },
         statement: {
           ar: 'إذا قمتم بحل المعادلات التالية من الدرجة الأولى، سيواصل المدير توسيع معرفتكم بالمعلومات التي ستساعدكم في التعرف بشكل أفضل على النباتات والحيوانات الأكثر أهمية في الحديقة الوطنية تيدي.',
-          ca: 'Si resoleu les següents equacions de primer grau, el Director us continuarà ampliant amb informació que us ajudarà a conèixer millor la flora i la fauna més rellevants del Parc Nacional del Teide.',
+          ca: 'Si resoleu les següents equacions de primer grau, el Director vos continuarà ampliant amb informació que us ajudarà a conèixer millor la flora i la fauna més rellevants del Parc Nacional del Teide.',
           de: 'Wenn Sie die folgenden Gleichungen ersten Grades lösen, wird der Direktor Sie weiterhin mit Informationen erweitern, die Ihnen helfen, die relevanteste Flora und Fauna des Teide-Nationalparks besser kennenzulernen.',
           en: 'If you solve the following first-degree equations, the Director will continue to expand on information that will help you better understand the most relevant flora and fauna of the Teide National Park.',
-          es: 'Si resuelven las siguientes ecuaciones de primer grado, el Director os seguirá ampliando con información que os ayudará a conocer mejor la flora y fauna más relevante del Parque Nacional del Teide.',
+          es: 'Si resuelven las siguientes ecuaciones de primer grado, el Director les seguirá ampliando con información que os ayudará a conocer mejor la flora y fauna más relevante del Parque Nacional del Teide.',
           eu: 'Azken mailako ekuazio hauek konpontzen badituzue, Zuzendariak jarraitzeko informazioarekin hedatu egingo da, zuek Parke Nazionala del Teideko landare eta fauna garrantzitsuena hobeto ezagutzeko lagunduko dizkizuen informazioarekin.',
           fr: 'Si vous résolvez les équations du premier degré suivantes, le Directeur continuera d\'élargir les informations qui vous aideront à mieux comprendre la flore et la faune les plus pertinentes du parc national du Teide.',
           gl: 'Se resolven as seguintes ecuacións de primeiro grao, o Director continuará a ampliar a información que vos axudará a coñecer mellor a flora e fauna máis relevante do Parque Nacional do Teide.',
