@@ -1,8 +1,11 @@
 <template>
   <v-img
     :height="height"
+    :max-height="maxHeight"
+    :max-width="maxWidth"
     :src="`/img/memojis/${memojiName}.png`"
     :width="width"
+    contain
   />
 </template>
 
@@ -10,7 +13,12 @@
 export default {
   props: {
     height: {
-      default: 420,
+      default: undefined,
+      required: false,
+      type: [Number, String]
+    },
+    maxHeight: {
+      default: undefined,
       required: false,
       type: [Number, String]
     },
@@ -18,8 +26,13 @@ export default {
       required: true,
       type: String
     },
+    maxWidth: {
+      default: undefined,
+      required: false,
+      type: [Number, String]
+    },
     width: {
-      default: 420,
+      default: undefined,
       required: false,
       type: [Number, String]
     }
