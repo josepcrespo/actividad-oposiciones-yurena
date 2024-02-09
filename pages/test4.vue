@@ -114,6 +114,7 @@ export default {
     nav {
       position: relative;
       top: -40px;
+      left: 15px;
     }
   }
 
