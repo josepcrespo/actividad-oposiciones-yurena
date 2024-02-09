@@ -6,7 +6,7 @@
         :color="color"
       >
         <p
-          v-for="(paragraph, index) in localizedParagraphs"
+          v-for="(paragraph, index) in currentLanguageParagraphs"
           :key="index"
         >
           {{ paragraph }}
@@ -36,8 +36,12 @@ export default {
     }
   },
   computed: {
-    localizedParagraphs() {
-      return this.paragraphs?.[this.$i18n.locale] ?? []
+    currentLanguageParagraphs() {
+      if (this.paragraphs?.[this.$i18n.locale]) {
+        return this.paragraphs?.[this.$i18n.locale] ?? []
+      } else {
+        return this.paragraphs
+      }
     }
   }
 }
