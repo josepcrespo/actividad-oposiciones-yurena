@@ -839,7 +839,20 @@ export const state = () => ({
           fromUser: []
         },
         statement: {
-          es: 'Si quieren que el Director les ayude a conocer la flora y fauna más relevante del Parque Nacional del Teide, primero resuelvan las siguientes ecuaciones de primer grado:'
+          ar: 'إذا قمتم بحل المعادلات التالية من الدرجة الأولى، سيواصل المدير توسيع معرفتكم بالمعلومات التي ستساعدكم في التعرف بشكل أفضل على النباتات والحيوانات الأكثر أهمية في الحديقة الوطنية تيدي.',
+          ca: 'Si resoleu les següents equacions de primer grau, el Director us continuarà ampliant amb informació que us ajudarà a conèixer millor la flora i la fauna més rellevants del Parc Nacional del Teide.',
+          de: 'Wenn Sie die folgenden Gleichungen ersten Grades lösen, wird der Direktor Sie weiterhin mit Informationen erweitern, die Ihnen helfen, die relevanteste Flora und Fauna des Teide-Nationalparks besser kennenzulernen.',
+          en: 'If you solve the following first-degree equations, the Director will continue to expand on information that will help you better understand the most relevant flora and fauna of the Teide National Park.',
+          es: 'Si resuelven las siguientes ecuaciones de primer grado, el Director os seguirá ampliando con información que os ayudará a conocer mejor la flora y fauna más relevante del Parque Nacional del Teide.',
+          eu: 'Azken mailako ekuazio hauek konpontzen badituzue, Zuzendariak jarraitzeko informazioarekin hedatu egingo da, zuek Parke Nazionala del Teideko landare eta fauna garrantzitsuena hobeto ezagutzeko lagunduko dizkizuen informazioarekin.',
+          fr: 'Si vous résolvez les équations du premier degré suivantes, le Directeur continuera d\'élargir les informations qui vous aideront à mieux comprendre la flore et la faune les plus pertinentes du parc national du Teide.',
+          gl: 'Se resolven as seguintes ecuacións de primeiro grao, o Director continuará a ampliar a información que vos axudará a coñecer mellor a flora e fauna máis relevante do Parque Nacional do Teide.',
+          it: 'Se risolvete le seguenti equazioni di primo grado, il Direttore continuerà ad ampliare con informazioni che vi aiuteranno a conoscere meglio la flora e la fauna più rilevante del Parco Nazionale del Teide.',
+          ja: '次の一次方程式を解くと、ディレクターがテイデ国立公園の最も関連性のある植物相と動物相をより良く理解するのに役立つ情報をさらに拡充します。',
+          pt: 'Se resolverem as seguintes equações de primeiro grau, o Diretor continuará a expandir com informações que ajudarão vocês a conhecer melhor a flora e a fauna mais relevantes do Parque Nacional do Teide.',
+          ro: 'Dacă rezolvați următoarele ecuații de gradul întâi, Directorul va continua să ofere informații care vă vor ajuta să înțelegeți mai bine cea mai relevantă floare și faună din Parcul Național Teide.',
+          ru: 'Если вы решите следующие уравнения первой степени, директор будет продолжать расширять информацию, которая поможет вам лучше понять наиболее актуальную флору и фауну национального парка Тейде.',
+          zh: '如果你解决了下面的一次方程，主任将继续扩展有关信息，这将帮助你更好地了解泰德国家公园最相关的植物和动物。'
         },
         sections: [{
           sectionId: 'a',
