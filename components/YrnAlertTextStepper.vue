@@ -10,7 +10,7 @@
         </p>
         <nav class="d-flex justify-end">
           <v-btn
-            v-show="currentParagraphIndex > 0"
+            v-show="hasPreviousParagraph"
             icon
             @click="handleOnPreviousBtnClick()"
           >
@@ -22,11 +22,11 @@
             icon
             @click="handleOnNextBtnClick()"
           >
-            <v-icon v-if="currentParagraphIndex < Object.keys(currentLanguageParagraphs).length - 1">
-              mdi-chevron-right
+            <v-icon v-if="isLastParagraph">
+              mdi-reload
             </v-icon>
             <v-icon v-else>
-              mdi-reload
+              mdi-chevron-right
             </v-icon>
           </v-btn>
         </nav>
@@ -66,6 +66,12 @@ export default {
       } else {
         return this.paragraphs
       }
+    },
+    isLastParagraph() {
+      return this.currentParagraphIndex === Object.keys(this.currentLanguageParagraphs).length - 1
+    },
+    hasPreviousParagraph() {
+      return this.currentParagraphIndex > 0
     }
   },
   methods: {
