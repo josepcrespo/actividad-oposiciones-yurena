@@ -237,7 +237,7 @@ export default {
   },
   mounted() {
     this.items = this.$shuffleArray(
-      this.$store.getters['learningUnit/getExercise'](
+      this.$store?.getters['learningUnit/getExercise'](
         this.activityId,
         this.challengeId,
         this.exerciseId
