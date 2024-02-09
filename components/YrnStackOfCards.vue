@@ -76,14 +76,15 @@ zh:
 <template>
   <v-row class="yrn-stack-of-cards mb-10">
     <v-col
-      class="d-flex-column justify-center"
+      class="d-flex-column"
       cols="12"
       sm="12"
       md="5"
     >
       <yrn-memoji
+        :max-width="maxMemojiWidth"
         :memoji-name="memojiName"
-        class="mr-16 mr-md-0"
+        class="mx-auto"
       />
       <yrn-alert-text-stepper
         border="top"
@@ -161,6 +162,11 @@ export default {
     },
     exerciseId: {
       required: true,
+      type: [Number, String]
+    },
+    maxMemojiWidth: {
+      default: '50%',
+      required: false,
       type: [Number, String]
     },
     memojiName: {
