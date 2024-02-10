@@ -6,7 +6,7 @@
         :color="color"
       >
         <p class="mt-3">
-          {{ currentLanguageParagraphs[currentParagraphIndex] }}
+          {{ paragraphs[$i18n.locale][currentParagraphIndex] }}
         </p>
         <nav class="d-flex justify-end">
           <v-btn
@@ -60,15 +60,8 @@ export default {
     }
   },
   computed: {
-    currentLanguageParagraphs() {
-      if (this.paragraphs?.[this.$i18n.locale]) {
-        return this.paragraphs?.[this.$i18n.locale] ?? []
-      } else {
-        return this.paragraphs
-      }
-    },
     isLastParagraph() {
-      return this.currentParagraphIndex === Object.keys(this.currentLanguageParagraphs).length - 1
+      return this.currentParagraphIndex === this.paragraphs[this.$i18n.locale].length - 1
     },
     hasPreviousParagraph() {
       return this.currentParagraphIndex > 0
@@ -78,7 +71,7 @@ export default {
     handleOnNextBtnClick() {
       if (
         this.currentParagraphIndex <
-        Object.keys(this.currentLanguageParagraphs).length  - 1
+        this.paragraphs[this.$i18n.locale].length  - 1
       ) {
         this.currentParagraphIndex++
       } else {
