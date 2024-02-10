@@ -176,7 +176,7 @@ zh:
         cols="12"
       >
         <yrn-draggable-item
-          v-for="item in idsWithUuid(items)"
+          v-for="item in reShuffledItemsWithUuids"
           :key="item.id"
           class="yrn-custom-drag-and-drop__draggable-item d-inline-flex"
           :item="item"
@@ -234,8 +234,11 @@ export default {
         this.exerciseId
       )
     },
+    reShuffledItemsWithUuids() {
+      return this.idsWithUuid(this.$shuffleArray(this.items))
+    }
   },
-  mounted() {
+  created() {
     this.items = this.$shuffleArray(
       this.$store?.getters['learningUnit/getExercise'](
         this.activityId,
@@ -259,11 +262,16 @@ export default {
     },
     idsWithUuid(originalArray) {
       const transformedArray = originalArray.map(item => {
-        const newId = `${item.id}--${newUuid()}`
+        // Check if the item id already contains a UUID
+        if (!item.id.includes('--')) {
+          const newId = `${item.id}--${newUuid()}`
 
-        return {
-          ...item,
-          id: newId
+          return {
+            ...item,
+            id: newId
+          }
+        } else {
+          return item
         }
       })
 
@@ -272,10 +280,12 @@ export default {
     resetDropItemAreas() {
       this.allPairsAreTwins = undefined
       this.items = this.$shuffleArray(this.items)
-      this.$refs?.dropAreas?.forEach(dropArea => {
-        if (dropArea && typeof dropArea.reset === 'function') {
-          dropArea.reset()
-        }
+      this.$nextTick(() => {
+        this.$refs?.dropAreas?.forEach(dropArea => {
+          if (dropArea && typeof dropArea.reset === 'function') {
+            dropArea.reset()
+          }
+        })
       })
     }
   }
