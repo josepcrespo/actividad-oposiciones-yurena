@@ -19,10 +19,10 @@ de:
     - "Denken Sie daran, dass Sie jederzeit auf den Abschnitt 'Errungenschaften' zugreifen und alle Sammelkarten anzeigen können. Genießen Sie dieses Lernabenteuer!"
 es:
   paragraphs:
-    - "¡Felicidades! Habéis demostrado que domináis este tipo de ejercicios. En reconocimiento a vuestros logros, he creado para vosotros estas cartas coleccionables que contienen información valiosa acerca de diversas especies de la flora y la fauna del Parque Nacional del Teide."
+    - "¡Felicidades! Han demostrado que dominan este tipo de ejercicios. En reconocimiento a sus logros, he creado para ustedes estas cartas coleccionables que contienen información valiosa acerca de diversas especies de la flora y la fauna del Parque Nacional del Teide."
     - "Cada carta contiene una foto representativa de la especie, su nombre común, su nombre científico, una pequeña descripción, un botón accesible para personas con discapacidad auditiva y, un enlace a la página de la especie en CanariWiki."
-    - "Les animo a explorar y coleccionar todas las cartas, permitiéndles descubrir los secretos y maravillas que alberga nuestro Parque Nacional más emblemático."
-    - "Recordad que podéis acceder en cualquier momento a la sección \"Logros\" y ver todas las cartas coleccionables, ¡disfrutad de esta aventura de aprendizaje!"
+    - "Les animo a explorar y coleccionar todas las cartas, permitiéndoles descubrir los secretos y maravillas que alberga nuestro Parque Nacional más emblemático."
+    - "Recuerden que pueden acceder en cualquier momento a la sección \"Logros\" y ver todas las cartas coleccionables, ¡disfruten de esta aventura de aprendizaje!"
 eu:
   paragraphs:
     - "Zorionak! Arazo mota hauetan dominatzen duzula erakutsi duzue. Zure arrakasten ohorez, sortu ditut zuei karta bildumak, Teideko Parke Nazionalaren lore eta fauna espezie ezberdinak inguruko informazio baliagarriaz hornitzen dutenak."
@@ -74,69 +74,76 @@ zh:
 </i18n>
 
 <template>
-  <v-row class="yrn-stack-of-cards mb-10">
-    <v-col
-      class="d-flex-column"
-      cols="12"
-      sm="12"
-      md="5"
+  <!-- https://vuejs.org/guide/built-ins/transition#named-transitions -->
+  <!-- https://www.w3schools.com/vue/ref_transition.php -->
+  <transition name="vue-transition-fade">
+    <v-row
+      v-if="true"
+      class="yrn-stack-of-cards mb-10"
     >
-      <yrn-memoji
-        :max-width="maxMemojiWidth"
-        :memoji-name="memojiName"
-        class="mx-auto"
-      />
-      <yrn-alert-text-stepper
-        border="top"
-        :paragraphs="$t('paragraphs')"
-      />
-    </v-col>
-    <v-col
-      class="d-flex justify-center ml-8 ml-md-0"
-      cols="12"
-      sm="12"
-      md="7"
-    >
-      <vue-card-stack
-        :cards="cards"
-        :max-visible-cards="6"
-        :scale-multiplier="0.5"
-        :stack-width="$vuetify.breakpoint.xs ? 0 : 480"
-        style="height: 530px;"
-        @move="handleMove"
+      <v-col
+        class="d-flex-column"
+        cols="12"
+        sm="12"
+        md="5"
       >
-        <template #card="{ card }">
-          <yrn-collection-card
-            :class="{
-              'top-card-moved-left': isCardMovedLeft,
-              'top-card-moved-right': isCardMovedRight,
-              'top-card-stopped': isCardStopped,
-            }"
-            :image="card.image"
-            :link="card.link"
-            :subtitle="card.scientificName"
-            :text="card.description?.[$i18n.locale]"
-            :title="card.name?.[$i18n.locale]"
-            style="height: 100%; width: 100%;"
-          />
-        </template>
-        <template #nav="{ onNext, onPrevious }">
-          <nav>
-            <v-btn icon @click="onPrevious">
-              <v-icon>
-                mdi-chevron-left
-              </v-icon>
-            </v-btn>
-            <v-btn icon @click="onNext">
-              <v-icon>
-                mdi-chevron-right
-              </v-icon>
-            </v-btn>
-          </nav>
-        </template>
-      </vue-card-stack>
-    </v-col>
-  </v-row>
+        <yrn-memoji
+          :max-width="maxMemojiWidth"
+          :memoji-name="memojiName"
+          class="mx-auto"
+        />
+        <yrn-alert-text-stepper
+          border="top"
+          :paragraphs="$t('paragraphs')"
+        />
+      </v-col>
+      <v-col
+        class="d-flex justify-center ml-8 ml-md-0"
+        cols="12"
+        sm="12"
+        md="7"
+      >
+        <vue-card-stack
+          :cards="cards"
+          :max-visible-cards="6"
+          :scale-multiplier="0.5"
+          :stack-width="$vuetify.breakpoint.xs ? 0 : 480"
+          style="height: 530px;"
+          @move="handleMove"
+        >
+          <template #card="{ card }">
+            <yrn-collection-card
+              :class="{
+                'top-card-moved-left': isCardMovedLeft,
+                'top-card-moved-right': isCardMovedRight,
+                'top-card-stopped': isCardStopped,
+              }"
+              :image="card.image"
+              :link="card.link"
+              :subtitle="card.scientificName"
+              :text="card.description?.[$i18n.locale]"
+              :title="card.name?.[$i18n.locale]"
+              style="height: 100%; width: 100%;"
+            />
+          </template>
+          <template #nav="{ onNext, onPrevious }">
+            <nav>
+              <v-btn icon @click="onPrevious">
+                <v-icon>
+                  mdi-chevron-left
+                </v-icon>
+              </v-btn>
+              <v-btn icon @click="onNext">
+                <v-icon>
+                  mdi-chevron-right
+                </v-icon>
+              </v-btn>
+            </nav>
+          </template>
+        </vue-card-stack>
+      </v-col>
+    </v-row>
+  </transition>
 </template>
 
 <script>
@@ -165,12 +172,12 @@ export default {
       type: [Number, String]
     },
     maxMemojiWidth: {
-      default: '50%',
+      default: '66%',
       required: false,
       type: [Number, String]
     },
     memojiName: {
-      default: 'director-señalando',
+      default: 'director-matasuegras',
       required: false,
       type: String
     }
