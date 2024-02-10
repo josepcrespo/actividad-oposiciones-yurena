@@ -538,6 +538,12 @@ export const state = () => ({
             "Ich ermutige Sie, alle Karten zu erkunden und zu sammeln, um die Geheimnisse und Wunder zu entdecken, die unser bekanntester Nationalpark birgt.",
             "Denken Sie daran, dass Sie jederzeit auf den Abschnitt 'Errungenschaften' zugreifen und alle Sammelkarten anzeigen können. Genießen Sie dieses Lernabenteuer!"
           ],
+          en: [
+            "Congratulations! You have shown that you have mastered these types of exercises. In recognition of your achievements, I created for you these collectible cards that contain valuable information about various species of the flora and fauna of the Teide National Park.",
+            "Each letter contains a representative photo of the species, its common name, its scientific name, a short description, a button accessible to people with hearing disabilities, and a link to the species page on CanariWiki.",
+            "I encourage you to explore and collect all the cards, allowing you to discover the secrets and wonders that our most emblematic National Park houses.",
+            "Remember that you can access the \"Achievements\" section at any time and see all the collectible cards, enjoy this learning adventure!"
+          ],
           es: [
             "¡Felicidades! Han demostrado que dominan este tipo de ejercicios. En reconocimiento a sus logros, he creado para ustedes estas cartas coleccionables que contienen información valiosa acerca de diversas especies de la flora y la fauna del Parque Nacional del Teide.",
             "Cada carta contiene una foto representativa de la especie, su nombre común, su nombre científico, una pequeña descripción, un botón accesible para personas con discapacidad auditiva y, un enlace a la página de la especie en CanariWiki.",
@@ -549,6 +555,12 @@ export const state = () => ({
             "Bakoitza espeziearen irudia, bere izen arrunta, izen zientifikoa, laburdeskripzioa, entzumen arazoak dituztenentzako botoa eta CanariWikiko espezie-orrialdeko esteka ditu karta bakoitzak.",
             "Anima zaitezte kartak esploratzen eta bildutzen, gure Parke Nazionalenik ikonikoena duten sekretuak eta harritzekoa aurkituz.",
             "Gogoratu 'Arrakastak' atalean orduan eta bertan bildutako kartak ikusi ahal izango dituzula. Gozatu ikasketa abentura hau!"
+          ],
+          fr: [
+            "Félicitations ! Vous avez montré que vous maîtrisiez ce type d'exercices. En reconnaissance de vos réalisations, j'ai créé pour vous ces cartes à collectionner qui contiennent des informations précieuses sur diverses espèces de la flore et de la faune du parc national du Teide.",
+            "Chaque lettre contient une photo représentative de l'espèce, son nom commun, son nom scientifique, une brève description, un bouton accessible aux personnes malentendantes, et un lien vers la page espèce sur CanariWiki.",
+            "Je vous encourage à explorer et à collectionner toutes les cartes, vous permettant de découvrir les secrets et les merveilles qu'abrite notre Parc National le plus emblématique.",
+            "N'oubliez pas que vous pouvez accéder à tout moment à la section \"Réalisations\" et voir toutes les cartes à collectionner, profitez de cette aventure d'apprentissage !"
           ],
           gl: [
             "¡Parabéns! Demostrastes que dominades este tipo de exercicios. En recoñecemento dos vosos logros, criei para vós estas tarxetas coleccionables que conteñen información valiosa sobre diversas especies da flora e a fauna do Parque Nacional do Teide.",
