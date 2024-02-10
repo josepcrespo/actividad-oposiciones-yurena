@@ -1432,6 +1432,7 @@ export const getters = {
       state.activities.find((a) => a.activityId === activityId)
 
     if (!activity) {
+      // eslint-disable-next-line no-console
       console.warn(`Activity "${activityId}" not found on this learning unit.`);
     }
 
