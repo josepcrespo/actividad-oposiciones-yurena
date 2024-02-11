@@ -42,7 +42,7 @@ zh:
       <v-row class="my-0">
         <v-col
           cols="12"
-          class="d-flex justify-center pt-0"
+          class="d-flex justify-center py-0"
         >
           <div
             class="text-subtitle-2 font-weight-light text-center"
@@ -71,7 +71,11 @@ zh:
         </v-col>
         <v-col
           class="d-flex justify-center pt-0"
-          :class="{ 'pb-0': others.length > 0, 'pb-3': others.length === 0 }"
+          :class="{
+            'pb-3': others.length > 0,
+            'pb-0': others.length === 0,
+            'pt-3': images.length === 0
+          }"
           cols="12"
         >
           <v-icon v-show="showPairValidation && hasTwinsPair">
@@ -84,7 +88,7 @@ zh:
         <v-col
           v-for="(otherItem, otherItemIndex) in others"
           :key="`${otherItemIndex}--${otherItem.id}`"
-          class="d-flex justify-center pb-0"
+          class="d-flex justify-center py-0"
           cols="12"
         >
           <v-chip
