@@ -204,6 +204,11 @@ export default {
     exerciseId: {
       required: true,
       type: [Number, String]
+    },
+    scrollToElement: {
+      default: '',
+      required: false,
+      type: String
     }
   },
   data() {
@@ -264,6 +269,9 @@ export default {
 
       // Automatically reset the value for `this.pairCollectionStatus` after 5 seconds
       window?.setTimeout(() => {
+        if (this.pairCollectionStatus && this.scrollToElement) {
+          this.$scrollToElement(this.scrollToElement)
+        }
         if (this.pairCollectionStatus !== undefined) {
           this.pairCollectionStatus = undefined
         }

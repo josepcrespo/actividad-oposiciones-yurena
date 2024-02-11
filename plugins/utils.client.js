@@ -24,4 +24,22 @@ export default ({ app }, inject) => {
     }
     return newArray
   })
+
+  inject('scrollToElement', (selector) => {
+    if (typeof selector !== 'string' || selector.trim() === '') {
+      throw new TypeError(
+        'Invalid argument: selector must be a non-empty string'
+      )
+    }
+    const element = window?.document.querySelector(selector)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'Element with selector "%s" not found.',
+        selector
+      )
+    }
+  })
 }

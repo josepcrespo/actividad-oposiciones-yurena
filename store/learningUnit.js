@@ -515,7 +515,8 @@ export const state = () => ({
         shuffled: true
       }, {
         type: 'yrn-custom-drag-and-drop-solution',
-        exerciseId: 1
+        exerciseId: 1,
+        scrollToElement: '.yrn-stack-of-cards'
       }, {
         type: 'yrn-stack-of-cards',
         exerciseId: 1,
