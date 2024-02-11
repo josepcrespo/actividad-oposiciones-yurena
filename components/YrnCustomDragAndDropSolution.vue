@@ -260,13 +260,7 @@ export default {
         return dropArea.hasTwinsPair === true && hasUniquePairs
       })
 
-      if (this.pairCollectionStatus === true) {
-        this.$store.dispatch('snackbarNotification/show', {
-          i18n: this.$i18n,
-          memojiName: 'director-bien',
-          success: true
-        })
-      }
+      this.dispatchNotification()
 
       // Automatically reset the value for `this.pairCollectionStatus` after 5 seconds
       window?.setTimeout(() => {
@@ -274,6 +268,18 @@ export default {
           this.pairCollectionStatus = undefined
         }
       }, 5000)
+    },
+    dispatchNotification() {
+      const memojiName = this.pairCollectionStatus
+        ? 'director-bien'
+        : 'director-mal'
+      const success = this.pairCollectionStatus
+
+      this.$store.dispatch('snackbarNotification/show', {
+        i18n: this.$i18n,
+        memojiName,
+        success
+      })
     },
     getExerciseSectionsWellSolved(activityId, challengeId, exerciseId) {
       return this.$store?.getters['learningUnit/getExerciseSectionsWellSolved'](
