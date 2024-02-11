@@ -260,6 +260,14 @@ export default {
         return dropArea.hasTwinsPair === true && hasUniquePairs
       })
 
+      if (this.pairCollectionStatus === true) {
+        this.$store.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-bien',
+          success: true
+        })
+      }
+
       // Automatically reset the value for `this.pairCollectionStatus` after 5 seconds
       window?.setTimeout(() => {
         if (this.pairCollectionStatus !== undefined) {
