@@ -259,6 +259,13 @@ export default {
 
         return dropArea.hasTwinsPair === true && hasUniquePairs
       })
+
+      // Automatically reset the value for `this.pairCollectionStatus` after 5 seconds
+      window?.setTimeout(() => {
+        if (this.pairCollectionStatus !== undefined) {
+          this.pairCollectionStatus = undefined
+        }
+      }, 5000)
     },
     getExerciseSectionsWellSolved(activityId, challengeId, exerciseId) {
       return this.$store?.getters['learningUnit/getExerciseSectionsWellSolved'](
