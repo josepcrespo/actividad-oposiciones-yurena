@@ -265,13 +265,19 @@ export default {
         return dropArea.hasTwinsPair === true && hasUniquePairs
       })
 
+      this.checkPairCollectionCallback()
+    },
+    checkPairCollectionCallback() {
       this.dispatchNotification()
 
-      // Automatically reset the value for `this.pairCollectionStatus` after 5 seconds
+      // Trigger some actions automatically after 5 seconds
       window?.setTimeout(() => {
+        // If `this.pairCollectionStatus` is `true` and,
+        // `this.scrollToElement` is defined, scroll to the element.
         if (this.pairCollectionStatus && this.scrollToElement) {
           this.$scrollToElement(this.scrollToElement)
         }
+        // Reset the value for `this.pairCollectionStatus`
         if (this.pairCollectionStatus !== undefined) {
           this.pairCollectionStatus = undefined
         }
