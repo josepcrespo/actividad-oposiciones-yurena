@@ -76,7 +76,7 @@ zh:
   <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-row
-      v-if="exerciseSections.length === exerciseSectionsWellSolved.length"
+      v-if="true || exerciseSections.length === exerciseSectionsWellSolved.length"
       class="yrn-custom-drag-and-drop rounded-lg mt-4 mx-0"
     >
       <v-col class="yrn-custom-drag-and-drop__title-and-settings d-flex align-center">
@@ -93,25 +93,25 @@ zh:
         />
         <v-btn
           class="mr-2"
-          :color="(allPairsAreTwins === undefined)
+          :color="(pairCollectionStatus === undefined)
             ? 'default'
-            : allPairsAreTwins
+            : pairCollectionStatus
               ? 'green'
               : 'deep-orange darken-4'"
           elevation="0"
           outlined
           small
-          @click="checkTwinsPairs()"
+          @click="checkPairCollection()"
         >
           {{ $t('checkPairsBtn') }}
           <v-icon
-            v-show="allPairsAreTwins"
+            v-show="pairCollectionStatus"
             right
           >
             mdi-check-circle
           </v-icon>
           <v-icon
-            v-show="allPairsAreTwins === false"
+            v-show="pairCollectionStatus === false"
             right
           >
             mdi-alert-circle-outline
@@ -208,8 +208,8 @@ export default {
   },
   data() {
     return {
-      allPairsAreTwins: undefined,
       items: [],
+      pairCollectionStatus: undefined,
       switchHelpModel: true
     }
   },
@@ -248,9 +248,16 @@ export default {
     )
   },
   methods: {
-    checkTwinsPairs() {
-      this.allPairsAreTwins = this.$refs?.dropAreas?.every(dropArea => {
-        return dropArea.hasTwinsPair === true
+    checkPairCollection() {
+      const existingNames = new Set()
+
+      this.pairCollectionStatus = this.$refs?.dropAreas?.every(dropArea => {
+        const names = dropArea.images.map(image => image.name[this.$i18n.locale])
+        const hasUniquePairs = names.every(name => !existingNames.has(name))
+        
+        names.forEach(name => existingNames.add(name))
+
+        return dropArea.hasTwinsPair === true && hasUniquePairs
       })
     },
     getExerciseSectionsWellSolved(activityId, challengeId, exerciseId) {
@@ -278,7 +285,7 @@ export default {
       return transformedArray
     },
     resetDropItemAreas() {
-      this.allPairsAreTwins = undefined
+      this.pairCollectionStatus = undefined
       this.items = this.$shuffleArray(this.items)
       this.$nextTick(() => {
         this.$refs?.dropAreas?.forEach(dropArea => {
