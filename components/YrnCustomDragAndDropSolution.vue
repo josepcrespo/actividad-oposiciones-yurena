@@ -76,7 +76,7 @@ zh:
   <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-row
-      v-if="true || exerciseSections.length === exerciseSectionsWellSolved.length"
+      v-if="exerciseSections.length === exerciseSectionsWellSolved.length"
       class="yrn-custom-drag-and-drop rounded-lg mt-4 mx-0"
     >
       <v-col class="yrn-custom-drag-and-drop__title-and-settings d-flex align-center">
