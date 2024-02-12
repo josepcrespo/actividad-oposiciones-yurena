@@ -59,22 +59,27 @@ export default {
       type: Boolean
     }
   },
+  data() {
+    return {
+      exerciseSections: []
+    }
+  },
   computed: {
-    exerciseSections() {
-      return this.shuffled
-        ? this.shuffledSections
-        : this.exercise.sections
-    },
     isWellSolved() {
       return (section) => {
         return this.getSolutionVerdict(section)
       }
-    },
-    shuffledSections() {
-      return this.$shuffleArray(this.exercise.sections)
-    },
+    }
+  },
+  created() {
+    this.exerciseSections = this.getExerciseSections()
   },
   methods: {
+    getExerciseSections() {
+      return this.shuffled
+        ? this.$shuffleArray(this.exercise.sections)
+        : this.exercise.sections
+    },
     getExpectedSolution(section) {
       return section?.solution?.expected
     },
