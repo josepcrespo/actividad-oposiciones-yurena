@@ -269,8 +269,14 @@ export default {
     },
     checkPairCollectionCallback() {
       this.dispatchNotification()
+      this.$store.commit('learningUnit/setExerciseSolutionIsValid', {
+        activityId: this.activityId,
+        challengeId: this.challengeId,
+        exerciseId: this.exerciseId,
+        isValid: this.pairCollectionStatus
+      })
 
-      // Trigger some actions automatically after 5 seconds
+      // Trigger some other actions automatically after 3 seconds
       window?.setTimeout(() => {
         // If `this.pairCollectionStatus` is `true` and,
         // `this.scrollToElement` is defined, scroll to the element.
@@ -281,7 +287,7 @@ export default {
         if (this.pairCollectionStatus !== undefined) {
           this.pairCollectionStatus = undefined
         }
-      }, 5000)
+      }, 3000)
     },
     dispatchNotification() {
       const memojiName = this.pairCollectionStatus
