@@ -80,22 +80,24 @@ export default {
       return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge
     },
     continuePath() {
+      const nextChallengeId = window?.Number(this.challengeId) + 1
       const nextChallengePath = this.$store?.getters?.getLocaleActivityChallengeUrl(
         this.$i18n,
         this.activityId,
-        window?.Number(this.challengeId) + 1
+        nextChallengeId
       )
+      const nextActivityId = window?.Number(this.activityId) + 1
       const nextActivityPath = this.$store?.getters?.getLocaleActivityChallengeUrl(
         this.$i18n,
-        window?.Number(this.activityId) + 1,
-        1,
+        nextActivityId,
+        1
       )
-      const nextChallengeRouter = this.$router.resolve({ path: nextChallengePath })
-      const nextActivityRouter = this.$router.resolve({ path: nextActivityPath })
+      const nextChallengePageStructure = this.getPageStructure(this.activityId, nextChallengeId)
+      const nextActivityPageStructure = this.getPageStructure(nextActivityId, 1)
 
-      if (nextChallengeRouter.route.name) {
+      if (nextChallengePageStructure.length) {
         return nextChallengePath
-      } else if (nextActivityRouter.route.name) {
+      } else if (nextActivityPageStructure.length) {
         return nextActivityPath
       } else {
         // TODO: Pensar si queremos redirigir a otra página cuando se complete el último reto.
@@ -111,9 +113,7 @@ export default {
       )
     },
     pageStructure() {
-      return this.$store
-        ?.getters['learningUnit/getChallenge'](this.activityId, this.challengeId)
-        ?.pageStructure ?? []
+      return this.getPageStructure(this.activityId, this.challengeId)
     }
   },
   beforeMount() {
@@ -126,6 +126,11 @@ export default {
     )
   },
   methods: {
+    getPageStructure(activityId, challengeId) {
+      return this.$store
+        ?.getters['learningUnit/getChallenge'](activityId, challengeId)
+        ?.pageStructure ?? []
+    },
     initializeWindowResize() {
       this.handleWindowResize = this.$store.dispatch(
         'windowResize/initializeWindowResize',
