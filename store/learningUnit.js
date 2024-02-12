@@ -626,7 +626,7 @@ export const state = () => ({
             ru: "Директор проверит, правильно ли они соотнесли каждый термин с его соответствующим изображением, и расскажет им больше об этих видах животных и растений.",
             zh: "主管将检查他们是否将每个术语与其相应的图像匹配得很好，并将告诉他们更多关于这些动植物物种的信息。"
           },
-          expected: 'groupByName',
+          isValid: false,
           items: [
             {
               description: {
@@ -1371,6 +1371,24 @@ export const mutations = {
 
         if (exercise && exercise.solution) {
           exercise.solution.fromUser[solutionIndex] = solution
+        }
+      }
+    }
+  },
+  setExerciseSolutionIsValid(state, { activityId, challengeId, exerciseId, isValid }) {
+    // eslint-disable-next-line eqeqeq
+    const activity = state.activities.find((a) => a.activityId == activityId)
+
+    if (activity) {
+      // eslint-disable-next-line eqeqeq
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
+
+      if (challenge) {
+        // eslint-disable-next-line eqeqeq
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
+
+        if (exercise && exercise.solution) {
+          set(exercise.solution, 'isValid', isValid)
         }
       }
     }
