@@ -1,14 +1,16 @@
 <template>
-  <div ref="videoContainer" class="yrn-youtube-video">
-    <iframe
-      ref="youtubeIframe"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      frameborder="0"
-      :src="youtubeEmbedUrl"
-      :title="title"
-    />
-  </div>
+  <v-row ref="videoContainer" class="yrn-youtube-video">
+    <v-col>
+      <iframe
+        ref="youtubeIframe"
+        :allow="allowedFunctionalitiesString"
+        allowfullscreen
+        frameborder="0"
+        :src="youtubeEmbedUrl"
+        :title="title"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -29,7 +31,27 @@ export default {
       type: String
     }
   },
+  data() {
+    return {
+      allowedFunctionalities: [
+        'accelerometer',
+        'autoplay',
+        'clipboard-write',
+        'encrypted-media',
+        'gyroscope',
+        'picture-in-picture'
+      ]
+    }
+  },
   computed: {
+    /**
+     * Return a string of allowed functionalities joined by ';'
+     *
+     * @return {string} string of allowed functionalities
+     */
+    allowedFunctionalitiesString() {
+      return this.allowedFunctionalities.join('; ')
+    },
     /**
      * Return the embed URL for a YouTube video using the youtubeVideoId property.
      *
@@ -82,9 +104,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .yrn-youtube-video {
+  display: contents;
   position: relative;
   width: 100%;
+
+  iframe {
+    width: 100%;
+  }
 }
 </style>
