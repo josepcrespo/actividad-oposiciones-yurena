@@ -3,7 +3,7 @@
   <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-row
-      v-if="true"
+      v-if="showComponent"
       class="yrn-stack-of-cards mb-10"
     >
       <v-col
@@ -120,11 +120,17 @@ export default {
   },
   computed: {
     cards() {
+      return this.exerciseSolution?.items ?? []
+    },
+    exerciseSolution() {
       return this.$store?.getters['learningUnit/getExercise'](
         this.activityId,
         this.challengeId,
         this.exerciseId
-      )?.solution?.items ?? []
+      )?.solution ?? {}
+    },
+    showComponent() {
+      return this.exerciseSolution?.isValid ?? false
     }
   },
   methods: {
