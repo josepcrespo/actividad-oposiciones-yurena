@@ -20,6 +20,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
+    "phaser": "^3.70.0",
     "sortablejs": "^1.15.1",
     "speak-tts": "^2.0.8",
     "uuid": "^9.0.1",
