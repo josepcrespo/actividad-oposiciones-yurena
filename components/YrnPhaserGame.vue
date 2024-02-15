@@ -129,9 +129,12 @@ export default {
       })
     },
     addPhaserCar(scene) {
-      const carImage = 'img/phaserjs/car.png'
-      this.car = scene.add.image(this.tileSize / 2, this.tileSize / 2, carImage)
-      this.car.setOrigin(0.5)
+      try {
+        this.car = scene.add.image(this.tileSize / 2, this.tileSize / 2, 'phaserImgCar')
+        this.car.setOrigin(0.5)
+      } catch (error) {
+        console.error('Error adding car to scene: %o', error)
+      }
     },
     addPhaserControls(scene) {
       scene.input.keyboard.on('keydown', (event) => {
@@ -325,6 +328,11 @@ export default {
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
+
+      gameScene.preload = () => {
+        const carImage = 'img/phaserjs/car.96x96.png'
+        gameScene.load.image('phaserImgCar', carImage)
+      }
 
       gameScene.create = () => {
         const { width, height } = this.getGameContainerSize()
