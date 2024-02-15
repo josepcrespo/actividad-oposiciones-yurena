@@ -47,78 +47,6 @@ export default {
     this.initPhaserGame()
   },
   methods: {
-    initPhaserGame() {
-      const gameScene = new Phaser.Scene('GameScene')
-      gameScene.create = () => {
-        this.addPhaserBoard(gameScene)
-        this.addPhaserCar(gameScene)
-        this.addPhaserControls(gameScene)
-      }
-      this.config.scene.push(gameScene)
-      this.game = new Phaser.Game(this.config)
-    },
-    createBoard({ numRows, numCols, maxWeight } = {}) {
-      // Verificar si se proporcionaron filas, columnas y/o peso máximo,
-      // en caso contrario, asignar valores aleatorios
-      numRows = numRows ?? this.$getRandomInt(3, 5)
-      console.log("🚀 ~ createBoard ~ numRows:", numRows)
-      numCols = numCols ?? this.$getRandomInt(3, 7)
-      console.log("🚀 ~ createBoard ~ numCols:", numCols)
-      maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
-
-      // Crea la matriz bidimensional
-      const board = []
-
-      // Generar la matriz y asignar conexiones y pesos aleatorios
-      for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
-        board[rowIndex] = []
-        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
-          // Determinar si existe un elemento, existente en la matriz,
-          // adyacente en cada dirección
-          let up = rowIndex > 0
-          let down = rowIndex < numRows - 1
-          let left = columnIndex > 0
-          let right = columnIndex < numCols - 1
-
-          // Asignar valor aleatorio de 'true' o 'false'
-          // a las direcciones que tengan un vecino en la matriz, para determinar
-          // si asignamos una conexión con dicho vecino en dicha dirección.
-          up = up ? this.$getRandomBoolean() : false
-          down = down ? this.$getRandomBoolean() : false
-          left = left ? this.$getRandomBoolean() : false
-          right = right ? this.$getRandomBoolean() : false
-
-          // Asignar pesos aleatorios si hay conexiones
-          const weightUp = up ? this.$getRandomInt(1, 10) : 0
-          const weightDown = down ? this.$getRandomInt(1, 10) : 0
-          const weightLeft = left ? this.$getRandomInt(1, 10) : 0
-          const weightRight = right ? this.$getRandomInt(1, 10) : 0
-
-          // Crear el objeto que representa el elemento del tablero
-          const element = {
-            up,
-            down,
-            left,
-            right,
-            weightUp,
-            weightDown,
-            weightLeft,
-            weightRight,
-            // Convierte el índice de la fila a su correspondiente
-            // letra del abecedario, en mayúscula.
-            rowIndex: this.$castIndexToCharacter(rowIndex, true),
-            // Convierte el índice de la columna a su correspondiente
-            // letra del abecedario, en mayúscula.
-            columnIndex: this.$castIndexToCharacter(columnIndex, true)
-          }
-
-          // Agregar el elemento a la matriz
-          board[rowIndex][columnIndex] = element
-        }
-      }
-
-      return board
-    },
     addPhaserBoard(scene) {
       const cellSize = 100
       const squareColor = 0xffffff
@@ -223,45 +151,6 @@ export default {
         }
       })
     },
-    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction) {
-      const scene = this.config.scene[0]
-      const newColumnIndex = this.currentTile.x + deltaColumnIndex
-      const newRowIndex = this.currentTile.y + deltaRowIndex
-
-      // Verificar si el movimiento está dentro de los límites de la matriz
-      if (
-        newColumnIndex < 0 ||
-        newRowIndex < 0 ||
-        newColumnIndex >= this.board[0].length ||
-        newRowIndex >= this.board.length
-      ) {
-        return // Fuera de los límites, no se puede mover
-      }
-
-      const canMove = this.checkMove(newRowIndex, newColumnIndex, direction)
-
-      if (canMove) {
-        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
-        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
-        this.currentTile.x = newColumnIndex
-        this.currentTile.y = newRowIndex
-
-        if (this.moveTween) {
-          this.moveTween.stop()
-        }
-
-        this.moveTween = scene.tweens.add({
-          targets: this.car,
-          x: targetX,
-          y: targetY,
-          duration: 500,
-          ease: 'Linear',
-          onComplete: () => {
-            this.moveTween = null
-          }
-        })
-      }
-    },
     checkMove(rowIndex, columnIndex, direction) {
       // Verificar si las coordenadas están dentro de los límites de la matriz
       if (
@@ -331,6 +220,127 @@ export default {
 
       // No hay una conexión válida entre los elementos
       return false
+    },
+    createBoard({ numRows, numCols, maxWeight } = {}) {
+      // Verificar si se proporcionaron filas, columnas y/o peso máximo,
+      // en caso contrario, asignar valores aleatorios
+      numRows = numRows ?? this.$getRandomInt(3, 5)
+      console.log("🚀 ~ createBoard ~ numRows:", numRows)
+      numCols = numCols ?? this.$getRandomInt(3, 7)
+      console.log("🚀 ~ createBoard ~ numCols:", numCols)
+      maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
+
+      // Crea la matriz bidimensional
+      const board = []
+
+      // Generar la matriz y asignar conexiones y pesos aleatorios
+      for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        board[rowIndex] = []
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+          // Determinar si existe un elemento, existente en la matriz,
+          // adyacente en cada dirección
+          let up = rowIndex > 0
+          let down = rowIndex < numRows - 1
+          let left = columnIndex > 0
+          let right = columnIndex < numCols - 1
+
+          // Asignar valor aleatorio de 'true' o 'false'
+          // a las direcciones que tengan un vecino en la matriz, para determinar
+          // si asignamos una conexión con dicho vecino en dicha dirección.
+          up = up ? this.$getRandomBoolean() : false
+          down = down ? this.$getRandomBoolean() : false
+          left = left ? this.$getRandomBoolean() : false
+          right = right ? this.$getRandomBoolean() : false
+
+          // Asignar pesos aleatorios si hay conexiones
+          const weightUp = up ? this.$getRandomInt(1, 10) : 0
+          const weightDown = down ? this.$getRandomInt(1, 10) : 0
+          const weightLeft = left ? this.$getRandomInt(1, 10) : 0
+          const weightRight = right ? this.$getRandomInt(1, 10) : 0
+
+          // Crear el objeto que representa el elemento del tablero
+          const element = {
+            up,
+            down,
+            left,
+            right,
+            weightUp,
+            weightDown,
+            weightLeft,
+            weightRight,
+            // Convierte el índice de la fila a su correspondiente
+            // letra del abecedario, en mayúscula.
+            rowIndex: this.$castIndexToCharacter(rowIndex, true),
+            // Convierte el índice de la columna a su correspondiente
+            // letra del abecedario, en mayúscula.
+            columnIndex: this.$castIndexToCharacter(columnIndex, true)
+          }
+
+          // Agregar el elemento a la matriz
+          board[rowIndex][columnIndex] = element
+        }
+      }
+
+      return board
+    },
+    initPhaserGame() {
+      const gameScene = new Phaser.Scene('GameScene')
+      gameScene.create = () => {
+        this.addPhaserBoard(gameScene)
+        this.addPhaserCar(gameScene)
+        this.addPhaserControls(gameScene)
+      }
+      this.config.scene.push(gameScene)
+      this.game = new Phaser.Game(this.config)
+    },
+    isDiagonalMove(deltaRowIndex, deltaColumnIndex) {
+      // Si el movimiento es diagonal, devuelve true
+      return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
+    },
+    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction) {
+      const scene = this.config.scene[0]
+      const newColumnIndex = this.currentTile.x + deltaColumnIndex
+      const newRowIndex = this.currentTile.y + deltaRowIndex
+
+      // Verificar si el movimiento está dentro de los límites de la matriz
+      if (
+        newColumnIndex < 0 ||
+        newRowIndex < 0 ||
+        newColumnIndex >= this.board[0].length ||
+        newRowIndex >= this.board.length
+      ) {
+        return // Fuera de los límites, no se puede mover
+      }
+
+      // Verificar si la dirección de movimiento es válida
+      if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
+        console.log('Movimiento no válido, no se puede mover en diagonal')
+        return // Movimiento no válido, no se puede mover en diagonal
+      }
+
+      const canMove = this.checkMove(newRowIndex, newColumnIndex, direction)
+
+      if (canMove) {
+        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
+        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
+        this.currentTile.x = newColumnIndex
+        this.currentTile.y = newRowIndex
+
+        if (this.moveTween) {
+          this.moveTween.stop()
+        }
+
+        this.moveTween = scene.tweens.add({
+          targets: this.car,
+          x: targetX,
+          y: targetY,
+          duration: 500,
+          ease: 'Linear',
+          onComplete: () => {
+            this.moveTween = null
+          }
+        })
+      }
     }
   }
 }
