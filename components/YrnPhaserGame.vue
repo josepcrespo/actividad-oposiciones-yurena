@@ -17,8 +17,8 @@ export default {
       car: null,
       config: {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: 600,
+        height: 400,
         parent: 'phaserContainer',
         scene: [],
         physics: {
@@ -26,6 +26,9 @@ export default {
           arcade: {
             gravity: { y: 200 }
           }
+        },
+        scale: {
+          mode: Phaser.Scale.FIT
         }
       },
       currentTile: { x: 0, y: 0 },
@@ -42,7 +45,9 @@ export default {
     }
   },
   created() {
-    this.board = this.createBoard()
+    do {
+      this.board = this.createBoard()
+    } while(this.checkIfPathExists() === false)
   },
   mounted() {
     this.initPhaserGame()
@@ -265,13 +270,71 @@ export default {
 
       return board
     },
+    /**
+     * Check if a path from position [0,0] to the last on the matrix
+     * exists in the board using depth-first search.
+     *
+     * @return {boolean} true if a path exists, false otherwise
+     */
+    checkIfPathExists() {
+      const numRows = this.board.length
+      const numCols = this.board[0].length
+      
+      // Creamos una matriz de visitados inicialmente llena de falsos
+      const visited = new Array(numRows).fill(false).map(() => new Array(numCols).fill(false))
+      
+      // Definimos una función recursiva para buscar el camino
+      const dfs = (row, col) => {
+        // Si estamos fuera de los límites de la matriz o ya hemos visitado esta celda, retornamos false
+        if (row < 0 || row >= numRows || col < 0 || col >= numCols || visited[row][col]) {
+          return false
+        }
+        
+        // Marcamos esta celda como visitada
+        visited[row][col] = true
+        
+        // Si estamos en la última celda, retornamos true
+        if (row === numRows - 1 && col === numCols - 1) {
+          return true
+        }
+        
+        // Verificamos si podemos movernos hacia abajo, arriba, derecha o izquierda
+        const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        for (const [dr, dc] of directions) {
+          const newRow = row + dr
+          const newCol = col + dc
+          if (dfs(newRow, newCol)) {
+            return true
+          }
+        }
+        
+        // Si no encontramos un camino válido, marcamos esta celda como no visitada para futuras exploraciones
+        visited[row][col] = false
+        
+        return false
+      }
+      
+      // Iniciamos la búsqueda desde la celda [0,0]
+      return dfs(0, 0)
+    },
+    getGameContainerSize() {
+      const parentElement = document.getElementById(this.config.parent)
+      const width = parentElement.offsetWidth
+      const height = width * (this.config.height / this.config.width)
+      return { width, height }
+    },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
+
       gameScene.create = () => {
+        const { width, height } = this.getGameContainerSize()
+        this.game.scale.resize(width, height)
+
         this.addPhaserBoard(gameScene)
         this.addPhaserCar(gameScene)
         this.addPhaserControls(gameScene)
       }
+
       this.config.scene.push(gameScene)
       this.game = new Phaser.Game(this.config)
     },
