@@ -30,6 +30,7 @@ export default {
       },
       currentTile: { x: 0, y: 0 },
       game: null,
+      isMoving: false,
       keyboardEventCodes: {
         arrowUp: 'ArrowUp',
         arrowDown: 'ArrowDown',
@@ -129,6 +130,7 @@ export default {
     },
     addPhaserControls(scene) {
       scene.input.keyboard.on('keydown', (event) => {
+        if (this.isMoving) { return }
         switch (event.code) {
           case this.keyboardEventCodes.arrowUp:
             console.info('⬆️ %s', this.keyboardEventCodes.arrowUp)
@@ -325,6 +327,7 @@ export default {
         const targetY = newRowIndex * this.tileSize + this.tileSize / 2
         this.currentTile.x = newColumnIndex
         this.currentTile.y = newRowIndex
+        this.isMoving = true
 
         if (this.moveTween) {
           this.moveTween.stop()
@@ -337,6 +340,7 @@ export default {
           duration: 500,
           ease: 'Linear',
           onComplete: () => {
+            this.isMoving = false
             this.moveTween = null
           }
         })
