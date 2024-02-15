@@ -57,27 +57,28 @@ export default {
       this.config.scene.push(gameScene)
       this.game = new Phaser.Game(this.config)
     },
-    createBoard({ rows, columns, maxWeight } = {}) {
+    createBoard({ numRows, numCols, maxWeight } = {}) {
       // Verificar si se proporcionaron filas, columnas y/o peso máximo,
       // en caso contrario, asignar valores aleatorios
-      rows = rows ?? this.$getRandomInt(3, 5)
-      console.log("🚀 ~ createBoard ~ rows:", rows)
-      columns = columns ?? this.$getRandomInt(3, 7)
-      console.log("🚀 ~ createBoard ~ columns:", columns)
+      numRows = numRows ?? this.$getRandomInt(3, 5)
+      console.log("🚀 ~ createBoard ~ numRows:", numRows)
+      numCols = numCols ?? this.$getRandomInt(3, 7)
+      console.log("🚀 ~ createBoard ~ numCols:", numCols)
       maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
 
       // Crea la matriz bidimensional
       const board = []
 
       // Generar la matriz y asignar conexiones y pesos aleatorios
-      for (let x = 0; x < rows; x++) {
-        board[x] = []
-          for (let y = 0; y < columns; y++) {
-          // Determinar si existe un elemento vecino en la matriz en cada dirección
-          let up = x > 0
-          let down = x < rows - 1
-          let left = y > 0
-          let right = y < columns - 1
+      for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
+        board[rowIndex] = []
+        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
+          // Determinar si existe un elemento, existente en la matriz,
+          // adyacente en cada dirección
+          let up = rowIndex > 0
+          let down = rowIndex < numRows - 1
+          let left = columnIndex > 0
+          let right = columnIndex < numCols - 1
 
           // Asignar valor aleatorio de 'true' o 'false'
           // a las direcciones que tengan un vecino en la matriz, para determinar
@@ -95,10 +96,6 @@ export default {
 
           // Crear el objeto que representa el elemento del tablero
           const element = {
-            // Convierte el índice x/y a su correspondiente
-            // letra del abecedario, en mayúscula.
-            xIndex: this.$castIndexToCharacter(x, true),
-            yIndex: this.$castIndexToCharacter(y, true),
             up,
             down,
             left,
@@ -106,11 +103,17 @@ export default {
             weightUp,
             weightDown,
             weightLeft,
-            weightRight
+            weightRight,
+            // Convierte el índice de la fila a su correspondiente
+            // letra del abecedario, en mayúscula.
+            rowIndex: this.$castIndexToCharacter(rowIndex, true),
+            // Convierte el índice de la columna a su correspondiente
+            // letra del abecedario, en mayúscula.
+            columnIndex: this.$castIndexToCharacter(columnIndex, true)
           }
 
           // Agregar el elemento a la matriz
-          board[x][y] = element
+          board[rowIndex][columnIndex] = element
         }
       }
 
@@ -130,17 +133,27 @@ export default {
 
       const graphics = scene.add.graphics()
 
-      this.board.forEach((row, y) => {
-        row.forEach((element, x) => {
-          const posX = x * cellSize + cellSize / 2
-          const posY = y * cellSize + cellSize / 2
+      this.board.forEach((row, rowIndex) => {
+        row.forEach((element, columnIndex) => {
+          const posX = columnIndex * cellSize + cellSize / 2
+          const posY = rowIndex * cellSize + cellSize / 2
 
           // Dibujar cuadrado para representar el elemento
           graphics.fillStyle(squareColor, 1)
-          graphics.fillRect(posX - squareSize / 2, posY - squareSize / 2, squareSize, squareSize)
+          graphics.fillRect(
+            posX - squareSize / 2,
+            posY - squareSize / 2,
+            squareSize,
+            squareSize
+          )
 
           // Dibujar índice del elemento en el centro del cuadrado
-          scene.add.text(posX, posY, `${element.xIndex}${element.yIndex}`, textStyle).setOrigin(0.5)
+          scene.add.text(
+            posX,
+            posY,
+            `${element.rowIndex}${element.columnIndex}`,
+            textStyle
+          ).setOrigin(0.5)
 
           // Dibujar conexiones con elementos adyacentes
           if (element.down) {
@@ -191,42 +204,47 @@ export default {
         switch (event.code) {
           case this.keyboardEventCodes.arrowUp:
             console.info('⬆️ %s', this.keyboardEventCodes.arrowUp)
-            this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowUp)
+            this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowUp)
             break
           case this.keyboardEventCodes.arrowDown:
             console.info('⬇️ %s', this.keyboardEventCodes.arrowDown)
-            this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowDown)
+            this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowDown)
             break
           case this.keyboardEventCodes.arrowLeft:
             console.info('⬅️ %s', this.keyboardEventCodes.arrowLeft)
-            this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowLeft)
+            this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowLeft)
             break
           case this.keyboardEventCodes.arrowRight:
             console.info('➡️ %s', this.keyboardEventCodes.arrowRight)
-            this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowRight)
+            this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowRight)
             break
           default:
             break
         }
       })
     },
-    movePhaserCar(deltaX, deltaY, direction) {
+    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction) {
       const scene = this.config.scene[0]
-      const newX = this.currentTile.x + deltaX
-      const newY = this.currentTile.y + deltaY
+      const newColumnIndex = this.currentTile.x + deltaColumnIndex
+      const newRowIndex = this.currentTile.y + deltaRowIndex
 
       // Verificar si el movimiento está dentro de los límites de la matriz
-      if (newX < 0 || newY < 0 || newX >= this.board.length || newY >= this.board[0].length) {
+      if (
+        newColumnIndex < 0 ||
+        newRowIndex < 0 ||
+        newColumnIndex >= this.board.length ||
+        newRowIndex >= this.board[0].length
+      ) {
         return // Fuera de los límites, no se puede mover
       }
 
-      const canMove = this.checkMove(newX, newY, direction)
+      const canMove = this.checkMove(newRowIndex, newColumnIndex, direction)
 
       if (canMove) {
-        const targetX = newX * this.tileSize + this.tileSize / 2
-        const targetY = newY * this.tileSize + this.tileSize / 2
-        this.currentTile.x = newX
-        this.currentTile.y = newY
+        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
+        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
+        this.currentTile.x = newColumnIndex
+        this.currentTile.y = newRowIndex
 
         if (this.moveTween) {
           this.moveTween.stop()
@@ -244,23 +262,42 @@ export default {
         })
       }
     },
-    checkMove(x, y, direction) {
+    checkMove(rowIndex, columnIndex, direction) {
       // Verificar si las coordenadas están dentro de los límites de la matriz
-      if (x < 0 || y < 0 || x >= this.board[0].length || y >= this.board.length) {
+      if (
+        rowIndex < 0 ||
+        columnIndex < 0 ||
+        rowIndex >= this.board.length ||
+        columnIndex >= this.board[0].length
+      ) {
         return false // Fuera de los límites de la matriz
       }
 
-      // Obtener el elemento actual del coche
+      // Obtener el elemento actual del vehículo
       const currentElement = this.board[this.currentTile.y][this.currentTile.x]
+      console.log(
+        '🚀 ~ checkMove ~ currentElement: %s%s',
+        currentElement.rowIndex,
+        currentElement.columnIndex
+      )
+      console.log("🚀 ~ checkMove ~ this.currentTile.y (row): %o", this.currentTile.y)
+      console.log("🚀 ~ checkMove ~ this.currentTile.x (column): %o", this.currentTile.x)
 
-      // Obtener el elemento al que se desea mover
-      const targetElement = this.board[x][y]
+      // Obtener el elemento destino en la matriz
+      const targetElement = this.board[rowIndex][columnIndex]
+      console.log(
+        '🚀 ~ checkMove ~ targetElement: %s%s',
+        targetElement.rowIndex,
+        targetElement.columnIndex
+      )
+      console.log("🚀 ~ checkMove ~ target rowIndex: %o", rowIndex)
+      console.log("🚀 ~ checkMove ~ target columnIndex : %o", columnIndex)
 
       if (
         direction === this.keyboardEventCodes.arrowDown &&
         // Si existe una conexión hacia abajo
         currentElement.down || targetElement.up &&
-        y > this.currentTile.y
+        rowIndex > this.currentTile.y
       ) {
         return true
       }
@@ -269,16 +306,16 @@ export default {
         direction === this.keyboardEventCodes.arrowLeft &&
         // Si existe una conexión hacia la izquierda
         currentElement.left || targetElement.right &&
-        x < this.currentTile.x
+        columnIndex < this.currentTile.x
       ) {
         return true
       }
 
       if (
-        direction === this.keyboardEventCodes.arrowDown &&
+        direction === this.keyboardEventCodes.arrowUp &&
         // Si existe una conexión hacia arriba
         currentElement.up || targetElement.down &&
-        y < this.currentTile.y
+        rowIndex < this.currentTile.y
       ) {
         return true
       }
@@ -287,7 +324,7 @@ export default {
         direction === this.keyboardEventCodes.arrowRight &&
         // Si existe una conexión hacia la derecha
         currentElement.right || targetElement.left &&
-        x > this.currentTile.x
+        columnIndex > this.currentTile.x
       ) {
         return true
       }
