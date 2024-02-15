@@ -232,8 +232,8 @@ export default {
       if (
         newColumnIndex < 0 ||
         newRowIndex < 0 ||
-        newColumnIndex >= this.board.length ||
-        newRowIndex >= this.board[0].length
+        newColumnIndex >= this.board[0].length ||
+        newRowIndex >= this.board.length
       ) {
         return // Fuera de los límites, no se puede mover
       }
