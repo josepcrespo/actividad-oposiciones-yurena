@@ -133,19 +133,15 @@ export default {
         if (this.isMoving) { return }
         switch (event.code) {
           case this.keyboardEventCodes.arrowUp:
-            console.info('⬆️ %s', this.keyboardEventCodes.arrowUp)
             this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowUp)
             break
           case this.keyboardEventCodes.arrowDown:
-            console.info('⬇️ %s', this.keyboardEventCodes.arrowDown)
             this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowDown)
             break
           case this.keyboardEventCodes.arrowLeft:
-            console.info('⬅️ %s', this.keyboardEventCodes.arrowLeft)
             this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowLeft)
             break
           case this.keyboardEventCodes.arrowRight:
-            console.info('➡️ %s', this.keyboardEventCodes.arrowRight)
             this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowRight)
             break
           default:
@@ -166,23 +162,9 @@ export default {
 
       // Obtener el elemento actual del vehículo
       const currentElement = this.board[this.currentTile.y][this.currentTile.x]
-      console.log(
-        '🚀 ~ checkMove ~ currentElement: %s%s',
-        currentElement.rowIndex,
-        currentElement.columnIndex
-      )
-      console.log("🚀 ~ checkMove ~ this.currentTile.y (row): %o", this.currentTile.y)
-      console.log("🚀 ~ checkMove ~ this.currentTile.x (column): %o", this.currentTile.x)
 
       // Obtener el elemento destino en la matriz
       const targetElement = this.board[rowIndex][columnIndex]
-      console.log(
-        '🚀 ~ checkMove ~ targetElement: %s%s',
-        targetElement.rowIndex,
-        targetElement.columnIndex
-      )
-      console.log("🚀 ~ checkMove ~ target rowIndex: %o", rowIndex)
-      console.log("🚀 ~ checkMove ~ target columnIndex : %o", columnIndex)
 
       if (
         direction === this.keyboardEventCodes.arrowDown &&
@@ -227,9 +209,7 @@ export default {
       // Verificar si se proporcionaron filas, columnas y/o peso máximo,
       // en caso contrario, asignar valores aleatorios
       numRows = numRows ?? this.$getRandomInt(3, 5)
-      console.log("🚀 ~ createBoard ~ numRows:", numRows)
       numCols = numCols ?? this.$getRandomInt(3, 7)
-      console.log("🚀 ~ createBoard ~ numCols:", numCols)
       maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
 
       // Crea la matriz bidimensional
@@ -316,8 +296,9 @@ export default {
 
       // Verificar si la dirección de movimiento es válida
       if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
-        console.log('Movimiento no válido, no se puede mover en diagonal')
-        return // Movimiento no válido, no se puede mover en diagonal
+        // eslint-disable-next-line no-console
+        console.warn('Movimiento no válido, no se puede mover en diagonal')
+        return
       }
 
       const canMove = this.checkMove(newRowIndex, newColumnIndex, direction)
