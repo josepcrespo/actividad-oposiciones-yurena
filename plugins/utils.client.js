@@ -20,8 +20,8 @@ export default ({ app }, inject) => {
    */
   inject('castIndexToCharacter', (index, capitalized = false) => {
     return capitalized
-      ? String.fromCharCode(index + 65)
-      : String.fromCharCode(index + 97)
+      ? window?.String.fromCharCode(index + 65)
+      : window?.String.fromCharCode(index + 97)
   })
 
   /**
