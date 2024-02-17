@@ -166,6 +166,10 @@ export default {
     checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction) {
       // Salir del método si las coordenadas están fuera de los límites de la matriz
       if (
+        fromRowIndex < 0 ||
+        fromColumnIndex < 0 ||
+        fromRowIndex >= this.board.length ||
+        fromColumnIndex >= this.board[0].length ||
         toRowIndex < 0 ||
         toColumnIndex < 0 ||
         toRowIndex >= this.board.length ||
@@ -279,27 +283,31 @@ export default {
     },
     customPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
       const scene = this.config.scene[0]
-      let newRow = this.currentTile.y
-      let newCol = this.currentTile.x
+      let currentRow = this.currentTile.y
+      let currentCol = this.currentTile.x
 
       // Se mueve en la dirección especificada hasta que ya no sea posible
       while (this.checkMove(
-          this.currentTile.y,
-          this.currentTile.x,
-          newRow + deltaRowIndex,
-          newCol + deltaColumnIndex,
+          currentRow,
+          currentCol,
+          currentRow + deltaRowIndex,
+          currentCol + deltaColumnIndex,
           direction
-        )
-      ) {
-        newRow += deltaRowIndex
-        newCol += deltaColumnIndex
+      )) {
+        currentRow += deltaRowIndex
+        currentCol += deltaColumnIndex
       }
 
-      const targetX = newCol * this.tileSize + this.tileSize / 2
-      const targetY = newRow * this.tileSize + this.tileSize / 2
+      const moveDuration = 500 * Math.max(
+        Math.abs(currentCol - this.currentTile.x),
+        Math.abs(currentRow - this.currentTile.y)
+      )
 
-      this.currentTile.x = newCol
-      this.currentTile.y = newRow
+      const targetY = currentRow * this.tileSize + this.tileSize / 2
+      const targetX = currentCol * this.tileSize + this.tileSize / 2
+
+      this.currentTile.y = currentRow
+      this.currentTile.x = currentCol
       this.isMoving = true
 
       if (this.moveTween) {
@@ -308,9 +316,9 @@ export default {
 
       this.moveTween = scene.tweens.add({
         targets: this.car,
-        x: targetX,
         y: targetY,
-        duration: 500,
+        x: targetX,
+        duration: moveDuration,
         ease: 'Linear',
         onComplete: () => {
           this.isMoving = false
