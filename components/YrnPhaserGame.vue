@@ -191,18 +191,12 @@ export default {
       numRows = numRows ?? this.$getRandomInt(3, 5)
       numCols = numCols ?? this.$getRandomInt(3, 7)
       maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
-
-      const board = []
-
-      for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
-        board[rowIndex] = []
-        for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
-          const element = this.createBoardElement(rowIndex, columnIndex, numRows, numCols)
-          board[rowIndex][columnIndex] = element
-        }
-      }
-
-      return board
+      
+      return Array.from({ length: numRows }, (_, rowIndex) => {
+        return Array.from({ length: numCols }, (_, columnIndex) => {
+          return this.createBoardElement(rowIndex, columnIndex, numRows, numCols)
+        })
+      })
     },
     createBoardElement(rowIndex, columnIndex, numRows, numCols) {
       // Determinar si existe, un elemento en la matriz,
