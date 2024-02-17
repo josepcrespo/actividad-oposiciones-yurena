@@ -140,16 +140,16 @@ export default {
         [this.keyboardEventCodes.arrowDown]: { deltaRowIndex: 1, deltaColumnIndex: 0, carDirection: 'SOUTH' },
         [this.keyboardEventCodes.arrowLeft]: { deltaRowIndex: 0, deltaColumnIndex: -1, carDirection: 'WEST' },
         [this.keyboardEventCodes.arrowRight]: { deltaRowIndex: 0, deltaColumnIndex: 1, carDirection: 'EAST' },
-      };
+      }
 
       scene.input.keyboard.on('keydown', (event) => {
         if (this.isMoving) { return }
-        const direction = keyToDirection[event.code];
+        const direction = keyToDirection[event.code]
         if (direction) {
-          const { deltaRowIndex, deltaColumnIndex, carDirection } = direction;
-          this.movePhaserCar(deltaRowIndex, deltaColumnIndex, event.code, carDirection);
+          const { deltaRowIndex, deltaColumnIndex, carDirection } = direction
+          this.movePhaserCar(deltaRowIndex, deltaColumnIndex, event.code, carDirection)
         }
-      });
+      })
     },
     addPhaserText(scene, posX, posY, text, textStyle) {
       // Añadir el texto en el centro del elemento
@@ -171,27 +171,27 @@ export default {
         toRowIndex >= this.board.length ||
         toColumnIndex >= this.board[0].length
       ) {
-        return false;
+        return false
       }
 
-      const currentElement = this.board[fromRowIndex][fromColumnIndex];
-      const targetElement = this.board[toRowIndex][toColumnIndex];
+      const currentElement = this.board[fromRowIndex][fromColumnIndex]
+      const targetElement = this.board[toRowIndex][toColumnIndex]
 
       switch (direction) {
         case this.keyboardEventCodes.arrowDown:
           return (currentElement.down || targetElement.up) &&
-            toRowIndex > fromRowIndex;
+            toRowIndex > fromRowIndex
         case this.keyboardEventCodes.arrowLeft:
           return (currentElement.left || targetElement.right) &&
-            toColumnIndex < fromColumnIndex;
+            toColumnIndex < fromColumnIndex
         case this.keyboardEventCodes.arrowUp:
           return (currentElement.up || targetElement.down) &&
-            toRowIndex < fromRowIndex;
+            toRowIndex < fromRowIndex
         case this.keyboardEventCodes.arrowRight:
           return (currentElement.right || targetElement.left) &&
-            toColumnIndex > fromColumnIndex;
+            toColumnIndex > fromColumnIndex
         default:
-          return false;
+          return false
       }
     },
     createBoard({ numRows, numCols, maxWeight } = {}) {
