@@ -74,59 +74,27 @@ export default {
         row.forEach((element, columnIndex) => {
           const posX = columnIndex * cellSize + cellSize / 2
           const posY = rowIndex * cellSize + cellSize / 2
+          const indexText = `${element.rowIndex}${element.columnIndex}`
 
-          // Dibujar cuadrado para representar el elemento
-          graphics.fillStyle(squareColor, 1)
-          graphics.fillRect(
-            posX - squareSize / 2,
-            posY - squareSize / 2,
-            squareSize,
-            squareSize
-          )
+          this.drawPhaserSquare(graphics, posX, posY, squareColor, squareSize)
+          this.addPhaserText(scene, posX, posY, indexText, textStyle)
 
-          // Dibujar índice del elemento en el centro del cuadrado
-          scene.add.text(
-            posX,
-            posY,
-            `${element.rowIndex}${element.columnIndex}`,
-            textStyle
-          ).setOrigin(0.5)
+          // Dibujar conexiones con elementos adyacentes:
 
-          // Dibujar conexiones con elementos adyacentes
           if (element.down) {
-            graphics.lineStyle(lineWidth, lineColor)
-            graphics.beginPath()
-            graphics.moveTo(posX, posY + squareSize / 2)
-            graphics.lineTo(posX, posY + cellSize - squareSize / 2)
-            graphics.closePath()
-            graphics.strokePath()
+            this.drawPhaserLine(graphics, posX, posY + squareSize / 2, posX, posY + cellSize - squareSize / 2, lineWidth, lineColor)
           }
 
           if (element.right) {
-            graphics.lineStyle(lineWidth, lineColor)
-            graphics.beginPath()
-            graphics.moveTo(posX + squareSize / 2, posY)
-            graphics.lineTo(posX + cellSize - squareSize / 2, posY)
-            graphics.closePath()
-            graphics.strokePath()
+            this.drawPhaserLine(graphics, posX + squareSize / 2, posY, posX + cellSize - squareSize / 2, posY, lineWidth, lineColor)
           }
 
           if (element.up) {
-            graphics.lineStyle(lineWidth, lineColor)
-            graphics.beginPath()
-            graphics.moveTo(posX, posY - squareSize / 2)
-            graphics.lineTo(posX, posY - cellSize + squareSize / 2)
-            graphics.closePath()
-            graphics.strokePath()
+            this.drawPhaserLine(graphics, posX, posY - squareSize / 2, posX, posY - cellSize + squareSize / 2, lineWidth, lineColor)
           }
 
           if (element.left) {
-            graphics.lineStyle(lineWidth, lineColor)
-            graphics.beginPath()
-            graphics.moveTo(posX - squareSize / 2, posY)
-            graphics.lineTo(posX - cellSize + squareSize / 2, posY)
-            graphics.closePath()
-            graphics.strokePath()
+            this.drawPhaserLine(graphics, posX - squareSize / 2, posY, posX - cellSize + squareSize / 2, posY, lineWidth, lineColor)
           }
         })
       })
@@ -151,167 +119,122 @@ export default {
             }
           ),
           frameRate: 12,
-          repeat: -1 // para que se repita infinitamente
+          repeat: -1 // repite la animación indefinidamente
         })
 
-        // Inicia la animación del sprite
         this.car.play('car_animation_SOUTH')
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
       }
     },
     addPhaserControls(scene) {
+      const keyToDirection = {
+        [this.keyboardEventCodes.arrowUp]: { deltaRowIndex: -1, deltaColumnIndex: 0, carDirection: 'NORTH' },
+        [this.keyboardEventCodes.arrowDown]: { deltaRowIndex: 1, deltaColumnIndex: 0, carDirection: 'SOUTH' },
+        [this.keyboardEventCodes.arrowLeft]: { deltaRowIndex: 0, deltaColumnIndex: -1, carDirection: 'WEST' },
+        [this.keyboardEventCodes.arrowRight]: { deltaRowIndex: 0, deltaColumnIndex: 1, carDirection: 'EAST' },
+      };
+
       scene.input.keyboard.on('keydown', (event) => {
         if (this.isMoving) { return }
-        switch (event.code) {
-          case this.keyboardEventCodes.arrowUp:
-            this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowUp, 'NORTH')
-            break
-          case this.keyboardEventCodes.arrowDown:
-            this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowDown, 'SOUTH')
-            break
-          case this.keyboardEventCodes.arrowLeft:
-            this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowLeft, 'WEST')
-            break
-          case this.keyboardEventCodes.arrowRight:
-            this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowRight, 'EAST')
-            break
-          default:
-            break
+        const direction = keyToDirection[event.code];
+        if (direction) {
+          const { deltaRowIndex, deltaColumnIndex, carDirection } = direction;
+          this.movePhaserCar(deltaRowIndex, deltaColumnIndex, event.code, carDirection);
         }
-      })
+      });
+    },
+    addPhaserText(scene, posX, posY, text, textStyle) {
+      // Añadir el texto en el centro del elemento
+      scene.add.text(posX, posY, text, textStyle).setOrigin(0.5)
     },
     changeCarDirection(direction) {
       const newSpriteSheet = `img/phaserjs/top-down-vehicles/${this.carName}/` +
         `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carName}` +
         `_CLEAN_${direction}_000-sheet.PNG`
-      // Detener la animación actual del coche
       this.car.anims.stop()
       this.car.setTexture(newSpriteSheet)
       this.car.play(`car_animation_${direction}`)
     },
     checkMove(rowIndex, columnIndex, direction) {
-      // Verificar si las coordenadas están dentro de los límites de la matriz
+      // Salir del método si las coordenadas están fuera de los límites de la matriz
       if (
         rowIndex < 0 ||
         columnIndex < 0 ||
         rowIndex >= this.board.length ||
         columnIndex >= this.board[0].length
       ) {
-        return false // Fuera de los límites de la matriz
+        return false 
       }
 
-      // Obtener el elemento actual del vehículo
       const currentElement = this.board[this.currentTile.y][this.currentTile.x]
-
-      // Obtener el elemento destino en la matriz
       const targetElement = this.board[rowIndex][columnIndex]
 
-      if (
-        direction === this.keyboardEventCodes.arrowDown &&
-        // Si existe una conexión hacia abajo
-        currentElement.down || targetElement.up &&
-        rowIndex > this.currentTile.y
-      ) {
-        return true
+      switch (direction) {
+        case this.keyboardEventCodes.arrowDown:
+          return (currentElement.down || targetElement.up) &&
+            rowIndex > this.currentTile.y
+        case this.keyboardEventCodes.arrowLeft:
+          return (currentElement.left || targetElement.right) &&
+            columnIndex < this.currentTile.x
+        case this.keyboardEventCodes.arrowUp:
+          return (currentElement.up || targetElement.down) &&
+            rowIndex < this.currentTile.y
+        case this.keyboardEventCodes.arrowRight:
+          return (currentElement.right || targetElement.left) &&
+            columnIndex > this.currentTile.x
+        default:
+          return false
       }
-
-      if (
-        direction === this.keyboardEventCodes.arrowLeft &&
-        // Si existe una conexión hacia la izquierda
-        currentElement.left || targetElement.right &&
-        columnIndex < this.currentTile.x
-      ) {
-        return true
-      }
-
-      if (
-        direction === this.keyboardEventCodes.arrowUp &&
-        // Si existe una conexión hacia arriba
-        currentElement.up || targetElement.down &&
-        rowIndex < this.currentTile.y
-      ) {
-        return true
-      }
-
-      if (
-        direction === this.keyboardEventCodes.arrowRight &&
-        // Si existe una conexión hacia la derecha
-        currentElement.right || targetElement.left &&
-        columnIndex > this.currentTile.x
-      ) {
-        return true
-      }
-
-      // No hay una conexión válida entre los elementos
-      return false
     },
     createBoard({ numRows, numCols, maxWeight } = {}) {
-      // Verificar si se proporcionaron filas, columnas y/o peso máximo,
-      // en caso contrario, asignar valores aleatorios
       numRows = numRows ?? this.$getRandomInt(3, 5)
       numCols = numCols ?? this.$getRandomInt(3, 7)
       maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
 
-      // Crea la matriz bidimensional
       const board = []
 
-      // Generar la matriz y asignar conexiones y pesos aleatorios
       for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
         board[rowIndex] = []
         for (let columnIndex = 0; columnIndex < numCols; columnIndex++) {
-          // Determinar si existe un elemento, existente en la matriz,
-          // adyacente en cada dirección
-          let up = rowIndex > 0
-          let down = rowIndex < numRows - 1
-          let left = columnIndex > 0
-          let right = columnIndex < numCols - 1
-
-          // Asignar valor aleatorio de 'true' o 'false'
-          // a las direcciones que tengan un vecino en la matriz, para determinar
-          // si asignamos una conexión con dicho vecino en dicha dirección.
-          up = up ? this.$getRandomBoolean() : false
-          down = down ? this.$getRandomBoolean() : false
-          left = left ? this.$getRandomBoolean() : false
-          right = right ? this.$getRandomBoolean() : false
-
-          // Asignar pesos aleatorios si hay conexiones
-          const weightUp = up ? this.$getRandomInt(1, 10) : 0
-          const weightDown = down ? this.$getRandomInt(1, 10) : 0
-          const weightLeft = left ? this.$getRandomInt(1, 10) : 0
-          const weightRight = right ? this.$getRandomInt(1, 10) : 0
-
-          // Crear el objeto que representa el elemento del tablero
-          const element = {
-            up,
-            down,
-            left,
-            right,
-            weightUp,
-            weightDown,
-            weightLeft,
-            weightRight,
-            // Convierte el índice de la fila a su correspondiente
-            // letra del abecedario, en mayúscula.
-            rowIndex: this.$castIndexToCharacter(rowIndex, true),
-            // Convierte el índice de la columna a su correspondiente
-            // letra del abecedario, en mayúscula.
-            columnIndex: this.$castIndexToCharacter(columnIndex, true)
-          }
-
-          // Agregar el elemento a la matriz
+          const element = this.createBoardElement(rowIndex, columnIndex, numRows, numCols)
           board[rowIndex][columnIndex] = element
         }
       }
 
       return board
     },
-    /**
-     * Check if a path from position [0,0] to the last on the matrix
-     * exists in the board using depth-first search.
-     *
-     * @return {boolean} true if a path exists, false otherwise
-     */
+    createBoardElement(rowIndex, columnIndex, numRows, numCols) {
+      // Determinar si existe, un elemento en la matriz,
+      // adyacente en cada dirección.
+      const up = rowIndex > 0 ? this.$getRandomBoolean() : false
+      const down = rowIndex < numRows - 1 ? this.$getRandomBoolean() : false
+      const left = columnIndex > 0 ? this.$getRandomBoolean() : false
+      const right = columnIndex < numCols - 1 ? this.$getRandomBoolean() : false
+      const setWeightHelper = (condition) => {
+        return condition ? this.$getRandomInt(1, 10) : 0
+      }
+
+      const weightUp = setWeightHelper(up)
+      const weightDown = setWeightHelper(down)
+      const weightLeft = setWeightHelper(left)
+      const weightRight = setWeightHelper(right)
+
+      const element = {
+        up,
+        down,
+        left,
+        right,
+        weightUp,
+        weightDown,
+        weightLeft,
+        weightRight,
+        rowIndex: this.$castIndexToCharacter(rowIndex, true),
+        columnIndex: this.$castIndexToCharacter(columnIndex, true)
+      }
+
+      return element
+    },
     checkIfPathExists() {
       const numRows = this.board.length
       const numCols = this.board[0].length
@@ -352,6 +275,23 @@ export default {
       
       // Iniciamos la búsqueda desde la celda [0,0]
       return dfs(0, 0)
+    },
+    drawPhaserLine(graphics, moveToX, moveToY, lineToX, lineToY, lineWidth, lineColor) {
+      graphics.lineStyle(lineWidth, lineColor)
+      graphics.beginPath()
+      graphics.moveTo(moveToX, moveToY)
+      graphics.lineTo(lineToX, lineToY)
+      graphics.closePath()
+      graphics.strokePath()
+    },
+    drawPhaserSquare(graphics, posX, posY, squareColor, squareSize) {
+      graphics.fillStyle(squareColor, 1)
+      graphics.fillRect(
+        posX - squareSize / 2,
+        posY - squareSize / 2,
+        squareSize,
+        squareSize
+      )
     },
     getGameContainerSize() {
       const parentElement = document.getElementById(this.config.parent)
@@ -394,7 +334,7 @@ export default {
               }
             ),
             frameRate,
-            repeat: -1 // para que se repita infinitamente
+            repeat: -1 // repite la animación indefinidamente
           })
         })
 
@@ -415,19 +355,17 @@ export default {
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
       const newRowIndex = this.currentTile.y + deltaRowIndex
 
-      // Verificar si el movimiento está dentro de los límites de la matriz
+      // Salir del método si las coordenadas están fuera de los límites de la matriz
       if (
         newColumnIndex < 0 ||
         newRowIndex < 0 ||
         newColumnIndex >= this.board[0].length ||
         newRowIndex >= this.board.length
       ) {
-        return // Fuera de los límites, no se puede mover
+        return
       }
 
-      // Verificar si la dirección de movimiento es válida
       if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
-        // eslint-disable-next-line no-console
         console.warn('Movimiento no válido, no se puede mover en diagonal')
         return
       }
@@ -457,7 +395,6 @@ export default {
           }
         })
 
-        // Cambiar el sprite del coche según la dirección.
         this.changeCarDirection(carDirection)
       }
     }
