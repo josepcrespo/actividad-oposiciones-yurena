@@ -15,6 +15,9 @@ export default {
     return {
       board: [],
       car: null,
+      carColor: 'Red',
+      carDirections: ['NORTH', 'EAST', 'SOUTH', 'WEST'],
+      carName: 'COUPE',
       config: {
         type: Phaser.AUTO,
         width: 600,
@@ -130,8 +133,29 @@ export default {
     },
     addPhaserCar(scene) {
       try {
-        this.car = scene.add.image(this.tileSize / 2, this.tileSize / 2, 'phaserImgCar')
+        // Crea el sprite animado en la posición inicial
+        this.car = scene.add.sprite(
+          this.tileSize / 2,
+          this.tileSize / 2,
+          'car_spritesheet_SOUTH'
+        )
         this.car.setOrigin(0.5)
+
+        // Define la animación del sprite
+        scene.anims.create({
+          key: 'car_animation_SOUTH',
+          frames: scene.anims.generateFrameNumbers(
+            'car_spritesheet_SOUTH', {
+              start: 0,
+              end: 11
+            }
+          ),
+          frameRate: 12,
+          repeat: -1 // para que se repita infinitamente
+        })
+
+        // Inicia la animación del sprite
+        this.car.play('car_animation_SOUTH')
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
       }
@@ -141,21 +165,30 @@ export default {
         if (this.isMoving) { return }
         switch (event.code) {
           case this.keyboardEventCodes.arrowUp:
-            this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowUp)
+            this.movePhaserCar(-1, 0, this.keyboardEventCodes.arrowUp, 'NORTH')
             break
           case this.keyboardEventCodes.arrowDown:
-            this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowDown)
+            this.movePhaserCar(1, 0, this.keyboardEventCodes.arrowDown, 'SOUTH')
             break
           case this.keyboardEventCodes.arrowLeft:
-            this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowLeft)
+            this.movePhaserCar(0, -1, this.keyboardEventCodes.arrowLeft, 'WEST')
             break
           case this.keyboardEventCodes.arrowRight:
-            this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowRight)
+            this.movePhaserCar(0, 1, this.keyboardEventCodes.arrowRight, 'EAST')
             break
           default:
             break
         }
       })
+    },
+    changeCarDirection(direction) {
+      const newSpriteSheet = `img/phaserjs/top-down-vehicles/${this.carName}/` +
+        `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carName}` +
+        `_CLEAN_${direction}_000-sheet.PNG`
+      // Detener la animación actual del coche
+      this.car.anims.stop()
+      this.car.setTexture(newSpriteSheet)
+      this.car.play(`car_animation_${direction}`)
     },
     checkMove(rowIndex, columnIndex, direction) {
       // Verificar si las coordenadas están dentro de los límites de la matriz
@@ -330,13 +363,40 @@ export default {
       const gameScene = new Phaser.Scene('GameScene')
 
       gameScene.preload = () => {
-        const carImage = 'img/phaserjs/car.96x96.png'
-        gameScene.load.image('phaserImgCar', carImage)
+        this.carDirections.forEach((direction) => {
+          gameScene.load.spritesheet(
+            `car_spritesheet_${direction}`,
+            `img/phaserjs/top-down-vehicles/${this.carName}/${this.carColor}/` +
+            `MOVE/${direction}/${this.carColor}_${this.carName}` +
+            `_CLEAN_${direction}_000-sheet.PNG`, {
+              frameWidth: 100,
+              frameHeight: 100
+            }
+          )
+        })
       }
 
       gameScene.create = () => {
         const { width, height } = this.getGameContainerSize()
         this.game.scale.resize(width, height)
+
+        const totalFrames = 12
+        const frameRate = 12
+
+        this.carDirections.forEach((direction) => {
+          gameScene.anims.create({
+            key: `car_animation_${direction}`,
+            frames: gameScene.anims.generateFrameNumbers(
+              `car_spritesheet_${direction}`, {
+                start: 0,
+                end: totalFrames - 1,
+                first: 0
+              }
+            ),
+            frameRate,
+            repeat: -1 // para que se repita infinitamente
+          })
+        })
 
         this.addPhaserBoard(gameScene)
         this.addPhaserCar(gameScene)
@@ -350,7 +410,7 @@ export default {
       // Si el movimiento es diagonal, devuelve true
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
-    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction) {
+    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
       const scene = this.config.scene[0]
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
       const newRowIndex = this.currentTile.y + deltaRowIndex
@@ -396,6 +456,9 @@ export default {
             this.moveTween = null
           }
         })
+
+        // Cambiar el sprite del coche según la dirección.
+        this.changeCarDirection(carDirection)
       }
     }
   }
