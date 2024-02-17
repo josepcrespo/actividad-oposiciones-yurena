@@ -11,6 +11,13 @@ import * as Phaser from 'phaser'
 
 export default {
   name: 'YrnPhaserGame',
+  props: {
+    useDefaultMovement: {
+      default: false,
+      required: false,
+      type: Boolean
+    }
+  },
   data() {
     return {
       board: [],
@@ -156,35 +163,35 @@ export default {
       this.car.setTexture(newSpriteSheet)
       this.car.play(`car_animation_${direction}`)
     },
-    checkMove(rowIndex, columnIndex, direction) {
+    checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction) {
       // Salir del método si las coordenadas están fuera de los límites de la matriz
       if (
-        rowIndex < 0 ||
-        columnIndex < 0 ||
-        rowIndex >= this.board.length ||
-        columnIndex >= this.board[0].length
+        toRowIndex < 0 ||
+        toColumnIndex < 0 ||
+        toRowIndex >= this.board.length ||
+        toColumnIndex >= this.board[0].length
       ) {
-        return false 
+        return false;
       }
 
-      const currentElement = this.board[this.currentTile.y][this.currentTile.x]
-      const targetElement = this.board[rowIndex][columnIndex]
+      const currentElement = this.board[fromRowIndex][fromColumnIndex];
+      const targetElement = this.board[toRowIndex][toColumnIndex];
 
       switch (direction) {
         case this.keyboardEventCodes.arrowDown:
           return (currentElement.down || targetElement.up) &&
-            rowIndex > this.currentTile.y
+            toRowIndex > fromRowIndex;
         case this.keyboardEventCodes.arrowLeft:
           return (currentElement.left || targetElement.right) &&
-            columnIndex < this.currentTile.x
+            toColumnIndex < fromColumnIndex;
         case this.keyboardEventCodes.arrowUp:
           return (currentElement.up || targetElement.down) &&
-            rowIndex < this.currentTile.y
+            toRowIndex < fromRowIndex;
         case this.keyboardEventCodes.arrowRight:
           return (currentElement.right || targetElement.left) &&
-            columnIndex > this.currentTile.x
+            toColumnIndex > fromColumnIndex;
         default:
-          return false
+          return false;
       }
     },
     createBoard({ numRows, numCols, maxWeight } = {}) {
@@ -270,6 +277,103 @@ export default {
       // Iniciamos la búsqueda desde la celda [0,0]
       return dfs(0, 0)
     },
+    customPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
+      const scene = this.config.scene[0]
+      let newRow = this.currentTile.y
+      let newCol = this.currentTile.x
+
+      // Se mueve en la dirección especificada hasta que ya no sea posible
+      while (this.checkMove(
+          this.currentTile.y,
+          this.currentTile.x,
+          newRow + deltaRowIndex,
+          newCol + deltaColumnIndex,
+          direction
+        )
+      ) {
+        newRow += deltaRowIndex
+        newCol += deltaColumnIndex
+      }
+
+      const targetX = newCol * this.tileSize + this.tileSize / 2
+      const targetY = newRow * this.tileSize + this.tileSize / 2
+
+      this.currentTile.x = newCol
+      this.currentTile.y = newRow
+      this.isMoving = true
+
+      if (this.moveTween) {
+        this.moveTween.stop()
+      }
+
+      this.moveTween = scene.tweens.add({
+        targets: this.car,
+        x: targetX,
+        y: targetY,
+        duration: 500,
+        ease: 'Linear',
+        onComplete: () => {
+          this.isMoving = false
+          this.moveTween = null
+        }
+      })
+
+      this.changeCarDirection(carDirection)
+    },
+    defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
+      const scene = this.config.scene[0]
+      const newColumnIndex = this.currentTile.x + deltaColumnIndex
+      const newRowIndex = this.currentTile.y + deltaRowIndex
+
+      // Salir del método si las coordenadas están fuera de los límites de la matriz
+      if (
+        newColumnIndex < 0 ||
+        newRowIndex < 0 ||
+        newColumnIndex >= this.board[0].length ||
+        newRowIndex >= this.board.length
+      ) {
+        return
+      }
+
+      if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
+        console.warn('Movimiento no válido, no se puede mover en diagonal')
+        return
+      }
+
+      const canMove = this.checkMove(
+        this.currentTile.y,
+        this.currentTile.x,
+        newRowIndex,
+        newColumnIndex,
+        direction
+      )
+
+      if (canMove) {
+        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
+        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
+        this.currentTile.x = newColumnIndex
+        this.currentTile.y = newRowIndex
+        this.isMoving = true
+
+        if (this.moveTween) {
+          this.moveTween.stop()
+        }
+
+        this.moveTween = scene.tweens.add({
+          targets: this.car,
+          x: targetX,
+          y: targetY,
+          duration: 500,
+          ease: 'Linear',
+          onComplete: () => {
+            this.isMoving = false
+            this.moveTween = null
+          }
+        })
+
+        this.changeCarDirection(carDirection)
+      }
+    },
     drawPhaserLine(graphics, moveToX, moveToY, lineToX, lineToY, lineWidth, lineColor) {
       graphics.lineStyle(lineWidth, lineColor)
       graphics.beginPath()
@@ -345,51 +449,10 @@ export default {
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
     movePhaserCar(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
-      const scene = this.config.scene[0]
-      const newColumnIndex = this.currentTile.x + deltaColumnIndex
-      const newRowIndex = this.currentTile.y + deltaRowIndex
-
-      // Salir del método si las coordenadas están fuera de los límites de la matriz
-      if (
-        newColumnIndex < 0 ||
-        newRowIndex < 0 ||
-        newColumnIndex >= this.board[0].length ||
-        newRowIndex >= this.board.length
-      ) {
-        return
-      }
-
-      if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
-        console.warn('Movimiento no válido, no se puede mover en diagonal')
-        return
-      }
-
-      const canMove = this.checkMove(newRowIndex, newColumnIndex, direction)
-
-      if (canMove) {
-        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
-        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
-        this.currentTile.x = newColumnIndex
-        this.currentTile.y = newRowIndex
-        this.isMoving = true
-
-        if (this.moveTween) {
-          this.moveTween.stop()
-        }
-
-        this.moveTween = scene.tweens.add({
-          targets: this.car,
-          x: targetX,
-          y: targetY,
-          duration: 500,
-          ease: 'Linear',
-          onComplete: () => {
-            this.isMoving = false
-            this.moveTween = null
-          }
-        })
-
-        this.changeCarDirection(carDirection)
+      if (this.useDefaultMovement) {
+        this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection)
+      } else {
+        this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection)
       }
     }
   }
