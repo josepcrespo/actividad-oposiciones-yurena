@@ -397,7 +397,7 @@ export default {
           currentCol += deltaColumnIndex
         }
       } else {
-        this.changeCarSprite(carDirection)
+        this.turnPhaserCar(keyDirection, carDirection)
       }
 
       const moveDuration = 500 * Math.max(
@@ -570,6 +570,23 @@ export default {
       } else {
         this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       }
+    },
+    turnPhaserCar(keyDirection, carDirection) {
+      const currentIndex = Object.values(this.carDirections).indexOf(this.currentTile.spriteDirection)
+      let nextIndex
+      if (keyDirection === this.keyboardEventCodes.arrowRight) {
+        nextIndex = currentIndex + 1
+        if (nextIndex === Object.keys(this.carDirections).length) {
+          nextIndex = 0
+        }
+      } else if (keyDirection === this.keyboardEventCodes.arrowLeft) {
+        nextIndex = currentIndex - 1
+        if (nextIndex === -1) {
+          nextIndex = Object.keys(this.carDirections).length - 1
+        }
+      }
+      const nextDirection = Object.keys(this.carDirections)[nextIndex]
+      this.changeCarSprite(this.carDirections[nextDirection])
     }
   }
 }
