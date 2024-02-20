@@ -1,5 +1,5 @@
 <template>
-  <v-row class="yrn-phaser-game">
+  <v-row class="yrn-phaser-game" :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`">
     <v-col>
       <div id="phaserContainer" />
     </v-col>
@@ -23,12 +23,17 @@ export default {
       board: [],
       car: null,
       carColor: 'Red',
-      carDirections: ['NORTH', 'EAST', 'SOUTH', 'WEST'],
+      carDirections: {
+        north: 'NORTH',
+        east: 'EAST',
+        south: 'SOUTH',
+        west: 'WEST'
+      },
       carName: 'COUPE',
       config: {
         type: Phaser.AUTO,
-        width: 600,
-        height: 400,
+        width: 480,
+        height: 320,
         parent: 'phaserContainer',
         scene: [],
         physics: {
@@ -41,7 +46,11 @@ export default {
           mode: Phaser.Scale.FIT
         }
       },
-      currentTile: { x: 0, y: 0 },
+      currentTile: {
+        spriteDirection: 'SOUTH',
+        x: 0,
+        y: 0 
+      },
       game: null,
       isMoving: false,
       keyboardEventCodes: {
@@ -51,6 +60,9 @@ export default {
         arrowRight: 'ArrowRight'
       },
       moveTween: null,
+      textureKeys: {
+        minecraftDirtFloor: 'minecraft_dirt_floor_texture'
+      },
       tileSize: 100
     }
   },
@@ -65,9 +77,7 @@ export default {
   methods: {
     addPhaserBoard(scene) {
       const cellSize = 100
-      const squareColor = 0xffffff
       const squareSize = 40
-      const lineColor = 0xffffff
       const lineWidth = 40
       const textStyle = {
         fontSize: '24px',
@@ -75,33 +85,55 @@ export default {
         fontFamily: 'Arial'
       }
 
-      const graphics = scene.add.graphics()
-
       this.board.forEach((row, rowIndex) => {
         row.forEach((element, columnIndex) => {
           const posX = columnIndex * cellSize + cellSize / 2
           const posY = rowIndex * cellSize + cellSize / 2
           const indexText = `${element.rowIndex}${element.columnIndex}`
 
-          this.drawPhaserSquare(graphics, posX, posY, squareColor, squareSize)
+          this.drawPhaserSquare(scene, posX, posY, squareSize)
           this.addPhaserText(scene, posX, posY, indexText, textStyle)
 
-          // Dibujar conexiones con elementos adyacentes:
-
+          // Dibujar conexiones con elementos adyacentes
           if (element.down) {
-            this.drawPhaserLine(graphics, posX, posY + squareSize / 2, posX, posY + cellSize - squareSize / 2, lineWidth, lineColor)
+            this.drawPhaserLine(
+              scene,
+              posX,
+              posY + squareSize / 2,
+              posX,
+              posY + cellSize - squareSize / 2,
+              lineWidth
+            )
           }
-
           if (element.right) {
-            this.drawPhaserLine(graphics, posX + squareSize / 2, posY, posX + cellSize - squareSize / 2, posY, lineWidth, lineColor)
+            this.drawPhaserLine(
+              scene,
+              posX + squareSize / 2,
+              posY,
+              posX + cellSize - squareSize / 2,
+              posY,
+              lineWidth
+            )
           }
-
           if (element.up) {
-            this.drawPhaserLine(graphics, posX, posY - squareSize / 2, posX, posY - cellSize + squareSize / 2, lineWidth, lineColor)
+            this.drawPhaserLine(
+              scene,
+              posX,
+              posY - squareSize / 2,
+              posX,
+              posY - cellSize + squareSize / 2,
+              lineWidth
+            )
           }
-
           if (element.left) {
-            this.drawPhaserLine(graphics, posX - squareSize / 2, posY, posX - cellSize + squareSize / 2, posY, lineWidth, lineColor)
+            this.drawPhaserLine(
+              scene,
+              posX - squareSize / 2,
+              posY,
+              posX - cellSize + squareSize / 2,
+              posY,
+              lineWidth
+            )
           }
         })
       })
@@ -112,41 +144,59 @@ export default {
         this.car = scene.add.sprite(
           this.tileSize / 2,
           this.tileSize / 2,
-          'car_spritesheet_SOUTH'
+          `car_spritesheet_${this.currentTile.spriteDirection}`
         )
         this.car.setOrigin(0.5)
-
-        // Define la animación del sprite
-        scene.anims.create({
-          key: 'car_animation_SOUTH',
-          frames: scene.anims.generateFrameNumbers(
-            'car_spritesheet_SOUTH', {
-              start: 0,
-              end: 11
-            }
-          ),
-          frameRate: 12,
-          repeat: -1 // repite la animación indefinidamente
-        })
-
-        this.car.play('car_animation_SOUTH')
+        this.car.play(`car_animation_${this.currentTile.spriteDirection}`)
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
       }
     },
     addPhaserControls(scene) {
-      const keyToDirection = {
-        [this.keyboardEventCodes.arrowUp]: { deltaRowIndex: -1, deltaColumnIndex: 0, carDirection: 'NORTH' },
-        [this.keyboardEventCodes.arrowDown]: { deltaRowIndex: 1, deltaColumnIndex: 0, carDirection: 'SOUTH' },
-        [this.keyboardEventCodes.arrowLeft]: { deltaRowIndex: 0, deltaColumnIndex: -1, carDirection: 'WEST' },
-        [this.keyboardEventCodes.arrowRight]: { deltaRowIndex: 0, deltaColumnIndex: 1, carDirection: 'EAST' },
+      let propsByKeyboardEventCodes
+      if (this.useDefaultMovement) {
+        propsByKeyboardEventCodes = {
+          [this.keyboardEventCodes.arrowUp]: {
+            deltaRowIndex: -1,
+            deltaColumnIndex: 0,
+            carDirection: this.carDirections.north
+          },
+          [this.keyboardEventCodes.arrowDown]: {
+            deltaRowIndex: 1,
+            deltaColumnIndex: 0,
+            carDirection: this.carDirections.south
+          },
+          [this.keyboardEventCodes.arrowLeft]: {
+            deltaRowIndex: 0,
+            deltaColumnIndex: -1,
+            carDirection: this.carDirections.west
+          },
+          [this.keyboardEventCodes.arrowRight]: {
+            deltaRowIndex: 0,
+            deltaColumnIndex: 1,
+            carDirection: this.carDirections.east
+          }
+        }
+      } else {
+        propsByKeyboardEventCodes = {
+          [this.keyboardEventCodes.arrowUp]: {
+          },
+          [this.keyboardEventCodes.arrowDown]: {
+          },
+          [this.keyboardEventCodes.arrowLeft]: {
+            carDirection: this.carDirections.west
+          },
+          [this.keyboardEventCodes.arrowRight]: {
+            carDirection: this.carDirections.east
+          }
+        }
       }
 
       scene.input.keyboard.on('keydown', (event) => {
         if (this.isMoving) { return }
-        const direction = keyToDirection[event.code]
-        if (direction) {
-          const { deltaRowIndex, deltaColumnIndex, carDirection } = direction
+        const propsByKeyboardEventCode = propsByKeyboardEventCodes[event.code]
+        if (propsByKeyboardEventCode) {
+          const { deltaRowIndex, deltaColumnIndex, carDirection } = propsByKeyboardEventCode
           this.movePhaserCar(deltaRowIndex, deltaColumnIndex, event.code, carDirection)
         }
       })
@@ -155,13 +205,14 @@ export default {
       // Añadir el texto en el centro del elemento
       scene.add.text(posX, posY, text, textStyle).setOrigin(0.5)
     },
-    changeCarDirection(direction) {
+    changeCarSprite(direction) {
       const newSpriteSheet = `img/phaserjs/top-down-vehicles/${this.carName}/` +
         `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carName}` +
         `_CLEAN_${direction}_000-sheet.PNG`
       this.car.anims.stop()
       this.car.setTexture(newSpriteSheet)
       this.car.play(`car_animation_${direction}`)
+      this.$set(this.currentTile, 'spriteDirection', direction)
     },
     checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction) {
       // Salir del método si las coordenadas están fuera de los límites de la matriz
@@ -225,7 +276,7 @@ export default {
       const weightLeft = setWeightHelper(left)
       const weightRight = setWeightHelper(right)
 
-      const element = {
+      return {
         up,
         down,
         left,
@@ -237,8 +288,6 @@ export default {
         rowIndex: this.$castIndexToCharacter(rowIndex, true),
         columnIndex: this.$castIndexToCharacter(columnIndex, true)
       }
-
-      return element
     },
     checkIfPathExists() {
       const numRows = this.board.length
@@ -281,21 +330,63 @@ export default {
       // Iniciamos la búsqueda desde la celda [0,0]
       return dfs(0, 0)
     },
-    customPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
+    customPhaserCarMove(deltaRowIndex = 0, deltaColumnIndex = 0, keyDirection, carDirection) {
+      carDirection = carDirection ?? this.currentTile.spriteDirection
       const scene = this.config.scene[0]
       let currentRow = this.currentTile.y
       let currentCol = this.currentTile.x
 
-      // Se mueve en la dirección especificada hasta que ya no sea posible
-      while (this.checkMove(
-          currentRow,
-          currentCol,
-          currentRow + deltaRowIndex,
-          currentCol + deltaColumnIndex,
-          direction
-      )) {
-        currentRow += deltaRowIndex
-        currentCol += deltaColumnIndex
+      // Si se presiona la flecha hacia abajo, no hacer nada
+      if (keyDirection === this.keyboardEventCodes.arrowDown) {
+        return
+      }
+
+      // Si se presiona la flecha hacia arriba, mover el coche en la dirección del sprite actual
+      if (keyDirection === this.keyboardEventCodes.arrowUp) {
+        const directionKeyMap = {
+          'NORTH': this.keyboardEventCodes.arrowUp,
+          'SOUTH': this.keyboardEventCodes.arrowDown,
+          'EAST': this.keyboardEventCodes.arrowRight,
+          'WEST': this.keyboardEventCodes.arrowLeft
+        }
+        switch (this.currentTile.spriteDirection) {
+          case this.carDirections.north:
+            deltaRowIndex = -1
+            deltaColumnIndex = 0
+            break
+          case this.carDirections.south:
+            deltaRowIndex = 1
+            deltaColumnIndex = 0
+            break
+          case this.carDirections.east:
+            deltaRowIndex = 0
+            deltaColumnIndex = 1
+            break
+          case this.carDirections.west:
+            deltaRowIndex = 0
+            deltaColumnIndex = -1
+            break
+          default:
+            console.error(`Unknown sprite direction: ${this.currentTile.spriteDirection}`)
+            deltaRowIndex = 0
+            deltaColumnIndex = 0
+        }
+
+        // Se mueve en la dirección especificada hasta que ya no sea posible
+        while (this.checkMove(
+            currentRow,
+            currentCol,
+            currentRow + deltaRowIndex,
+            currentCol + deltaColumnIndex,
+            // Obten la tecla correspondiente a la dirección de la animación,
+            // para obtener comprobar si puede moverse en dicha dirección
+            directionKeyMap[carDirection]
+        )) {
+          currentRow += deltaRowIndex
+          currentCol += deltaColumnIndex
+        }
+      } else {
+        this.changeCarSprite(carDirection)
       }
 
       const moveDuration = 500 * Math.max(
@@ -325,8 +416,6 @@ export default {
           this.moveTween = null
         }
       })
-
-      this.changeCarDirection(carDirection)
     },
     defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
       const scene = this.config.scene[0]
@@ -379,25 +468,28 @@ export default {
           }
         })
 
-        this.changeCarDirection(carDirection)
+        this.changeCarSprite(carDirection)
       }
     },
-    drawPhaserLine(graphics, moveToX, moveToY, lineToX, lineToY, lineWidth, lineColor) {
-      graphics.lineStyle(lineWidth, lineColor)
-      graphics.beginPath()
-      graphics.moveTo(moveToX, moveToY)
-      graphics.lineTo(lineToX, lineToY)
-      graphics.closePath()
-      graphics.strokePath()
-    },
-    drawPhaserSquare(graphics, posX, posY, squareColor, squareSize) {
-      graphics.fillStyle(squareColor, 1)
-      graphics.fillRect(
-        posX - squareSize / 2,
-        posY - squareSize / 2,
-        squareSize,
-        squareSize
+    drawPhaserLine(scene, startX, startY, endX, endY, lineWidth, textureKey = this.textureKeys.minecraftDirtFloor) {
+      const deltaX = endX - startX
+      const deltaY = endY - startY
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
+      const angle = Math.atan2(deltaY, deltaX)
+      const line = scene.add.tileSprite(
+        (startX + endX) / 2,
+        (startY + endY) / 2,
+        distance,
+        lineWidth,
+        textureKey
       )
+
+      line.setOrigin(0.5, 0.5)
+      line.rotation = angle
+    },
+    drawPhaserSquare(scene, posX, posY, squareSize, textureKey = this.textureKeys.minecraftDirtFloor) {
+      const square = scene.add.tileSprite(posX, posY, squareSize, squareSize, textureKey)
+      square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
     getGameContainerSize() {
       const parentElement = document.getElementById(this.config.parent)
@@ -409,7 +501,10 @@ export default {
       const gameScene = new Phaser.Scene('GameScene')
 
       gameScene.preload = () => {
-        this.carDirections.forEach((direction) => {
+        // Preload de la textura
+        gameScene.load.image(this.textureKeys.minecraftDirtFloor, 'img/phaserjs/textures/minecraft-dirt-floor-100x100.png')
+
+        Object.values(this.carDirections).forEach((direction) => {
           gameScene.load.spritesheet(
             `car_spritesheet_${direction}`,
             `img/phaserjs/top-down-vehicles/${this.carName}/${this.carColor}/` +
@@ -429,7 +524,7 @@ export default {
         const totalFrames = 12
         const frameRate = 12
 
-        this.carDirections.forEach((direction) => {
+        Object.values(this.carDirections).forEach((direction) => {
           gameScene.anims.create({
             key: `car_animation_${direction}`,
             frames: gameScene.anims.generateFrameNumbers(
@@ -456,13 +551,19 @@ export default {
       // Si el movimiento es diagonal, devuelve true
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
-    movePhaserCar(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
+    movePhaserCar(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection) {
       if (this.useDefaultMovement) {
-        this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection)
+        this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       } else {
-        this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection)
+        this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       }
     }
   }
 }
 </script>
+
+<style>
+.v-main {
+  overflow: hidden;
+}
+</style>
