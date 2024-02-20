@@ -1,5 +1,8 @@
 <template>
-  <v-row class="yrn-phaser-game" :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`">
+  <v-row
+    class="yrn-phaser-game"
+    :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`"
+  >
     <v-col>
       <div id="phaserContainer" />
     </v-col>
@@ -61,7 +64,8 @@ export default {
       },
       moveTween: null,
       textureKeys: {
-        minecraftDirtFloor: 'minecraft_dirt_floor_texture'
+        minecraftDeepFloor: 'minecraft_deep_floor_texture',
+        sceneBackground: 'scene_background_texture'
       },
       tileSize: 100
     }
@@ -75,24 +79,31 @@ export default {
     this.initPhaserGame()
   },
   methods: {
+    addBackgroundImage(scene, backgroundTexture = this.textureKeys.sceneBackground) {
+      const { width, height } = this.getGameContainerSize()
+      const backgroundImage = scene.add.image(0, 0, backgroundTexture)
+      backgroundImage.setOrigin(0)
+      backgroundImage.setScale(width / backgroundImage.width, height / backgroundImage.height)
+      backgroundImage.setDepth(-2) // Colocar la imagen detrás de todos los demás elementos
+    },
     addPhaserBoard(scene) {
       const cellSize = 100
       const squareSize = 40
       const lineWidth = 40
-      const textStyle = {
-        fontSize: '24px',
-        color: '#000000',
-        fontFamily: 'Arial'
-      }
+      // const textStyle = {
+      //   fontSize: '24px',
+      //   color: '#000000',
+      //   fontFamily: 'Arial'
+      // }
 
       this.board.forEach((row, rowIndex) => {
         row.forEach((element, columnIndex) => {
           const posX = columnIndex * cellSize + cellSize / 2
           const posY = rowIndex * cellSize + cellSize / 2
-          const indexText = `${element.rowIndex}${element.columnIndex}`
+          // const indexText = `${element.rowIndex}${element.columnIndex}`
 
           this.drawPhaserSquare(scene, posX, posY, squareSize)
-          this.addPhaserText(scene, posX, posY, indexText, textStyle)
+          // this.addPhaserText(scene, posX, posY, indexText, textStyle)
 
           // Dibujar conexiones con elementos adyacentes
           if (element.down) {
@@ -471,7 +482,7 @@ export default {
         this.changeCarSprite(carDirection)
       }
     },
-    drawPhaserLine(scene, startX, startY, endX, endY, lineWidth, textureKey = this.textureKeys.minecraftDirtFloor) {
+    drawPhaserLine(scene, startX, startY, endX, endY, lineWidth, textureKey = this.textureKeys.minecraftDeepFloor) {
       const deltaX = endX - startX
       const deltaY = endY - startY
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
@@ -487,7 +498,7 @@ export default {
       line.setOrigin(0.5, 0.5)
       line.rotation = angle
     },
-    drawPhaserSquare(scene, posX, posY, squareSize, textureKey = this.textureKeys.minecraftDirtFloor) {
+    drawPhaserSquare(scene, posX, posY, squareSize, textureKey = this.textureKeys.minecraftDeepFloor) {
       const square = scene.add.tileSprite(posX, posY, squareSize, squareSize, textureKey)
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
@@ -502,7 +513,8 @@ export default {
 
       gameScene.preload = () => {
         // Preload de la textura
-        gameScene.load.image(this.textureKeys.minecraftDirtFloor, 'img/phaserjs/textures/minecraft-dirt-floor-100x100.png')
+        gameScene.load.image(this.textureKeys.minecraftDeepFloor, 'img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
+        gameScene.load.image(this.textureKeys.sceneBackground, 'img/phaserjs/textures/scene-background.jpg')
 
         Object.values(this.carDirections).forEach((direction) => {
           gameScene.load.spritesheet(
@@ -539,6 +551,7 @@ export default {
           })
         })
 
+        this.addBackgroundImage(gameScene)
         this.addPhaserBoard(gameScene)
         this.addPhaserCar(gameScene)
         this.addPhaserControls(gameScene)
