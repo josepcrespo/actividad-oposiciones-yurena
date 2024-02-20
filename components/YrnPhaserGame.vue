@@ -379,7 +379,7 @@ export default {
             currentRow + deltaRowIndex,
             currentCol + deltaColumnIndex,
             // Obten la tecla correspondiente a la dirección de la animación,
-            // para obtener comprobar si puede moverse en dicha dirección
+            // para comprobar si puede moverse en dicha dirección
             directionKeyMap[carDirection]
         )) {
           currentRow += deltaRowIndex
