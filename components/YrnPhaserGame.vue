@@ -150,17 +150,11 @@ export default {
             )
           }
 
-          // Si estamos en la última fila y columna, añadir la estación de carga
           if (rowIndex === lastRowIndex && columnIndex === lastColumnIndex) {
-            const electricCarChargerHeight = (this.tileSize / 4) * 3
-            const electricCarChargerWidth = electricCarChargerHeight
-            const electricCarCharger = scene.add.image(
-              posX,
-              posY + cellSize,
-              this.textureKeys.electricCarCharger
-            )
-            electricCarCharger.setDisplaySize(electricCarChargerWidth, electricCarChargerHeight)
-            electricCarCharger.setOrigin(0.5, 1)
+            const chargerSize = (this.tileSize / 4) * 3
+            const chargerX = posX + cellSize
+            const chargerY = posY
+            this.addPhaserCarStation(scene, chargerX, chargerY, chargerSize, chargerSize)
           }
         })
       })
@@ -179,6 +173,11 @@ export default {
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
       }
+    },
+    addPhaserCarStation(scene, posX, posY, width, height, textureKey = this.textureKeys.electricCarCharger) {
+      const electricCarCharger = scene.add.image(posX, posY, textureKey)
+      electricCarCharger.setDisplaySize(width, height)
+      electricCarCharger.setOrigin(0.7, 0.5)
     },
     addPhaserControls(scene) {
       let propsByKeyboardEventCodes
