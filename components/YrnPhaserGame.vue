@@ -88,7 +88,7 @@ export default {
       backgroundImage.setDepth(-2) // Colocar la imagen detrás de todos los demás elementos
     },
     addPhaserBoard(scene) {
-      const cellSize = 100
+      const cellSize = this.tileSize
       const squareSize = 40
       const lastRowIndex = this.board.length - 1
       const lastColumnIndex = this.board[0].length - 1
@@ -152,12 +152,15 @@ export default {
 
           // Si estamos en la última fila y columna, añadir la estación de carga
           if (rowIndex === lastRowIndex && columnIndex === lastColumnIndex) {
+            const electricCarChargerHeight = (this.tileSize / 4) * 3
+            const electricCarChargerWidth = electricCarChargerHeight
             const electricCarCharger = scene.add.image(
               posX,
               posY + cellSize,
               this.textureKeys.electricCarCharger
             )
-            electricCarCharger.setOrigin(0.5, 0.5)
+            electricCarCharger.setDisplaySize(electricCarChargerWidth, electricCarChargerHeight)
+            electricCarCharger.setOrigin(0.5, 1)
           }
         })
       })
