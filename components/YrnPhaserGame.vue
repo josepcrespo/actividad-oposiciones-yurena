@@ -68,12 +68,12 @@ export default {
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
       },
-      tileSize: 100
+      tileSize: 128
     }
   },
   created() {
     do {
-      this.board = this.createBoard()
+      this.board = this.createBoard({ numRows: 5, numCols: 7 })
     } while(this.checkIfPathExists() === false)
   },
   mounted() {
@@ -89,10 +89,10 @@ export default {
     },
     addPhaserBoard(scene) {
       const cellSize = this.tileSize
-      const squareSize = 40
+      const squareSize = this.tileSize - 56
       const lastRowIndex = this.board.length - 1
       const lastColumnIndex = this.board[0].length - 1
-      const lineWidth = 40
+      const lineWidth = squareSize
       // const textStyle = {
       //   fontSize: '24px',
       //   color: '#000000',
@@ -174,6 +174,7 @@ export default {
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
         this.car.setOrigin(0.5)
+        this.car.setScale(1.5)
         this.car.play(`car_animation_${this.currentTile.spriteDirection}`)
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
