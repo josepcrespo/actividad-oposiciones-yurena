@@ -64,6 +64,7 @@ export default {
       },
       moveTween: null,
       textureKeys: {
+        electricCarCharger: 'electric_car_charger_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
       },
@@ -89,6 +90,8 @@ export default {
     addPhaserBoard(scene) {
       const cellSize = 100
       const squareSize = 40
+      const lastRowIndex = this.board.length - 1
+      const lastColumnIndex = this.board[0].length - 1
       const lineWidth = 40
       // const textStyle = {
       //   fontSize: '24px',
@@ -145,6 +148,16 @@ export default {
               posY,
               lineWidth
             )
+          }
+
+          // Si estamos en la última fila y columna, añadir la estación de carga
+          if (rowIndex === lastRowIndex && columnIndex === lastColumnIndex) {
+            const electricCarCharger = scene.add.image(
+              posX,
+              posY + cellSize,
+              this.textureKeys.electricCarCharger
+            )
+            electricCarCharger.setOrigin(0.5, 0.5)
           }
         })
       })
@@ -513,8 +526,9 @@ export default {
 
       gameScene.preload = () => {
         // Preload de la textura
+        gameScene.load.image(this.textureKeys.electricCarCharger, 'img/phaserjs/car-stations/100x100/electric-station-charger.png')
         gameScene.load.image(this.textureKeys.minecraftDeepFloor, 'img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
-        gameScene.load.image(this.textureKeys.sceneBackground, 'img/phaserjs/textures/scene-background.jpg')
+        gameScene.load.image(this.textureKeys.sceneBackground, 'img/phaserjs/backgrounds/main.jpg')
 
         Object.values(this.carDirections).forEach((direction) => {
           gameScene.load.spritesheet(
