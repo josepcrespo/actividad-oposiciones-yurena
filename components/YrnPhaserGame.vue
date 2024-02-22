@@ -3,8 +3,11 @@
     class="yrn-phaser-game"
     :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`"
   >
-    <v-col>
+    <v-col cols="9">
       <div id="phaserContainer" />
+    </v-col>
+    <v-col cols="3">
+      <h1>Car Path</h1>
     </v-col>
   </v-row>
 </template>
@@ -34,11 +37,11 @@ export default {
       },
       carName: 'COUPE',
       config: {
+        autoRound: false,
         type: Phaser.AUTO,
-        width: 480,
-        height: 320,
+        width: 824,
+        height: 512,
         parent: 'phaserContainer',
-        scene: [],
         physics: {
           default: 'arcade',
           arcade: {
@@ -46,8 +49,10 @@ export default {
           }
         },
         scale: {
-          mode: Phaser.Scale.FIT
-        }
+          parent: 'phaserContainer',
+          mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT
+        },
+        scene: []
       },
       currentTile: {
         spriteDirection: 'SOUTH',
@@ -64,11 +69,11 @@ export default {
       },
       moveTween: null,
       textureKeys: {
-        electricCarCharger: 'electric_car_charger_texture',
+        carElectricCharger: 'car_electric_charger_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
       },
-      tileSize: 128
+      tileSize: 100
     }
   },
   created() {
@@ -89,7 +94,7 @@ export default {
     },
     addPhaserBoard(scene) {
       const cellSize = this.tileSize
-      const squareSize = this.tileSize - 56
+      const squareSize = cellSize - (((56 * 100) / this.tileSize) * this.tileSize) / 100
       const lastRowIndex = this.board.length - 1
       const lastColumnIndex = this.board[0].length - 1
       const lineWidth = squareSize
@@ -151,10 +156,9 @@ export default {
           }
 
           if (rowIndex === lastRowIndex && columnIndex === lastColumnIndex) {
-            const chargerSize = (this.tileSize / 4) * 3
             const chargerX = posX + cellSize
             const chargerY = posY
-            this.addPhaserCarStation(scene, chargerX, chargerY, chargerSize, chargerSize)
+            this.addPhaserCarStation(scene, chargerX, chargerY)
           }
         })
       })
@@ -174,10 +178,9 @@ export default {
         console.error('Error adding car to scene: %o', error)
       }
     },
-    addPhaserCarStation(scene, posX, posY, width, height, textureKey = this.textureKeys.electricCarCharger) {
-      const electricCarCharger = scene.add.image(posX, posY, textureKey)
-      electricCarCharger.setDisplaySize(width, height)
-      electricCarCharger.setOrigin(0.7, 0.5)
+    addPhaserCarStation(scene, posX, posY, textureKey = this.textureKeys.carElectricCharger) {
+      this.carElectricCharger = scene.add.image(posX, posY, textureKey)
+      this.carElectricCharger.setOrigin(0.4, 0.5)
     },
     addPhaserControls(scene) {
       let propsByKeyboardEventCodes
@@ -529,7 +532,7 @@ export default {
 
       gameScene.preload = () => {
         // Preload de la textura
-        gameScene.load.image(this.textureKeys.electricCarCharger, 'img/phaserjs/car-stations/100x100/electric-station-charger.png')
+        gameScene.load.image(this.textureKeys.carElectricCharger, 'img/phaserjs/car-stations/100x100/car-electric-charger.png')
         gameScene.load.image(this.textureKeys.minecraftDeepFloor, 'img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
         gameScene.load.image(this.textureKeys.sceneBackground, 'img/phaserjs/backgrounds/main.jpg')
 
@@ -547,9 +550,6 @@ export default {
       }
 
       gameScene.create = () => {
-        const { width, height } = this.getGameContainerSize()
-        this.game.scale.resize(width, height)
-
         const totalFrames = 12
         const frameRate = 12
 
@@ -588,7 +588,7 @@ export default {
         this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       }
     },
-    turnPhaserCar(keyDirection, carDirection) {
+    turnPhaserCar(keyDirection) {
       const currentIndex = Object.values(this.carDirections).indexOf(this.currentTile.spriteDirection)
       let nextIndex
       if (keyDirection === this.keyboardEventCodes.arrowRight) {
@@ -608,9 +608,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.v-main {
-  overflow: hidden;
-}
-</style>
