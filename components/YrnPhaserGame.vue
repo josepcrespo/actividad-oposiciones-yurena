@@ -3,11 +3,26 @@
     class="yrn-phaser-game"
     :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`"
   >
-    <v-col cols="9">
-      <div id="phaserContainer" />
-    </v-col>
-    <v-col cols="3">
+    <v-col
+      xl="3"
+      lg="3"
+      md="3"
+      sm="12"
+      xs="12"
+      cols="12"
+      :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
+    >
       <h1>Car Path</h1>
+    </v-col>
+    <v-col
+      xl="9"
+      lg="9"
+      md="9"
+      sm="12"
+      xs="12"
+      cols="12"
+    >
+      <div id="phaserContainer" />
     </v-col>
   </v-row>
 </template>
@@ -86,11 +101,12 @@ export default {
   },
   methods: {
     addBackgroundImage(scene, backgroundTexture = this.textureKeys.sceneBackground) {
-      const { width, height } = this.getGameContainerSize()
-      const backgroundImage = scene.add.image(0, 0, backgroundTexture)
-      backgroundImage.setOrigin(0)
-      backgroundImage.setScale(width / backgroundImage.width, height / backgroundImage.height)
-      backgroundImage.setDepth(-2) // Colocar la imagen detrás de todos los demás elementos
+      const { width, height } = scene.sys.game.canvas
+      const backgroundImage = scene.add.image(width / 2, height / 2, backgroundTexture)
+      const scaleX = width / backgroundImage.width
+      const scaleY = height / backgroundImage.height
+      const scale = Math.max(scaleX, scaleY)
+      backgroundImage.setOrigin(0.5, 0.5).setScale(scale).setDepth(-2)
     },
     addPhaserBoard(scene) {
       const cellSize = this.tileSize
@@ -520,12 +536,6 @@ export default {
     drawPhaserSquare(scene, posX, posY, squareSize, textureKey = this.textureKeys.minecraftDeepFloor) {
       const square = scene.add.tileSprite(posX, posY, squareSize, squareSize, textureKey)
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
-    },
-    getGameContainerSize() {
-      const parentElement = document.getElementById(this.config.parent)
-      const width = parentElement.offsetWidth
-      const height = width * (this.config.height / this.config.width)
-      return { width, height }
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
