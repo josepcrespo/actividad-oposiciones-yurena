@@ -54,8 +54,8 @@ export default {
       config: {
         autoRound: false,
         type: Phaser.AUTO,
-        width: 824,
-        height: 512,
+        width: 862,
+        height: 542,
         parent: 'phaserContainer',
         physics: {
           default: 'arcade',
@@ -83,6 +83,8 @@ export default {
         arrowRight: 'ArrowRight'
       },
       moveTween: null,
+      offsetX: 30,
+      offsetY: 22,
       textureKeys: {
         carElectricCharger: 'car_electric_charger_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
@@ -108,22 +110,17 @@ export default {
       const scale = Math.max(scaleX, scaleY)
       backgroundImage.setOrigin(0.5, 0.5).setScale(scale).setDepth(-2)
     },
-    addPhaserBoard(scene) {
+    addPhaserBoard(scene, offsetX = this.offsetX, offsetY = this.offsetY) {
       const cellSize = this.tileSize
       const squareSize = cellSize - (((56 * 100) / this.tileSize) * this.tileSize) / 100
       const lastRowIndex = this.board.length - 1
       const lastColumnIndex = this.board[0].length - 1
       const lineWidth = squareSize
-      // const textStyle = {
-      //   fontSize: '24px',
-      //   color: '#000000',
-      //   fontFamily: 'Arial'
-      // }
 
       this.board.forEach((row, rowIndex) => {
         row.forEach((element, columnIndex) => {
-          const posX = columnIndex * cellSize + cellSize / 2
-          const posY = rowIndex * cellSize + cellSize / 2
+          const posX = columnIndex * cellSize + cellSize / 2 + offsetX
+          const posY = rowIndex * cellSize + cellSize / 2 + offsetY
           // const indexText = `${element.rowIndex}${element.columnIndex}`
 
           this.drawPhaserSquare(scene, posX, posY, squareSize)
@@ -179,12 +176,11 @@ export default {
         })
       })
     },
-    addPhaserCar(scene) {
+    addPhaserCar(scene, offsetX = this.offsetX, offsetY = this.offsetY) {
       try {
-        // Crea el sprite animado en la posición inicial
         this.car = scene.add.sprite(
-          this.tileSize / 2,
-          this.tileSize / 2,
+          this.tileSize / 2 + offsetX,
+          this.tileSize / 2 + offsetY,
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
         this.car.setOrigin(0.5)
@@ -194,9 +190,20 @@ export default {
         console.error('Error adding car to scene: %o', error)
       }
     },
-    addPhaserCarStation(scene, posX, posY, textureKey = this.textureKeys.carElectricCharger) {
-      this.carElectricCharger = scene.add.image(posX, posY, textureKey)
-      this.carElectricCharger.setOrigin(0.4, 0.5)
+    addPhaserCarStation(
+      scene,
+      posX,
+      posY,
+      offsetX = this.offsetX,
+      offsetY = this.offsetY,
+      textureKey = this.textureKeys.carElectricCharger
+    ) {
+      this.carElectricCharger = scene.add.image(
+        posX + offsetX,
+        posY + offsetY,
+        textureKey
+      )
+      this.carElectricCharger.setOrigin(0.7, 0.9)
     },
     addPhaserControls(scene) {
       let propsByKeyboardEventCodes
@@ -376,7 +383,14 @@ export default {
       // Iniciamos la búsqueda desde la celda [0,0]
       return dfs(0, 0)
     },
-    customPhaserCarMove(deltaRowIndex = 0, deltaColumnIndex = 0, keyDirection, carDirection) {
+    customPhaserCarMove(
+      deltaRowIndex = 0,
+      deltaColumnIndex = 0,
+      keyDirection,
+      carDirection,
+      offsetX = this.offsetX,
+      offsetY = this.offsetY
+    ) {
       carDirection = carDirection ?? this.currentTile.spriteDirection
       const scene = this.config.scene[0]
       let currentRow = this.currentTile.y
@@ -440,8 +454,8 @@ export default {
         Math.abs(currentRow - this.currentTile.y)
       )
 
-      const targetY = currentRow * this.tileSize + this.tileSize / 2
-      const targetX = currentCol * this.tileSize + this.tileSize / 2
+      const targetY = currentRow * this.tileSize + this.tileSize / 2 + this.offsetY
+      const targetX = currentCol * this.tileSize + this.tileSize / 2 + this.offsetX
 
       this.currentTile.y = currentRow
       this.currentTile.x = currentCol
