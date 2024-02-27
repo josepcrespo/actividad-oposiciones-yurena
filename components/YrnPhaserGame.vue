@@ -1,23 +1,69 @@
+<i18n lang="yaml">
+  ar:
+    defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
+  ca:
+    defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
+  de:
+    defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
+  en:
+    defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
+  es:
+    defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
+  eu:
+    defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
+  fr:
+    defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
+  it:
+    defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
+  ja:
+    defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
+  pt:
+    defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
+  ro:
+    defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
+  ru:
+    defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
+  zh:
+    defineCarMoves: "定义到达充电站所需的运动序列。"
+</i18n>
+
 <template>
   <v-row
     class="yrn-phaser-game"
     :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`"
   >
     <v-col
-      xl="3"
-      lg="3"
-      md="3"
+      xl="4"
+      lg="4"
+      md="4"
       sm="12"
       xs="12"
       cols="12"
       :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
     >
-      <h1>Car Path</h1>
+      <v-row>
+        <v-col cols="12">
+          <h2 class="ma-3">
+            {{ $t('defineCarMoves') }}
+          </h2>
+        </v-col>
+        <v-col cols="12" class="d-flex justify-start">
+          <yrn-draggable-item
+            v-for="(gameUiBtn, index) in gameUIButtons"
+            :key="index"
+            :item="gameUiBtn"
+            visible-property="icon"
+          />
+        </v-col>
+        <v-col cols="12">
+          <yrn-drop-items-area visible-property="icon" />
+        </v-col>
+      </v-row>
     </v-col>
     <v-col
-      xl="9"
-      lg="9"
-      md="9"
+      xl="8"
+      lg="8"
+      md="8"
       sm="12"
       xs="12"
       cols="12"
@@ -75,6 +121,9 @@ export default {
         y: 0 
       },
       game: null,
+      gameUIButtons: [
+        // Populated on the `created` hook
+      ],
       isMoving: false,
       keyboardEventCodes: {
         arrowUp: 'ArrowUp',
@@ -85,6 +134,14 @@ export default {
       moveTween: null,
       offsetX: 30,
       offsetY: 22,
+      propsByKeyboardEventCodes: {
+        customMoves: {
+          // Populated on the `created` hook
+        },
+        defaultMoves: {
+          // Populated on the `created` hook
+        }
+      },
       textureKeys: {
         carElectricCharger: 'car_electric_charger_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
@@ -94,6 +151,104 @@ export default {
     }
   },
   created() {
+    this.gameUIButtons = [{
+      carDirection: this.carDirections.west,
+      icon: 'mdi-arrow-left-top',
+      keyboardDirection: this.keyboardEventCodes.arrowLeft,
+      name: 'customPhaserCarMoveLeft',
+      title: {
+        ar: "استدر لليسار",
+        ca: "Gira a l'esquerra",
+        de: "Nach links abbiegen",
+        en: "Turn left",
+        es: "Girar a la izquierda",
+        eu: "Ezkerrera biratu",
+        fr: "Tourner à gauche",
+        gl: "Xirar á esquerda",
+        it: "Gira a sinistra",
+        ja: "左に曲がる",
+        pt: "Vire à esquerda",
+        ro: "Virează la stânga",
+        ru: "Повернуть налево",
+        zh: "左转"
+      }
+    }, {
+      carDirection: this.carDirections.east,
+      icon: 'mdi-arrow-right-top',
+      keyboardDirection: this.keyboardEventCodes.arrowRight,
+      name: 'customPhaserCarMoveRight',
+      title: {
+        ar: "استدر لليمين",
+        ca: "Gira a la dreta",
+        de: "Nach rechts abbiegen",
+        en: "Turn right",
+        es: "Girar a la derecha",
+        eu: "Eskuinera biratu",
+        fr: "Tourner à droite",
+        gl: "Xirar á dereita",
+        it: "Gira a destra",
+        ja: "右に曲がる",
+        pt: "Vire à direita",
+        ro: "Virează la dreapta",
+        ru: "Повернуть направо",
+        zh: "右转"
+      }
+    }, {
+      carDirection: undefined,
+      icon: 'mdi-arrow-up',
+      keyboardDirection: this.keyboardEventCodes.arrowUp,
+      name: 'customPhaserCarMoveStraight',
+      title: {
+        ar: "اذهب مباشرة",
+        ca: "Avança recte",
+        de: "Geradeaus fahren",
+        en: "Go straight",
+        es: "Avanzar recto",
+        eu: "Zuzenean aurrera egin",
+        fr: "Aller tout droit",
+        gl: "Avanzar recto",
+        it: "Vai dritto",
+        ja: "まっすぐ進む",
+        pt: "Avance reto",
+        ro: "Mergi drept înainte",
+        ru: "Продолжать прямо",
+        zh: "直行"
+      }
+    }]
+    this.propsByKeyboardEventCodes.customMoves = {
+      [this.keyboardEventCodes.arrowUp]: {
+      },
+      [this.keyboardEventCodes.arrowDown]: {
+      },
+      [this.keyboardEventCodes.arrowLeft]: {
+        carDirection: this.carDirections.west
+      },
+      [this.keyboardEventCodes.arrowRight]: {
+        carDirection: this.carDirections.east
+      }
+    }
+    this.propsByKeyboardEventCodes.defaultMoves = {
+      [this.keyboardEventCodes.arrowUp]: {
+        deltaRowIndex: -1,
+        deltaColumnIndex: 0,
+        carDirection: this.carDirections.north
+      },
+      [this.keyboardEventCodes.arrowDown]: {
+        deltaRowIndex: 1,
+        deltaColumnIndex: 0,
+        carDirection: this.carDirections.south
+      },
+      [this.keyboardEventCodes.arrowLeft]: {
+        deltaRowIndex: 0,
+        deltaColumnIndex: -1,
+        carDirection: this.carDirections.west
+      },
+      [this.keyboardEventCodes.arrowRight]: {
+        deltaRowIndex: 0,
+        deltaColumnIndex: 1,
+        carDirection: this.carDirections.east
+      }
+    }
     do {
       this.board = this.createBoard({ numRows: 5, numCols: 7 })
     } while(this.checkIfPathExists() === false)
@@ -208,41 +363,9 @@ export default {
     addPhaserControls(scene) {
       let propsByKeyboardEventCodes
       if (this.useDefaultMovement) {
-        propsByKeyboardEventCodes = {
-          [this.keyboardEventCodes.arrowUp]: {
-            deltaRowIndex: -1,
-            deltaColumnIndex: 0,
-            carDirection: this.carDirections.north
-          },
-          [this.keyboardEventCodes.arrowDown]: {
-            deltaRowIndex: 1,
-            deltaColumnIndex: 0,
-            carDirection: this.carDirections.south
-          },
-          [this.keyboardEventCodes.arrowLeft]: {
-            deltaRowIndex: 0,
-            deltaColumnIndex: -1,
-            carDirection: this.carDirections.west
-          },
-          [this.keyboardEventCodes.arrowRight]: {
-            deltaRowIndex: 0,
-            deltaColumnIndex: 1,
-            carDirection: this.carDirections.east
-          }
-        }
+        propsByKeyboardEventCodes = this.propsByKeyboardEventCodes.defaultMoves
       } else {
-        propsByKeyboardEventCodes = {
-          [this.keyboardEventCodes.arrowUp]: {
-          },
-          [this.keyboardEventCodes.arrowDown]: {
-          },
-          [this.keyboardEventCodes.arrowLeft]: {
-            carDirection: this.carDirections.west
-          },
-          [this.keyboardEventCodes.arrowRight]: {
-            carDirection: this.carDirections.east
-          }
-        }
+        propsByKeyboardEventCodes = this.propsByKeyboardEventCodes.customMoves
       }
 
       scene.input.keyboard.on('keydown', (event) => {
