@@ -1,7 +1,30 @@
 <template>
   <div class="yrn-draggable-item ma-3">
+    <v-tooltip bottom>
+      <template #activator="{ on, attrs }">
+        <v-btn
+          v-if="visibleProperty === 'icon'"
+          :class="{ 'elevation-12': isMouseOver }"
+          draggable
+          fab
+          :large="$vuetify.breakpoint.smAndDown"
+          rounded
+          v-bind="attrs"
+          v-on="on"
+          @mouseover="onMouseOver"
+          @mouseleave="onMouseLeave"
+          @dragend="onDragEnd()"
+          @dragstart="onDragStart($event, item, visibleProperty)"
+        >
+          <v-icon color="orange">
+            {{ item.icon }}
+          </v-icon>
+        </v-btn>
+      </template>
+      <span>{{ getItemIconTitle(item) }}</span>
+    </v-tooltip>
     <v-img
-      v-if="visibleProperty === 'image'"
+      v-if="visibleProperty === 'image' || showImageAndName"
       class="rounded-xxl"
       :class="{ 'elevation-12': isMouseOver }"
       draggable
@@ -14,7 +37,7 @@
       @dragstart="onDragStart($event, item, visibleProperty)"
     />
     <v-chip
-      v-else
+      v-if="visibleProperty !== 'image' && visibleProperty !== 'icon' || showImageAndName"
       :class="{ 'elevation-12': isMouseOver && !isDragging }"
       color="default"
       draggable
@@ -52,6 +75,11 @@ export default {
       required: true,
       type: Object
     },
+    showImageAndName: {
+      default: false,
+      required: false,
+      type: Boolean
+    },
     visibleProperty: {
       required: true,
       type: String
@@ -64,6 +92,9 @@ export default {
     }
   },
   methods: {
+    getItemIconTitle(item) {
+      return item?.title?.[this.$i18n.locale] ?? ''
+    },
     getItemVisibleProperty(item) {
       return item[this.visibleProperty]?.[this.$i18n.locale] ?? item.name
     },
