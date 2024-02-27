@@ -58,6 +58,7 @@ zh:
           v-for="(imageItem, imageItemIndex) in images"
           :key="`${imageItemIndex}--${imageItem.id}`"
           class="d-flex justify-center"
+          :class="{ 'pb-2': otherItemIndex !== others.length - 1 }"
           cols="12"
         >
           <v-img
@@ -89,9 +90,23 @@ zh:
           v-for="(otherItem, otherItemIndex) in others"
           :key="`${otherItemIndex}--${otherItem.id}`"
           class="d-flex justify-center py-0"
+          :class="{ 'pb-2': otherItemIndex !== others.length - 1 }"
           cols="12"
         >
+          <v-btn
+            v-if="visibleProperty === 'icon'"
+            rounded
+          >
+            <v-icon
+              color="orange"
+              left
+            >
+              {{ otherItem.icon }}
+            </v-icon>
+            {{ getItemIconTitle(otherItem) }}
+          </v-btn>
           <v-chip
+            v-else
             color="default"
             pill
             text-color="default"
@@ -130,8 +145,9 @@ export default {
       type: [Number, String]
     },
     index: {
-      required: true,
-      type: Number
+      default: undefined,
+      required: false,
+      type: [Number, undefined]
     },
     maxImageItems: {
       default: -1,
@@ -195,10 +211,19 @@ export default {
     }
   },
   mounted() {
-    this.images = this.exerciseSolutionFromUser?.[this.index]?.images ?? []
-    this.others = this.exerciseSolutionFromUser?.[this.index]?.others ?? []
+    this.images = this.index
+      ?? this.exerciseSolutionFromUser?.[this.index]?.images
+      ?? this.exerciseSolutionFromUser?.images
+      ?? []
+    this.others = this.index
+      ?? this.exerciseSolutionFromUser?.[this.index]?.others
+      ?? this.exerciseSolutionFromUser?.others
+      ?? []
   },
   methods: {
+    getItemIconTitle(item) {
+      return item?.title?.[this.$i18n.locale] ?? ''
+    },
     getItemVisibleProperty(item) {
       return item[this.visibleProperty]?.[this.$i18n.locale] ?? item.name
     },
