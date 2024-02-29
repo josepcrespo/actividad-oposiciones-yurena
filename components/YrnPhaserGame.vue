@@ -28,49 +28,46 @@
 </i18n>
 
 <template>
-  <v-row
-    class="yrn-phaser-game"
-    :style="`height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 : 56}px);`"
-  >
-    <v-col
-      xl="4"
-      lg="4"
-      md="4"
-      sm="12"
-      xs="12"
-      cols="12"
-      :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
-    >
-      <v-row>
-        <v-col cols="12">
-          <h2 class="ma-3">
-            {{ $t('defineCarMoves') }}
-          </h2>
-        </v-col>
-        <v-col cols="12" class="d-flex justify-start">
-          <yrn-draggable-item
-            v-for="(gameUiBtn, index) in gameUIButtons"
-            :key="index"
-            :item="gameUiBtn"
-            visible-property="icon"
-          />
-        </v-col>
-        <v-col cols="12">
-          <yrn-drop-items-area visible-property="icon" />
-        </v-col>
-      </v-row>
-    </v-col>
-    <v-col
-      xl="8"
-      lg="8"
-      md="8"
-      sm="12"
-      xs="12"
-      cols="12"
-    >
-      <div id="phaserContainer" />
-    </v-col>
-  </v-row>
+    <v-row class="yrn-phaser-game mt-2 overflow-hidden">
+      <v-col
+        xl="4"
+        lg="4"
+        md="4"
+        sm="12"
+        xs="12"
+        cols="12"
+        class="overflow-y-auto"
+        :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
+        :style="`max-height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 + 8 : 56 + 8}px);`"
+      >
+        <v-row>
+          <v-col cols="12">
+            <h2 class="ma-3">
+              {{ $t('defineCarMoves') }}
+            </h2>
+          </v-col>
+          <v-col cols="12">
+            <yrn-drag-and-drop-with-two-lists
+              :draggable-items-title="draggableItemsTitle"
+              :drop-area-title="dropAreaTitle"
+              :items="gameUIButtons"
+              visible-property="title"
+            />
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col
+        xl="8"
+        lg="8"
+        md="8"
+        sm="12"
+        xs="12"
+        cols="12"
+      >
+        <div id="phaserContainer" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -119,6 +116,36 @@ export default {
         spriteDirection: 'SOUTH',
         x: 0,
         y: 0 
+      },
+      draggableItemsTitle: {
+        ar: ':التنقلات المتوفرة',
+        ca: 'Moviments disponibles:',
+        de: 'Verfügbare Bewegungen:',
+        en: 'Available moves:',
+        es: 'Movimientos disponibles:',
+        eu: 'Jakinarazpenak eskura:',
+        fr: 'Déplacements disponibles:',
+        gl: 'Movementos dispoñíbeis:',
+        it: 'Spostamenti disponibili:',
+        ja: '使用可能な移動:',
+        pt: 'Movimentos disponíveis:',
+        ru: 'Доступные движения:',
+        zh: '可用移动：'
+      },
+      dropAreaTitle: {
+        ar: ':التنقلات المطلوبة',
+        ca: 'Moviments necessaris:',
+        de: 'Benötigte Bewegungen:',
+        en: 'Required moves:',
+        es: 'Movimientos necesarios:',
+        eu: 'Ezabakizunak behar duenak:',
+        fr: 'Déplacements nécessaires:',
+        gl: 'Movementos necesarios:',
+        it: 'Spostamenti necessari:',
+        ja: '必要な移動:',
+        pt: 'Movimentos necessários:',
+        ru: 'Необходимые движения:',
+        zh: '所需移动：'
       },
       game: null,
       gameUIButtons: [
