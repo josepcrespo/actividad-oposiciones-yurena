@@ -1,5 +1,5 @@
 <template>
-  <v-container class="yrn-drag-and-drop-with-two-lists">
+  <v-container class="yrn-drag-and-drop-with-two-lists pa-0">
     <v-row>
       <v-col
         xl="12"
@@ -51,8 +51,9 @@
         sm="6"
         xs="12"
         cols="12"
+        class="pt-0"
       >
-        <h3 class="mb-4">
+        <h3 class="mb-3">
           {{ translatedDropAreaTitle }}
         </h3>
         <VueDraggable
