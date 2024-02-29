@@ -28,7 +28,15 @@
 </i18n>
 
 <template>
-    <v-row class="yrn-phaser-game mt-2 overflow-hidden">
+  <v-container class="yrn-phaser-game" fluid>
+    <v-row>
+      <v-col>
+        <h2>
+          {{ $t('defineCarMoves') }}
+        </h2>
+      </v-col>
+    </v-row>
+    <v-row class="mt-2 overflow-hidden">
       <v-col
         xl="4"
         lg="4"
@@ -40,12 +48,7 @@
         :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
         :style="`max-height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 + 8 : 56 + 8}px);`"
       >
-        <v-row>
-          <v-col cols="12">
-            <h2 class="ma-3">
-              {{ $t('defineCarMoves') }}
-            </h2>
-          </v-col>
+        <v-row no-gutters>
           <v-col cols="12">
             <yrn-drag-and-drop-with-two-lists
               :draggable-items-title="draggableItemsTitle"
