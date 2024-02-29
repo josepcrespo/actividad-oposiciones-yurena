@@ -2,11 +2,11 @@
   <v-container class="yrn-drag-and-drop-with-two-lists">
     <v-row>
       <v-col
-        xl="6"
-        lg="6"
-        md="6"
+        xl="12"
+        lg="12"
+        md="12"
         sm="6"
-        xs="6"
+        xs="12"
         cols="12"
       >
         <h3 class="mb-1">
@@ -45,11 +45,11 @@
         </VueDraggable>
       </v-col>
       <v-col
-        xl="6"
-        lg="6"
-        md="6"
+        xl="12"
+        lg="12"
+        md="12"
         sm="6"
-        xs="6"
+        xs="12"
         cols="12"
       >
         <h3 class="mb-4">
@@ -100,7 +100,9 @@
 </template>
 
 <script>
+// https://github.com/uuidjs/uuid
 import { v4 as newUuid } from 'uuid'
+// https://alfred-skyblue.github.io/vue-draggable-plus/en/
 import { VueDraggable } from 'vue-draggable-plus'
 
 export default {
