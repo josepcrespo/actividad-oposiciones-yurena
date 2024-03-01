@@ -191,6 +191,7 @@ export default {
     border-color: rgb(255 255 255 / 50%);
     border-style: dashed;
     border-width: 3px;
+    height: calc(100% - 48px);
     min-height: 128px;
 
     .yrn-drag-and-drop-with-two-lists {
