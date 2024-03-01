@@ -69,13 +69,34 @@
           visible-property="title"
         >
           <template #bottom>
-            <v-btn
-              color="primary"
-              x-large
-              @click="executeSequenceOfMoves()"
-            >
-              {{ $t('executeSequenceOfMoves') }}
-            </v-btn>
+            <v-row>
+              <v-col class="d-flex justify-center">
+                <v-btn
+                  block
+                  color="deep-orange"
+                  x-large
+                  @click="resetGame()"
+                >
+                  <v-icon class="mr-2">
+                    mdi-restart
+                  </v-icon>
+                  Reiniciar
+                </v-btn>
+              </v-col>
+              <v-col class="d-flex justify-center">
+                <v-btn
+                  block
+                  color="primary"
+                  x-large
+                  @click="executeSequenceOfMoves()"
+                >
+                  <v-icon class="mr-2">
+                    mdi-play
+                  </v-icon>
+                  {{ $t('executeSequenceOfMoves') }}
+                </v-btn>
+              </v-col>
+            </v-row>
           </template>
         </yrn-drag-and-drop-with-two-lists>
       </v-col>
@@ -126,7 +147,7 @@ export default {
         south: 'SOUTH',
         west: 'WEST'
       },
-      carName: 'COUPE',
+      carModel: 'COUPE',
       config: {
         autoRound: false,
         type: Phaser.AUTO,
@@ -444,8 +465,8 @@ export default {
         if (this.isMoving) { return }
         const propsByKeyboardEventCode = propsByKeyboardEventCodes[event.code]
         if (propsByKeyboardEventCode) {
-          const { deltaRowIndex, deltaColumnIndex, carDirection } = propsByKeyboardEventCode
-          this.movePhaserCar(deltaRowIndex, deltaColumnIndex, event.code, carDirection)
+          const { deltaColumnIndex, deltaRowIndex, carDirection } = propsByKeyboardEventCode
+          this.movePhaserCar(event.code, carDirection, deltaColumnIndex, deltaRowIndex)
         }
       })
     },
@@ -454,8 +475,8 @@ export default {
       scene.add.text(posX, posY, text, textStyle).setOrigin(0.5)
     },
     changeCarSprite(direction) {
-      const newSpriteSheet = `/img/phaserjs/top-down-vehicles/${this.carName}/` +
-        `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carName}` +
+      const newSpriteSheet = `/img/phaserjs/top-down-vehicles/${this.carModel}/` +
+        `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carModel}` +
         `_CLEAN_${direction}_000-sheet.png`
       this.car.anims.stop()
       this.car.setTexture(newSpriteSheet)
@@ -752,7 +773,7 @@ export default {
         const nextMove = this.moveQueue.shift()
         const { carDirection, keyboardDirection } = nextMove
 
-        this.movePhaserCar(null, null, keyboardDirection, carDirection)
+        this.movePhaserCar(keyboardDirection, carDirection)
       }
     },
     executeSequenceOfMoves() {
@@ -784,8 +805,8 @@ export default {
         Object.values(this.carDirections).forEach((direction) => {
           gameScene.load.spritesheet(
             `car_spritesheet_${direction}`,
-            `/img/phaserjs/top-down-vehicles/${this.carName}/${this.carColor}/` +
-            `MOVE/${direction}/${this.carColor}_${this.carName}` +
+            `/img/phaserjs/top-down-vehicles/${this.carModel}/${this.carColor}/` +
+            `MOVE/${direction}/${this.carColor}_${this.carModel}` +
             `_CLEAN_${direction}_000-sheet.png`, {
               frameWidth: 100,
               frameHeight: 100
@@ -839,12 +860,27 @@ export default {
       // Si el movimiento es diagonal, devuelve true
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
-    movePhaserCar(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection) {
+    movePhaserCar(keyboardDirection, carDirection, deltaRowIndex = null, deltaColumnIndex = null) {
       if (this.useDefaultMovement) {
         this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       } else {
         this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       }
+    },
+    resetGame() {
+      // Restablecer la posición del coche
+      if (this.car) {
+        const offsetX = this.offsetX
+        const offsetY = this.offsetY
+        const posX = this.tileSize / 2 + offsetX
+        const posY = this.tileSize / 2 + offsetY
+
+        this.car.setPosition(posX, posY)
+        this.changeCarSprite(this.carDirections.south)
+        this.currentTile.spriteDirection = this.carDirections.south
+      }
+      // Restablecer la secuencia de movimientos
+      this.$refs.dragAndDropComponent.resetList2()
     },
     turnPhaserCar(keyDirection) {
       const currentIndex = Object.values(this.carDirections).indexOf(this.currentTile.spriteDirection)
