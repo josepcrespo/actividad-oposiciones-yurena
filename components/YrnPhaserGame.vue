@@ -431,7 +431,7 @@ export default {
     changeCarSprite(direction) {
       const newSpriteSheet = `img/phaserjs/top-down-vehicles/${this.carName}/` +
         `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carName}` +
-        `_CLEAN_${direction}_000-sheet.PNG`
+        `_CLEAN_${direction}_000-sheet.png`
       this.car.anims.stop()
       this.car.setTexture(newSpriteSheet)
       this.car.play(`car_animation_${direction}`)
@@ -761,7 +761,7 @@ export default {
             `car_spritesheet_${direction}`,
             `img/phaserjs/top-down-vehicles/${this.carName}/${this.carColor}/` +
             `MOVE/${direction}/${this.carColor}_${this.carName}` +
-            `_CLEAN_${direction}_000-sheet.PNG`, {
+            `_CLEAN_${direction}_000-sheet.png`, {
               frameWidth: 100,
               frameHeight: 100
             }
