@@ -1,30 +1,43 @@
 <i18n lang="yaml">
   ar:
     defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
+    executeSequenceOfMoves: "تشغيل التسلسل"
   ca:
     defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
+    executeSequenceOfMoves: "Executa la seqüència"
   de:
     defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
+    executeSequenceOfMoves: "Ablauffolge ausführen"
   en:
     defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
+    executeSequenceOfMoves: "Run sequence"
   es:
     defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
+    executeSequenceOfMoves: "Ejecutar secuencia"
   eu:
     defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
+    executeSequenceOfMoves: "Exekutatu sekuentzia"
   fr:
     defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
+    executeSequenceOfMoves: "Exécuter la séquence"
   it:
     defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
+    executeSequenceOfMoves: "Esegui la sequenza"
   ja:
     defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
+    executeSequenceOfMoves: "動きのシーケンスを実行"
   pt:
     defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
+    executeSequenceOfMoves: "Executar seqüência"
   ro:
     defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
+    executeSequenceOfMoves: "Executa secvența"
   ru:
     defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
+    executeSequenceOfMoves: "Последовательность запуска"
   zh:
     defineCarMoves: "定义到达充电站所需的运动序列。"
+    executeSequenceOfMoves: "运行顺序"
 </i18n>
 
 <template>
@@ -48,16 +61,19 @@
         :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
         :style="`max-height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 + 8 : 56 + 8}px);`"
       >
-        <v-row no-gutters>
-          <v-col cols="12">
-            <yrn-drag-and-drop-with-two-lists
-              :draggable-items-title="draggableItemsTitle"
-              :drop-area-title="dropAreaTitle"
-              :items="gameUIButtons"
-              visible-property="title"
-            />
-          </v-col>
-        </v-row>
+        <yrn-drag-and-drop-with-two-lists
+          ref="dragAndDropComponent"
+          :draggable-items-title="draggableItemsTitle"
+          :drop-area-title="dropAreaTitle"
+          :items="gameUIButtons"
+          visible-property="title"
+        >
+          <template #bottom>
+            <v-btn x-large @click="executeSequenceOfMoves()">
+              {{ $t('executeSequenceOfMoves') }}
+            </v-btn>
+          </template>
+        </yrn-drag-and-drop-with-two-lists>
       </v-col>
       <v-col
         xl="8"
@@ -162,6 +178,7 @@ export default {
         arrowRight: 'ArrowRight'
       },
       moveTween: null,
+      moveQueue: [],
       offsetX: 30,
       offsetY: 22,
       propsByKeyboardEventCodes: {
@@ -627,6 +644,7 @@ export default {
         onComplete: () => {
           this.isMoving = false
           this.moveTween = null
+          this.executeNextMove()
         }
       })
     },
@@ -703,6 +721,31 @@ export default {
     drawPhaserSquare(scene, posX, posY, squareSize, textureKey = this.textureKeys.minecraftDeepFloor) {
       const square = scene.add.tileSprite(posX, posY, squareSize, squareSize, textureKey)
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
+    },
+    executeNextMove() {
+      if (this.moveQueue.length > 0) {
+        const nextMove = this.moveQueue.shift()
+        const { carDirection, keyboardDirection } = nextMove
+
+        this.movePhaserCar(null, null, keyboardDirection, carDirection)
+      }
+    },
+    executeSequenceOfMoves() {
+      const dragAndDropComponent = this.$refs.dragAndDropComponent
+
+      if (dragAndDropComponent && dragAndDropComponent.list2) {
+        const customPhaserCarMoves = dragAndDropComponent.list2
+
+        // Agregar cada movimiento a la cola
+        this.moveQueue = customPhaserCarMoves.map(move => ({
+          carDirection: move.carDirection,
+          keyboardDirection: move.keyboardDirection
+        }))
+
+        this.executeNextMove()
+      } else {
+        console.error("Error: No se pudo obtener list2 desde YrnDragAndDropWithTwoLists")
+      }
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
