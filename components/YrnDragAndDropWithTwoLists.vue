@@ -96,6 +96,11 @@
         </VueDraggable>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="d-flex justify-center">
+        <slot name="bottom"/>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
