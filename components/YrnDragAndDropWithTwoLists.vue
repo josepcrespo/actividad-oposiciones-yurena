@@ -164,6 +164,9 @@ export default {
     },
     removeElementFromList(index, list = this.list2) {
       list.splice(index, 1)
+    },
+    resetList2() {
+      this.list2 = []
     }
   }
 }
