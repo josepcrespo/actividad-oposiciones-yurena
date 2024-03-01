@@ -26,7 +26,7 @@
           <v-chip
             v-for="(element, index1) in list1"
             :key="getVForKey(index1)"
-            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-7 rounded-xxl d-flex"
+            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
           >
             <v-icon
               v-if="element.icon"
@@ -60,7 +60,6 @@
           v-model="list2"
           :animation="150"
           class="yrn-drag-and-drop-with-two-lists__drop-list pa-3 rounded-xxl"
-          :class="{ 'yrn-drag-and-drop-with-two-lists__drop-list--active-area': isDraggingElement }"
           group="carMovements"
         >
           <!-- vue-dragabble needs at least one element on the list to work -->
@@ -68,7 +67,7 @@
           <v-chip  
             v-for="(element, index2) in list2"
             :key="getVForKey(index2)"
-            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-7 rounded-xxl d-flex"
+            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
           >
             <v-icon
               v-if="element.icon"
@@ -133,8 +132,7 @@ export default {
   data() {
     return {
       list1: [],
-      list2: [],
-      isDraggingElement: false
+      list2: []
     }
   },
   computed: {
@@ -158,18 +156,6 @@ export default {
     },
     getVForKey(index) {
       return `${index}--${newUuid()}`
-    },
-    onEnd() {
-      this.$nextTick(() => {
-        this.isDraggingElement = false
-      })
-      // console.log("🚀 ~ onEnd ~ this.isDraggingElement:", this.isDraggingElement)
-    },
-    onStart() {
-      this.$nextTick(() => {
-        this.isDraggingElement = true
-      })
-      // console.log("🚀 ~ onStart ~ this.isDraggingElement:", this.isDraggingElement)
     },
     removeElementFromList(index, list = this.list2) {
       list.splice(index, 1)
@@ -197,11 +183,7 @@ export default {
     border-color: rgb(255 255 255 / 50%);
     border-style: dashed;
     border-width: 3px;
-    min-height: 196px;
-
-    &--active-area {
-      border-color: rgb(255 255 255 / 100%);
-    }
+    min-height: 128px;
 
     .yrn-drag-and-drop-with-two-lists {
       &__list-group-item {
