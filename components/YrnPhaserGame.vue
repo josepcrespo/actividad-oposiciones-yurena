@@ -877,7 +877,11 @@ export default {
 
         this.car.setPosition(posX, posY)
         this.changeCarSprite(this.carDirections.south)
-        this.currentTile.spriteDirection = this.carDirections.south
+        this.currentTile = {
+          spriteDirection: 'SOUTH',
+          x: 0,
+          y: 0 
+        }
       }
       // Restablecer la secuencia de movimientos
       this.$refs.dragAndDropComponent.resetList2()
