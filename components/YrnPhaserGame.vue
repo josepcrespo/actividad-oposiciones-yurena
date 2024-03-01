@@ -791,7 +791,9 @@ export default {
         this.addBackgroundImage(gameScene)
         this.addPhaserBoard(gameScene)
         this.addPhaserCar(gameScene)
-        this.addPhaserControls(gameScene)
+        // Keyboard game controls disabled, by default, the user must define a
+        // sequence of movements to finally execute them all one after another.
+        // this.addPhaserControls(gameScene)
       }
 
       this.config.scene.push(gameScene)
