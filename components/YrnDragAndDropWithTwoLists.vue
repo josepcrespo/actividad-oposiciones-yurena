@@ -51,7 +51,7 @@
         sm="6"
         xs="12"
         cols="12"
-        class="pt-0"
+        class="pt-0 pt-sm-3 pt-md-0"
       >
         <h3 class="mb-3">
           {{ translatedDropAreaTitle }}
