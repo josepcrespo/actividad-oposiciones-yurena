@@ -69,7 +69,11 @@
           visible-property="title"
         >
           <template #bottom>
-            <v-btn x-large @click="executeSequenceOfMoves()">
+            <v-btn
+              color="primary"
+              x-large
+              @click="executeSequenceOfMoves()"
+            >
               {{ $t('executeSequenceOfMoves') }}
             </v-btn>
           </template>
@@ -95,6 +99,16 @@ import * as Phaser from 'phaser'
 export default {
   name: 'YrnPhaserGame',
   props: {
+    numCols: {
+      default: 7,
+      required: false,
+      type: Number
+    },
+    numRows: {
+      default: 5,
+      required: false,
+      type: Number
+    },
     useDefaultMovement: {
       default: false,
       required: false,
@@ -167,6 +181,7 @@ export default {
         zh: '所需移动：'
       },
       game: null,
+      gameDone: false,
       gameUIButtons: [
         // Populated on the `created` hook
       ],
@@ -195,6 +210,16 @@ export default {
         sceneBackground: 'scene_background_texture'
       },
       tileSize: 100
+    }
+  },
+  computed: {
+    carReachedLastPosition() {
+      // Obtiene las coordenadas del coche en términos de la matriz de caminos
+      const carColumn = Math.floor(this.car.x / this.tileSize)
+      const carRow = Math.floor(this.car.y / this.tileSize)
+
+      // Verifica si el coche está en la última fila y última columna de la matriz
+      return carColumn === this.numCols - 1 && carRow === this.numRows - 1
     }
   },
   created() {
@@ -297,7 +322,7 @@ export default {
       }
     }
     do {
-      this.board = this.createBoard({ numRows: 5, numCols: 7 })
+      this.board = this.createBoard({ numRows: this.numRows, numCols: this.numCols })
     } while(this.checkIfPathExists() === false)
   },
   mounted() {
@@ -794,6 +819,17 @@ export default {
         // Keyboard game controls disabled, by default, the user must define a
         // sequence of movements to finally execute them all one after another.
         // this.addPhaserControls(gameScene)
+      }
+
+      gameScene.update = () => {
+        if (this.carReachedLastPosition && this.gameDone === false) {
+          this.gameDone = true
+          this.$store?.dispatch('snackbarNotification/show', {
+            i18n: this.$i18n,
+            memojiName: 'director-bien',
+            success: true
+          })
+        }
       }
 
       this.config.scene.push(gameScene)
