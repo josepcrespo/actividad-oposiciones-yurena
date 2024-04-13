@@ -186,6 +186,11 @@ export default {
       required: false,
       type: Array
     },
+    maxMoves: {
+      default: -1,
+      required: true,
+      type: Number
+    },
     numCols: {
       default: 7,
       required: false,
@@ -206,6 +211,7 @@ export default {
     return {
       board: [],
       car: null,
+      carBatteryIndicator: null,
       carColor: 'Red',
       carDirections: {
         north: 'NORTH',
@@ -281,6 +287,7 @@ export default {
       },
       moveTween: null,
       moveQueue: [],
+      movementsUsed: 0,
       offsetX: 30,
       offsetY: 22,
       propsByKeyboardEventCodes: {
@@ -506,6 +513,48 @@ export default {
         this.car.play(`car_animation_${this.currentTile.spriteDirection}`)
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
+      }
+    },
+    addPhaserCarBatteryIndicator(scene = this.config.scene[0]) {
+      const marginTop = 50
+      const marginRight = 30
+      const indicatorWidth = 60
+      const indicatorHeight = scene.sys.game.canvas.height / 2
+
+      this.carBatteryIndicator = scene.add.graphics()
+      this.carBatteryIndicator.fillStyle(0x00ff00)
+      this.carBatteryIndicator.fillRect(
+        scene.sys.game.canvas.width - indicatorWidth - marginRight,
+        marginTop,
+        indicatorWidth,
+        indicatorHeight
+      )
+    },
+    updatePhaserCarBatteryIndicator(scene = this.config.scene[0]) {
+      // Incrementar el contador de partes rojas
+      this.movementsUsed++
+
+      const marginTop = 20
+      const marginRight = 30
+      const indicatorWidth = 60
+      const partHeight = scene.sys.game.canvas.height / 2 / this.maxMoves
+
+      // Añadir una parte roja a la barra
+      this.carBatteryIndicator.fillStyle(0xff0000)
+      this.carBatteryIndicator.fillRect(
+        scene.sys.game.canvas.width - indicatorWidth - marginRight,
+        marginTop + this.movementsUsed * partHeight,
+        indicatorWidth,
+        partHeight
+      )
+      
+      if (this.carReachedLastPosition && this.gameDone === false) {
+        this.gameDone = true
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-bien',
+          success: true
+        })
       }
     },
     addPhaserCarStation(
@@ -839,11 +888,23 @@ export default {
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
     executeNextMove() {
-      if (this.moveQueue.length > 0) {
-        const nextMove = this.moveQueue.shift()
-        const { carDirection, keyboardDirection } = nextMove
+      if (this.movementsUsed < this.maxMoves) {
+        if (this.moveQueue.length > 0) {
+          const nextMove = this.moveQueue.shift()
+          const { carDirection, keyboardDirection } = nextMove
 
-        this.movePhaserCar(keyboardDirection, carDirection)
+          this.movePhaserCar(keyboardDirection, carDirection)
+          if (keyboardDirection === this.keyboardEventCodes.arrowUp) {
+            this.updatePhaserCarBatteryIndicator()
+          }
+        }
+      } else {
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-mal',
+          success: false,
+          defaultTextKey: 'batteryDown'
+        })
       }
     },
     executeSequenceOfMoves() {
@@ -907,23 +968,14 @@ export default {
         this.addBackgroundImage(gameScene)
         this.addPhaserBoard(gameScene)
         this.addPhaserCar(gameScene)
+        this.addPhaserCarBatteryIndicator(gameScene)
         // Keyboard game controls disabled, by default, the user must define a
         // sequence of movements to finally execute them all one after another.
         // this.addPhaserControls(gameScene)
       }
 
-      gameScene.update = () => {
-        if (this.carReachedLastPosition && this.gameDone === false) {
-          this.gameDone = true
-          this.$store?.dispatch('snackbarNotification/show', {
-            i18n: this.$i18n,
-            memojiName: 'director-bien',
-            success: true
-          })
-        }
-      }
-
       this.config.scene.push(gameScene)
+      console.log("🚀 ~ initPhaserGame ~ this.config.scene:", this.config.scene)
       this.game = new Phaser.Game(this.config)
     },
     isDiagonalMove(deltaRowIndex, deltaColumnIndex) {
@@ -942,6 +994,7 @@ export default {
       this.resetCarPosition()
       this.resetMoveSequence()
       this.gameDone = false
+      this.movementsUsed = 0
     },
     resetCarPosition() {
       // Restablecer la posición del coche
@@ -958,6 +1011,8 @@ export default {
           x: 0,
           y: 0 
         }
+        this.movementsUsed = 0
+        this.addPhaserCarBatteryIndicator()
       }
     },
     resetMoveSequence() {
