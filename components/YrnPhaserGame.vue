@@ -181,6 +181,11 @@ import * as Phaser from 'phaser'
 export default {
   name: 'YrnPhaserGame',
   props: {
+    customBoard: {
+      default: null,
+      required: false,
+      type: Array
+    },
     numCols: {
       default: 7,
       required: false,
@@ -403,9 +408,13 @@ export default {
         carDirection: this.carDirections.east
       }
     }
-    do {
-      this.board = this.createBoard({ numRows: this.numRows, numCols: this.numCols })
-    } while(this.checkIfPathExists() === false)
+    if (Array.isArray(this.customBoard)) {
+      this.board = this.customBoard
+    } else {
+      do {
+        this.board = this.createBoard({ numRows: this.numRows, numCols: this.numCols })
+      } while(this.checkIfPathExists() === false)
+    }
   },
   mounted() {
     this.initPhaserGame()
