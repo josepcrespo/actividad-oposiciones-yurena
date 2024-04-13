@@ -1,45 +1,87 @@
+//#region Translations
 <i18n lang="yaml">
   ar:
     defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
     executeSequenceOfMoves: "تشغيل التسلسل"
+    resetBtn: "إعادة تعيين"
+    resetBtnCar: "إعادة تعيين موضع السيارة الأصلي"
+    resetBtnMoves: "مسح التسلسل الحالي للحركات"
   ca:
     defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
     executeSequenceOfMoves: "Executa la seqüència"
+    resetBtn: "Reiniciar"
+    resetBtnCar: "Restaurar la posició inicial del cotxe"
+    resetBtnMoves: "Esborrar la seqüència de moviments actual"
   de:
     defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
     executeSequenceOfMoves: "Ablauffolge ausführen"
+    resetBtn: "Zurücksetzen"
+    resetBtnCar: "Setzt die ursprüngliche Position des Autos zurück"
+    resetBtnMoves: "Lösche die aktuelle Bewegungssequenz"
   en:
     defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
     executeSequenceOfMoves: "Run sequence"
+    resetBtn: "Reset"
+    resetBtnCar: "Reset car's initial position"
+    resetBtnMoves: "Clear current sequence of moves"
   es:
     defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
     executeSequenceOfMoves: "Ejecutar secuencia"
+    resetBtn: "Reiniciar"
+    resetBtnCar: "Restablece la posición inicial del coche"
+    resetBtnMoves: "Borrar la secuencia de movimientos actual"
   eu:
     defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
     executeSequenceOfMoves: "Exekutatu sekuentzia"
+    resetBtn: "Berrezarri"
+    resetBtnCar: "Automobilaren lehenengo posizioa berrezarri"
+    resetBtnMoves: "Garapen-sekuentzia egungo ezabatu"
   fr:
     defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
     executeSequenceOfMoves: "Exécuter la séquence"
+    resetBtn: "Réinitialiser"
+    resetBtnCar: "Réinitialiser la position initiale de la voiture"
+    resetBtnMoves: "Effacer la séquence de mouvements actuelle"
   it:
     defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
     executeSequenceOfMoves: "Esegui la sequenza"
+    resetBtn: "Reset"
+    resetBtnCar: "Ripristina la posizione iniziale dell'auto"
+    resetBtnMoves: "Cancella la sequenza di movimenti attuale"
   ja:
     defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
     executeSequenceOfMoves: "動きのシーケンスを実行"
+    resetBtn: "リセット"
+    resetBtnCar: "車の初期位置をリセット"
+    resetBtnMoves: "現在の動きのシーケンスを消去"
   pt:
     defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
     executeSequenceOfMoves: "Executar seqüência"
+    resetBtn: "Redefinir"
+    resetBtnCar: "Redefinir posição inicial do carro"
+    resetBtnMoves: "Limpar sequência atual de movimentos"
   ro:
     defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
     executeSequenceOfMoves: "Executa secvența"
+    resetBtn: "Resetare"
+    resetBtnCar: "Resetați poziția inițială a mașinii"
+    resetBtnMoves: "Ștergeți secvența actuală de mișcări"
   ru:
     defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
     executeSequenceOfMoves: "Последовательность запуска"
+    resetBtn: "Сброс"
+    resetBtnCar: "Сбросить начальное положение машины"
+    resetBtnMoves: "Очистить текущую последовательность движений"
   zh:
     defineCarMoves: "定义到达充电站所需的运动序列。"
     executeSequenceOfMoves: "运行顺序"
+    resetBtn: "重置"
+    resetBtnCar: "重置汽车的初始位置"
+    resetBtnMoves: "清除当前移动序列"
 </i18n>
+//#endregion
 
+//#region Template
 <template>
   <v-container class="yrn-phaser-game" fluid>
     <v-row>
@@ -71,17 +113,34 @@
           <template #bottom>
             <v-row>
               <v-col class="d-flex justify-center">
-                <v-btn
-                  block
-                  color="deep-orange"
-                  x-large
-                  @click="resetGame()"
+                <v-menu
+                  top
+                  close-on-content-click
                 >
-                  <v-icon class="mr-2">
-                    mdi-restart
-                  </v-icon>
-                  Reiniciar
-                </v-btn>
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      block
+                      color="deep-orange"
+                      x-large
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      {{ $t('resetBtn') }}
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item @click="resetCarPosition()">
+                      <v-list-item-title>
+                        {{ $t('resetBtnCar') }}
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="resetMoveSequence()">
+                      <v-list-item-title>
+                        {{ $t('resetBtnMoves') }}
+                      </v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </v-col>
               <v-col class="d-flex justify-center">
                 <v-btn
@@ -113,7 +172,9 @@
     </v-row>
   </v-container>
 </template>
+//#endregion
 
+//#region Script
 <script>
 import * as Phaser from 'phaser'
 
@@ -868,6 +929,12 @@ export default {
       }
     },
     resetGame() {
+      // Restablecer el juego
+      this.resetCarPosition()
+      this.resetMoveSequence()
+      this.gameDone = false
+    },
+    resetCarPosition() {
       // Restablecer la posición del coche
       if (this.car) {
         const offsetX = this.offsetX
@@ -883,6 +950,8 @@ export default {
           y: 0 
         }
       }
+    },
+    resetMoveSequence() {
       // Restablecer la secuencia de movimientos
       this.$refs.dragAndDropComponent.resetList2()
     },
@@ -906,3 +975,4 @@ export default {
   }
 }
 </script>
+//#endregion
