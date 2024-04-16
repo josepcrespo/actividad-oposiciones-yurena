@@ -1,4 +1,4 @@
-//#region Translations
+// #region Translations
 <i18n lang="yaml">
   ar:
     defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
@@ -210,6 +210,7 @@ export default {
   data() {
     return {
       board: [],
+      batteryLevelText: '100%',
       car: null,
       carBatteryIndicator: null,
       carColor: 'Red',
@@ -307,6 +308,13 @@ export default {
     }
   },
   computed: {
+    batteryLevel: {
+      cache: false,
+      get() {
+        const percentageUsed = (this.movementsUsed / this.maxMoves) * 100
+        return `${Math.floor(100 - percentageUsed)}%`
+      }
+    },
     carReachedLastPosition() {
       // Obtiene las coordenadas del coche en términos de la matriz de caminos
       const carColumn = Math.floor(this.car.x / this.tileSize)
@@ -520,6 +528,13 @@ export default {
       const marginRight = 30
       const indicatorWidth = 60
       const indicatorHeight = scene.sys.game.canvas.height / 2
+      const batteryTextHeight = 25
+      const textStyle = {
+        color: '#000000',
+        fontSize: '13px',
+        align: 'center',
+        fontFamily: 'MartelSans, monospace'
+      }
 
       this.carBatteryIndicator = scene.add.graphics()
       this.carBatteryIndicator.fillStyle(0x00ff00)
@@ -529,6 +544,24 @@ export default {
         indicatorWidth,
         indicatorHeight
       )
+      
+      // Añadir el texto "BATTERY"
+      const batteryText = scene.add.text(
+        scene.sys.game.canvas.width - indicatorWidth - marginRight,
+        marginTop + indicatorHeight + 10,
+        'BATTERY',
+        textStyle
+      )
+      batteryText.setOrigin(0)
+
+      // Añadir el porcentaje de batería con carga
+      this.batteryLevelText = scene.add.text(
+        scene.sys.game.canvas.width - indicatorWidth - marginRight,
+        marginTop + indicatorHeight + 10 + batteryTextHeight,
+        this.batteryLevel,
+        textStyle
+      )
+      this.batteryLevelText.setOrigin(0)
     },
     updatePhaserCarBatteryIndicator(scene = this.config.scene[0]) {
       // Incrementar el contador de partes rojas
@@ -547,7 +580,9 @@ export default {
         indicatorWidth,
         partHeight
       )
-      
+
+      // Actualizar el porcentaje de batería con carga
+      this.batteryLevelText.setText(this.batteryLevel)
       if (this.carReachedLastPosition && this.gameDone === false) {
         this.gameDone = true
         this.$store?.dispatch('snackbarNotification/show', {
@@ -809,6 +844,9 @@ export default {
         onComplete: () => {
           this.isMoving = false
           this.moveTween = null
+          if (keyDirection === this.keyboardEventCodes.arrowUp) {
+            this.updatePhaserCarBatteryIndicator()
+          }
           this.executeNextMove()
         }
       })
@@ -894,9 +932,6 @@ export default {
           const { carDirection, keyboardDirection } = nextMove
 
           this.movePhaserCar(keyboardDirection, carDirection)
-          if (keyboardDirection === this.keyboardEventCodes.arrowUp) {
-            this.updatePhaserCarBatteryIndicator()
-          }
         }
       } else {
         this.$store?.dispatch('snackbarNotification/show', {
