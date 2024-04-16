@@ -888,7 +888,7 @@ export default {
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
     executeNextMove() {
-      if (this.movementsUsed < this.maxMoves) {
+      if (this.movementsUsed <= this.maxMoves) {
         if (this.moveQueue.length > 0) {
           const nextMove = this.moveQueue.shift()
           const { carDirection, keyboardDirection } = nextMove
@@ -975,7 +975,6 @@ export default {
       }
 
       this.config.scene.push(gameScene)
-      console.log("🚀 ~ initPhaserGame ~ this.config.scene:", this.config.scene)
       this.game = new Phaser.Game(this.config)
     },
     isDiagonalMove(deltaRowIndex, deltaColumnIndex) {
