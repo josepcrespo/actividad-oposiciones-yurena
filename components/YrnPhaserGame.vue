@@ -223,8 +223,10 @@ export default {
       carModel: 'COUPE',
       config: {
         autoRound: false,
-        type: Phaser.AUTO,
-        width: 862,
+        fps: {
+          target: 12,
+          forceSetTimeOut: true
+        },
         height: 542,
         parent: 'phaserContainer',
         physics: {
@@ -237,7 +239,9 @@ export default {
           parent: 'phaserContainer',
           mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT
         },
-        scene: []
+        scene: [],
+        type: Phaser.AUTO,
+        width: 862
       },
       currentTile: {
         spriteDirection: 'SOUTH',
@@ -961,6 +965,7 @@ export default {
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
+      // TODO: establecer 12 frames por segundo a toda la escena
 
       gameScene.preload = () => {
         // Preload de la textura
@@ -1008,7 +1013,6 @@ export default {
         // sequence of movements to finally execute them all one after another.
         // this.addPhaserControls(gameScene)
       }
-
       this.config.scene.push(gameScene)
       this.game = new Phaser.Game(this.config)
     },
