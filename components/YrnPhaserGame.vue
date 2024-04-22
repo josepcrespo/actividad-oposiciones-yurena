@@ -567,23 +567,26 @@ export default {
       )
       this.batteryLevelText.setOrigin(0)
     },
-    updatePhaserCarBatteryIndicator(scene = this.config.scene[0]) {
-      // Incrementar el contador de partes rojas
-      this.movementsUsed++
-
+    updatePhaserCarBatteryIndicator(updateNumOfMoves = false, scene = this.config.scene[0]) {
       const marginTop = 20
       const marginRight = 30
       const indicatorWidth = 60
       const partHeight = scene.sys.game.canvas.height / 2 / this.maxMoves
 
-      // Añadir una parte roja a la barra
-      this.carBatteryIndicator.fillStyle(0xff0000)
-      this.carBatteryIndicator.fillRect(
-        scene.sys.game.canvas.width - indicatorWidth - marginRight,
-        marginTop + this.movementsUsed * partHeight,
-        indicatorWidth,
-        partHeight
-      )
+      if (updateNumOfMoves) {
+        this.movementsUsed++
+        // Añadir una parte roja a la barra
+        this.carBatteryIndicator.fillStyle(0xff0000)
+        this.carBatteryIndicator.fillRect(
+          scene.sys.game.canvas.width - indicatorWidth - marginRight,
+          marginTop + this.movementsUsed * partHeight,
+          indicatorWidth,
+          partHeight
+        )
+      } else {
+        this.batteryLevelText.destroy()
+        this.addPhaserCarBatteryIndicator()
+      }
 
       // Actualizar el porcentaje de batería con carga
       this.batteryLevelText.setText(this.batteryLevel)
@@ -849,7 +852,7 @@ export default {
           this.isMoving = false
           this.moveTween = null
           if (keyDirection === this.keyboardEventCodes.arrowUp) {
-            this.updatePhaserCarBatteryIndicator()
+            this.updatePhaserCarBatteryIndicator(true)
           }
           this.executeNextMove()
         }
@@ -1049,8 +1052,9 @@ export default {
           x: 0,
           y: 0 
         }
+        this.gameDone = false
         this.movementsUsed = 0
-        this.addPhaserCarBatteryIndicator()
+        this.updatePhaserCarBatteryIndicator()
       }
     },
     resetMoveSequence() {
