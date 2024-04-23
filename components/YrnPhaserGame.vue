@@ -1,4 +1,3 @@
-// #region Translations
 <i18n lang="yaml">
   ar:
     defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
@@ -79,9 +78,7 @@
     resetBtnCar: "重置汽车的初始位置"
     resetBtnMoves: "清除当前移动序列"
 </i18n>
-//#endregion
 
-//#region Template
 <template>
   <v-container class="yrn-phaser-game" fluid>
     <v-row>
@@ -172,9 +169,7 @@
     </v-row>
   </v-container>
 </template>
-//#endregion
 
-//#region Script
 <script>
 import * as Phaser from 'phaser'
 
@@ -1087,4 +1082,3 @@ export default {
   }
 }
 </script>
-//#endregion
