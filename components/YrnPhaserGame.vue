@@ -224,7 +224,7 @@ export default {
       config: {
         autoRound: false,
         fps: {
-          target: 12,
+          target: 30,
           forceSetTimeOut: true
         },
         height: 542,
