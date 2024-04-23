@@ -771,7 +771,9 @@ export default {
       carDirection = carDirection ?? this.currentTile.spriteDirection
       const scene = this.config.scene[0]
       let currentRow = this.currentTile.y
+      const prevRow = currentRow
       let currentCol = this.currentTile.x
+      const prevCol = currentCol
 
       // Si se presiona la flecha hacia abajo, no hacer nada
       if (keyDirection === this.keyboardEventCodes.arrowDown) {
@@ -851,7 +853,11 @@ export default {
         onComplete: () => {
           this.isMoving = false
           this.moveTween = null
-          if (keyDirection === this.keyboardEventCodes.arrowUp) {
+          if (
+            keyDirection === this.keyboardEventCodes.arrowUp && (
+            currentCol !== prevCol ||
+            currentRow !== prevRow)
+          ) {
             this.updatePhaserCarBatteryIndicator(true)
           }
           this.executeNextMove()
