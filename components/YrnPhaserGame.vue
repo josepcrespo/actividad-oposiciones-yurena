@@ -633,6 +633,14 @@ export default {
           memojiName: 'director-bien',
           success: true
         });
+      } else if (this.movementsUsed >= this.maxMoves) {
+        this.gameDone = false
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-mal',
+          success: false,
+          defaultTextKey: 'batteryDown'
+        })
       }
     },
     addPhaserCarStation(
@@ -982,13 +990,6 @@ export default {
 
           this.movePhaserCar(keyboardDirection, carDirection)
         }
-      } else {
-        this.$store?.dispatch('snackbarNotification/show', {
-          i18n: this.$i18n,
-          memojiName: 'director-mal',
-          success: false,
-          defaultTextKey: 'batteryDown'
-        })
       }
     },
     executeSequenceOfMoves() {
