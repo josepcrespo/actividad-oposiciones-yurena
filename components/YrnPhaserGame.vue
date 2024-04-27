@@ -628,6 +628,7 @@ export default {
       // Si el coche alcanza la última posición final, mostrar un mensaje de exito
       if (this.carReachedLastPosition) {
         this.gameDone = true;
+        this.fillPhaserCarBatteryIndicator(scene)
         this.$store?.dispatch('snackbarNotification/show', {
           i18n: this.$i18n,
           memojiName: 'director-bien',
@@ -642,6 +643,14 @@ export default {
           defaultTextKey: 'batteryDown'
         })
       }
+    },
+    fillPhaserCarBatteryIndicator(scene = this.config.scene[0]) {
+      scene.tweens.add({
+        targets: this.usedBatteryIndicator,
+        scaleY: 0,
+        duration: 3000,
+        ease: 'Power1'
+      });
     },
     addPhaserCarStation(
       scene,
