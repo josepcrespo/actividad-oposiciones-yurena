@@ -567,91 +567,6 @@ export default {
       )
       this.batteryLevelText.setOrigin(0)
     },
-    updatePhaserCarBatteryIndicator(updateNumOfMoves = false, scene = this.config.scene[0]) {
-      const marginTop = 50;
-      const marginRight = 30;
-      const indicatorWidth = 60;
-
-      // Definir la posición y dimensiones iniciales del rectángulo
-      const positionX = scene.sys.game.canvas.width - indicatorWidth - marginRight;
-      const positionY = marginTop;
-      const initialHeight = scene.sys.game.canvas.height / 2;
-
-      if (updateNumOfMoves) {
-        this.movementsUsed++;
-        // const targetHeight = (scene.sys.game.canvas.height / 2 / this.maxMoves) * this.movementsUsed;
-        const targetHeight = ((this.movementsUsed * 100) / this.maxMoves) / 100
-
-        // Crear un gráfico si no existe
-        if (!this.usedBatteryIndicator) {
-          this.usedBatteryIndicator = scene.add.graphics()
-            .setAlpha(0)
-            .setPosition(positionX, positionY)
-            .setDepth(Number.MAX_SAFE_INTEGER)
-            .fillStyle(0xff0000, 1)
-            .fillRect(0, 0, indicatorWidth, initialHeight);
-        }
-
-        // Animación para cambiar la altura del rectángulo
-        scene.tweens.add({
-          targets: this.usedBatteryIndicator,
-          scaleY: targetHeight,
-          duration: 500,
-          ease: 'Power1',
-          onComplete: () => {
-            if (targetHeight.toFixed(2) === '0.11') {
-              this.usedBatteryIndicator.alpha = 1
-              for (let i = 0; i < 10; i++) {
-                scene.tweens.add({
-                  targets: this.usedBatteryIndicator,
-                  alpha: 0,
-                  duration: 250,
-                  ease: 'Linear',
-                  yoyo: true,
-                  repeat: 1,
-                });
-              }
-            }
-          }
-        });
-      } else {
-        // Si no hay actualización, destruir el texto de nivel de batería y agregar el indicador de batería
-        this.batteryLevelText.destroy();
-        this.usedBatteryIndicator.destroy();
-        this.usedBatteryIndicator = null
-        this.addPhaserCarBatteryIndicator();
-      }
-
-      // Actualizar el texto del nivel de batería
-      this.batteryLevelText.setText(this.batteryLevel);
-
-      // Si el coche alcanza la última posición final, mostrar un mensaje de exito
-      if (this.carReachedLastPosition) {
-        this.gameDone = true;
-        this.fillPhaserCarBatteryIndicator(scene)
-        this.$store?.dispatch('snackbarNotification/show', {
-          i18n: this.$i18n,
-          memojiName: 'director-bien',
-          success: true
-        });
-      } else if (this.movementsUsed >= this.maxMoves) {
-        this.gameDone = false
-        this.$store?.dispatch('snackbarNotification/show', {
-          i18n: this.$i18n,
-          memojiName: 'director-mal',
-          success: false,
-          defaultTextKey: 'batteryDown'
-        })
-      }
-    },
-    fillPhaserCarBatteryIndicator(scene = this.config.scene[0]) {
-      scene.tweens.add({
-        targets: this.usedBatteryIndicator,
-        scaleY: 0,
-        duration: 3000,
-        ease: 'Power1'
-      });
-    },
     addPhaserCarStation(
       scene,
       posX,
@@ -1018,6 +933,14 @@ export default {
         console.error("Error: No se pudo obtener list2 desde YrnDragAndDropWithTwoLists")
       }
     },
+    fillPhaserCarBatteryIndicator(scene = this.config.scene[0]) {
+      scene.tweens.add({
+        targets: this.usedBatteryIndicator,
+        scaleY: 0,
+        duration: 3000,
+        ease: 'Power1'
+      });
+    },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
       // TODO: establecer 12 frames por segundo a toda la escena
@@ -1082,13 +1005,6 @@ export default {
         this.customPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       }
     },
-    resetGame() {
-      // Restablecer el juego
-      this.resetCarPosition()
-      this.resetMoveSequence()
-      this.gameDone = false
-      this.movementsUsed = 0
-    },
     resetCarPosition() {
       // Restablecer la posición del coche
       if (this.car) {
@@ -1102,12 +1018,19 @@ export default {
         this.currentTile = {
           spriteDirection: 'SOUTH',
           x: 0,
-          y: 0 
+          y: 0
         }
         this.gameDone = false
         this.movementsUsed = 0
         this.updatePhaserCarBatteryIndicator()
       }
+    },
+    resetGame() {
+      // Restablecer el juego
+      this.resetCarPosition()
+      this.resetMoveSequence()
+      this.gameDone = false
+      this.movementsUsed = 0
     },
     resetMoveSequence() {
       // Restablecer la secuencia de movimientos
@@ -1129,6 +1052,83 @@ export default {
       }
       const nextDirection = Object.keys(this.carDirections)[nextIndex]
       this.changeCarSprite(this.carDirections[nextDirection])
+    },
+    updatePhaserCarBatteryIndicator(updateNumOfMoves = false, scene = this.config.scene[0]) {
+      const marginTop = 50;
+      const marginRight = 30;
+      const indicatorWidth = 60;
+
+      // Definir la posición y dimensiones iniciales del rectángulo
+      const positionX = scene.sys.game.canvas.width - indicatorWidth - marginRight;
+      const positionY = marginTop;
+      const initialHeight = scene.sys.game.canvas.height / 2;
+
+      if (updateNumOfMoves) {
+        this.movementsUsed++;
+        // const targetHeight = (scene.sys.game.canvas.height / 2 / this.maxMoves) * this.movementsUsed;
+        const targetHeight = ((this.movementsUsed * 100) / this.maxMoves) / 100
+
+        // Crear un gráfico si no existe
+        if (!this.usedBatteryIndicator) {
+          this.usedBatteryIndicator = scene.add.graphics()
+            .setAlpha(0)
+            .setPosition(positionX, positionY)
+            .setDepth(Number.MAX_SAFE_INTEGER)
+            .fillStyle(0xff0000, 1)
+            .fillRect(0, 0, indicatorWidth, initialHeight);
+        }
+
+        // Animación para cambiar la altura del rectángulo
+        scene.tweens.add({
+          targets: this.usedBatteryIndicator,
+          scaleY: targetHeight,
+          duration: 500,
+          ease: 'Power1',
+          onComplete: () => {
+            if (targetHeight.toFixed(2) === '0.11') {
+              this.usedBatteryIndicator.alpha = 1
+              for (let i = 0; i < 10; i++) {
+                scene.tweens.add({
+                  targets: this.usedBatteryIndicator,
+                  alpha: 0,
+                  duration: 250,
+                  ease: 'Linear',
+                  yoyo: true,
+                  repeat: 1,
+                });
+              }
+            }
+          }
+        });
+      } else {
+        // Si no hay actualización, destruir el texto de nivel de batería y agregar el indicador de batería
+        this.batteryLevelText.destroy();
+        this.usedBatteryIndicator.destroy();
+        this.usedBatteryIndicator = null
+        this.addPhaserCarBatteryIndicator();
+      }
+
+      // Actualizar el texto del nivel de batería
+      this.batteryLevelText.setText(this.batteryLevel);
+
+      // Si el coche alcanza la última posición final, mostrar un mensaje de exito
+      if (this.carReachedLastPosition) {
+        this.gameDone = true;
+        this.fillPhaserCarBatteryIndicator(scene)
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-bien',
+          success: true
+        });
+      } else if (this.movementsUsed >= this.maxMoves) {
+        this.gameDone = false
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-mal',
+          success: false,
+          defaultTextKey: 'batteryDown'
+        })
+      }
     }
   }
 }
