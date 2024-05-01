@@ -545,7 +545,7 @@ export default {
         indicatorWidth,
         indicatorHeight
       )
-      
+
       // Añadir el texto "BATTERY"
       if (!this.batteryText) {
         this.batteryText = scene.add.text(
@@ -651,7 +651,7 @@ export default {
       numRows = numRows ?? this.$getRandomInt(3, 5)
       numCols = numCols ?? this.$getRandomInt(3, 7)
       maxWeight = maxWeight ?? this.$getRandomInt(3, 10)
-      
+
       return Array.from({ length: numRows }, (_, rowIndex) => {
         return Array.from({ length: numCols }, (_, columnIndex) => {
           return this.createBoardElement(rowIndex, columnIndex, numRows, numCols)
@@ -690,25 +690,25 @@ export default {
     checkIfPathExists() {
       const numRows = this.board.length
       const numCols = this.board[0].length
-      
+
       // Creamos una matriz de visitados inicialmente llena de falsos
       const visited = new Array(numRows).fill(false).map(() => new Array(numCols).fill(false))
-      
+
       // Definimos una función recursiva para buscar el camino
       const dfs = (row, col) => {
         // Si estamos fuera de los límites de la matriz o ya hemos visitado esta celda, retornamos false
         if (row < 0 || row >= numRows || col < 0 || col >= numCols || visited[row][col]) {
           return false
         }
-        
+
         // Marcamos esta celda como visitada
         visited[row][col] = true
-        
+
         // Si estamos en la última celda, retornamos true
         if (row === numRows - 1 && col === numCols - 1) {
           return true
         }
-        
+
         // Verificamos si podemos movernos hacia abajo, arriba, derecha o izquierda
         const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
         for (const [dr, dc] of directions) {
@@ -718,13 +718,13 @@ export default {
             return true
           }
         }
-        
+
         // Si no encontramos un camino válido, marcamos esta celda como no visitada para futuras exploraciones
         visited[row][col] = false
-        
+
         return false
       }
-      
+
       // Iniciamos la búsqueda desde la celda [0,0]
       return dfs(0, 0)
     },
@@ -781,13 +781,13 @@ export default {
 
         // Se mueve en la dirección especificada hasta que ya no sea posible
         while (this.checkMove(
-            currentRow,
-            currentCol,
-            currentRow + deltaRowIndex,
-            currentCol + deltaColumnIndex,
-            // Obten la tecla correspondiente a la dirección de la animación,
-            // para comprobar si puede moverse en dicha dirección
-            directionKeyMap[carDirection]
+          currentRow,
+          currentCol,
+          currentRow + deltaRowIndex,
+          currentCol + deltaColumnIndex,
+          // Obten la tecla correspondiente a la dirección de la animación,
+          // para comprobar si puede moverse en dicha dirección
+          directionKeyMap[carDirection]
         )) {
           currentRow += deltaRowIndex
           currentCol += deltaColumnIndex
@@ -823,8 +823,8 @@ export default {
           this.moveTween = null
           if (
             keyDirection === this.keyboardEventCodes.arrowUp && (
-            currentCol !== prevCol ||
-            currentRow !== prevRow)
+              currentCol !== prevCol ||
+              currentRow !== prevRow)
           ) {
             this.updatePhaserCarBatteryIndicator(true)
           }
@@ -943,7 +943,6 @@ export default {
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
-      // TODO: establecer 12 frames por segundo a toda la escena
 
       gameScene.preload = () => {
         // Preload de la textura
@@ -957,9 +956,9 @@ export default {
             `/img/phaserjs/top-down-vehicles/${this.carModel}/${this.carColor}/` +
             `MOVE/${direction}/${this.carColor}_${this.carModel}` +
             `_CLEAN_${direction}_000-sheet.png`, {
-              frameWidth: 100,
-              frameHeight: 100
-            }
+            frameWidth: 100,
+            frameHeight: 100
+          }
           )
         })
       }
@@ -973,10 +972,10 @@ export default {
             key: `car_animation_${direction}`,
             frames: gameScene.anims.generateFrameNumbers(
               `car_spritesheet_${direction}`, {
-                start: 0,
-                end: totalFrames - 1,
-                first: 0
-              }
+              start: 0,
+              end: totalFrames - 1,
+              first: 0
+            }
             ),
             frameRate,
             repeat: -1 // repite la animación indefinidamente
@@ -1086,19 +1085,7 @@ export default {
           ease: 'Power1',
           onComplete: () => {
             if (targetHeight.toFixed(2) === firstMovePercentage.toFixed(2)) {
-              const numOfBlinks = 10
-              this.usedBatteryIndicator.alpha = 1
-              // Add a tween to make the indicator blink
-              for (let i = 0; i < numOfBlinks; i++) {
-                scene.tweens.add({
-                  targets: this.usedBatteryIndicator,
-                  alpha: 0,
-                  duration: 250,
-                  ease: 'Linear',
-                  yoyo: true,
-                  repeat: 1,
-                })
-              }
+              this.makePhaserElementBlink(this.usedBatteryIndicator)
             }
           }
         })
@@ -1130,6 +1117,20 @@ export default {
           memojiName: 'director-mal',
           success: false,
           defaultTextKey: 'batteryDown'
+        })
+      }
+    },
+    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0]) {
+      target.alpha = 1
+      // Add a tween to make the target element to blink
+      for (let i = 0; i < numOfBlinks; i++) {
+        scene.tweens.add({
+          alpha: 0,
+          duration: 250,
+          ease: 'Linear',
+          repeat: 1,
+          targets: target,
+          yoyo: true
         })
       }
     }
