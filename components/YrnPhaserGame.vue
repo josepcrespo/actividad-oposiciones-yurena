@@ -537,14 +537,17 @@ export default {
         fontFamily: 'MartelSans, monospace'
       }
 
-      this.carBatteryIndicator = scene.add.graphics()
-      this.carBatteryIndicator.fillStyle(0x00ff00)
-      this.carBatteryIndicator.fillRect(
-        scene.sys.game.canvas.width - indicatorWidth - marginRight,
-        marginTop,
-        indicatorWidth,
-        indicatorHeight
-      )
+      // Añadir el rectángulo indicador de batería
+      if (!this.carBatteryIndicator) {
+        this.carBatteryIndicator = scene.add.graphics()
+        this.carBatteryIndicator.fillStyle(0x00ff00)
+        this.carBatteryIndicator.fillRect(
+          scene.sys.game.canvas.width - indicatorWidth - marginRight,
+          marginTop,
+          indicatorWidth,
+          indicatorHeight
+        )
+      }
 
       // Añadir el texto "BATTERY"
       if (!this.batteryText) {
@@ -561,7 +564,7 @@ export default {
       textStyle.fontSize = '20px'
       this.batteryLevelText = scene.add.text(
         scene.sys.game.canvas.width - indicatorWidth - marginRight,
-        marginTop + indicatorHeight + 10 + batteryTextHeight,
+        marginTop + indicatorHeight + batteryTextHeight,
         this.batteryLevel,
         textStyle
       )
@@ -1021,13 +1024,14 @@ export default {
         }
         this.gameDone = false
         this.movementsUsed = 0
-        this.updatePhaserCarBatteryIndicator()
+        this.makePhaserElementBlink(this.car)
       }
     },
     resetGame() {
       // Restablecer el juego
-      this.resetCarPosition()
       this.resetMoveSequence()
+      this.resetCarPosition()
+      this.updatePhaserCarBatteryIndicator()
       this.gameDone = false
       this.movementsUsed = 0
     },
@@ -1093,9 +1097,12 @@ export default {
         // Si no hay actualización, destruir el texto de nivel de batería
         // y agregar el indicador de batería.
         this.batteryLevelText.destroy()
-        this.usedBatteryIndicator.destroy()
-        this.usedBatteryIndicator = null
+        if (this.usedBatteryIndicator) {
+          this.usedBatteryIndicator.destroy()
+          this.usedBatteryIndicator = null
+        }
         this.addPhaserCarBatteryIndicator()
+        this.makePhaserElementBlink(this.carBatteryIndicator)
       }
 
       // Actualizar el texto del nivel de batería
@@ -1111,7 +1118,9 @@ export default {
           success: true
         })
       } else if (this.movementsUsed >= this.maxMoves) {
-        this.gameDone = false
+        this.makePhaserElementBlink(this.car, 10, scene, () => {
+          this.resetGame()
+        })
         this.$store?.dispatch('snackbarNotification/show', {
           i18n: this.$i18n,
           memojiName: 'director-mal',
@@ -1120,18 +1129,25 @@ export default {
         })
       }
     },
-    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0]) {
-      target.alpha = 1
-      // Add a tween to make the target element to blink
-      for (let i = 0; i < numOfBlinks; i++) {
-        scene.tweens.add({
-          alpha: 0,
-          duration: 250,
-          ease: 'Linear',
-          repeat: 1,
-          targets: target,
-          yoyo: true
-        })
+    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0], onCompleteCallback = null) {
+      if (target) { 
+        target.alpha = 1
+        // Add a tween to make the target element to blink
+        for (let i = 0; i < numOfBlinks; i++) {
+          scene.tweens.add({
+            alpha: 0,
+            duration: 250,
+            ease: 'Linear',
+            repeat: 1,
+            targets: target,
+            yoyo: true,
+            onComplete: () => {
+              if (typeof onCompleteCallback === 'function') {
+                onCompleteCallback()
+              }
+            }
+          })
+        }
       }
     }
   }
