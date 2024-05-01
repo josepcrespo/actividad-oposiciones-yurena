@@ -1066,6 +1066,7 @@ export default {
       if (updateNumOfMoves) {
         this.movementsUsed++
         const targetHeight = ((this.movementsUsed * 100) / this.maxMoves) / 100
+        const firstMovePercentage = (100 / this.maxMoves) / 100
 
         // Crear un gráfico si no existe
         if (!this.usedBatteryIndicator) {
@@ -1084,7 +1085,7 @@ export default {
           duration: 500,
           ease: 'Power1',
           onComplete: () => {
-            if (targetHeight.toFixed(2) === '0.11') {
+            if (targetHeight.toFixed(2) === firstMovePercentage.toFixed(2)) {
               const numOfBlinks = 10
               this.usedBatteryIndicator.alpha = 1
               // Add a tween to make the indicator blink
