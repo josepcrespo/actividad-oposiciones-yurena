@@ -1025,15 +1025,13 @@ export default {
         this.gameDone = false
         this.movementsUsed = 0
         this.makePhaserElementBlink(this.car)
+        this.updatePhaserCarBatteryIndicator()
       }
     },
     resetGame() {
-      // Restablecer el juego
       this.resetMoveSequence()
       this.resetCarPosition()
       this.updatePhaserCarBatteryIndicator()
-      this.gameDone = false
-      this.movementsUsed = 0
     },
     resetMoveSequence() {
       // Restablecer la secuencia de movimientos
@@ -1111,7 +1109,6 @@ export default {
       // Si el coche alcanza la última posición final, mostrar un mensaje de exito
       if (this.carReachedLastPosition) {
         this.gameDone = true
-        // Implementar el código para el TODO comentario
         scene.time.delayedCall(2000, () => {
           this.fillPhaserCarBatteryIndicator(scene)
           this.$store?.dispatch('snackbarNotification/show', {
