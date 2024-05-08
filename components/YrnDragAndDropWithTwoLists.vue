@@ -1,11 +1,11 @@
 <template>
-  <v-container class="yrn-drag-and-drop-with-two-lists pa-0">
+  <v-container ref="componentContainer" class="yrn-drag-and-drop-with-two-lists pa-0">
     <v-row>
       <v-col
-        xl="12"
-        lg="12"
-        md="12"
-        sm="6"
+        :xl="componentWidth > 400 ? 6 : 12"
+        :lg="componentWidth > 400 ? 6 : 12"
+        :md="componentWidth > 400 ? 6 : 12"
+        :sm="componentWidth > 400 ? 6 : 12"
         xs="12"
         cols="12"
       >
@@ -45,13 +45,13 @@
         </VueDraggable>
       </v-col>
       <v-col
-        xl="12"
-        lg="12"
-        md="12"
-        sm="6"
+        :xl="componentWidth > 400 ? 6 : 12"
+        :lg="componentWidth > 400 ? 6 : 12"
+        :md="componentWidth > 400 ? 6 : 12"
+        :sm="componentWidth > 400 ? 6 : 12"
         xs="12"
         cols="12"
-        class="pt-0 pt-sm-3 pt-md-0"
+        :class="{ 'pt-3': componentWidth > 400 }"
       >
         <h3 class="mb-3">
           {{ translatedDropAreaTitle }}
@@ -136,6 +136,7 @@ export default {
   },
   data() {
     return {
+      componentWidth: 0,
       list1: [],
       list2: []
     }
@@ -147,6 +148,13 @@ export default {
     translatedDropAreaTitle() {
       return this.dropAreaTitle[this.$i18n.locale] ?? ''
     }
+  },
+  mounted() {
+    this.updateComponentWidth()
+    window.addEventListener('resize', this.updateComponentWidth)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateComponentWidth)
   },
   created() {
     this.list1 = this.items
@@ -167,6 +175,9 @@ export default {
     },
     resetList2() {
       this.list2 = []
+    },
+    updateComponentWidth() {
+      this.componentWidth = this.$refs?.componentContainer?.clientWidth ?? 0
     }
   }
 }
