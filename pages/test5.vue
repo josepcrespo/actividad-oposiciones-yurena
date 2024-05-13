@@ -12,11 +12,14 @@ export default {
           {
             "up": false,
             "down": 1.5,
+            "downIsHalfPath": true,
             "left": false,
             "right": 1.5,
+            "rightIsHalfPath": true,
             "rowIndex": "A",
             "columnIndex": "A",
-            "nodeIndex": ""
+            "nodeIndex": "AC",
+            "nodeIndexWeight": 3
           },
           {
             "up": false,
@@ -49,6 +52,7 @@ export default {
           {
             "up": 1.5,
             "down": 2,
+            "downIsHalfPath": true,
             "left": false,
             "right": false,
             "rowIndex": "B",
@@ -86,15 +90,19 @@ export default {
           {
             "up": 2,
             "down": false,
+            "downIsHalfPath": true,
             "left": false,
             "right": 2,
+            "rightIsHalfPath": true,
             "rowIndex": "C",
             "columnIndex": "A",
-            "nodeIndex": ""
+            "nodeIndex": "CF",
+            "nodeIndexWeight": 4
           },
           {
             "up": 3,
             "down": 1.5,
+            "downIsHalfPath": true,
             "left": 2,
             "right": 4,
             "rowIndex": "C",
@@ -113,6 +121,7 @@ export default {
           {
             "up": 5,
             "down": 1,
+            "downIsHalfPath": true,
             "left": 6,
             "right": false,
             "rowIndex": "C",
@@ -134,15 +143,18 @@ export default {
             "down": false,
             "left": false,
             "right": 1.5,
+            "rightIsHalfPath": true,
             "rowIndex": "D",
             "columnIndex": "B",
-            "nodeIndex": ""
+            "nodeIndex": "FI",
+            "nodeIndexWeight": 3
           },
           {
             "up": 3,
             "down": false,
             "left": 1.5,
             "right": 1,
+            "rightIsHalfPath": true,
             "rowIndex": "D",
             "columnIndex": "C",
             "nodeIndex": "I"
@@ -151,10 +163,11 @@ export default {
             "up": true,
             "down": false,
             "left": false,
-            "right": true,
+            "right": false,
             "rowIndex": "D",
             "columnIndex": "E",
-            "nodeIndex": ""
+            "nodeIndex": "IJ",
+            "nodeIndexWeight": 2
           }
         ]
       ]
