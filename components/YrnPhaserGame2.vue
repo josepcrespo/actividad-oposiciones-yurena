@@ -754,7 +754,7 @@ export default {
       )
       this.carElectricCharger.setOrigin(0.7, 0.9)
     },
-    addPhaserControls(scene) {
+    addPhaserKeyboardInput(scene) {
       let propsByKeyboardEventCodes
       if (this.useDefaultMovement) {
         propsByKeyboardEventCodes = this.propsByKeyboardEventCodes.defaultMoves
@@ -1160,7 +1160,7 @@ export default {
         this.addPhaserCarBatteryIndicator(gameScene)
         // Keyboard game controls disabled, by default, the user must define a
         // sequence of movements to finally execute them all one after another.
-        // this.addPhaserControls(gameScene)
+        // this.addPhaserKeyboardInput(gameScene)
       }
       this.config.scene.push(gameScene)
       this.game = new Phaser.Game(this.config)
