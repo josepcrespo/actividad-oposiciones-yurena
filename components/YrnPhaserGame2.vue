@@ -594,10 +594,20 @@ export default {
         row.forEach((element, columnIndex) => {
           const posX = columnIndex * cellSize + cellSize / 2 + offsetX
           const posY = rowIndex * cellSize + cellSize / 2 + offsetY
-          // const indexText = `${element.rowIndex}${element.columnIndex}`
+          const textStyle = {
+            fontSize: '13px',
+            align: 'center',
+            fontFamily: 'MartelSans, monospace'
+          }
 
           this.drawPhaserSquare(scene, posX, posY, squareSize)
-          // this.addPhaserText(scene, posX, posY, indexText, textStyle)
+          if (element.nodeIndex.length === 1) {
+            textStyle.color = '#ffffff'
+            this.addPhaserText(scene, posX, posY, element.nodeIndex, textStyle)
+          } else {
+            textStyle.color = '#03ff00'
+            this.addPhaserText(scene, posX, posY, element.nodeIndexWeight, textStyle)
+          }
 
           // Dibujar conexiones con elementos adyacentes
           if (element.down) {
@@ -609,6 +619,15 @@ export default {
               posY + cellSize - squareSize / 2,
               lineWidth
             )
+            if (element.downIsHalfPath === undefined) {
+              const textX = posX - 2
+              const textY = posY + cellSize / 2 - 2 // En la mitad de la línea vertical
+              scene
+                .add
+                .text(textX, textY, element.down.toString(), { fontSize: '16px', fill: '#03ff00' })
+                .setDepth(Number.MAX_SAFE_INTEGER - 1)
+                .setOrigin(0.5)
+            }
           }
           if (element.right) {
             this.drawPhaserLine(
@@ -619,6 +638,15 @@ export default {
               posY,
               lineWidth
             )
+            if (element.rightIsHalfPath === undefined) {
+              const textX = posX + cellSize / 2 - 2 // En la mitad de la línea horizontal
+              const textY = posY + 2
+              scene
+                .add
+                .text(textX, textY, element.right.toString(), { fontSize: '16px', fill: '#03ff00' })
+                .setDepth(Number.MAX_SAFE_INTEGER - 1)
+                .setOrigin(0.5)
+            }
           }
           if (element.up) {
             this.drawPhaserLine(
@@ -656,9 +684,11 @@ export default {
           this.tileSize / 2 + offsetY,
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
-        this.car.setOrigin(0.5)
-        this.car.setScale(1.5)
-        this.car.play(`car_animation_${this.currentTile.spriteDirection}`)
+        this.car
+          .setDepth(Number.MAX_SAFE_INTEGER)
+          .setOrigin(0.5)
+          .setScale(1.5)
+          .play(`car_animation_${this.currentTile.spriteDirection}`)
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
       }
