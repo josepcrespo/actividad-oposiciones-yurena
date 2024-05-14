@@ -241,7 +241,7 @@ export default {
       },
       currentTile: {
         spriteDirection: 'SOUTH',
-        x: 0,
+        x: 1,
         y: 0 
       },
       draggableItemsTitle: {
@@ -345,11 +345,13 @@ export default {
           ro: "Nod A",
           ru: "Узел A",
           zh: "节点 A"
-        }
+        },
+        "xAxisIndex": 1,
+        "yAxisIndex": 0
       },
       {
         icon: 'mdi-alpha-b-circle',
-        name: ' B',
+        name: 'B',
         title: {
           ar: "عقدة B",
           ca: "Node B",
@@ -365,11 +367,13 @@ export default {
           ro: "Nod B",
           ru: "Узел B",
           zh: "节点 B"
-        }
+        },
+        "xAxisIndex": 2,
+        "yAxisIndex": 0
       },
       {
         icon: 'mdi-alpha-c-circle',
-        name: ' C',
+        name: 'C',
         title: {
           ar: "عقدة C",
           ca: "Node C",
@@ -385,11 +389,13 @@ export default {
           ro: "Nod C",
           ru: "Узел C",
           zh: "节点 C"
-        }
+        },
+        "xAxisIndex": 0,
+        "yAxisIndex": 1
       },
       {
         icon: 'mdi-alpha-d-circle',
-        name: ' D',
+        name: 'D',
         title: {
           ar: "عقدة D",
           ca: "Node D",
@@ -405,11 +411,13 @@ export default {
           ro: "Nod D",
           ru: "Узел D",
           zh: "节点 D"
-        }
+        },
+        "xAxisIndex": 1,
+        "yAxisIndex": 1
       },
       {
         icon: 'mdi-alpha-e-circle',
-        name: ' E',
+        name: 'E',
         title: {
           ar: "عقدة E",
           ca: "Node E",
@@ -425,11 +433,13 @@ export default {
           ro: "Nod E",
           ru: "Узел E",
           zh: "节点 E"
-        }
+        },
+        "xAxisIndex": 2,
+        "yAxisIndex": 1
       },
       {
         icon: 'mdi-alpha-f-circle',
-        name: ' F',
+        name: 'F',
         title: {
           ar: "عقدة F",
           ca: "Node F",
@@ -445,11 +455,13 @@ export default {
           ro: "Nod F",
           ru: "Узел F",
           zh: "节点 F"
-        }
+        },
+        "xAxisIndex": 1,
+        "yAxisIndex": 2
       },
       {
         icon: 'mdi-alpha-g-circle',
-        name: ' G',
+        name: 'G',
         title: {
           ar: "عقدة G",
           ca: "Node G",
@@ -465,11 +477,13 @@ export default {
           ro: "Nod G",
           ru: "Узел G",
           zh: "节点 G"
-        }
+        },
+        "xAxisIndex": 2,
+        "yAxisIndex": 2
       },
       {
         icon: 'mdi-alpha-h-circle',
-        name: ' H',
+        name: 'H',
         title: {
           ar: "عقدة H",
           ca: "Node H",
@@ -485,11 +499,13 @@ export default {
           ro: "Nod H",
           ru: "Узел H",
           zh: "节点 H"
-        }
+        },
+        "xAxisIndex": 3,
+        "yAxisIndex": 1
       },
       {
         icon: 'mdi-alpha-i-circle',
-        name: ' I',
+        name: 'I',
         title: {
           ar: "عقدة I",
           ca: "Node I",
@@ -505,7 +521,9 @@ export default {
           ro: "Nod I",
           ru: "Узел I",
           zh: "节点 I"
-        }
+        },
+        "xAxisIndex": 2,
+        "yAxisIndex": 3
       },
       {
         icon: 'mdi-alpha-j-circle',
@@ -525,7 +543,9 @@ export default {
           ro: "Nod J",
           ru: "Узел J",
           zh: "节点 J"
-        }
+        },
+        "xAxisIndex": 3,
+        "yAxisIndex": 2
       }
     ]
 
@@ -678,9 +698,10 @@ export default {
       })
     },
     addPhaserCar(scene, offsetX = this.offsetX, offsetY = this.offsetY) {
+
       try {
         this.car = scene.add.sprite(
-          this.tileSize / 2 + offsetX,
+          this.tileSize * 2 - 20,
           this.tileSize / 2 + offsetY,
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
@@ -784,8 +805,21 @@ export default {
       this.car.play(`car_animation_${direction}`)
       this.$set(this.currentTile, 'spriteDirection', direction)
     },
+    /**
+     * Checks if a move is valid in the game board.
+     * It only checks if the move is within the boundaries of the board.
+     * It only checks the move between the current position on the matrix and,
+     * the target position on the matrix that should be an adjacent position.
+     *
+     * @param {number} fromRowIndex - The starting row index of the move.
+     * @param {number} fromColumnIndex - The starting column index of the move.
+     * @param {number} toRowIndex - The target row index of the move.
+     * @param {number} toColumnIndex - The target column index of the move.
+     * @param {string} direction - The direction of the move.
+     * @return {boolean} Returns true if the move is valid, false otherwise.
+     */
     checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction) {
-      // Salir del método si las coordenadas están fuera de los límites de la matriz
+      // Check if the coordinates are out of the board boundaries
       if (
         fromRowIndex < 0 ||
         fromColumnIndex < 0 ||
@@ -1004,6 +1038,15 @@ export default {
         }
       })
     },
+    /**
+     * Moves the default Phaser car in the specified direction.
+     *
+     * @param {number} deltaRowIndex - The change in row index.
+     * @param {number} deltaColumnIndex - The change in column index.
+     * @param {string} direction - The direction of movement.
+     * @param {string} carDirection - The direction of the car sprite.
+     * @return {void}
+     */
     defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
       const scene = this.config.scene[0]
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
@@ -1096,8 +1139,9 @@ export default {
 
         // Agregar cada movimiento a la cola
         this.moveQueue = customPhaserCarMoves.map(move => ({
-          carDirection: move.carDirection,
-          keyboardDirection: move.keyboardDirection
+          name: move.name,
+          xAxisIndex: move.xAxisIndex,
+          yAxisIndex: move.yAxisIndex
         }))
 
         this.executeNextMove()
