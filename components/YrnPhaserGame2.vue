@@ -289,7 +289,7 @@ export default {
       moveTween: null,
       moveQueue: [],
       movementsUsed: 0,
-      offsetX: 30,
+      offsetX: 20,
       offsetY: 22,
       propsByKeyboardEventCodes: {
         customMoves: {
@@ -698,10 +698,9 @@ export default {
       })
     },
     addPhaserCar(scene, offsetX = this.offsetX, offsetY = this.offsetY) {
-
       try {
         this.car = scene.add.sprite(
-          this.tileSize * 2 - 20,
+          this.tileSize * 2 - this.tileSize / 2 + offsetX,
           this.tileSize / 2 + offsetY,
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
@@ -1086,8 +1085,8 @@ export default {
       console.log("🚀 ~ defaultPhaserCarMove ~ canMove:", canMove)
 
       if (canMove) {
-        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
-        const targetY = newRowIndex * this.tileSize + this.tileSize / 2
+        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
+        const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
         this.currentTile.x = newColumnIndex
         this.currentTile.y = newRowIndex
         this.isMoving = true
@@ -1263,16 +1262,14 @@ export default {
     resetCarPosition() {
       // Restablecer la posición del coche
       if (this.car) {
-        const offsetX = this.offsetX
-        const offsetY = this.offsetY
-        const posX = this.tileSize / 2 + offsetX
-        const posY = this.tileSize / 2 + offsetY
+        const posX = this.tileSize * 2 - this.tileSize / 2 + this.offsetX
+        const posY = this.tileSize / 2 + this.offsetY
 
         this.car.setPosition(posX, posY)
         this.changeCarSprite(this.carDirections.south)
         this.currentTile = {
           spriteDirection: 'SOUTH',
-          x: 0,
+          x: 1,
           y: 0
         }
         this.gameDone = false
