@@ -197,7 +197,7 @@ export default {
       type: Number
     },
     useDefaultMovement: {
-      default: false,
+      default: true,
       required: false,
       type: Boolean
     }
@@ -329,7 +329,7 @@ export default {
     this.gameUIButtons = [
       {
         icon: 'mdi-alpha-a-circle',
-        name: 'A',
+        nodeIndex: 'A',
         title: {
           ar: "عقدة A",
           ca: "Node A",
@@ -351,7 +351,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-b-circle',
-        name: 'B',
+        nodeIndex: 'B',
         title: {
           ar: "عقدة B",
           ca: "Node B",
@@ -373,7 +373,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-c-circle',
-        name: 'C',
+        nodeIndex: 'C',
         title: {
           ar: "عقدة C",
           ca: "Node C",
@@ -395,7 +395,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-d-circle',
-        name: 'D',
+        nodeIndex: 'D',
         title: {
           ar: "عقدة D",
           ca: "Node D",
@@ -417,7 +417,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-e-circle',
-        name: 'E',
+        nodeIndex: 'E',
         title: {
           ar: "عقدة E",
           ca: "Node E",
@@ -439,7 +439,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-f-circle',
-        name: 'F',
+        nodeIndex: 'F',
         title: {
           ar: "عقدة F",
           ca: "Node F",
@@ -461,7 +461,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-g-circle',
-        name: 'G',
+        nodeIndex: 'G',
         title: {
           ar: "عقدة G",
           ca: "Node G",
@@ -483,7 +483,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-h-circle',
-        name: 'H',
+        nodeIndex: 'H',
         title: {
           ar: "عقدة H",
           ca: "Node H",
@@ -505,7 +505,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-i-circle',
-        name: 'I',
+        nodeIndex: 'I',
         title: {
           ar: "عقدة I",
           ca: "Node I",
@@ -527,7 +527,7 @@ export default {
       },
       {
         icon: 'mdi-alpha-j-circle',
-        name: 'J',
+        nodeIndex: 'J',
         title: {
           ar: "عقدة J",
           ca: "Node J",
@@ -808,8 +808,9 @@ export default {
     /**
      * Checks if a move is valid in the game board.
      * It only checks if the move is within the boundaries of the board.
-     * It only checks the move between the current position on the matrix and,
-     * the target position on the matrix that should be an adjacent position.
+     * It only checks the move between the current position on the matrix.
+     * Optionally, it also checks if the distance trying to move is not greater
+     * than one position.
      *
      * @param {number} fromRowIndex - The starting row index of the move.
      * @param {number} fromColumnIndex - The starting column index of the move.
@@ -818,7 +819,8 @@ export default {
      * @param {string} direction - The direction of the move.
      * @return {boolean} Returns true if the move is valid, false otherwise.
      */
-    checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction) {
+    checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction, checkDistance = false) {
+      console.log("🚀 ~ checkMove ~ direction:", direction)
       // Check if the coordinates are out of the board boundaries
       if (
         fromRowIndex < 0 ||
@@ -833,22 +835,37 @@ export default {
         return false
       }
 
+      // Check if the distance between fromRowIndex and toRowIndex is just 1 or not
+      // or if the distance between fromColumnIndex and toColumnIndex is just 1 or not.
+      let isValidDistance = true
+
+      if (checkDistance) {
+        isValidDistance =
+          Math.abs(toRowIndex - fromRowIndex) <= 1 &&
+          Math.abs(toColumnIndex - fromColumnIndex) <= 1
+        console.log("🚀 ~ checkMove ~ isValidDistance:", isValidDistance)
+      }
+
       const currentElement = this.board[fromRowIndex][fromColumnIndex]
       const targetElement = this.board[toRowIndex][toColumnIndex]
 
       switch (direction) {
-        case this.keyboardEventCodes.arrowDown:
+        case this.carDirections.south:
           return (currentElement.down || targetElement.up) &&
-            toRowIndex > fromRowIndex
-        case this.keyboardEventCodes.arrowLeft:
+            toRowIndex > fromRowIndex &&
+            isValidDistance
+        case this.carDirections.west:
           return (currentElement.left || targetElement.right) &&
-            toColumnIndex < fromColumnIndex
-        case this.keyboardEventCodes.arrowUp:
+            toColumnIndex < fromColumnIndex &&
+            isValidDistance
+        case this.carDirections.north:
           return (currentElement.up || targetElement.down) &&
-            toRowIndex < fromRowIndex
-        case this.keyboardEventCodes.arrowRight:
+            toRowIndex < fromRowIndex &&
+            isValidDistance
+        case this.carDirections.east:
           return (currentElement.right || targetElement.left) &&
-            toColumnIndex > fromColumnIndex
+            toColumnIndex > fromColumnIndex &&
+            isValidDistance
         default:
           return false
       }
@@ -1048,19 +1065,10 @@ export default {
      * @return {void}
      */
     defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
+      console.log("🚀 ~ defaultPhaserCarMove")
       const scene = this.config.scene[0]
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
       const newRowIndex = this.currentTile.y + deltaRowIndex
-
-      // Salir del método si las coordenadas están fuera de los límites de la matriz
-      if (
-        newColumnIndex < 0 ||
-        newRowIndex < 0 ||
-        newColumnIndex >= this.board[0].length ||
-        newRowIndex >= this.board.length
-      ) {
-        return
-      }
 
       if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
         console.warn('Movimiento no válido, no se puede mover en diagonal')
@@ -1072,8 +1080,10 @@ export default {
         this.currentTile.x,
         newRowIndex,
         newColumnIndex,
-        direction
+        carDirection,
+        true
       )
+      console.log("🚀 ~ defaultPhaserCarMove ~ canMove:", canMove)
 
       if (canMove) {
         const targetX = newColumnIndex * this.tileSize + this.tileSize / 2
@@ -1086,6 +1096,8 @@ export default {
           this.moveTween.stop()
         }
 
+        this.changeCarSprite(carDirection)
+
         this.moveTween = scene.tweens.add({
           targets: this.car,
           x: targetX,
@@ -1095,10 +1107,12 @@ export default {
           onComplete: () => {
             this.isMoving = false
             this.moveTween = null
+            if (direction === this.keyboardEventCodes.arrowUp) {
+              this.updatePhaserCarBatteryIndicator(true)
+            }
+            this.executeNextMove()
           }
         })
-
-        this.changeCarSprite(carDirection)
       }
     },
     drawPhaserLine(scene, startX, startY, endX, endY, lineWidth, textureKey = this.textureKeys.minecraftDeepFloor) {
@@ -1122,27 +1136,37 @@ export default {
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
     executeNextMove() {
+      console.log("🚀 ~ executeNextMove")
       if (this.movementsUsed < this.maxMoves) {
         if (this.moveQueue.length > 0) {
           const nextMove = this.moveQueue.shift()
-          const { carDirection, keyboardDirection } = nextMove
+          const keyboardDirection = this.keyboardEventCodes.arrowUp
+          const carDirection = this.getCarDirectionFromMove(nextMove)
+          console.log("🚀 ~ executeNextMove ~ carDirection:", carDirection)
+          const { xAxisIndex, yAxisIndex } = nextMove
+          const deltaRowIndex = yAxisIndex - this.currentTile.y
+          console.log("🚀 ~ executeNextMove ~ deltaRowIndex:", deltaRowIndex)
+          const deltaColumnIndex = xAxisIndex - this.currentTile.x
+          console.log("🚀 ~ executeNextMove ~ deltaColumnIndex:", deltaColumnIndex)
 
-          this.movePhaserCar(keyboardDirection, carDirection)
+          this.movePhaserCar(keyboardDirection, carDirection, deltaRowIndex, deltaColumnIndex)
         }
       }
     },
     executeSequenceOfMoves() {
+      console.log("🚀 ~ executeSequenceOfMoves")
       const dragAndDropComponent = this.$refs.dragAndDropComponent
 
       if (dragAndDropComponent && dragAndDropComponent.list2) {
-        const customPhaserCarMoves = dragAndDropComponent.list2
+        const phaserCarMoves = dragAndDropComponent.list2
 
         // Agregar cada movimiento a la cola
-        this.moveQueue = customPhaserCarMoves.map(move => ({
-          name: move.name,
+        this.moveQueue = phaserCarMoves.map(move => ({
+          name: move.nodeIndex,
           xAxisIndex: move.xAxisIndex,
           yAxisIndex: move.yAxisIndex
         }))
+        console.log("🚀 ~ executeSequenceOfMoves ~ this.moveQueue:", this.moveQueue)
 
         this.executeNextMove()
       } else {
@@ -1156,6 +1180,21 @@ export default {
         duration: 5000,
         ease: 'Cubic.easeInOut'
       })
+    },
+    getCarDirectionFromMove(move) {
+      let carDirection = ''
+
+      if (this.currentTile.x < move.xAxisIndex) {
+        carDirection = this.carDirections.east
+      } else if (this.currentTile.x > move.xAxisIndex) {
+        carDirection = this.carDirections.west
+      } else if (this.currentTile.y < move.yAxisIndex) {
+        carDirection = this.carDirections.south
+      } else if (this.currentTile.y > move.yAxisIndex) {
+        carDirection = this.carDirections.north
+      }
+
+      return carDirection
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
@@ -1214,6 +1253,7 @@ export default {
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
     movePhaserCar(keyboardDirection, carDirection, deltaRowIndex = null, deltaColumnIndex = null) {
+      console.log("🚀 ~ movePhaserCar")
       if (this.useDefaultMovement) {
         this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       } else {
