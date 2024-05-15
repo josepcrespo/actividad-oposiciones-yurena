@@ -289,7 +289,7 @@ export default {
       moveTween: null,
       moveQueue: [],
       movementsUsed: 0,
-      offsetX: 30,
+      offsetX: 20,
       offsetY: 22,
       propsByKeyboardEventCodes: {
         customMoves: {
@@ -514,7 +514,7 @@ export default {
       try {
         this.car = scene.add.sprite(
           this.tileSize / 2 + offsetX,
-          this.tileSize / 2 + offsetY,
+          this.tileSize / 2 + (offsetY / 2),
           `car_spritesheet_${this.currentTile.spriteDirection}`
         )
         this.car.setOrigin(0.5)
@@ -804,7 +804,7 @@ export default {
         Math.abs(currentRow - this.currentTile.y)
       )
 
-      const targetY = currentRow * this.tileSize + this.tileSize / 2 + this.offsetY
+      const targetY = currentRow * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
       const targetX = currentCol * this.tileSize + this.tileSize / 2 + this.offsetX
 
       this.currentTile.y = currentRow
@@ -1013,7 +1013,7 @@ export default {
         const offsetX = this.offsetX
         const offsetY = this.offsetY
         const posX = this.tileSize / 2 + offsetX
-        const posY = this.tileSize / 2 + offsetY
+        const posY = this.tileSize / 2 + (offsetY / 2)
 
         this.car.setPosition(posX, posY)
         this.changeCarSprite(this.carDirections.south)
