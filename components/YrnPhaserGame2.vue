@@ -224,7 +224,7 @@ export default {
           target: 30,
           forceSetTimeOut: true
         },
-        height: 542,
+        height: 520,
         parent: 'phaserContainer',
         physics: {
           default: 'arcade',
@@ -238,7 +238,7 @@ export default {
         },
         scene: [],
         type: Phaser.AUTO,
-        width: 862
+        width: 640
       },
       currentTile: {
         spriteDirection: 'SOUTH',
@@ -305,7 +305,7 @@ export default {
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
       },
-      tileSize: 100,
+      tileSize: 120,
       usedBatteryIndicator: null
     }
   },
@@ -609,7 +609,6 @@ export default {
           const posX = columnIndex * cellSize + cellSize / 2 + offsetX
           const posY = rowIndex * cellSize + cellSize / 2 + offsetY
           const textStyle = {
-            fontSize: '13px',
             align: 'center',
             fontFamily: 'MartelSans, monospace'
           }
@@ -617,9 +616,11 @@ export default {
           this.drawPhaserSquare(scene, posX, posY, squareSize)
           if (element.nodeIndex.length === 1) {
             textStyle.color = '#ffffff'
+            textStyle.fontSize = '24px'
             this.addPhaserText(scene, posX, posY, element.nodeIndex, textStyle)
           } else {
             textStyle.color = '#03ff00'
+            textStyle.fontSize = '18px'
             this.addPhaserText(scene, posX, posY, element.nodeIndexWeight, textStyle)
           }
 
@@ -638,7 +639,7 @@ export default {
               const textY = posY + cellSize / 2 - 2 // En la mitad de la línea vertical
               scene
                 .add
-                .text(textX, textY, element.down.toString(), { fontSize: '16px', fill: '#03ff00' })
+                .text(textX, textY, element.down.toString(), { fontSize: '18px', fill: '#03ff00' })
                 .setDepth(Number.MAX_SAFE_INTEGER - 1)
                 .setOrigin(0.5)
             }
@@ -657,7 +658,7 @@ export default {
               const textY = posY + 2
               scene
                 .add
-                .text(textX, textY, element.right.toString(), { fontSize: '16px', fill: '#03ff00' })
+                .text(textX, textY, element.right.toString(), { fontSize: '18px', fill: '#03ff00' })
                 .setDepth(Number.MAX_SAFE_INTEGER - 1)
                 .setOrigin(0.5)
             }
