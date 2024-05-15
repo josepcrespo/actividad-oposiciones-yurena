@@ -205,7 +205,8 @@ export default {
   data() {
     return {
       board: [],
-      batteryLevelText: '100%',
+      batteryLevel: 100,
+      batteryLevelText: null,
       batteryText: null,
       car: null,
       carBatteryIndicator: null,
@@ -309,13 +310,6 @@ export default {
     }
   },
   computed: {
-    batteryLevel: {
-      cache: false,
-      get() {
-        const percentageUsed = (this.movementsUsed / this.maxMoves) * 100
-        return `${Math.floor(100 - percentageUsed)}%`
-      }
-    },
     carReachedLastPosition() {
       // Obtiene las coordenadas del coche en términos de la matriz de caminos
       const carColumn = Math.floor(this.car.x / this.tileSize)
@@ -754,7 +748,7 @@ export default {
       this.batteryLevelText = scene.add.text(
         scene.sys.game.canvas.width - indicatorWidth - marginRight,
         marginTop + indicatorHeight + batteryTextHeight,
-        this.batteryLevel,
+        `${this.getBatteryLevel()}%`,
         textStyle
       )
       this.batteryLevelText.setOrigin(0)
@@ -794,6 +788,28 @@ export default {
     addPhaserText(scene, posX, posY, text, textStyle) {
       // Añadir el texto en el centro del elemento
       scene.add.text(posX, posY, text, textStyle).setOrigin(0.5)
+    },
+    animateBatteryLevelText(scene = this.config.scene[0]) {
+      // Asegura que el objeto text ya esté creado y listo para ser actualizado.
+      if (!this.batteryLevelText) {
+        console.error('Battery level text has not been initialized.')
+        return
+      }
+
+      // Crea un objeto auxiliar para la animación
+      const batteryData = { level: 0 }
+
+      // Crea el tween para animar este objeto auxiliar
+      scene.tweens.add({
+        targets: batteryData,
+        level: 100,
+        duration: 5000,
+        ease: 'Cubic.easeInOut',
+        onUpdate: () => {
+          // Actualiza el texto del objeto text cada vez que cambia la propiedad level
+          this.batteryLevelText.setText(`${Math.floor(batteryData.level)}%`)
+        }
+      })
     },
     changeCarSprite(direction) {
       const newSpriteSheet = `/img/phaserjs/top-down-vehicles/${this.carModel}/` +
@@ -1173,12 +1189,17 @@ export default {
       }
     },
     fillPhaserCarBatteryIndicator(scene = this.config.scene[0]) {
+      this.animateBatteryLevelText()
       scene.tweens.add({
         targets: this.usedBatteryIndicator,
         scaleY: 0,
         duration: 5000,
         ease: 'Cubic.easeInOut'
       })
+    },
+    getBatteryLevel() {
+      const percentageUsed = (this.movementsUsed / this.maxMoves) * 100
+      return window?.Math?.floor(100 - percentageUsed)
     },
     getCarDirectionFromMove(move) {
       let carDirection = ''
@@ -1352,7 +1373,6 @@ export default {
           this.usedBatteryIndicator = null
         }
         this.addPhaserCarBatteryIndicator()
-        this.makePhaserElementBlink(this.carBatteryIndicator)
       }
 
       // Actualizar el texto del nivel de batería
