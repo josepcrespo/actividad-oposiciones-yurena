@@ -1101,6 +1101,8 @@ export default {
         true
       )
       console.log("🚀 ~ defaultPhaserCarMove ~ canMove:", canMove)
+      const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, carDirection)
+      console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
 
       if (canMove) {
         const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
@@ -1125,7 +1127,7 @@ export default {
             this.isMoving = false
             this.moveTween = null
             if (direction === this.keyboardEventCodes.arrowUp) {
-              this.updatePhaserCarBatteryIndicator(true)
+              this.updatePhaserCarBatteryIndicator(true, moveCost)
             }
             this.executeNextMove()
           }
@@ -1200,7 +1202,7 @@ export default {
       })
     },
     getBatteryLevel() {
-      const percentageUsed = (this.movementsUsed / this.maxMoves) * 100
+      const percentageUsed = Math.min(100, (this.movementsUsed / this.maxMoves) * 100)
       return window?.Math?.floor(100 - percentageUsed)
     },
     getCarDirectionFromMove(move) {
@@ -1217,6 +1219,21 @@ export default {
       }
 
       return carDirection
+    },
+    getMoveCost(currentTileY, currentTileX, carDirection) {
+      const carPosition = this.board[currentTileY][currentTileX]
+      switch (carDirection) {
+        case this.carDirections.south:
+          return carPosition.down
+        case this.carDirections.west:
+          return carPosition.left
+        case this.carDirections.north:
+          return carPosition.up
+        case this.carDirections.east:
+          return carPosition.right
+        default:
+          return 0
+      }
     },
     initPhaserGame() {
       const gameScene = new Phaser.Scene('GameScene')
@@ -1331,7 +1348,7 @@ export default {
       const nextDirection = Object.keys(this.carDirections)[nextIndex]
       this.changeCarSprite(this.carDirections[nextDirection])
     },
-    updatePhaserCarBatteryIndicator(updateNumOfMoves = false, scene = this.config.scene[0]) {
+    updatePhaserCarBatteryIndicator(updateNumOfMoves = false, movementsUsed = 0, scene = this.config.scene[0]) {
       const marginTop = 50
       const marginRight = 30
       const indicatorWidth = 60
@@ -1340,11 +1357,13 @@ export default {
       const positionX = scene.sys.game.canvas.width - indicatorWidth - marginRight
       const positionY = marginTop
       const initialHeight = scene.sys.game.canvas.height / 2
+      const currentBatteryLevel = this.getBatteryLevel()
 
       if (updateNumOfMoves) {
-        this.movementsUsed++
-        const targetHeight = ((this.movementsUsed * 100) / this.maxMoves) / 100
-        const firstMovePercentage = (100 / this.maxMoves) / 100
+        this.movementsUsed += movementsUsed
+        const maxTargetHeight = 1
+        const targetHeight = Math.min(((this.movementsUsed * 100) / this.maxMoves) / 100, maxTargetHeight)
+        console.log("🚀 ~ updatePhaserCarBatteryIndicator ~ targetHeight:", targetHeight)
 
         // Crear un gráfico si no existe
         if (!this.usedBatteryIndicator) {
@@ -1363,7 +1382,7 @@ export default {
           duration: 500,
           ease: 'Power1',
           onComplete: () => {
-            if (targetHeight.toFixed(2) === firstMovePercentage.toFixed(2)) {
+            if (currentBatteryLevel === 100) { 
               this.makePhaserElementBlink(this.usedBatteryIndicator)
             }
           }

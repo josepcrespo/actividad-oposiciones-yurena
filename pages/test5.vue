@@ -1,5 +1,5 @@
 <template>
-  <yrn-phaser-game-2 :custom-board="customBoard" :max-moves="6" />
+  <yrn-phaser-game-2 :custom-board="customBoard" :max-moves="9" />
 </template>
 
 <script>
