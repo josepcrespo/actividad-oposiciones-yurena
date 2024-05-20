@@ -712,7 +712,7 @@ export default {
       const marginTop = 50
       const marginRight = 30
       const indicatorWidth = 60
-      const indicatorHeight = scene.sys.game.canvas.height / 2
+      const indicatorHeight = scene.sys.game.canvas.height - 140
       const batteryTextHeight = 25
       const textStyle = {
         color: '#ffffff',
@@ -1356,7 +1356,7 @@ export default {
       // Definir la posición y dimensiones iniciales del rectángulo
       const positionX = scene.sys.game.canvas.width - indicatorWidth - marginRight
       const positionY = marginTop
-      const initialHeight = scene.sys.game.canvas.height / 2
+      const initialHeight = scene.sys.game.canvas.height - 140
       const currentBatteryLevel = this.getBatteryLevel()
 
       if (updateNumOfMoves) {
