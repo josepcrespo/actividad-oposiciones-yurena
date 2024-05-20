@@ -301,7 +301,7 @@ export default {
         }
       },
       textureKeys: {
-        carElectricCharger: 'car_electric_charger_texture',
+        carPathEnd: 'timanfaya_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
       },
@@ -329,10 +329,10 @@ export default {
           ca: "Node A",
           de: "Knoten A",
           en: "Node A",
-          es: "Punto A",
+          es: "Nodo A",
           eu: "Node A",
           fr: "Noeud A",
-          gl: "Punto A",
+          gl: "Nodo A",
           it: "Nodo A",
           ja: "ノード A",
           pt: "Nó A",
@@ -351,10 +351,10 @@ export default {
           ca: "Node B",
           de: "Knoten B",
           en: "Node B",
-          es: "Punto B",
+          es: "Nodo B",
           eu: "Node B",
           fr: "Noeud B",
-          gl: "Punto B",
+          gl: "Nodo B",
           it: "Nodo B",
           ja: "ノード B",
           pt: "Nó B",
@@ -373,10 +373,10 @@ export default {
           ca: "Node C",
           de: "Knoten C",
           en: "Node C",
-          es: "Punto C",
+          es: "Nodo C",
           eu: "Node C",
           fr: "Noeud C",
-          gl: "Punto C",
+          gl: "Nodo C",
           it: "Nodo C",
           ja: "ノード C",
           pt: "Nó C",
@@ -395,10 +395,10 @@ export default {
           ca: "Node D",
           de: "Knoten D",
           en: "Node D",
-          es: "Punto D",
+          es: "Nodo D",
           eu: "Node D",
           fr: "Noeud D",
-          gl: "Punto D",
+          gl: "Nodo D",
           it: "Nodo D",
           ja: "ノード D",
           pt: "Nó D",
@@ -417,10 +417,10 @@ export default {
           ca: "Node E",
           de: "Knoten E",
           en: "Node E",
-          es: "Punto E",
+          es: "Nodo E",
           eu: "Node E",
           fr: "Noeud E",
-          gl: "Punto E",
+          gl: "Nodo E",
           it: "Nodo E",
           ja: "ノード E",
           pt: "Nó E",
@@ -439,10 +439,10 @@ export default {
           ca: "Node F",
           de: "Knoten F",
           en: "Node F",
-          es: "Punto F",
+          es: "Nodo F",
           eu: "Node F",
           fr: "Noeud F",
-          gl: "Punto F",
+          gl: "Nodo F",
           it: "Nodo F",
           ja: "ノード F",
           pt: "Nó F",
@@ -461,10 +461,10 @@ export default {
           ca: "Node G",
           de: "Knoten G",
           en: "Node G",
-          es: "Punto G",
+          es: "Nodo G",
           eu: "Node G",
           fr: "Noeud G",
-          gl: "Punto G",
+          gl: "Nodo G",
           it: "Nodo G",
           ja: "ノード G",
           pt: "Nó G",
@@ -483,10 +483,10 @@ export default {
           ca: "Node H",
           de: "Knoten H",
           en: "Node H",
-          es: "Punto H",
+          es: "Nodo H",
           eu: "Node H",
           fr: "Noeud H",
-          gl: "Punto H",
+          gl: "Nodo H",
           it: "Nodo H",
           ja: "ノード H",
           pt: "Nó H",
@@ -505,10 +505,10 @@ export default {
           ca: "Node I",
           de: "Knoten I",
           en: "Node I",
-          es: "Punto I",
+          es: "Nodo I",
           eu: "Node I",
           fr: "Noeud I",
-          gl: "Punto I",
+          gl: "Nodo I",
           it: "Nodo I",
           ja: "ノード I",
           pt: "Nó I",
@@ -527,10 +527,10 @@ export default {
           ca: "Node J",
           de: "Knoten J",
           en: "Node J",
-          es: "Punto J",
+          es: "Nodo J",
           eu: "Node J",
           fr: "Noeud J",
-          gl: "Punto J",
+          gl: "Nodo J",
           it: "Nodo J",
           ja: "ノード J",
           pt: "Nó J",
@@ -684,10 +684,10 @@ export default {
             )
           }
 
-          if (rowIndex === lastRowIndex && columnIndex === lastColumnIndex) {
-            const chargerX = posX + cellSize
-            const chargerY = posY
-            this.addPhaserCarStation(scene, chargerX, chargerY)
+          if (rowIndex === lastRowIndex - 2 && columnIndex === lastColumnIndex) {
+            const endOfPathX = posX + this.offsetX / 2
+            const endOfPathY = posY + this.tileSize / 3
+            this.addPhaserPathEndImage(scene, endOfPathX, endOfPathY)
           }
         })
       })
@@ -754,20 +754,21 @@ export default {
       )
       this.batteryLevelText.setOrigin(0)
     },
-    addPhaserCarStation(
+    addPhaserPathEndImage(
       scene,
       posX,
       posY,
       offsetX = this.offsetX,
       offsetY = this.offsetY,
-      textureKey = this.textureKeys.carElectricCharger
+      textureKey = this.textureKeys.carPathEnd
     ) {
-      this.carElectricCharger = scene.add.image(
+      this.carPathEnd = scene.add.image(
         posX + offsetX,
         posY + offsetY,
         textureKey
       )
-      this.carElectricCharger.setOrigin(0.7, 0.9)
+      this.carPathEnd.setOrigin(0, 0)
+      this.carPathEnd.setDepth(Number.MAX_SAFE_INTEGER - 1)
     },
     addPhaserKeyboardInput(scene) {
       let propsByKeyboardEventCodes
@@ -1222,7 +1223,8 @@ export default {
 
       gameScene.preload = () => {
         // Preload de la textura
-        gameScene.load.image(this.textureKeys.carElectricCharger, '/img/phaserjs/car-stations/100x100/car-electric-charger.png')
+        gameScene.load.image(this.textureKeys.carPathEnd, '/img/phaserjs/parque-naciona-timanfaya/128x128/diablo-timanfaya.png')
+        // gameScene.load.image(this.textureKeys.carPathEnd, '/img/phaserjs/parque-naciona-timanfaya/128x128/diablo-timanfaya-en-el-parque-nacional-1.png')
         gameScene.load.image(this.textureKeys.minecraftDeepFloor, '/img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
         gameScene.load.image(this.textureKeys.sceneBackground, '/img/phaserjs/backgrounds/main.jpg')
 
@@ -1297,6 +1299,7 @@ export default {
         this.gameDone = false
         this.movementsUsed = 0
         this.makePhaserElementBlink(this.car)
+        this.updatePhaserCarBatteryIndicator()
       }
     },
     resetGame() {
@@ -1377,7 +1380,7 @@ export default {
       }
 
       // Actualizar el texto del nivel de batería
-      this.batteryLevelText.setText(this.batteryLevel)
+      this.batteryLevelText.setText(`${this.getBatteryLevel()}%`)
 
       // Si el coche alcanza la última posición final, mostrar un mensaje de exito
       if (this.carReachedLastPosition) {
