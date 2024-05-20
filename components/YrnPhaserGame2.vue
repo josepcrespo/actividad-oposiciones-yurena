@@ -1370,7 +1370,7 @@ export default {
           this.usedBatteryIndicator = scene.add.graphics()
             .setAlpha(0)
             .setPosition(positionX, positionY)
-            .setDepth(Number.MAX_SAFE_INTEGER)
+            .setDepth(Number.MAX_SAFE_INTEGER - 2)
             .fillStyle(0xff0000, 1)
             .fillRect(0, 0, indicatorWidth, initialHeight)
         }
