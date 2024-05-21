@@ -839,7 +839,6 @@ export default {
      * @return {boolean} Returns true if the move is valid, false otherwise.
      */
     checkMove(fromRowIndex, fromColumnIndex, toRowIndex, toColumnIndex, direction, checkDistance = false) {
-      console.log("🚀 ~ checkMove ~ direction:", direction)
       // Check if the coordinates are out of the board boundaries
       if (
         fromRowIndex < 0 ||
@@ -862,7 +861,6 @@ export default {
         isValidDistance =
           Math.abs(toRowIndex - fromRowIndex) <= 1 &&
           Math.abs(toColumnIndex - fromColumnIndex) <= 1
-        console.log("🚀 ~ checkMove ~ isValidDistance:", isValidDistance)
       }
 
       const currentElement = this.board[fromRowIndex][fromColumnIndex]
@@ -1084,7 +1082,6 @@ export default {
      * @return {void}
      */
     defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
-      console.log("  ~ defaultPhaserCarMove")
       const scene = this.config.scene[0]
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
       const newRowIndex = this.currentTile.y + deltaRowIndex
@@ -1093,13 +1090,7 @@ export default {
         const fromNode = this.board[this.currentTile.y][this.currentTile.x]
         const toNode = this.board[newRowIndex][newColumnIndex]
         const bridgeNode = this.getBridgeNode(fromNode.nodeIndex, toNode.nodeIndex)
-        console.log("  ~ defaultPhaserCarMove ~ bridgeNode:", bridgeNode)
-        console.log("  ~ defaultPhaserCarMove ~ fromNode:", fromNode)
-        console.log("  ~ defaultPhaserCarMove ~ toNode:", toNode)
         if (bridgeNode) {
-          console.log('this.getCarDirectionToNode(fromNode, bridgeNode): %o', this.getCarDirectionToNode(fromNode, bridgeNode))
-          const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, this.getCarDirectionToNode(fromNode, bridgeNode))
-          console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
           const bridgeX = bridgeNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
           const bridgeY = bridgeNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
           this.currentTile.x = bridgeNode.xAxisIndex
@@ -1119,12 +1110,14 @@ export default {
             onComplete: () => {
               this.isMoving = false
               this.moveTween = null
-              const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, this.getCarDirectionToNode(bridgeNode, toNode))
               if (direction === this.keyboardEventCodes.arrowUp) {
+                const moveCost = this.getMoveCost(
+                  fromNode.yAxisIndex,
+                  fromNode.xAxisIndex,
+                  this.getCarDirectionToNode(fromNode, bridgeNode)
+                )
                 this.updatePhaserCarBatteryIndicator(true, moveCost)
               }
-              console.log('this.getCarDirectionToNode(bridgeNode, toNode): %o', this.getCarDirectionToNode(bridgeNode, toNode))
-              console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
               const toX = toNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
               const toY = toNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
               this.currentTile.x = toNode.xAxisIndex
@@ -1145,6 +1138,11 @@ export default {
                   this.isMoving = false
                   this.moveTween = null
                   if (direction === this.keyboardEventCodes.arrowUp) {
+                    const moveCost = this.getMoveCost(
+                      bridgeNode.yAxisIndex,
+                      bridgeNode.xAxisIndex,
+                      this.getCarDirectionToNode(bridgeNode, toNode)
+                    )
                     this.updatePhaserCarBatteryIndicator(true, moveCost)
                   }
                   this.executeNextMove()
@@ -1164,9 +1162,7 @@ export default {
           carDirection,
           true
         )
-        console.log("  ~ defaultPhaserCarMove ~ canMove:", canMove)
         const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, carDirection)
-        console.log("  ~ defaultPhaserCarMove ~ moveCost:", moveCost)
 
         if (canMove) {
           const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
@@ -1220,25 +1216,20 @@ export default {
       square.setDepth(-1) // Asegurarse de que el sprite esté detrás de otros elementos
     },
     executeNextMove() {
-      console.log("🚀 ~ executeNextMove")
       if (this.movementsUsed < this.maxMoves) {
         if (this.moveQueue.length > 0) {
           const nextMove = this.moveQueue.shift()
           const keyboardDirection = this.keyboardEventCodes.arrowUp
           const carDirection = this.getCarDirectionFromMove(nextMove)
-          console.log("🚀 ~ executeNextMove ~ carDirection:", carDirection)
           const { xAxisIndex, yAxisIndex } = nextMove
           const deltaRowIndex = yAxisIndex - this.currentTile.y
-          console.log("🚀 ~ executeNextMove ~ deltaRowIndex:", deltaRowIndex)
           const deltaColumnIndex = xAxisIndex - this.currentTile.x
-          console.log("🚀 ~ executeNextMove ~ deltaColumnIndex:", deltaColumnIndex)
 
           this.movePhaserCar(keyboardDirection, carDirection, deltaRowIndex, deltaColumnIndex)
         }
       }
     },
     executeSequenceOfMoves() {
-      console.log("🚀 ~ executeSequenceOfMoves")
       const dragAndDropComponent = this.$refs.dragAndDropComponent
 
       if (dragAndDropComponent && dragAndDropComponent.list2) {
@@ -1250,7 +1241,6 @@ export default {
           xAxisIndex: move.xAxisIndex,
           yAxisIndex: move.yAxisIndex
         }))
-        console.log("🚀 ~ executeSequenceOfMoves ~ this.moveQueue:", this.moveQueue)
 
         this.executeNextMove()
       } else {
@@ -1405,7 +1395,6 @@ export default {
       }
     },
     movePhaserCar(keyboardDirection, carDirection, deltaRowIndex = null, deltaColumnIndex = null) {
-      console.log("🚀 ~ movePhaserCar")
       if (this.useDefaultMovement) {
         this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
       } else {
@@ -1475,7 +1464,6 @@ export default {
         this.movementsUsed += movementsUsed
         const maxTargetHeight = 1
         const targetHeight = Math.min(((this.movementsUsed * 100) / this.maxMoves) / 100, maxTargetHeight)
-        console.log("🚀 ~ updatePhaserCarBatteryIndicator ~ targetHeight:", targetHeight)
 
         // Crear un gráfico si no existe
         if (!this.usedBatteryIndicator) {
