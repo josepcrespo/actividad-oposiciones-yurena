@@ -314,9 +314,11 @@ export default {
       // Obtiene las coordenadas del coche en términos de la matriz de caminos
       const carColumn = Math.floor(this.car.x / this.tileSize)
       const carRow = Math.floor(this.car.y / this.tileSize)
+      const numRows = this.board.length
+      const numCols = this.board[0].length
 
-      // Verifica si el coche está en la última fila y última columna de la matriz
-      return carColumn === this.numCols - 1 && carRow === this.numRows - 1
+      // Verifica si el coche está en la penúltima fila y en la última columna de la matriz
+      return carColumn === numCols - 1 && carRow === numRows - 2
     }
   },
   created() {
@@ -1082,56 +1084,119 @@ export default {
      * @return {void}
      */
     defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, direction, carDirection) {
-      console.log("🚀 ~ defaultPhaserCarMove")
+      console.log("  ~ defaultPhaserCarMove")
       const scene = this.config.scene[0]
       const newColumnIndex = this.currentTile.x + deltaColumnIndex
       const newRowIndex = this.currentTile.y + deltaRowIndex
 
       if (this.isDiagonalMove(deltaRowIndex, deltaColumnIndex)) {
-        console.warn('Movimiento no válido, no se puede mover en diagonal')
-        return
-      }
+        const fromNode = this.board[this.currentTile.y][this.currentTile.x]
+        const toNode = this.board[newRowIndex][newColumnIndex]
+        const bridgeNode = this.getBridgeNode(fromNode.nodeIndex, toNode.nodeIndex)
+        console.log("  ~ defaultPhaserCarMove ~ bridgeNode:", bridgeNode)
+        console.log("  ~ defaultPhaserCarMove ~ fromNode:", fromNode)
+        console.log("  ~ defaultPhaserCarMove ~ toNode:", toNode)
+        if (bridgeNode) {
+          console.log('this.getCarDirectionToNode(fromNode, bridgeNode): %o', this.getCarDirectionToNode(fromNode, bridgeNode))
+          const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, this.getCarDirectionToNode(fromNode, bridgeNode))
+          console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
+          const bridgeX = bridgeNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
+          const bridgeY = bridgeNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+          this.currentTile.x = bridgeNode.xAxisIndex
+          this.currentTile.y = bridgeNode.yAxisIndex
+          this.isMoving = true
 
-      const canMove = this.checkMove(
-        this.currentTile.y,
-        this.currentTile.x,
-        newRowIndex,
-        newColumnIndex,
-        carDirection,
-        true
-      )
-      console.log("🚀 ~ defaultPhaserCarMove ~ canMove:", canMove)
-      const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, carDirection)
-      console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
-
-      if (canMove) {
-        const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
-        const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
-        this.currentTile.x = newColumnIndex
-        this.currentTile.y = newRowIndex
-        this.isMoving = true
-
-        if (this.moveTween) {
-          this.moveTween.stop()
-        }
-
-        this.changeCarSprite(carDirection)
-
-        this.moveTween = scene.tweens.add({
-          targets: this.car,
-          x: targetX,
-          y: targetY,
-          duration: 500,
-          ease: 'Linear',
-          onComplete: () => {
-            this.isMoving = false
-            this.moveTween = null
-            if (direction === this.keyboardEventCodes.arrowUp) {
-              this.updatePhaserCarBatteryIndicator(true, moveCost)
-            }
-            this.executeNextMove()
+          if (this.moveTween) {
+            this.moveTween.stop()
           }
-        })
+          this.changeCarSprite(this.getCarDirectionToNode(fromNode, bridgeNode))
+          this.moveTween = scene.tweens.add({
+            targets: this.car,
+            x: bridgeX,
+            y: bridgeY,
+            duration: 500,
+            ease: 'Linear',
+            onComplete: () => {
+              this.isMoving = false
+              this.moveTween = null
+              const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, this.getCarDirectionToNode(bridgeNode, toNode))
+              if (direction === this.keyboardEventCodes.arrowUp) {
+                this.updatePhaserCarBatteryIndicator(true, moveCost)
+              }
+              console.log('this.getCarDirectionToNode(bridgeNode, toNode): %o', this.getCarDirectionToNode(bridgeNode, toNode))
+              console.log("🚀 ~ defaultPhaserCarMove ~ moveCost:", moveCost)
+              const toX = toNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
+              const toY = toNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+              this.currentTile.x = toNode.xAxisIndex
+              this.currentTile.y = toNode.yAxisIndex
+              this.isMoving = true
+
+              if (this.moveTween) {
+                this.moveTween.stop()
+              }
+              this.changeCarSprite(this.getCarDirectionToNode(bridgeNode, toNode))
+              this.moveTween = scene.tweens.add({
+                targets: this.car,
+                x: toX,
+                y: toY,
+                duration: 500,
+                ease: 'Linear',
+                onComplete: () => {
+                  this.isMoving = false
+                  this.moveTween = null
+                  if (direction === this.keyboardEventCodes.arrowUp) {
+                    this.updatePhaserCarBatteryIndicator(true, moveCost)
+                  }
+                  this.executeNextMove()
+                }
+              })
+            }
+          })
+        } else {
+          console.warn('Movimiento no válido, no existe una ruta directa.')
+        }
+      } else {
+        const canMove = this.checkMove(
+          this.currentTile.y,
+          this.currentTile.x,
+          newRowIndex,
+          newColumnIndex,
+          carDirection,
+          true
+        )
+        console.log("  ~ defaultPhaserCarMove ~ canMove:", canMove)
+        const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, carDirection)
+        console.log("  ~ defaultPhaserCarMove ~ moveCost:", moveCost)
+
+        if (canMove) {
+          const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
+          const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+          this.currentTile.x = newColumnIndex
+          this.currentTile.y = newRowIndex
+          this.isMoving = true
+
+          if (this.moveTween) {
+            this.moveTween.stop()
+          }
+
+          this.changeCarSprite(carDirection)
+
+          this.moveTween = scene.tweens.add({
+            targets: this.car,
+            x: targetX,
+            y: targetY,
+            duration: 500,
+            ease: 'Linear',
+            onComplete: () => {
+              this.isMoving = false
+              this.moveTween = null
+              if (direction === this.keyboardEventCodes.arrowUp) {
+                this.updatePhaserCarBatteryIndicator(true, moveCost)
+              }
+              this.executeNextMove()
+            }
+          })
+        }
       }
     },
     drawPhaserLine(scene, startX, startY, endX, endY, lineWidth, textureKey = this.textureKeys.minecraftDeepFloor) {
@@ -1205,6 +1270,17 @@ export default {
       const percentageUsed = Math.min(100, (this.movementsUsed / this.maxMoves) * 100)
       return window?.Math?.floor(100 - percentageUsed)
     },
+    getBridgeNode(charA, charB) {
+      for (const row of this.customBoard) {
+        for (const node of row) {
+          const nodeIndex = node.nodeIndex
+          if (nodeIndex === `${charA}${charB}` || nodeIndex === `${charB}${charA}`) {
+            return node
+          }
+        }
+      }
+      return null
+    },
     getCarDirectionFromMove(move) {
       let carDirection = ''
 
@@ -1215,6 +1291,21 @@ export default {
       } else if (this.currentTile.y < move.yAxisIndex) {
         carDirection = this.carDirections.south
       } else if (this.currentTile.y > move.yAxisIndex) {
+        carDirection = this.carDirections.north
+      }
+
+      return carDirection
+    },
+    getCarDirectionToNode(fromNode, toNode) {
+      let carDirection = ''
+
+      if (fromNode.xAxisIndex < toNode.xAxisIndex) {
+        carDirection = this.carDirections.east
+      } else if (fromNode.xAxisIndex > toNode.xAxisIndex) {
+        carDirection = this.carDirections.west
+      } else if (fromNode.yAxisIndex < toNode.yAxisIndex) {
+        carDirection = this.carDirections.south
+      } else if (fromNode.yAxisIndex > toNode.yAxisIndex) {
         carDirection = this.carDirections.north
       }
 
@@ -1291,6 +1382,27 @@ export default {
     isDiagonalMove(deltaRowIndex, deltaColumnIndex) {
       // Si el movimiento es diagonal, devuelve true
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
+    },
+    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0], onCompleteCallback = null) {
+      if (target) {
+        target.alpha = 1
+        // Add a tween to make the target element to blink
+        for (let i = 0; i < numOfBlinks; i++) {
+          scene.tweens.add({
+            alpha: 0,
+            duration: 250,
+            ease: 'Linear',
+            repeat: 1,
+            targets: target,
+            yoyo: true,
+            onComplete: () => {
+              if (typeof onCompleteCallback === 'function') {
+                onCompleteCallback()
+              }
+            }
+          })
+        }
+      }
     },
     movePhaserCar(keyboardDirection, carDirection, deltaRowIndex = null, deltaColumnIndex = null) {
       console.log("🚀 ~ movePhaserCar")
@@ -1423,27 +1535,6 @@ export default {
           success: false,
           defaultTextKey: 'batteryDown'
         })
-      }
-    },
-    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0], onCompleteCallback = null) {
-      if (target) { 
-        target.alpha = 1
-        // Add a tween to make the target element to blink
-        for (let i = 0; i < numOfBlinks; i++) {
-          scene.tweens.add({
-            alpha: 0,
-            duration: 250,
-            ease: 'Linear',
-            repeat: 1,
-            targets: target,
-            yoyo: true,
-            onComplete: () => {
-              if (typeof onCompleteCallback === 'function') {
-                onCompleteCallback()
-              }
-            }
-          })
-        }
       }
     }
   }
