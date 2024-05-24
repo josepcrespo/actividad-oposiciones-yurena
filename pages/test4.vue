@@ -1,5 +1,5 @@
 <template>
-  <yrn-phaser-game :custom-board="customBoard" :max-moves="6" />
+  <yrn-find-path-game :custom-board="customBoard" :max-moves="6" />
 </template>
 
 <script>

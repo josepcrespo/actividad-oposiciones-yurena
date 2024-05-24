@@ -1,10 +1,12 @@
 <template>
-  <yrn-phaser-game-2 :custom-board="customBoard" :max-moves="9" />
+  <yrn-find-shortest-path-game :custom-board="customBoard" :max-moves="9" />
 </template>
 
 <script>
+import YrnFindShortestPathGame from '~/components/YrnFindShortestPathGame.vue'
 export default {
   name: 'Test4Page',
+  components: { YrnFindShortestPathGame },
   data() {
     return {
       customBoard: [
