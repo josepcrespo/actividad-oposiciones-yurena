@@ -4,7 +4,7 @@
     v-model="form.state"
     class="yrn-exercise-section"
   >
-    <v-container class="blue-grey mb-4">
+    <v-container class="blue lighten-5 mb-4">
       <v-row v-if="showSectionAndStatement">
         <v-col class="d-flex align-center">
           <v-btn
