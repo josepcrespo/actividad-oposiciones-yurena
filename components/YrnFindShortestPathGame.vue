@@ -1,91 +1,154 @@
 <i18n lang="yaml">
-  ar:
-    defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
-    executeSequenceOfMoves: "تشغيل التسلسل"
-    resetBtn: "إعادة تعيين"
-    resetBtnCar: "إعادة تعيين موضع السيارة الأصلي"
-    resetBtnMoves: "مسح التسلسل الحالي للحركات"
-  ca:
-    defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
-    executeSequenceOfMoves: "Executa la seqüència"
-    resetBtn: "Reiniciar"
-    resetBtnCar: "Restaurar la posició inicial del cotxe"
-    resetBtnMoves: "Esborrar la seqüència de moviments actual"
-  de:
-    defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
-    executeSequenceOfMoves: "Ablauffolge ausführen"
-    resetBtn: "Zurücksetzen"
-    resetBtnCar: "Setzt die ursprüngliche Position des Autos zurück"
-    resetBtnMoves: "Lösche die aktuelle Bewegungssequenz"
-  en:
-    defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
-    executeSequenceOfMoves: "Run sequence"
-    resetBtn: "Reset"
-    resetBtnCar: "Reset car's initial position"
-    resetBtnMoves: "Clear current sequence of moves"
-  es:
-    defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
-    executeSequenceOfMoves: "Ejecutar secuencia"
-    resetBtn: "Reiniciar"
-    resetBtnCar: "Restablece la posición inicial del coche"
-    resetBtnMoves: "Borrar la secuencia de movimientos actual"
-  eu:
-    defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
-    executeSequenceOfMoves: "Exekutatu sekuentzia"
-    resetBtn: "Berrezarri"
-    resetBtnCar: "Automobilaren lehenengo posizioa berrezarri"
-    resetBtnMoves: "Garapen-sekuentzia egungo ezabatu"
-  fr:
-    defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
-    executeSequenceOfMoves: "Exécuter la séquence"
-    resetBtn: "Réinitialiser"
-    resetBtnCar: "Réinitialiser la position initiale de la voiture"
-    resetBtnMoves: "Effacer la séquence de mouvements actuelle"
-  it:
-    defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
-    executeSequenceOfMoves: "Esegui la sequenza"
-    resetBtn: "Reset"
-    resetBtnCar: "Ripristina la posizione iniziale dell'auto"
-    resetBtnMoves: "Cancella la sequenza di movimenti attuale"
-  ja:
-    defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
-    executeSequenceOfMoves: "動きのシーケンスを実行"
-    resetBtn: "リセット"
-    resetBtnCar: "車の初期位置をリセット"
-    resetBtnMoves: "現在の動きのシーケンスを消去"
-  pt:
-    defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
-    executeSequenceOfMoves: "Executar seqüência"
-    resetBtn: "Redefinir"
-    resetBtnCar: "Redefinir posição inicial do carro"
-    resetBtnMoves: "Limpar sequência atual de movimentos"
-  ro:
-    defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
-    executeSequenceOfMoves: "Executa secvența"
-    resetBtn: "Resetare"
-    resetBtnCar: "Resetați poziția inițială a mașinii"
-    resetBtnMoves: "Ștergeți secvența actuală de mișcări"
-  ru:
-    defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
-    executeSequenceOfMoves: "Последовательность запуска"
-    resetBtn: "Сброс"
-    resetBtnCar: "Сбросить начальное положение машины"
-    resetBtnMoves: "Очистить текущую последовательность движений"
-  zh:
-    defineCarMoves: "定义到达充电站所需的运动序列。"
-    executeSequenceOfMoves: "运行顺序"
-    resetBtn: "重置"
-    resetBtnCar: "重置汽车的初始位置"
-    resetBtnMoves: "清除当前移动序列"
+ar:
+  defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
+  executeSequenceOfMoves: "تشغيل التسلسل"
+  resetBtn: "إعادة تعيين"
+  resetBtnCar: "إعادة تعيين موضع السيارة الأصلي"
+  resetBtnMoves: "مسح التسلسل الحالي للحركات"
+  gameRules:
+    - "ذهب المدير من الفندق (النقطة Ⓐ) إلى حديقة تيمانفايا الوطنية (النقطة Ⓙ) عبر أسرع طريق."
+    - "اكتشف أسرع طريق للوصول من النقطة Ⓐ إلى النقطة Ⓙ."
+    - "الرقم الذي يظهر في كل نقطة يشير إلى الوقت الذي يستغرقه السفر."
+ca:
+  defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
+  executeSequenceOfMoves: "Executa la seqüència"
+  resetBtn: "Reiniciar"
+  resetBtnCar: "Restaurar la posició inicial del cotxe"
+  resetBtnMoves: "Esborrar la seqüència de moviments actual"
+  gameRules:
+    - "El director va anar des de l'HOTEL (node Ⓐ) fins al PARC NACIONAL DE TIMANFAYA (node Ⓙ) pel camí més ràpid."
+    - "Descobreix el camí més ràpid per arribar des del node Ⓐ fins al node Ⓙ."
+    - "El número que apareix en cada node indica el temps que es triga a recórrer el camí."
+de:
+  defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
+  executeSequenceOfMoves: "Ablauffolge ausführen"
+  resetBtn: "Zurücksetzen"
+  resetBtnCar: "Setzt die ursprüngliche Position des Autos zurück"
+  resetBtnMoves: "Lösche die aktuelle Bewegungssequenz"
+  gameRules:
+    - "Der Direktor ging vom HOTEL (Knoten Ⓐ) zum NATIONALPARK TIMANFAYA (Knoten Ⓙ) auf dem schnellsten Weg."
+    - "Entdecke den schnellsten Weg vom Knoten Ⓐ zum Knoten Ⓙ."
+    - "Die Zahl, die an jedem Knoten erscheint, zeigt die Zeit an, die benötigt wird, um den Weg zurückzulegen."
+en:
+  defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
+  executeSequenceOfMoves: "Run sequence"
+  resetBtn: "Reset"
+  resetBtnCar: "Reset car's initial position"
+  resetBtnMoves: "Clear current sequence of moves"
+  gameRules:
+    - "The manager went from the HOTEL (node Ⓐ) to TIMANFAYA NATIONAL PARK (node Ⓙ) via the fastest route."
+    - "Discover the fastest way to get from node Ⓐ to node Ⓙ."
+    - "The number that appears at each node indicates the time it takes to travel the route."
+es:
+  defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
+  executeSequenceOfMoves: "Ejecutar secuencia"
+  gameRules:
+    - "El director fue desde el HOTEL (nodo Ⓐ) hasta el PARQUE NACIONAL DE TIMANFAYA (nodo Ⓙ) por el camino más rápido."
+    - "Descubre el camino más rápido para llegar desde el nodo Ⓐ hasta el nodo Ⓙ."
+    - "El número que aparece en cada nodo indica el tiempo que se tarda en recorrer el camino."
+  resetBtn: "Reiniciar"
+  resetBtnCar: "Restablece la posición inicial del coche"
+  resetBtnMoves: "Borrar la secuencia de movimientos actual"
+eu:
+  defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
+  executeSequenceOfMoves: "Exekutatu sekuentzia"
+  resetBtn: "Berrezarri"
+  resetBtnCar: "Automobilaren lehenengo posizioa berrezarri"
+  resetBtnMoves: "Garapen-sekuentzia egungo ezabatu"
+  gameRules:
+    - "Zuzendaria HOTELetik (nodo Ⓐ) TIMANFAYA PARKE NAZIONALera (nodo Ⓙ) joan zen biderik azkarrena erabiliz."
+    - "Aurkitu nodo Ⓐ-tik nodo Ⓙ-ra iristeko biderik azkarrena."
+    - "Nodo bakoitzean agertzen den zenbakiak ibilbidea egiteko behar den denbora adierazten du."
+fr:
+  defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
+  executeSequenceOfMoves: "Exécuter la séquence"
+  resetBtn: "Réinitialiser"
+  resetBtnCar: "Réinitialiser la position initiale de la voiture"
+  resetBtnMoves: "Effacer la séquence de mouvements actuelle"
+  gameRules:
+    - "Le directeur est allé de l'HÔTEL (nœud Ⓐ) au PARC NATIONAL DE TIMANFAYA (nœud Ⓙ) par le chemin le plus rapide."
+    - "Découvrez le chemin le plus rapide pour aller du nœud Ⓐ au nœud Ⓙ."
+    - "Le chiffre qui apparaît à chaque nœud indique le temps nécessaire pour parcourir le chemin."
+it:
+  defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
+  executeSequenceOfMoves: "Esegui la sequenza"
+  resetBtn: "Reset"
+  resetBtnCar: "Ripristina la posizione iniziale dell'auto"
+  resetBtnMoves: "Cancella la sequenza di movimenti attuale"
+  gameRules:
+    - "Il direttore è andato dall'HOTEL (nodo Ⓐ) al PARCO NAZIONALE DI TIMANFAYA (nodo Ⓙ) tramite il percorso più veloce."
+    - "Scopri il percorso più veloce per arrivare dal nodo Ⓐ al nodo Ⓙ."
+    - "Il numero che appare in ogni nodo indica il tempo necessario per percorrere il percorso."
+ja:
+  defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
+  executeSequenceOfMoves: "動きのシーケンスを実行"
+  resetBtn: "リセット"
+  resetBtnCar: "車の初期位置をリセット"
+  resetBtnMoves: "現在の動きのシーケンスを消去"
+  gameRules:
+    - "マネージャーはHOTEL（ノードⒶ）からTIMANFAYA国立公園（ノードⒿ）まで最速ルートを通りました。"
+    - "ノードⒶからノードⒿまでの最速ルートを見つけてください。"
+    - "各ノードに表示される数字は、ルートを移動するのにかかる時間を示します。"
+pt:
+  defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
+  executeSequenceOfMoves: "Executar seqüência"
+  resetBtn: "Redefinir"
+  resetBtnCar: "Redefinir posição inicial do carro"
+  resetBtnMoves: "Limpar sequência atual de movimentos"
+  gameRules:
+    - "O diretor foi do HOTEL (nó Ⓐ) ao PARQUE NACIONAL DE TIMANFAYA (nó Ⓙ) pelo caminho mais rápido."
+    - "Descubra o caminho mais rápido para chegar do nó Ⓐ ao nó Ⓙ."
+    - "O número que aparece em cada nó indica o tempo necessário para percorrer o caminho."
+ro:
+  defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
+  executeSequenceOfMoves: "Executa secvența"
+  resetBtn: "Resetare"
+  resetBtnCar: "Resetați poziția inițială a mașinii"
+  resetBtnMoves: "Ștergeți secvența actuală de mișcări"
+  gameRules:
+    - "Directorul a mers de la HOTEL (nodul Ⓐ) la PARCUL NAȚIONAL TIMANFAYA (nodul Ⓙ) pe cel mai rapid traseu."
+    - "Descoperiți cel mai rapid traseu pentru a ajunge de la nodul Ⓐ la nodul Ⓙ."
+    - "Numărul care apare la fiecare nod indică timpul necesar pentru a parcurge traseul."
+ru:
+  defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
+  executeSequenceOfMoves: "Последовательность запуска"
+  resetBtn: "Сброс"
+  resetBtnCar: "Сбросить начальное положение машины"
+  resetBtnMoves: "Очистить текущую последовательность движений"
+  gameRules:
+    - "Директор шел от ОТЕЛЯ (узел Ⓐ) к НАЦИОНАЛЬНОМУ ПАРКУ ТИМАНФАЙЯ (узел Ⓙ) по самому быстрому маршруту."
+    - "Найдите самый быстрый путь от узла Ⓐ до узла Ⓙ."
+    - "Число, которое появляется в каждом узле, указывает время, необходимое для прохождения маршрута."
+zh:
+  defineCarMoves: "定义到达充电站所需的运动序列。"
+  executeSequenceOfMoves: "运行顺序"
+  resetBtn: "重置"
+  resetBtnCar: "重置汽车的初始位置"
+  resetBtnMoves: "清除当前移动序列"
+  gameRules:
+    - "经理从酒店（节点 Ⓐ）到蒂曼法亚国家公园（节点 Ⓙ）的最快路线。"
+    - "找出从节点 Ⓐ 到节点 Ⓙ 的最快路线。"
+    - "每个节点上显示的数字表示完成路径所需的时间。"
 </i18n>
 
 <template>
-  <v-container class="yrn-phaser-game" fluid>
+  <v-container
+    class="yrn-phaser-game"
+    fluid
+  >
     <v-row>
       <v-col>
         <h2>
           {{ $t('defineCarMoves') }}
         </h2>
+        <ul>
+          <li
+            v-for="(item, index) in $t('gameRules')"
+            :key="index"
+          >
+            {{ $t(`gameRules[${index}]`) }}
+          </li>
+        </ul>
       </v-col>
     </v-row>
     <v-row class="mt-2 overflow-hidden">
@@ -1120,7 +1183,7 @@ export default {
         const bridgeNode = this.getBridgeNode(fromNode.nodeIndex, toNode.nodeIndex)
         if (bridgeNode) {
           const bridgeX = bridgeNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
-          const bridgeY = bridgeNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+          const bridgeY = bridgeNode.yAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetY
           this.currentTile.x = bridgeNode.xAxisIndex
           this.currentTile.y = bridgeNode.yAxisIndex
           this.isMoving = true
@@ -1146,8 +1209,9 @@ export default {
                 )
                 this.updatePhaserCarBatteryIndicator(true, moveCost)
               }
+              
               const toX = toNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
-              const toY = toNode.yAxisIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+              const toY = toNode.yAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetY
               this.currentTile.x = toNode.xAxisIndex
               this.currentTile.y = toNode.yAxisIndex
               this.isMoving = true
@@ -1192,7 +1256,7 @@ export default {
         )
         const moveCost = this.getMoveCost(this.currentTile.y, this.currentTile.x, carDirection)
 
-        if (canMove) {
+        if (canMove && this.movementsUsed + moveCost <= this.maxMoves) {
           const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
           const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + this.offsetY
           this.currentTile.x = newColumnIndex
@@ -1219,6 +1283,17 @@ export default {
               }
               this.executeNextMove()
             }
+          })
+        } else if (canMove && this.movementsUsed + moveCost > this.maxMoves) {
+          console.warn('Movimiento no válido, supera el número de movimientos permitidos.')
+          this.makePhaserElementBlink(this.car, 10, scene, () => {
+            this.resetGame()
+          })
+          this.$store?.dispatch('snackbarNotification/show', {
+            i18n: this.$i18n,
+            memojiName: 'director-mal',
+            success: false,
+            defaultTextKey: 'batteryDown'
           })
         }
       }
@@ -1531,7 +1606,7 @@ export default {
       this.batteryLevelText.setText(`${this.getBatteryLevel()}%`)
 
       // Si el coche alcanza la última posición final, mostrar un mensaje de exito
-      if (this.carReachedLastPosition) {
+      if (this.carReachedLastPosition && this.movementsUsed <= this.maxMoves) {
         this.gameDone = true
         // Implementar el código para el TODO comentario
         scene.time.delayedCall(2000, () => {
@@ -1541,16 +1616,6 @@ export default {
             memojiName: 'director-bien',
             success: true
           })
-        })
-      } else if (this.movementsUsed >= this.maxMoves) {
-        this.makePhaserElementBlink(this.car, 10, scene, () => {
-          this.resetGame()
-        })
-        this.$store?.dispatch('snackbarNotification/show', {
-          i18n: this.$i18n,
-          memojiName: 'director-mal',
-          success: false,
-          defaultTextKey: 'batteryDown'
         })
       }
     }
