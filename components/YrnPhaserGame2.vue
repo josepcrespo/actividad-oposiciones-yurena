@@ -224,7 +224,7 @@ export default {
           target: 30,
           forceSetTimeOut: true
         },
-        height: 520,
+        height: 600,
         parent: 'phaserContainer',
         physics: {
           default: 'arcade',
@@ -238,7 +238,7 @@ export default {
         },
         scene: [],
         type: Phaser.AUTO,
-        width: 640
+        width: 680
       },
       currentTile: {
         spriteDirection: 'SOUTH',
@@ -291,7 +291,7 @@ export default {
       moveQueue: [],
       movementsUsed: 0,
       offsetX: 20,
-      offsetY: 22,
+      offsetY: 80,
       propsByKeyboardEventCodes: {
         customMoves: {
           // Populated on the `created` hook
@@ -301,6 +301,7 @@ export default {
         }
       },
       textureKeys: {
+        carPathStart: 'hotel_texture',
         carPathEnd: 'timanfaya_texture',
         minecraftDeepFloor: 'minecraft_deep_floor_texture',
         sceneBackground: 'scene_background_texture'
@@ -312,12 +313,12 @@ export default {
   computed: {
     carReachedLastPosition() {
       // Obtiene las coordenadas del coche en términos de la matriz de caminos
-      const carColumn = Math.floor(this.car.x / this.tileSize)
-      const carRow = Math.floor(this.car.y / this.tileSize)
+      const carColumn = this.currentTile.x
+      const carRow = this.currentTile.y
       const numRows = this.board.length
       const numCols = this.board[0].length
 
-      // Verifica si el coche está en la penúltima fila y en la última columna de la matriz
+      // Verifica si el coche está en la última columna de la matriz y en la penúltima fila
       return carColumn === numCols - 1 && carRow === numRows - 2
     }
   },
@@ -686,9 +687,17 @@ export default {
             )
           }
 
+          // Añadir imagen de inicio de camino.
+          if (rowIndex === 0 && columnIndex === 1) {
+            const endOfPathX = posX - this.offsetX
+            const endOfPathY = posY - this.tileSize - (this.offsetY / 5) * 3
+            this.addPhaserPathStartImage(scene, endOfPathX, endOfPathY, 0.7)
+          }
+          
+          // Añadir imagen de fin de camino.
           if (rowIndex === lastRowIndex - 2 && columnIndex === lastColumnIndex) {
             const endOfPathX = posX + this.offsetX / 2
-            const endOfPathY = posY + this.tileSize / 3
+            const endOfPathY = posY - this.offsetY / 4
             this.addPhaserPathEndImage(scene, endOfPathX, endOfPathY)
           }
         })
@@ -704,7 +713,7 @@ export default {
         this.car
           .setDepth(Number.MAX_SAFE_INTEGER)
           .setOrigin(0.5)
-          .setScale(1.5)
+          .setScale(1.2)
           .play(`car_animation_${this.currentTile.spriteDirection}`)
       } catch (error) {
         console.error('Error adding car to scene: %o', error)
@@ -771,6 +780,25 @@ export default {
       )
       this.carPathEnd.setOrigin(0, 0)
       this.carPathEnd.setDepth(Number.MAX_SAFE_INTEGER - 1)
+    },
+    addPhaserPathStartImage(
+      scene,
+      posX,
+      posY,
+      textureScale = 1,
+      offsetX = this.offsetX,
+      offsetY = this.offsetY,
+      textureKey = this.textureKeys.carPathStart,
+      depth = Number.MAX_SAFE_INTEGER
+    ) {
+      this.carPathStart = scene.add.image(
+        posX + offsetX,
+        posY + offsetY,
+        textureKey
+      )
+      this.carPathStart.setOrigin(0.5, 0.5)
+      this.carPathStart.setScale(textureScale, textureScale)
+      this.carPathStart.setDepth(depth)
     },
     addPhaserKeyboardInput(scene) {
       let propsByKeyboardEventCodes
@@ -1166,7 +1194,7 @@ export default {
 
         if (canMove) {
           const targetX = newColumnIndex * this.tileSize + this.tileSize / 2 + this.offsetX
-          const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + (this.offsetY / 2)
+          const targetY = newRowIndex * this.tileSize + this.tileSize / 2 + this.offsetY
           this.currentTile.x = newColumnIndex
           this.currentTile.y = newRowIndex
           this.isMoving = true
@@ -1323,6 +1351,7 @@ export default {
         // Preload de la textura
         gameScene.load.image(this.textureKeys.carPathEnd, '/img/phaserjs/parque-naciona-timanfaya/128x128/diablo-timanfaya.png')
         // gameScene.load.image(this.textureKeys.carPathEnd, '/img/phaserjs/parque-naciona-timanfaya/128x128/diablo-timanfaya-en-el-parque-nacional-1.png')
+        gameScene.load.image(this.textureKeys.carPathStart, '/img/phaserjs/parque-naciona-timanfaya/128x128/hotel.png')
         gameScene.load.image(this.textureKeys.minecraftDeepFloor, '/img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
         gameScene.load.image(this.textureKeys.sceneBackground, '/img/phaserjs/backgrounds/main.jpg')
 
