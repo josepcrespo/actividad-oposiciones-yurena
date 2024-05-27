@@ -79,7 +79,8 @@ export default {
       })
       setTimeout(() => {
         const i18n = this.$i18n
-        const success = response === this.exerciseSolutionExpected
+        // Ensure case-insensitive validation, comparing both values in lowercase.
+        const success = response.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
