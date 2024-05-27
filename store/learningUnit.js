@@ -1010,6 +1010,362 @@ export const state = () => ({
           }
         }]
       }]
+    }, {
+      challengeId: 4,
+      pageStructure: [
+        {
+          type: 'yrn-page-title',
+          title: {
+            ar: 'المخرج هو مغامر',
+            ca: 'El director és un aventurer',
+            de: 'Der Regisseur ist ein Abenteurer',
+            en: 'The director is an adventurer',
+            es: 'El director es un novelero',
+            eu: 'Zuzendaria abenturazalea da',
+            fr: 'Le réalisateur est un aventurier',
+            gl: 'O director é un aventureiro',
+            it: 'Il regista è un avventuriero',
+            ja: '監督は冒険家です',
+            pt: 'O diretor é um aventureiro',
+            ro: 'Regizorul este un aventurier',
+            ru: 'Режиссёр — авантюрист',
+            zh: '导演是个冒险家'
+          }
+        }, {
+          type: 'yrn-image',
+          imageAlt: {
+            ar: 'Memoji لمدير IES El Galeón ، يظهر خريطة جزر الكناري مع الحدائق الوطنية',
+            ca: 'Memoji del director de l\'IES El Galeón, mostrant un mapa de les Illes Canàries amb els Parcs Nacionals.',
+            de: 'Memoji des Direktors des IES El Galeón zeigt eine Karte der Kanarischen Inseln mit den Nationalparks.',
+            en: 'Memoji of the director of IES El Galeón, showing a map of the Canary Islands with the National Parks.',
+            es: 'Memoji del director del IES El Galeón, mostrando un mapa de las Islas Canarias con los Parques Nacionales.',
+            eu: 'IES El Galeón ikasketetako zuzendaria, Kanari uharteetako mapa bat erakusten, Nazioarteko Parkak barne.',
+            fr: 'Memoji du directeur de l\'IES El Galeón, montrant une carte des îles Canaries avec les parcs nationaux.',
+            gl: 'Memoji do director do IES El Galeón, mostrando un mapa das Illas Canarias cos Parques Nacionais.',
+            it: 'Memoji del direttore dell\'IES El Galeón, che mostra una mappa delle Isole Canarie con i Parchi Nazionali.',
+            ja: 'IES El GaleónのディレクターのMemoji、カナリア諸島の地図を表示して国立公園を示しています。',
+            pt: 'Memoji do diretor do IES El Galeón, mostrando um mapa das Ilhas Canárias com os Parques Nacionais.',
+            ro: 'Memoji al directorului IES El Galeón, arătând o hartă a Insulelor Canare cu Parcurile Naționale.',
+            ru: 'Memoji директора IES El Galeón, показывающий карту Канарских островов с национальными парками.',
+            zh: 'IES El Galeón的主任Memoji，展示了加那利群岛的地图，标有国家公园。'
+          },
+          imageSrc: '/img/actividad-1/reto-4/imagen-de-cabecera.png',
+          linkTitle: {
+            ar: 'انقر لتكبير الخريطة.',
+            ca: 'Fes clic per ampliar el mapa.',
+            de: 'Klicken Sie hier, um die Karte zu vergrößern.',
+            en: 'Click to enlarge the map.',
+            es: 'Haz clic para ampliar el mapa.',
+            eu: 'Egin klik hemen maparen tamaina handitzeko.',
+            fr: 'Cliquez pour agrandir la carte.',
+            gl: 'Fai clic para ampliar o mapa.',
+            it: 'Clicca per ingrandire la mappa.',
+            ja: '地図を拡大するにはクリックしてください。',
+            pt: 'Clique para ampliar o mapa.',
+            ro: 'Faceți clic pentru a mări harta.',
+            ru: 'Нажмите, чтобы увеличить карту.',
+            zh: '点击以放大地图。'
+          },
+          linkUrl: 'https://www3.gobiernodecanarias.org/medusa/ecoescuela/recursosdigitales/files/formidable/ENP-Canarias.pdf'
+        }, {
+          type: 'yrn-alert-text',
+          paragraphs: {
+            ar: [
+              'مديرنا لا يتوقف عن السفر.',
+              'أحب كثيرا منتزه تيد الوطني، ولذلك قرر زيارة منتزه آخر من المنتزهات الوطنية الأربعة التي لدينا في جزر الكناري.'
+            ],
+            ca: [
+              'El nostre director no para de viatjar.',
+              'Li va agradar molt el Parc Nacional del Teide, per això ha decidit visitar un altre dels quatre Parcs Nacionals que tenim a les Illes Canàries.'
+            ],
+            de: [
+              'Unser Regisseur hört nicht auf zu reisen.',
+              'Er mochte den Nationalpark El Teide wirklich sehr, deshalb hat er beschlossen, einen weiteren der vier Nationalparks auf den Kanarischen Inseln zu besuchen.'
+            ],
+            en: [
+              'Our director does not stop traveling.',
+              'He really liked the El Teide National Park, which is why he decided to visit another of the four National Parks that we have in the Canary Islands.'
+            ],
+            es: [
+              'Nuestro director no para la pata.',
+              'Le gustó mucho el Parque Nacional de El Teide por eso ha decidido visitar otro de los cuatro Parques Nacionales que tenemos en las Islas Canarias.'
+            ],
+            eu: [
+              'Gure zuzendariak ez du bidaiatzeari uzten.',
+              'El Teide Parke Nazionala asko gustatu zitzaion eta horregatik Kanarietako lau Parke Nazionaletako beste bat bisitatzea erabaki zuen.'
+            ],
+            fr: [
+              'Notre réalisateur ne cesse de voyager.',
+              'Il a beaucoup aimé le parc national du Teide, c’est pourquoi il a décidé de visiter un autre des quatre parcs nationaux que nous avons aux îles Canaries.'
+            ],
+            gl: [
+              'O noso director non para de viaxar.',
+              'Gustoulle moito o Parque Nacional do Teide, por iso decidiu visitar outro dos catro Parques Nacionais que temos nas Illas Canarias.'
+            ],
+            it: [
+              'Il nostro regista non smette di viaggiare.',
+              'Gli è piaciuto molto il Parco Nazionale del Teide, motivo per cui ha deciso di visitare un altro dei quattro Parchi Nazionali che abbiamo nelle Isole Canarie.'
+            ],
+            ja: [
+              '私たちの監督は旅行を止めません。',
+              '彼はテイデ国立公園がとても気に入り、カナリア諸島にある他の4つの国立公園の1つを訪れることにしました。'
+            ],
+            pt: [
+              'O nosso diretor não para de viajar.',
+              'Ele gostou muito do Parque Nacional do Teide, por isso decidiu visitar outro dos quatro Parques Nacionais que temos nas Ilhas Canárias.'
+            ],
+            ro: [
+              'Regizorul nostru nu se oprește din călătorit.',
+              'I-a plăcut foarte mult Parcul Național El Teide, de aceea a decis să viziteze un altul dintre cele patru Parcuri Naționale pe care le avem în Insulele Canare.'
+            ],
+            ru: [
+              'Наш режиссёр не перестаёт путешествовать.',
+              'Ему очень понравился Национальный парк Эль-Тейде, поэтому он решил посетить еще один из четырех Национальных парков на Канарских островах.'
+            ],
+            zh: [
+              '我们的导演不停地旅行。',
+              '他非常喜欢泰德国家公园，因此他决定参观我们在加那利群岛的四个国家公园中的另一个。'
+            ]
+          }
+        }, {
+          type: 'yrn-exercise',
+          class: 'yrn-math-problem',
+          exerciseId: 1
+        }, {
+          type: 'yrn-correspondences-table',
+          exerciseId: 1,
+          tableItems: [
+            {
+              equationSolution: 9,
+              secretChar: 'A',
+            },
+            {
+              equationSolution: 13,
+              secretChar: 'B',
+            },
+            {
+              equationSolution: 25,
+              secretChar: 'C',
+            },
+            {
+              equationSolution: 57,
+              secretChar: 'D',
+            },
+            {
+              equationSolution: 4,
+              secretChar: 'E',
+            },
+            {
+              equationSolution: 12,
+              secretChar: 'F',
+            },
+            {
+              equationSolution: 73,
+              secretChar: 'G',
+            },
+            {
+              equationSolution: 21,
+              secretChar: 'H',
+            },
+            {
+              equationSolution: 69,
+              secretChar: 'I',
+            },
+            {
+              equationSolution: 2,
+              secretChar: 'J',
+            },
+            {
+              equationSolution: 16,
+              secretChar: 'K',
+            },
+            {
+              equationSolution: 1,
+              secretChar: 'L',
+            },
+            {
+              equationSolution: 45,
+              secretChar: 'M',
+            },
+            {
+              equationSolution: 15,
+              secretChar: 'N',
+            },
+            {
+              equationSolution: 10,
+              secretChar: 'O',
+            },
+            {
+              equationSolution: 5,
+              secretChar: 'P',
+            },
+            {
+              equationSolution: 17,
+              secretChar: 'Q',
+            },
+            {
+              equationSolution: 41,
+              secretChar: 'R',
+            },
+            {
+              equationSolution: 19,
+              secretChar: 'S',
+            },
+            {
+              equationSolution: 11,
+              secretChar: 'T',
+            },
+            {
+              equationSolution: 23,
+              secretChar: 'U',
+            },
+            {
+              equationSolution: 3,
+              secretChar: 'V',
+            },
+            {
+              equationSolution: 27,
+              secretChar: 'W',
+            },
+            {
+              equationSolution: 99,
+              secretChar: 'X',
+            },
+            {
+              equationSolution: 84,
+              secretChar: 'Y',
+            },
+            {
+              equationSolution: 7,
+              secretChar: 'Z',
+            }
+          ]
+        }, {
+          type: 'yrn-exercise-solution-otp',
+          exerciseId: 1
+        }
+      ],
+      exercises: [
+        {
+          exerciseId: 1,
+          routerRedirection: {
+            activityId: 1,
+            challengeId: 5
+          },
+          solution: {
+            statement: {
+              ar: 'أدخل المفتاح الصحيح، ستعرف أين المخرج وستتمكن من متابعة التحدي التالي.',
+              ca: 'Introdueix la clau correcta, sabràs on és el director i podràs continuar al següent repte.',
+              de: 'Gib den richtigen Schlüssel ein, du wirst wissen, wo der Regisseur ist, und du kannst mit der nächsten Herausforderung fortfahren.',
+              en: 'Enter the correct key, you will know where the director is and you can continue to the next challenge.',
+              es: 'Introduce la clave correcta, sabrás dónde está el director y podrás continuar al siguiente reto.',
+              eu: 'Sartu giltza zuzena, zuzendaria non dagoen jakingo duzu eta hurrengo erronkarekin jarraitu ahal izango duzu.',
+              fr: 'Entrez la clé correcte, vous saurez où se trouve le réalisateur et vous pourrez continuer au défi suivant.',
+              gl: 'Introduce a clave correcta, saberás onde está o director e poderás continuar ao seguinte reto.',
+              it: 'Inserisci la chiave corretta, saprai dove si trova il regista e potrai continuare con la prossima sfida.',
+              ja: '正しいキーを入力すると、監督がどこにいるかがわかり、次の課題に進むことができます。',
+              pt: 'Digite a chave correta, você saberá onde está o diretor e poderá continuar para o próximo desafio.',
+              ro: 'Introduceți cheia corectă, veți ști unde este regizorul și puteți continua la următoarea provocare.',
+              ru: 'Введите правильный ключ, вы узнаете, где находится режиссер, и сможете продолжить к следующему испытанию.',
+              zh: '输入正确的密钥，您将知道导演在哪里，然后可以继续下一个挑战。'
+            },
+            expected: 'LANZAROTE',
+            expectedMask: 'abcdefghi',
+            fromUser: ''
+          },
+          statement: {
+            ar: 'دعونا نكتشف إلى أي جزيرة سافر عن طريق حل المعادلات من الدرجة الأولى التالية مع الأقواس:',
+            ca: 'Averigüem a quina illa ha viatjat trobant la sol·lució a les següents equacions de primer grau amb parèntesis:',
+            de: 'Finden wir heraus, auf welche Insel er gereist ist, indem wir die folgenden linearen Gleichungen mit Klammern lösen:',
+            en: 'Let’s find out which island he has traveled to by solving the following first-degree equations with parentheses:',
+            es: 'Averigüemos a qué isla ha viajado resolviendo las siguientes ecuaciones de primer grado con paréntesis:',
+            eu: 'Averigua dezagun zein irlara bidaiatu duen hurrengo lehen mailako ekuazioak parentesi bidez ebatziz:',
+            fr: 'Découvrons sur quelle île il a voyagé en résolvant les équations du premier degré suivantes avec parenthèses:',
+            gl: 'Averigüemos a que illa viaxou resolvendo as seguintes ecuacións de primeiro grao con parénteses:',
+            it: 'Scopriamo su quale isola ha viaggiato risolvendo le seguenti equazioni di primo grado con parentesi:',
+            ja: '次の括弧付き一次方程式を解いて、彼がどの島に旅行したかを見つけましょう:',
+            pt: 'Vamos descobrir para qual ilha ele viajou resolvendo as seguintes equações de primeiro grau com parênteses:',
+            ro: 'Să aflăm pe ce insulă a călătorit rezolvând următoarele ecuații de gradul întâi cu paranteze:',
+            ru: 'Давайте выясним, на какой остров он отправился, решив следующие линейные уравнения со скобками:',
+            zh: '让我们通过解以下带括号的一次方程来找出他去了哪个岛：'
+          },
+          sections: [
+            {
+              sectionId: 'a',
+              statement: 'x - 3(x - 2) = 6x - 2',
+              solution: {
+                expected: 1,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'b',
+              statement: '4(x + 1) - 3(x - 2) = 27',
+              solution: {
+                expected: 17,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'c',
+              statement: '2 + 5(x - 13) = x - 3',
+              solution: {
+                expected: 15,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'd',
+              statement: '7(x - 1) - 2(x + 8) = 3(x - 3)',
+              solution: {
+                expected: 7,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'e',
+              statement: '3(x - 7) = 6',
+              solution: {
+                expected: 9,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'f',
+              statement: '3(x - 5) - 2(x + 4) = 18',
+              solution: {
+                expected: 41,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'g',
+              statement: '2x + 3(2x - 1) = x + 67',
+              solution: {
+                expected: 10,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'h',
+              statement: '3(x + 4) = 4x + 1',
+              solution: {
+                expected: 11,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'i',
+              statement: '10 + 5(x - 3) = 3(x + 1)',
+              solution: {
+                expected: 4,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }
+          ]
+        }
+      ]
     }]
   }],
   backgroundImage: '/img/background.png',
