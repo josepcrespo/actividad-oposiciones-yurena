@@ -1,91 +1,154 @@
 <i18n lang="yaml">
-  ar:
-    defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
-    executeSequenceOfMoves: "تشغيل التسلسل"
-    resetBtn: "إعادة تعيين"
-    resetBtnCar: "إعادة تعيين موضع السيارة الأصلي"
-    resetBtnMoves: "مسح التسلسل الحالي للحركات"
-  ca:
-    defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
-    executeSequenceOfMoves: "Executa la seqüència"
-    resetBtn: "Reiniciar"
-    resetBtnCar: "Restaurar la posició inicial del cotxe"
-    resetBtnMoves: "Esborrar la seqüència de moviments actual"
-  de:
-    defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
-    executeSequenceOfMoves: "Ablauffolge ausführen"
-    resetBtn: "Zurücksetzen"
-    resetBtnCar: "Setzt die ursprüngliche Position des Autos zurück"
-    resetBtnMoves: "Lösche die aktuelle Bewegungssequenz"
-  en:
-    defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
-    executeSequenceOfMoves: "Run sequence"
-    resetBtn: "Reset"
-    resetBtnCar: "Reset car's initial position"
-    resetBtnMoves: "Clear current sequence of moves"
-  es:
-    defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
-    executeSequenceOfMoves: "Ejecutar secuencia"
-    resetBtn: "Reiniciar"
-    resetBtnCar: "Restablece la posición inicial del coche"
-    resetBtnMoves: "Borrar la secuencia de movimientos actual"
-  eu:
-    defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
-    executeSequenceOfMoves: "Exekutatu sekuentzia"
-    resetBtn: "Berrezarri"
-    resetBtnCar: "Automobilaren lehenengo posizioa berrezarri"
-    resetBtnMoves: "Garapen-sekuentzia egungo ezabatu"
-  fr:
-    defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
-    executeSequenceOfMoves: "Exécuter la séquence"
-    resetBtn: "Réinitialiser"
-    resetBtnCar: "Réinitialiser la position initiale de la voiture"
-    resetBtnMoves: "Effacer la séquence de mouvements actuelle"
-  it:
-    defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
-    executeSequenceOfMoves: "Esegui la sequenza"
-    resetBtn: "Reset"
-    resetBtnCar: "Ripristina la posizione iniziale dell'auto"
-    resetBtnMoves: "Cancella la sequenza di movimenti attuale"
-  ja:
-    defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
-    executeSequenceOfMoves: "動きのシーケンスを実行"
-    resetBtn: "リセット"
-    resetBtnCar: "車の初期位置をリセット"
-    resetBtnMoves: "現在の動きのシーケンスを消去"
-  pt:
-    defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
-    executeSequenceOfMoves: "Executar seqüência"
-    resetBtn: "Redefinir"
-    resetBtnCar: "Redefinir posição inicial do carro"
-    resetBtnMoves: "Limpar sequência atual de movimentos"
-  ro:
-    defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
-    executeSequenceOfMoves: "Executa secvența"
-    resetBtn: "Resetare"
-    resetBtnCar: "Resetați poziția inițială a mașinii"
-    resetBtnMoves: "Ștergeți secvența actuală de mișcări"
-  ru:
-    defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
-    executeSequenceOfMoves: "Последовательность запуска"
-    resetBtn: "Сброс"
-    resetBtnCar: "Сбросить начальное положение машины"
-    resetBtnMoves: "Очистить текущую последовательность движений"
-  zh:
-    defineCarMoves: "定义到达充电站所需的运动序列。"
-    executeSequenceOfMoves: "运行顺序"
-    resetBtn: "重置"
-    resetBtnCar: "重置汽车的初始位置"
-    resetBtnMoves: "清除当前移动序列"
+ar:
+  defineCarMoves: "يحدد التسلسل الضروري للحركات للوصول إلى محطة الشحن."
+  executeSequenceOfMoves: "تشغيل التسلسل"
+  gameRules:
+    - "قد السيارة إلى محطة الشحن."
+    - "السيارة مكابحها مكسورة. في كل مرة تتقدم فيها، قد السيارة إلى نهاية الطريق."
+    - "كلما تقدمت السيارة، تستهلك قليلاً أكثر من 16٪ من إجمالي سعة البطارية."
+  resetBtn: "إعادة تعيين"
+  resetBtnCar: "إعادة تعيين موضع السيارة الأصلي"
+  resetBtnMoves: "مسح التسلسل الحالي للحركات"
+ca:
+  defineCarMoves: "Defineix la seqüència de moviments necessaris per arribar a l'estació de càrrega."
+  executeSequenceOfMoves: "Executa la seqüència"
+  gameRules:
+    - "Conduir el cotxe fins a la estació de càrrega."
+    - "El cotxe té els frens trencats. Cada vegada que avança, porta el cotxe fins al final de la carretera."
+    - "Cada vegada que el cotxe avança, consumeix una mica més del 16% del total de la capacitat de la bateria."
+  resetBtn: "Reiniciar"
+  resetBtnCar: "Restaurar la posició inicial del cotxe"
+  resetBtnMoves: "Esborrar la seqüència de moviments actual"
+de:
+  defineCarMoves: "Definiert die Sequenz der Bewegungen, die notwendig sind, um die Ladestation zu erreichen."
+  executeSequenceOfMoves: "Ablauffolge ausführen"
+  gameRules:
+    - "Fahre das Auto zur Ladestation."
+    - "Die Bremsen des Autos sind kaputt. Jedes Mal, wenn es vorwärts fährt, fährt das Auto bis zum Ende der Straße."
+    - "Jedes Mal, wenn das Auto vorwärts fährt, verbraucht es etwas mehr als 16% der gesamten Batteriekapazität."
+  resetBtn: "Zurücksetzen"
+  resetBtnCar: "Setzt die ursprüngliche Position des Autos zurück"
+  resetBtnMoves: "Lösche die aktuelle Bewegungssequenz"
+en:
+  defineCarMoves: "Defines the sequence of movements necessary to reach the charging station."
+  executeSequenceOfMoves: "Run sequence"
+  gameRules:
+    - "Drive the car to the charging station."
+    - "The car's brakes are broken. Every time it moves forward, drive the car to the end of the road."
+    - "Every time the car moves forward, it consumes a bit more than 16% of the total battery capacity."
+  resetBtn: "Reset"
+  resetBtnCar: "Reset car's initial position"
+  resetBtnMoves: "Clear current sequence of moves"
+es:
+  defineCarMoves: "Define la secuencia de movimientos necesarios para llegar a la estación de carga."
+  executeSequenceOfMoves: "Ejecutar secuencia"
+  gameRules:
+    - "Conduce el coche hasta el punto de carga."
+    - "El coche tiene los frenos rotos. Cada vez que avanza, lleva el coche hasta el final de la carretera."
+    - "Cada vez que el coche avanza, consume un poco más del 16% del total de capacidad de la batería."
+  resetBtn: "Reiniciar"
+  resetBtnCar: "Restablece la posición inicial del coche"
+  resetBtnMoves: "Borrar la secuencia de movimientos actual"
+eu:
+  defineCarMoves: "Zeharrekinen sekuentzia definitzen du karga-geltokira iristeko."
+  executeSequenceOfMoves: "Exekutatu sekuentzia"
+  gameRules:
+    - "Gidatu autoa karga-geltokira."
+    - "Autoak balaztak apurtuta dauzka. Aurrera egiten duen bakoitzean, eraman autoa errepidearen amaierara."
+    - "Autoa aurrera egiten duen bakoitzean, bateriaren guztizko edukieraren %16 baino gehiago kontsumitzen du."
+  resetBtn: "Berrezarri"
+  resetBtnCar: "Automobilaren lehenengo posizioa berrezarri"
+  resetBtnMoves: "Garapen-sekuentzia egungo ezabatu"
+fr:
+  defineCarMoves: "Définit la séquence des mouvements nécessaires pour atteindre la station de charge."
+  executeSequenceOfMoves: "Exécuter la séquence"
+  gameRules:
+    - "Conduisez la voiture jusqu'à la station de recharge."
+    - "Les freins de la voiture sont cassés. Chaque fois qu'elle avance, conduisez la voiture jusqu'au bout de la route."
+    - "Chaque fois que la voiture avance, elle consomme un peu plus de 16% de la capacité totale de la batterie."
+  resetBtn: "Réinitialiser"
+  resetBtnCar: "Réinitialiser la position initiale de la voiture"
+  resetBtnMoves: "Effacer la séquence de mouvements actuelle"
+it:
+  defineCarMoves: "Definisce la sequenza di movimenti necessari per raggiungere la stazione di ricarica."
+  executeSequenceOfMoves: "Esegui la sequenza"
+  gameRules:
+    - "Guida l'auto fino alla stazione di ricarica."
+    - "I freni dell'auto sono rotti. Ogni volta che avanza, porta l'auto fino alla fine della strada."
+    - "Ogni volta che l'auto avanza, consuma un po' più del 16% della capacità totale della batteria."
+  resetBtn: "Reset"
+  resetBtnCar: "Ripristina la posizione iniziale dell'auto"
+  resetBtnMoves: "Cancella la sequenza di movimenti attuale"
+ja:
+  defineCarMoves: "充電ステーションに到達するために必要な動きのシーケンスを定義します。"
+  executeSequenceOfMoves: "動きのシーケンスを実行"
+  gameRules:
+    - "車を充電ステーションまで運転します。"
+    - "車のブレーキは壊れています。前進するたびに、車を道路の端まで運転します。"
+    - "車が前進するたびに、バッテリーの総容量の16%以上を消費します。"
+  resetBtn: "リセット"
+  resetBtnCar: "車の初期位置をリセット"
+  resetBtnMoves: "現在の動きのシーケンスを消去"
+pt:
+  defineCarMoves: "Define a sequência de movimentos necessários para chegar à estação de carregamento."
+  executeSequenceOfMoves: "Executar seqüência"
+  gameRules:
+    - "Conduza o carro até a estação de carregamento."
+    - "Os freios do carro estão quebrados. Toda vez que ele avança, leve o carro até o final da estrada."
+    - "Toda vez que o carro avança, ele consome um pouco mais de 16% da capacidade total da bateria."
+  resetBtn: "Redefinir"
+  resetBtnCar: "Redefinir posição inicial do carro"
+  resetBtnMoves: "Limpar sequência atual de movimentos"
+ro:
+  defineCarMoves: "Definește secvența de mișcări necesare pentru a ajunge la stația de încărcare."
+  executeSequenceOfMoves: "Executa secvența"
+  gameRules:
+    - "Condu mașina până la stația de încărcare."
+    - "Frânele mașinii sunt stricate. De fiecare dată când înaintează, condu mașina până la capătul drumului."
+    - "De fiecare dată când mașina înaintează, consumă puțin mai mult de 16% din capacitatea totală a bateriei."
+  resetBtn: "Resetare"
+  resetBtnCar: "Resetați poziția inițială a mașinii"
+  resetBtnMoves: "Ștergeți secvența actuală de mișcări"
+ru:
+  defineCarMoves: "Определяет последовательность движений, необходимых для достижения зарядной станции."
+  executeSequenceOfMoves: "Последовательность запуска"
+  gameRules:
+    - "Довести машину до зарядной станции."
+    - "У машины сломаны тормоза. Каждый раз, когда она движется вперед, доведите машину до конца дороги."
+    - "Каждый раз, когда машина движется вперед, она потребляет немного больше 16% от общей емкости батареи."
+  resetBtn: "Сброс"
+  resetBtnCar: "Сбросить начальное положение машины"
+  resetBtnMoves: "Очистить текущую последовательность движений"
+zh:
+  defineCarMoves: "定义到达充电站所需的运动序列。"
+  executeSequenceOfMoves: "运行顺序"
+  gameRules:
+    - "将车开到充电站。"
+    - "汽车的刹车坏了。每次前进时，将汽车开到道路的尽头。"
+    - "每次汽车前进时，它会消耗总电池容量的16%以上。"
+  resetBtn: "重置"
+  resetBtnCar: "重置汽车的初始位置"
+  resetBtnMoves: "清除当前移动序列"
 </i18n>
 
 <template>
-  <v-container class="yrn-phaser-game" fluid>
+  <v-container
+    class="yrn-phaser-game"
+    fluid
+  >
     <v-row>
       <v-col>
         <h2>
           {{ $t('defineCarMoves') }}
         </h2>
+        <ul>
+          <li
+            v-for="(item, index) in $t('gameRules')"
+            :key="index"
+          >
+            {{ $t(`gameRules[${index}]`) }}
+          </li>
+        </ul>
       </v-col>
     </v-row>
     <v-row class="mt-2 overflow-hidden">
