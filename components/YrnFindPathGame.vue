@@ -133,22 +133,35 @@ zh:
 
 <template>
   <v-container
-    class="yrn-phaser-game"
+    class="yrn-find-path-game pa-0"
     fluid
   >
     <v-row>
       <v-col>
-        <h2>
-          {{ $t('defineCarMoves') }}
-        </h2>
-        <ul>
-          <li
-            v-for="(item, index) in $t('gameRules')"
-            :key="index"
-          >
-            {{ $t(`gameRules[${index}]`) }}
-          </li>
-        </ul>
+        <v-expansion-panels>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <h2>
+                {{ $t('defineCarMoves') }}
+              </h2>
+              <template #actions>
+                <v-icon color="teal">
+                  mdi-information-variant-circle
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <ul>
+                <li
+                  v-for="(item, index) in $t('gameRules')"
+                  :key="index"
+                >
+                  {{ $t(`gameRules[${index}]`) }}
+                </li>
+              </ul>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
     <v-row class="mt-2 overflow-hidden">
@@ -237,7 +250,7 @@ zh:
 import * as Phaser from 'phaser'
 
 export default {
-  name: 'YrnPhaserGame',
+  name: 'YrnFindPathGame',
   props: {
     customBoard: {
       default: null,
