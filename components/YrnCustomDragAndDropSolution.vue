@@ -1,74 +1,74 @@
 <i18n lang="yaml">
-ar:
-  checkPairsBtn: "فحص الأزواج"
-  resetBtn: "إعادة تشغيل"
-  title: "العثور على الأزواج"
-  showHelpBtn: "إظهار المساعدة"
-ca:
-  checkPairsBtn: "Comprova les parelles"
-  resetBtn: "Reiniciar"
-  title: "Troba les parelles"
-  showHelpBtn: "Mostra ajuda"
-de:
-  checkPairsBtn: "Paare überprüfen"
-  resetBtn: "Neustart"
-  title: "Finde die Paare"
-  showHelpBtn: "Hilfe anzeigen"
-en:
-  checkPairsBtn: "Check Pairs"
-  resetBtn: "Restart"
-  title: "Find the pairs"
-  showHelpBtn: "Show Help"
-es:
-  checkPairsBtn: "Comprobar parejas"
-  resetBtn: "Reiniciar"
-  showHelpBtn: "Mostrar ayuda"
-  title: "Encuentra las parejas"
-eu:
-  checkPairsBtn: "Bikoteak egiaztatu"
-  resetBtn: "Berrabiarazi"
-  title: "Aurkitu bikoteak"
-  showHelpBtn: "Laguntza erakutsi"
-fr:
-  checkPairsBtn: "Vérifier les paires"
-  resetBtn: "Réinitialiser"
-  title: "Trouver les paires"
-  showHelpBtn: "Afficher l'aide"
-gl:
-  checkPairsBtn: "Comprobar parellas"
-  resetBtn: "Reiniciar"
-  title: "Atopa as parellas"
-  showHelpBtn: "Amosar axuda"
-it:
-  checkPairsBtn: "Verifica le coppie"
-  resetBtn: "Ricomincia"
-  title: "Trova le coppie"
-  showHelpBtn: "Mostra aiuto"
-ja:
-  checkPairsBtn: "ペアを確認"
-  resetBtn: "再起動"
-  title: "ペアを見つける"
-  showHelpBtn: "ヘルプを表示"
-pt:
-  checkPairsBtn: "Verificar pares"
-  resetBtn: "Reiniciar"
-  title: "Encontrar os pares"
-  showHelpBtn: "Mostrar ajuda"
-ro:
-  checkPairsBtn: "Verificare perechi"
-  resetBtn: "Restart"
-  title: "Găsește perechile"
-  showHelpBtn: "Afișează ajutor"
-ru:
-  checkPairsBtn: "Проверить пары"
-  resetBtn: "Перезапустить"
-  title: "Найдите пары"
-  showHelpBtn: "Показать справку"
-zh:
-  checkPairsBtn: "检查配对"
-  resetBtn: "重新开始"
-  title: "找出配对"
-  showHelpBtn: "显示帮助"
+  ar:
+    checkPairsBtn: "فحص الأزواج"
+    resetBtn: "إعادة تشغيل"
+    title: "العثور على الأزواج"
+    showHelpBtn: "إظهار المساعدة"
+  ca:
+    checkPairsBtn: "Comprova les parelles"
+    resetBtn: "Reiniciar"
+    title: "Troba les parelles"
+    showHelpBtn: "Mostra ajuda"
+  de:
+    checkPairsBtn: "Paare überprüfen"
+    resetBtn: "Neustart"
+    title: "Finde die Paare"
+    showHelpBtn: "Hilfe anzeigen"
+  en:
+    checkPairsBtn: "Check Pairs"
+    resetBtn: "Restart"
+    title: "Find the pairs"
+    showHelpBtn: "Show Help"
+  es:
+    checkPairsBtn: "Comprobar parejas"
+    resetBtn: "Reiniciar"
+    showHelpBtn: "Mostrar ayuda"
+    title: "Encuentra las parejas"
+  eu:
+    checkPairsBtn: "Bikoteak egiaztatu"
+    resetBtn: "Berrabiarazi"
+    title: "Aurkitu bikoteak"
+    showHelpBtn: "Laguntza erakutsi"
+  fr:
+    checkPairsBtn: "Vérifier les paires"
+    resetBtn: "Réinitialiser"
+    title: "Trouver les paires"
+    showHelpBtn: "Afficher l'aide"
+  gl:
+    checkPairsBtn: "Comprobar parellas"
+    resetBtn: "Reiniciar"
+    title: "Atopa as parellas"
+    showHelpBtn: "Amosar axuda"
+  it:
+    checkPairsBtn: "Verifica le coppie"
+    resetBtn: "Ricomincia"
+    title: "Trova le coppie"
+    showHelpBtn: "Mostra aiuto"
+  ja:
+    checkPairsBtn: "ペアを確認"
+    resetBtn: "再起動"
+    title: "ペアを見つける"
+    showHelpBtn: "ヘルプを表示"
+  pt:
+    checkPairsBtn: "Verificar pares"
+    resetBtn: "Reiniciar"
+    title: "Encontrar os pares"
+    showHelpBtn: "Mostrar ajuda"
+  ro:
+    checkPairsBtn: "Verificare perechi"
+    resetBtn: "Restart"
+    title: "Găsește perechile"
+    showHelpBtn: "Afișează ajutor"
+  ru:
+    checkPairsBtn: "Проверить пары"
+    resetBtn: "Перезапустить"
+    title: "Найдите пары"
+    showHelpBtn: "Показать справку"
+  zh:
+    checkPairsBtn: "检查配对"
+    resetBtn: "重新开始"
+    title: "找出配对"
+    showHelpBtn: "显示帮助"
 </i18n>
 
 <template>
