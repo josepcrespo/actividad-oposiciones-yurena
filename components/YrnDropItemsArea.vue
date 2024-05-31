@@ -1,32 +1,32 @@
 <i18n lang="yaml">
-ar:
-  dropHere: "اسحب هنا"
-ca:
-  dropHere: "Deixar ací"
-de:
-  dropHere: "Hier ablegen"
-en:
-  dropHere: "Drop here"
-es:
-  dropHere: "Suelta aquí"
-eu:
-  dropHere: "Hemen erabili"
-fr:
-  dropHere: "Déposer ici"
-gl:
-  dropHere: "Deixar aquí"
-it:
-  dropHere: "Rilascia qui"
-ja:
-  dropHere: "ここにドロップ"
-pt:
-  dropHere: "Solte aqui"
-ro:
-  dropHere: "Aici lasă"
-ru:
-  dropHere: "Бросьте сюда"
-zh:
-  dropHere: "在这里放下"
+  ar:
+    dropHere: "اسحب هنا"
+  ca:
+    dropHere: "Deixar ací"
+  de:
+    dropHere: "Hier ablegen"
+  en:
+    dropHere: "Drop here"
+  es:
+    dropHere: "Suelta aquí"
+  eu:
+    dropHere: "Hemen erabili"
+  fr:
+    dropHere: "Déposer ici"
+  gl:
+    dropHere: "Deixar aquí"
+  it:
+    dropHere: "Rilascia qui"
+  ja:
+    dropHere: "ここにドロップ"
+  pt:
+    dropHere: "Solte aqui"
+  ro:
+    dropHere: "Aici lasă"
+  ru:
+    dropHere: "Бросьте сюда"
+  zh:
+    dropHere: "在这里放下"
 </i18n>
 
 <template>
@@ -58,7 +58,7 @@ zh:
           v-for="(imageItem, imageItemIndex) in images"
           :key="`${imageItemIndex}--${imageItem.id}`"
           class="d-flex justify-center"
-          :class="{ 'pb-2': otherItemIndex !== others.length - 1 }"
+          :class="{ 'pb-2': imageItemIndex !== images.length - 1 }"
           cols="12"
         >
           <v-img
@@ -211,14 +211,14 @@ export default {
     }
   },
   mounted() {
-    this.images = this.index
-      ?? this.exerciseSolutionFromUser?.[this.index]?.images
+    this.images = (this.index !== undefined)
+      ? this.exerciseSolutionFromUser?.[this.index]?.images
       ?? this.exerciseSolutionFromUser?.images
-      ?? []
-    this.others = this.index
-      ?? this.exerciseSolutionFromUser?.[this.index]?.others
+      ?? [] : []
+    this.others = (this.index !== undefined)
+      ? this.exerciseSolutionFromUser?.[this.index]?.others
       ?? this.exerciseSolutionFromUser?.others
-      ?? []
+      ?? [] : []
   },
   methods: {
     getItemIconTitle(item) {
