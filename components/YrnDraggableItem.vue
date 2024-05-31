@@ -122,9 +122,7 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-draggable-item {
-  :first-child {
     cursor: grab;
-  }
 
   .v-image {
     border: 1px solid rgb(85 85 85 / 50%);
