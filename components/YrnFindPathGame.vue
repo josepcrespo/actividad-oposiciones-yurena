@@ -132,118 +132,131 @@
 </i18n>
 
 <template>
-  <v-container
-    class="yrn-find-path-game pa-0"
-    fluid
-  >
-    <v-row>
-      <v-col>
-        <v-expansion-panels>
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              <h2>
-                {{ $t('defineCarMoves') }}
-              </h2>
-              <template #actions>
-                <v-icon color="teal">
-                  mdi-information-variant-circle
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <ul>
-                <li
-                  v-for="(item, index) in $t('gameRules')"
-                  :key="index"
-                >
-                  {{ $t(`gameRules[${index}]`) }}
-                </li>
-              </ul>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-col>
-    </v-row>
-    <v-row class="mt-2 overflow-hidden">
-      <v-col
-        xl="4"
-        lg="4"
-        md="4"
-        sm="12"
-        xs="12"
-        cols="12"
-        class="overflow-y-auto"
-        :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
-        :style="`max-height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 + 8 : 56 + 8}px);`"
-      >
-        <yrn-drag-and-drop-with-two-lists
-          ref="dragAndDropComponent"
-          :draggable-items-title="draggableItemsTitle"
-          :drop-area-title="dropAreaTitle"
-          :items="gameUIButtons"
-          visible-property="title"
-        >
-          <template #bottom>
-            <v-row>
-              <v-col class="d-flex justify-center">
-                <v-menu
-                  top
-                  close-on-content-click
-                >
-                  <template #activator="{ on, attrs }">
-                    <v-btn
-                      block
-                      color="deep-orange"
-                      x-large
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      {{ $t('resetBtn') }}
-                    </v-btn>
-                  </template>
-                  <v-list>
-                    <v-list-item @click="resetCarPosition()">
-                      <v-list-item-title>
-                        {{ $t('resetBtnCar') }}
-                      </v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="resetMoveSequence()">
-                      <v-list-item-title>
-                        {{ $t('resetBtnMoves') }}
-                      </v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-col>
-              <v-col class="d-flex justify-center">
-                <v-btn
-                  block
-                  color="primary"
-                  x-large
-                  @click="executeSequenceOfMoves()"
-                >
-                  <v-icon class="mr-2">
-                    mdi-play
+  <!-- https://vuejs.org/guide/built-ins/transition#named-transitions -->
+  <!-- https://www.w3schools.com/vue/ref_transition.php -->
+  <transition name="vue-transition-fade">
+    <v-container
+      v-if="showComponent"
+      class="yrn-find-path-game pa-0"
+      fluid
+    >
+      <v-row>
+        <v-col>
+          <yrn-alert-text
+            :paragraphs="contextParagraphs"
+            border="top"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <h2>
+                  {{ $t('defineCarMoves') }}
+                </h2>
+                <template #actions>
+                  <v-icon color="teal">
+                    mdi-information-variant-circle
                   </v-icon>
-                  {{ $t('executeSequenceOfMoves') }}
-                </v-btn>
-              </v-col>
-            </v-row>
-          </template>
-        </yrn-drag-and-drop-with-two-lists>
-      </v-col>
-      <v-col
-        xl="8"
-        lg="8"
-        md="8"
-        sm="12"
-        xs="12"
-        cols="12"
-      >
-        <div id="phaserContainer" />
-      </v-col>
-    </v-row>
-  </v-container>
+                </template>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <ul>
+                  <li
+                    v-for="(item, index) in $t('gameRules')"
+                    :key="index"
+                  >
+                    {{ $t(`gameRules[${index}]`) }}
+                  </li>
+                </ul>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-col>
+      </v-row>
+      <v-row class="mt-2 overflow-hidden">
+        <v-col
+          xl="4"
+          lg="4"
+          md="4"
+          sm="12"
+          xs="12"
+          cols="12"
+          class="overflow-y-auto"
+          :order="$vuetify.breakpoint.mdAndUp ? 'last' : 'first'"
+          :style="`max-height: calc(100vh - ${$vuetify.breakpoint.mdAndUp ? 64 + 8 : 56 + 8}px);`"
+        >
+          <yrn-drag-and-drop-with-two-lists
+            ref="dragAndDropComponent"
+            :draggable-items-title="draggableItemsTitle"
+            :drop-area-title="dropAreaTitle"
+            :items="gameUIButtons"
+            visible-property="title"
+          >
+            <template #bottom>
+              <v-row>
+                <v-col class="d-flex justify-center">
+                  <v-menu
+                    top
+                    close-on-content-click
+                  >
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        block
+                        color="deep-orange"
+                        x-large
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        {{ $t('resetBtn') }}
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item @click="resetCarPosition()">
+                        <v-list-item-title>
+                          {{ $t('resetBtnCar') }}
+                        </v-list-item-title>
+                      </v-list-item>
+                      <v-list-item @click="resetMoveSequence()">
+                        <v-list-item-title>
+                          {{ $t('resetBtnMoves') }}
+                        </v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
+                <v-col class="d-flex justify-center">
+                  <v-btn
+                    block
+                    color="primary"
+                    x-large
+                    @click="executeSequenceOfMoves()"
+                  >
+                    <v-icon class="mr-2">
+                      mdi-play
+                    </v-icon>
+                    {{ $t('executeSequenceOfMoves') }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </template>
+          </yrn-drag-and-drop-with-two-lists>
+        </v-col>
+        <v-col
+          xl="8"
+          lg="8"
+          md="8"
+          sm="12"
+          xs="12"
+          cols="12"
+        >
+          <div id="phaserContainer" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </transition>
 </template>
 
 <script>
@@ -252,6 +265,18 @@ import * as Phaser from 'phaser'
 export default {
   name: 'YrnFindPathGame',
   props: {
+    activityId: {
+      required: true,
+      type: [Number, String]
+    },
+    challengeId: {
+      required: true,
+      type: [Number, String]
+    },
+    exerciseId: {
+      required: true,
+      type: [Number, String]
+    },
     customBoard: {
       default: null,
       required: false,
@@ -276,6 +301,10 @@ export default {
       default: false,
       required: false,
       type: Boolean
+    },
+    contextParagraphs: {
+      required: true,
+      type: Object
     }
   },
   data() {
@@ -393,6 +422,16 @@ export default {
 
       // Verifica si el coche está en la última fila y última columna de la matriz
       return carColumn === this.numCols - 1 && carRow === this.numRows - 1
+    },
+    exerciseSolution() {
+      return this.$store?.getters['learningUnit/getExercise'](
+        this.activityId,
+        this.challengeId,
+        this.exerciseId
+      )?.solution ?? {}
+    },
+    showComponent() {
+      return this.exerciseSolution?.isValid ?? false
     }
   },
   created() {
@@ -503,7 +542,11 @@ export default {
     }
   },
   mounted() {
-    this.initPhaserGame()
+    if (this.showComponent) {
+      this.initPhaserGame()
+    } else {
+      // TODO: Add a watcher for `this.showComponent` and, if true, call `this.initPhaserGame()`
+    }
   },
   methods: {
     addBackgroundImage(scene, backgroundTexture = this.textureKeys.sceneBackground) {
