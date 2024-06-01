@@ -607,8 +607,10 @@ export const state = () => ({
             ]
           }
         }, {
-          type: 'yrn-alert-text',
-          paragraphs: {
+          type: 'yrn-find-path-game',
+          exerciseId: 1,
+          maxMoves: 6,
+          contextParagraphs: {
             ar: [
               'بعد زيارته لجبل تيد، يحتاج المدير إلى إعادة شحن سيارته الكهربائية.'
             ],
@@ -651,11 +653,7 @@ export const state = () => ({
             zh: [
               '在参观完特内里费岛的泰德峰之后，主任需要给他的电动车充电。'
             ]
-          }
-        }, {
-          type: 'yrn-find-path-game',
-          exerciseId: 1,
-          maxMoves: 6,
+          },
           customBoard: [
             [
               {
