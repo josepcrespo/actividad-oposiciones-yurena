@@ -1,5 +1,8 @@
 <template>
-  <v-container ref="componentContainer" class="yrn-drag-and-drop-with-two-lists pa-0">
+  <v-container
+    ref="componentContainer"
+    class="yrn-drag-and-drop-with-two-lists pa-0"
+  >
     <v-row>
       <v-col
         :xl="componentWidth > 400 ? 6 : 12"
@@ -38,7 +41,10 @@
             <span class="text-subtitle-1">
               {{ getElementVisibleProperty(element) }}
             </span>
-            <v-icon class="ml-auto" large>
+            <v-icon
+              class="ml-auto"
+              large
+            >
               mdi-drag-horizontal-variant
             </v-icon>
           </v-chip>
@@ -56,49 +62,54 @@
         <h3 class="mb-3">
           {{ translatedDropAreaTitle }}
         </h3>
-        <VueDraggable
-          v-model="list2"
-          :animation="150"
-          class="yrn-drag-and-drop-with-two-lists__drop-list pa-3 rounded-xxl"
-          group="carMovements"
-        >
-          <!-- vue-dragabble needs at least one element on the list to work -->
-          <div v-if="list2.length === 0"/>
-          <v-chip  
-            v-for="(element, index2) in list2"
-            :key="getVForKey(index2)"
-            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
+        <v-card class="rounded-xxl" elevation="0">
+          <VueDraggable
+            v-model="list2"
+            :animation="150"
+            class="yrn-drag-and-drop-with-two-lists__drop-list pa-3"
+            group="carMovements"
           >
-            <v-icon
-              v-if="element.icon"
-              class="mr-2"
-              color="orange"
+            <!-- vue-dragabble needs at least one element on the list to work -->
+            <div v-if="list2.length === 0" />
+            <v-chip
+              v-for="(element, index2) in list2"
+              :key="getVForKey(index2)"
+              class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
             >
-              {{ element.icon }}
-            </v-icon>
-            <span class="text-subtitle-1">
-              {{ getElementVisibleProperty(element) }}
-            </span>
-            <v-icon class="ml-auto" large>
-              mdi-drag-horizontal-variant
-            </v-icon>
-            <v-btn
-              icon
-              @click="removeElementFromList(index2)"
-            >
-              <v-hover v-slot="{ hover }">
-                <v-icon :color="hover ? 'red' : 'default'">
-                  mdi-close-circle
-                </v-icon>
-              </v-hover>
-            </v-btn>
-          </v-chip>
-        </VueDraggable>
+              <v-icon
+                v-if="element.icon"
+                class="mr-2"
+                color="orange"
+              >
+                {{ element.icon }}
+              </v-icon>
+              <span class="text-subtitle-1">
+                {{ getElementVisibleProperty(element) }}
+              </span>
+              <v-icon
+                class="ml-auto"
+                large
+              >
+                mdi-drag-horizontal-variant
+              </v-icon>
+              <v-btn
+                icon
+                @click="removeElementFromList(index2)"
+              >
+                <v-hover v-slot="{ hover }">
+                  <v-icon :color="hover ? 'red' : 'default'">
+                    mdi-close-circle
+                  </v-icon>
+                </v-hover>
+              </v-btn>
+            </v-chip>
+          </VueDraggable>
+        </v-card>
       </v-col>
     </v-row>
     <v-row>
       <v-col class="d-flex justify-center">
-        <slot name="bottom"/>
+        <slot name="bottom" />
       </v-col>
     </v-row>
   </v-container>
@@ -198,8 +209,6 @@ export default {
   }
 
   &__drop-list {
-    background-color: rgba(0 0 0 / 50%);
-    border-color: rgb(255 255 255 / 50%);
     border-style: dashed;
     border-width: 3px;
     height: calc(100% - 48px);
@@ -209,6 +218,24 @@ export default {
       &__list-group-item {
         background-color: rgba(0 0 0 / 50%);
       }
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--dark {
+  .yrn-drag-and-drop-with-two-lists {
+    .v-card {
+      color: rgba(255 255 255 / 75%);
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--light {
+  .yrn-drag-and-drop-with-two-lists {
+    .v-card {
+      color: rgba(0 0 0 / 50%);
     }
   }
 }
