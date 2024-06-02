@@ -287,7 +287,7 @@ export default {
         if (this.pairCollectionStatus !== undefined) {
           this.pairCollectionStatus = undefined
         }
-      }, 3000)
+      }, 2000)
     },
     dispatchNotification() {
       const memojiName = this.pairCollectionStatus
