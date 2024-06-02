@@ -136,7 +136,7 @@
   <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-container
-      v-if="showComponent"
+      v-show="showComponent"
       class="yrn-find-path-game pa-0"
       fluid
     >
@@ -542,11 +542,7 @@ export default {
     }
   },
   mounted() {
-    if (this.showComponent) {
-      this.initPhaserGame()
-    } else {
-      // TODO: Add a watcher for `this.showComponent` and, if true, call `this.initPhaserGame()`
-    }
+    this.initPhaserGame()
   },
   methods: {
     addBackgroundImage(scene, backgroundTexture = this.textureKeys.sceneBackground) {
