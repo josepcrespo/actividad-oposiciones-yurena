@@ -122,8 +122,6 @@ export default {
 
 <style lang="scss" scoped>
 .yrn-draggable-item {
-    cursor: grab;
-
   .v-image {
     border: 1px solid rgb(85 85 85 / 50%);
     box-shadow: none;
@@ -131,9 +129,15 @@ export default {
     transition-property: box-shadow, opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
+  
+  .v-chip {
+    &:active {
+      box-shadow: none !important;
+    }
 
-  .v-chip:active {
-    box-shadow: none !important;
+    &:hover {
+      cursor: grab;
+    }
   }
 }
 </style>
