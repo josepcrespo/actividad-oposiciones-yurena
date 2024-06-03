@@ -417,11 +417,13 @@ export default {
   computed: {
     carReachedLastPosition() {
       // Obtiene las coordenadas del coche en términos de la matriz de caminos
-      const carColumn = Math.floor(this.car.x / this.tileSize)
-      const carRow = Math.floor(this.car.y / this.tileSize)
+      const carColumn = this.currentTile.x
+      const carRow = this.currentTile.y
+      const numRows = this.board.length
+      const numCols = this.board[0].length
 
-      // Verifica si el coche está en la última fila y última columna de la matriz
-      return carColumn === this.numCols - 1 && carRow === this.numRows - 1
+      // Verifica si el coche está en la última columna y última fila de la matriz
+      return carColumn === numCols - 1 && carRow === numRows - 1
     },
     exerciseSolution() {
       return this.$store?.getters['learningUnit/getExercise'](
@@ -1136,6 +1138,27 @@ export default {
       // Si el movimiento es diagonal, devuelve true
       return !(Math.abs(deltaRowIndex) + Math.abs(deltaColumnIndex) === 1)
     },
+    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0], onCompleteCallback = null) {
+      if (target) {
+        target.alpha = 1
+        // Add a tween to make the target element to blink
+        for (let i = 0; i < numOfBlinks; i++) {
+          scene.tweens.add({
+            alpha: 0,
+            duration: 250,
+            ease: 'Linear',
+            repeat: 1,
+            targets: target,
+            yoyo: true,
+            onComplete: () => {
+              if (typeof onCompleteCallback === 'function') {
+                onCompleteCallback()
+              }
+            }
+          })
+        }
+      }
+    },
     movePhaserCar(keyboardDirection, carDirection, deltaRowIndex = null, deltaColumnIndex = null) {
       if (this.useDefaultMovement) {
         this.defaultPhaserCarMove(deltaRowIndex, deltaColumnIndex, keyboardDirection, carDirection)
@@ -1246,6 +1269,12 @@ export default {
         this.gameDone = true
         scene.time.delayedCall(2000, () => {
           this.fillPhaserCarBatteryIndicator(scene)
+          this.$store?.commit('learningUnit/setExerciseGameIsSolved', {
+            activityId: this.activityId,
+            challengeId: this.challengeId,
+            exerciseId: this.exerciseId,
+            isSolved: true
+          })
           this.$store?.dispatch('snackbarNotification/show', {
             i18n: this.$i18n,
             memojiName: 'director-bien',
@@ -1262,27 +1291,6 @@ export default {
           success: false,
           defaultTextKey: 'batteryDown'
         })
-      }
-    },
-    makePhaserElementBlink(target, numOfBlinks = 10, scene = this.config.scene[0], onCompleteCallback = null) {
-      if (target) { 
-        target.alpha = 1
-        // Add a tween to make the target element to blink
-        for (let i = 0; i < numOfBlinks; i++) {
-          scene.tweens.add({
-            alpha: 0,
-            duration: 250,
-            ease: 'Linear',
-            repeat: 1,
-            targets: target,
-            yoyo: true,
-            onComplete: () => {
-              if (typeof onCompleteCallback === 'function') {
-                onCompleteCallback()
-              }
-            }
-          })
-        }
       }
     }
   }
