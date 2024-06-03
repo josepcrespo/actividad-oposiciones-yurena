@@ -1,30 +1,46 @@
 <i18n lang="yaml">
-en:
-  continueBtn: 'Continue'
-es:
-  continueBtn: 'Continuar'
-ar:
-  continueBtn: 'متابعة'
-eu:
-  continueBtn: 'Jarraitu'
-ca:
-  continueBtn: 'Continuar'
-fr:
-  continueBtn: 'Continuer'
-gl:
-  continueBtn: 'Continuar'
-de:
-  continueBtn: 'Fortsetzen'
-it:
-  continueBtn: 'Continua'
-ja:
-  continueBtn: '続行'
-pt:
-  continueBtn: 'Continuar'
-ro:
-  continueBtn: 'Continuați'
-ru:
-  continueBtn: 'Продолжить'
+  ar:
+    continueBtn: 'متابعة'
+    printChallengeBtn: 'طباعة التحدي'
+  ca:
+    continueBtn: 'Continuar'
+    printChallengeBtn: 'Imprimir repte'
+  de:
+    continueBtn: 'Fortsetzen'
+    printChallengeBtn: 'Herausforderung drucken'
+  en:
+    continueBtn: 'Continue'
+    printChallengeBtn: 'Print Challenge'
+  es:
+    continueBtn: 'Continuar'
+    printChallengeBtn: 'Imprimir reto'
+  eu:
+    continueBtn: 'Jarraitu'
+    printChallengeBtn: 'Erronka inprimatu'
+  fr:
+    continueBtn: 'Continuer'
+    printChallengeBtn: 'Imprimer le défi'
+  gl:
+    continueBtn: 'Continuar'
+    printChallengeBtn: 'Imprimir reto'
+  it:
+    continueBtn: 'Continua'
+    printChallengeBtn: 'Stampare la sfida'
+  ja:
+    continueBtn: '続行'
+    printChallengeBtn: 'チャレンジを印刷する'
+  pt:
+    continueBtn: 'Continuar'
+    printChallengeBtn: 'Imprimir desafio'
+  ro:
+    continueBtn: 'Continuați'
+    printChallengeBtn: 'Imprimați provocarea'
+  ru:
+    continueBtn: 'Продолжить'
+    printChallengeBtn: 'Печать вызова'
+  zh:
+    continueBtn: '继续'
+    printChallengeBtn: '打印挑战'
 </i18n>
 
 <template>
@@ -46,6 +62,15 @@ ru:
       :to="continuePath"
     >
       {{ $t('continueBtn') }}
+    </v-btn>
+    <v-btn
+      v-if="continuePath !== $route.path"
+      class="my-10 mr-2"
+      :class="{ 'float-right': $i18n.locale !== 'ar' ? true : false }"
+      color="default"
+      :disabled="!isChallengeWellDone"
+    >
+      {{ $t('printChallengeBtn') }}
     </v-btn>
   </v-container>
 </template>
