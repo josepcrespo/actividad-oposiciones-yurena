@@ -1273,7 +1273,7 @@ export default {
             activityId: this.activityId,
             challengeId: this.challengeId,
             exerciseId: this.exerciseId,
-            isSolved: true
+            gameIsSolved: true
           })
           this.$store?.dispatch('snackbarNotification/show', {
             i18n: this.$i18n,
