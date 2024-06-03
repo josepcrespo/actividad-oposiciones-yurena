@@ -1271,7 +1271,268 @@ export const state = () => ({
               scientificName: 'Gallotia galloti'
             }
           ],
-          fromUser: []
+          fromUser: [],
+          gameIsSolved: false,
+          gameValidMoves: [
+            {
+              "carDirection": "WEST",
+              "icon": "mdi-arrow-left-top",
+              "keyboardDirection": "ArrowLeft",
+              "name": "customPhaserCarMoveLeft",
+              "title": {
+                "ar": "استدر لليسار",
+                "ca": "Gira a l'esquerra",
+                "de": "Nach links abbiegen",
+                "en": "Turn left",
+                "es": "Girar a la izquierda",
+                "eu": "Ezkerrera biratu",
+                "fr": "Tourner à gauche",
+                "gl": "Xirar á esquerda",
+                "it": "Gira a sinistra",
+                "ja": "左に曲がる",
+                "pt": "Vire à esquerda",
+                "ro": "Virează la stânga",
+                "ru": "Повернуть налево",
+                "zh": "左转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            },
+            {
+              "carDirection": "EAST",
+              "icon": "mdi-arrow-right-top",
+              "keyboardDirection": "ArrowRight",
+              "name": "customPhaserCarMoveRight",
+              "title": {
+                "ar": "استدر لليمين",
+                "ca": "Gira a la dreta",
+                "de": "Nach rechts abbiegen",
+                "en": "Turn right",
+                "es": "Girar a la derecha",
+                "eu": "Eskuinera biratu",
+                "fr": "Tourner à droite",
+                "gl": "Xirar á dereita",
+                "it": "Gira a destra",
+                "ja": "右に曲がる",
+                "pt": "Vire à direita",
+                "ro": "Virează la dreapta",
+                "ru": "Повернуть направо",
+                "zh": "右转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            },
+            {
+              "carDirection": "WEST",
+              "icon": "mdi-arrow-left-top",
+              "keyboardDirection": "ArrowLeft",
+              "name": "customPhaserCarMoveLeft",
+              "title": {
+                "ar": "استدر لليسار",
+                "ca": "Gira a l'esquerra",
+                "de": "Nach links abbiegen",
+                "en": "Turn left",
+                "es": "Girar a la izquierda",
+                "eu": "Ezkerrera biratu",
+                "fr": "Tourner à gauche",
+                "gl": "Xirar á esquerda",
+                "it": "Gira a sinistra",
+                "ja": "左に曲がる",
+                "pt": "Vire à esquerda",
+                "ro": "Virează la stânga",
+                "ru": "Повернуть налево",
+                "zh": "左转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            },
+            {
+              "carDirection": "WEST",
+              "icon": "mdi-arrow-left-top",
+              "keyboardDirection": "ArrowLeft",
+              "name": "customPhaserCarMoveLeft",
+              "title": {
+                "ar": "استدر لليسار",
+                "ca": "Gira a l'esquerra",
+                "de": "Nach links abbiegen",
+                "en": "Turn left",
+                "es": "Girar a la izquierda",
+                "eu": "Ezkerrera biratu",
+                "fr": "Tourner à gauche",
+                "gl": "Xirar á esquerda",
+                "it": "Gira a sinistra",
+                "ja": "左に曲がる",
+                "pt": "Vire à esquerda",
+                "ro": "Virează la stânga",
+                "ru": "Повернуть налево",
+                "zh": "左转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            },
+            {
+              "carDirection": "EAST",
+              "icon": "mdi-arrow-right-top",
+              "keyboardDirection": "ArrowRight",
+              "name": "customPhaserCarMoveRight",
+              "title": {
+                "ar": "استدر لليمين",
+                "ca": "Gira a la dreta",
+                "de": "Nach rechts abbiegen",
+                "en": "Turn right",
+                "es": "Girar a la derecha",
+                "eu": "Eskuinera biratu",
+                "fr": "Tourner à droite",
+                "gl": "Xirar á dereita",
+                "it": "Gira a destra",
+                "ja": "右に曲がる",
+                "pt": "Vire à direita",
+                "ro": "Virează la dreapta",
+                "ru": "Повернуть направо",
+                "zh": "右转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            },
+            {
+              "carDirection": "EAST",
+              "icon": "mdi-arrow-right-top",
+              "keyboardDirection": "ArrowRight",
+              "name": "customPhaserCarMoveRight",
+              "title": {
+                "ar": "استدر لليمين",
+                "ca": "Gira a la dreta",
+                "de": "Nach rechts abbiegen",
+                "en": "Turn right",
+                "es": "Girar a la derecha",
+                "eu": "Eskuinera biratu",
+                "fr": "Tourner à droite",
+                "gl": "Xirar á dereita",
+                "it": "Gira a destra",
+                "ja": "右に曲がる",
+                "pt": "Vire à direita",
+                "ro": "Virează la dreapta",
+                "ru": "Повернуть направо",
+                "zh": "右转"
+              }
+            },
+            {
+              "icon": "mdi-arrow-up",
+              "keyboardDirection": "ArrowUp",
+              "name": "customPhaserCarMoveStraight",
+              "title": {
+                "ar": "اذهب مباشرة",
+                "ca": "Avança recte",
+                "de": "Geradeaus fahren",
+                "en": "Go straight",
+                "es": "Avanzar recto",
+                "eu": "Zuzenean aurrera egin",
+                "fr": "Aller tout droit",
+                "gl": "Avanzar recto",
+                "it": "Vai dritto",
+                "ja": "まっすぐ進む",
+                "pt": "Avance reto",
+                "ro": "Mergi drept înainte",
+                "ru": "Продолжать прямо",
+                "zh": "直行"
+              }
+            }
+          ]
         },
         statement: {
           ar: 'إذا قمتم بحل المعادلات التالية من الدرجة الأولى، سيواصل المدير توسيع معرفتكم بالمعلومات التي ستساعدكم في التعرف بشكل أفضل على النباتات والحيوانات الأكثر أهمية في الحديقة الوطنية تيدي.',
@@ -2108,6 +2369,24 @@ export const mutations = {
 
         if (exercise && exercise.solution) {
           set(exercise.solution, 'fromUser', solution)
+        }
+      }
+    }
+  },
+  setExerciseGameIsSolved(state, { activityId, challengeId, exerciseId, gameIsSolved }) {
+    // eslint-disable-next-line eqeqeq
+    const activity = state.activities.find((a) => a.activityId == activityId)
+
+    if (activity) {
+      // eslint-disable-next-line eqeqeq
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
+
+      if (challenge) {
+        // eslint-disable-next-line eqeqeq
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
+
+        if (exercise && exercise.solution) {
+          set(exercise.solution, 'gameIsSolved', gameIsSolved)
         }
       }
     }
