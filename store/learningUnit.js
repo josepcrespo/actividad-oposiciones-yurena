@@ -2533,7 +2533,16 @@ export const getters = {
               )?.length &&
               // eslint-disable-next-line eqeqeq
               exercise.solution?.expected == exercise.solution?.fromUser
-          } else if (exercise.sections) {
+          } else if (
+            exercise.solution.isValid &&
+            exercise.solution.gameIsSolved
+          ) {
+            return true
+          } else if (
+            exercise.sections &&
+            !exercise.solution.isValid &&
+            !exercise.solution.gameIsSolved
+          ) {
             return exercise.sections.length ===
               getters.getExerciseSectionsWellSolved(
                 activityId, challengeId, exercise.exerciseId
