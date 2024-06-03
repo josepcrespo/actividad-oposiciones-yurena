@@ -1285,6 +1285,12 @@ export default {
         this.makePhaserElementBlink(this.car, 10, scene, () => {
           this.resetGame()
         })
+        this.$store?.commit('learningUnit/setExerciseGameIsSolved', {
+          activityId: this.activityId,
+          challengeId: this.challengeId,
+          exerciseId: this.exerciseId,
+          gameIsSolved: false
+        })
         this.$store?.dispatch('snackbarNotification/show', {
           i18n: this.$i18n,
           memojiName: 'director-mal',
