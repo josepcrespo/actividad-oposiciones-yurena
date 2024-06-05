@@ -2,6 +2,7 @@
   <v-img
     class="yrn-image-simple"
     :alt="localizedAlt"
+    contain
     :max-height="maxHeight"
     :src="src"
   >
