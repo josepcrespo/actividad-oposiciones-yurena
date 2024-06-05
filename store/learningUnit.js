@@ -2219,6 +2219,12 @@ export const state = () => ({
           type: 'yrn-exercise',
           class: 'yrn-math-problem',
           exerciseId: 3
+        }, {
+          type: 'yrn-problem',
+          exerciseId: 4
+        }, {
+          type: 'yrn-exercise-solution-otp',
+          exerciseId: 4
         }
       ],
       exercises: [
@@ -2353,6 +2359,64 @@ export const state = () => ({
               }
             }
           ]
+        }, {
+          exerciseId: 4,
+          routerRedirection: {
+            activityId: 1,
+            challengeId: 6
+          },
+          solution: {
+            statement: {
+              ar: 'اكتب هنا إجمالي عدد الأشخاص الذين زاروا حديقة تيمانفايا الوطنية، بما في ذلك المدير:',
+              ca: 'Escriviu aquí el total de persones que van visitar el Parc Nacional de Timanfaya, inclòs el director:',
+              de: 'Schreiben Sie hier die Gesamtzahl der Personen, die den Nationalpark Timanfaya besucht haben, einschließlich des Direktors:',
+              en: 'Write here the total number of people who visited the Timanfaya National Park, including the director:',
+              es: 'Escriban aquí el total de personas que visitaron el Parque Nacional de Timanfaya, incluido el director:',
+              eu: 'Idatzi hemen Timanfaya Parke Nazionala bisitatu zuten pertsona guztien kopurua, zuzendaria barne:',
+              fr: 'Écrivez ici le nombre total de personnes qui ont visité le parc national de Timanfaya, y compris le directeur :',
+              gl: 'Escriban aquí o total de persoas que visitaron o Parque Nacional de Timanfaya, incluído o director:',
+              it: 'Scrivete qui il numero totale di persone che hanno visitato il Parco Nazionale di Timanfaya, incluso il direttore:',
+              ja: 'ティマンファヤ国立公園を訪れた人数の合計を、所長を含めてここに書いてください:',
+              pt: 'Escrevam aqui o número total de pessoas que visitaram o Parque Nacional de Timanfaya, incluindo o diretor:',
+              ro: 'Scrieți aici numărul total de persoane care au vizitat Parcul Național Timanfaya, inclusiv directorul:',
+              ru: 'Напишите здесь общее количество людей, посетивших национальный парк Тиманфайя, включая директора:',
+              zh: '请在这里写下参观蒂曼法亚国家公园的总人数，包括主任：'
+            },
+            expected: '32',
+            fromUser: ''
+          },
+          statement: {
+            ar: `<p>نعلم أن تذاكر الدخول إلى حديقة تيمانفايا الوطنية للبالغين المقيمين في جزر الكناري تكلف <em class="font-weight-black">9,60€</em>.</p><p>للذهاب إلى الحديقة من أريثيفي، استقل المدير وأصدقاؤه الحافلة <em class="font-weight-black">53</em> التي تتركهم على بعد <em class="font-weight-black">30</em> دقيقة من الحديقة. تكلفة كل تذكرة حافلة <em class="font-weight-black">3€</em>.</p><p>بالمجمل، تكلفت الزيارة والحافلة لجميع الزوار <em class="font-weight-black">75,60€</em>.</p><p>كم عدد الأشخاص الذين ذهبوا مع مديرنا؟</p>`,
+            ca: `<p>Sabem que les entrades al Parc Nacional de Timanfaya per a adults canaris residents costen <em class="font-weight-black">9,60€</em>.</p><p>Per arribar al parc des d'Arrecife, el director i els seus amics van agafar la guagua <em class="font-weight-black">53</em> que els deixa a <em class="font-weight-black">30</em> minuts del parc. Cada bitllet de guagua costa <em class="font-weight-black">3€</em>.</p><p>En total, la visita i la guagua de tots els visitants van costar <em class="font-weight-black">75,60€</em>.</p><p>Quantes persones van anar amb el nostre director?</p>`,
+            de: `<p>Wir wissen, dass die Eintrittskarten für den Nationalpark Timanfaya für erwachsene kanarische Einwohner <em class="font-weight-black">9,60€</em> kosten.</p><p>Um zum Park von Arrecife zu gelangen, nahmen der Direktor und seine Freunde den Bus <em class="font-weight-black">53</em>, der sie <em class="font-weight-black">30</em> Minuten vom Park entfernt absetzt. Jede Busfahrkarte kostet <em class="font-weight-black">3€</em>.</p><p>Insgesamt kosteten der Besuch und der Bus für alle Besucher <em class="font-weight-black">75,60€</em>.</p><p>Wie viele Personen gingen mit unserem Direktor?</p>`,
+            en: `<p>We know that the entrance tickets to Timanfaya National Park for resident Canary Islands adults are <em class="font-weight-black">9.60€</em>.</p><p>To get to the park from Arrecife, the director and his friends took bus <em class="font-weight-black">53</em> which drops them off <em class="font-weight-black">30</em> minutes from the park. Each bus ticket costs <em class="font-weight-black">3€</em>.</p><p>In total, the visit and the bus for all visitors cost <em class="font-weight-black">75.60€</em>.</p><p>How many people went with our director?</p>`,
+            es: `<p>Sabemos que las entradas al Parque Nacional de Timanfaya para adultos canarios residentes salen <em class="font-weight-black">9,60€</em>.</p><p>Para llegar al parque desde Arrecife, el director y sus amigos cogieron la guagua <em class="font-weight-black">53</em> que los deja a <em class="font-weight-black">30</em> minutos del parque. Cada billete de guagua sale <em class="font-weight-black">3€</em>.</p><p>En total, la visita y la guagua de todos los visitantes costó <em class="font-weight-black">75,60€</em>.</p><p>¿Cuántas personas fueron con nuestro director?</p>`,
+            eu: `<p>Badakigu Timanfaya Parke Nazionaleko sarrera helduentzat, Kanarietako bizilagunentzat, <em class="font-weight-black">9,60€</em> kostatzen dela.</p><p>Parkera iristeko Arrecife-tik, zuzendaria eta bere lagunek guagua <em class="font-weight-black">53</em> hartu zuten, parkean <em class="font-weight-black">30</em> minutu utziz. Guagua bakoitzak <em class="font-weight-black">3€</em> balio du.</p><p>Guztira, bisita eta guagua guztiek <em class="font-weight-black">75,60€</em> kostatu zuten.</p><p>Zenbat pertsona joan ziren gure zuzendariarekin?</p>`,
+            fr: `<p>Nous savons que les billets d'entrée au parc national de Timanfaya pour les adultes résidents des îles Canaries coûtent <em class="font-weight-black">9,60€</em>.</p><p>Pour se rendre au parc depuis Arrecife, le directeur et ses amis ont pris le bus <em class="font-weight-black">53</em> qui les dépose à <em class="font-weight-black">30</em> minutes du parc. Chaque billet de bus coûte <em class="font-weight-black">3€</em>.</p><p>Au total, la visite et le bus pour tous les visiteurs ont coûté <em class="font-weight-black">75,60€</em>.</p><p>Combien de personnes sont allées avec notre directeur ?</p>`,
+            gl: `<p>Sabemos que as entradas ao Parque Nacional de Timanfaya para adultos residentes en Canarias custan <em class="font-weight-black">9,60€</em>.</p><p>Para chegar ao parque desde Arrecife, o director e os seus amigos colleron a guagua <em class="font-weight-black">53</em> que os deixa a <em class="font-weight-black">30</em> minutos do parque. Cada billete de guagua custa <em class="font-weight-black">3€</em>.</p><p>En total, a visita e a guagua de todos os visitantes custou <em class="font-weight-black">75,60€</em>.</p><p>Cantas persoas foron co noso director?</p>`,
+            it: `<p>Sappiamo che i biglietti d'ingresso al Parco Nazionale di Timanfaya per adulti residenti delle Isole Canarie costano <em class="font-weight-black">9,60€</em>.</p><p>Per arrivare al parco da Arrecife, il direttore e i suoi amici hanno preso il bus <em class="font-weight-black">53</em> che li lascia a <em class="font-weight-black">30</em> minuti dal parco. Ogni biglietto del bus costa <em class="font-weight-black">3€</em>.</p><p>In totale, la visita e il bus per tutti i visitatori sono costati <em class="font-weight-black">75,60€</em>.</p><p>Quante persone sono andate con il nostro direttore?</p>`,
+            ja: `<p>カナリア諸島在住の大人のティマンファヤ国立公園への入場料は<em class="font-weight-black">9.60€</em>です。</p><p>アレシフェから公園に行くために、所長とその友人たちはバス<em class="font-weight-black">53</em>に乗り、降りた場所から公園まで<em class="font-weight-black">30</em>分かかります。各バスのチケットは<em class="font-weight-black">3€</em>です。</p><p>合計で、すべての訪問者のための訪問とバスの費用は<em class="font-weight-black">75.60€</em>でした。</p><p>所長と一緒に何人の人が行きましたか？</p>`,
+            pt: `<p>Sabemos que os bilhetes de entrada para o Parque Nacional de Timanfaya para adultos residentes nas Canárias custam <em class="font-weight-black">9,60€</em>.</p><p>Para chegar ao parque a partir de Arrecife, o diretor e os seus amigos apanharam o autocarro <em class="font-weight-black">53</em> que os deixa a <em class="font-weight-black">30</em> minutos do parque. Cada bilhete de autocarro custa <em class="font-weight-black">3€</em>.</p><p>No total, a visita e o autocarro para todos os visitantes custaram <em class="font-weight-black">75,60€</em>.</p><p>Quantas pessoas foram com o nosso diretor?</p>`,
+            ro: `<p>Știm că biletele de intrare la Parcul Național Timanfaya pentru adulții rezidenți din Insulele Canare costă <em class="font-weight-black">9,60€</em>.</p><p>Pentru a ajunge la parc din Arrecife, directorul și prietenii săi au luat autobuzul <em class="font-weight-black">53</em>, care îi lasă la <em class="font-weight-black">30</em> de minute de parc. Fiecare bilet de autobuz costă <em class="font-weight-black">3€</em>.</p><p>În total, vizita și autobuzul pentru toți vizitatorii au costat <em class="font-weight-black">75,60€</em>.</p><p>Câte persoane au mers cu directorul nostru?</p>`,
+            ru: `<p>Мы знаем, что входные билеты в национальный парк Тиманфайя для взрослых жителей Канарских островов стоят <em class="font-weight-black">9,60€</em>.</p><p>Чтобы добраться до парка из Арресифе, директор и его друзья сели на автобус <em class="font-weight-black">53</em>, который высадил их в <em class="font-weight-black">30</em> минутах от парка. Каждый билет на автобус стоит <em class="font-weight-black">3€</em>.</p><p>В общей сложности посещение и автобус для всех посетителей стоили <em class="font-weight-black">75,60€</em>.</p><p>Сколько человек пошли с нашим директором?</p>`,
+            zh: `<p>我们知道，居住在加那利群岛的成年人的蒂曼法亚国家公园门票为<em class="font-weight-black">9.60€</em>。</p><p>为了从阿雷西费到达公园，主任和他的朋友们乘坐了<em class="font-weight-black">53</em>路公交车，这趟公交将他们送到离公园<em class="font-weight-black">30</em>分钟的地方。每张公交车票价为<em class="font-weight-black">3€</em>。</p><p>总的来说，所有参观者的访问和公交车费用总共是<em class="font-weight-black">75.60€</em>。</p><p>有多少人和我们的主任一起去了？</p>`
+          },
+          title: {
+            ar: 'للتقدم إلى التحدي التالي، دعنا نحل المشكلة التالية.',
+            ca: 'Per poder avançar al següent repte resolguem el següent problema.',
+            de: 'Um zur nächsten Herausforderung zu gelangen, lösen wir das folgende Problem.',
+            en: 'To move on to the next challenge, let’s solve the following problem.',
+            es: 'Para poder avanzar al siguiente reto resolvamos el siguiente problema.',
+            eu: 'Hurrengo erronkara igarotzeko, konpon dezagun hurrengo arazoa.',
+            fr: 'Pour pouvoir avancer au défi suivant, résolvons le problème suivant.',
+            gl: 'Para poder avanzar ao seguinte reto, resolvamos o seguinte problema.',
+            it: 'Per poter passare alla sfida successiva, risolviamo il seguente problema.',
+            ja: '次のチャレンジに進むために、次の問題を解決しましょう。',
+            pt: 'Para poder avançar para o próximo desafio, vamos resolver o seguinte problema.',
+            ro: 'Pentru a putea avansa la următoarea provocare, să rezolvăm următoarea problemă.',
+            ru: 'Чтобы перейти к следующему испытанию, давайте решим следующую задачу.',
+            zh: '为了继续下一个挑战，让我们解决以下问题。'
+          }
         }
       ]
     }]
