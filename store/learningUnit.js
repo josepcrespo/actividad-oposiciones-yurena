@@ -2847,6 +2847,16 @@ export const getters = {
 
     return challenge
   },
+  getChallengeIds: (state, getters) => (activityId) => {
+    const activity = getters.getActivity(activityId)
+    const challengeIds = []
+
+    activity.challenges.forEach(challenge => {
+      challengeIds.push(challenge.challengeId)
+    })
+
+    return challengeIds
+  },
   getExercise: (state, getters) => (activityId, challengeId, exerciseId) => {
     let exercise
     const challenge = getters.getChallenge(activityId, challengeId)
