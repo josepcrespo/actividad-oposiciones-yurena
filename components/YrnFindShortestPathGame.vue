@@ -252,6 +252,18 @@ import * as Phaser from 'phaser'
 export default {
   name: 'YrnFindShortestPathGame',
   props: {
+    activityId: {
+      required: true,
+      type: [Number, String]
+    },
+    challengeId: {
+      required: true,
+      type: [Number, String]
+    },
+    exerciseId: {
+      required: true,
+      type: [Number, String]
+    },
     customBoard: {
       default: null,
       required: false,
@@ -1621,7 +1633,6 @@ export default {
       // Si el coche alcanza la última posición final, mostrar un mensaje de exito
       if (this.carReachedLastPosition && this.movementsUsed <= this.maxMoves) {
         this.gameDone = true
-        // Implementar el código para el TODO comentario
         scene.time.delayedCall(2000, () => {
           this.fillPhaserCarBatteryIndicator(scene)
           this.$store?.dispatch('snackbarNotification/show', {
@@ -1629,6 +1640,28 @@ export default {
             memojiName: 'director-bien',
             success: true
           })
+          this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
+            activityId: this.activityId,
+            challengeId: this.challengeId,
+            exerciseId: this.exerciseId,
+            solution: true
+          })
+        })
+      } else if (this.movementsUsed >= this.maxMoves) {
+        this.makePhaserElementBlink(this.car, 10, scene, () => {
+          this.resetGame()
+        })
+        this.$store?.dispatch('snackbarNotification/show', {
+          i18n: this.$i18n,
+          memojiName: 'director-mal',
+          success: false,
+          defaultTextKey: 'batteryDown'
+        })
+        this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
+          activityId: this.activityId,
+          challengeId: this.challengeId,
+          exerciseId: this.exerciseId,
+          solution: false
         })
       }
     }
