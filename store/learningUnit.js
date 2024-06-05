@@ -2740,19 +2740,16 @@ export const mutations = {
   setExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution }) {
     // eslint-disable-next-line eqeqeq
     const activity = state.activities.find((a) => a.activityId == activityId)
-    console.log("🚀 ~ setExerciseSolutionFromUser ~ activity:", activity)
 
     if (activity) {
       // eslint-disable-next-line eqeqeq
       const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
-      console.log("🚀 ~ setExerciseSolutionFromUser ~ challenge:", challenge)
 
       if (challenge) {
         // eslint-disable-next-line eqeqeq
         const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
 
         if (exercise && exercise.solution) {
-          console.log("🚀 ~ setExerciseSolutionFromUser ~ exercise:", exercise)
           set(exercise.solution, 'fromUser', solution)
         }
       }
