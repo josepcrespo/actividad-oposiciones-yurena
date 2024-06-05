@@ -507,7 +507,7 @@ export const state = () => ({
             zh: '特纳德国家公园概览'
           },
           src: '/img/actividad-1/reto-3/imagen-de-cabecera.png',
-          maxHeight: '480'
+          maxHeight: '680'
         }, {
           type: 'yrn-exercise',
           class: 'yrn-math-problem',
@@ -2212,6 +2212,7 @@ export const state = () => ({
           exerciseId: 3
         }, {
           type: 'yrn-image-simple',
+          contain: true,
           maxHeight: 256,
           src: '/img/memojis/director-explosion.png'
         }, {
