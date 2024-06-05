@@ -291,21 +291,20 @@ export const state = () => ({
       }, {
         type: 'yrn-image-simple',
         alt: {
-          // TODO: cambiar todas las traducciones: "Parque Natural", por "Parque Nacional".
-          ar: '.صورة للحديقة الطبيعية التي زارها المخرج',
-          ca: 'Imatge del Parc Natural que va visitar el director.',
-          de: 'Bild des Naturparks, den der Direktor besucht hat.',
-          en: 'Image of the Natural Park that the director visited.',
-          es: 'Imagen del Parque Natural que visitó el director.',
-          eu: 'Zuzendariak bisitatu zuen Natural Parkea irudia.',
-          fr: 'Image du parc naturel que le directeur a visité.',
-          gl: 'Imaxe do Parque Natural que o director visitou.',
-          it: 'Immagine del Parco Naturale che il direttore ha visitato.',
-          ja: 'ディレクターが訪れた自然公園の画像。',
-          pt: 'Imagem do Parque Natural que o diretor visitou.',
-          ro: 'Imaginea Parcului Natural pe care directorul l-a vizitat.',
-          ru: 'Изображение природного парка, который посетил директор.',
-          zh: '董事访问的自然公园的图像。'
+          ar: '.صورة للحديقة الوطنية التي زارها المخرج',
+          ca: 'Imatge del Parc Nacional que va visitar el director.',
+          de: 'Bild des Nationalparks, den der Direktor besucht hat.',
+          en: 'Image of the National Park that the director visited.',
+          es: 'Imagen del Parque Nacional que visitó el director.',
+          eu: 'Zuzendariak bisitatu zuen Parke Nazionala irudia.',
+          fr: 'Image du parc national que le directeur a visité.',
+          gl: 'Imaxe do Parque Nacional que o director visitou.',
+          it: 'Immagine del Parco Nazionale che il direttore ha visitato.',
+          ja: 'ディレクターが訪れた国立公園の画像。',
+          pt: 'Imagem do Parque Nacional que o diretor visitou.',
+          ro: 'Imaginea Parcului Național pe care directorul l-a vizitat.',
+          ru: 'Изображение национального парка, который посетил директор.',
+          zh: '董事访问的国家公园的图像。'
         },
         src: '/img/actividad-1/reto-2/imagen-de-cabecera.png'
       }, {
@@ -338,7 +337,7 @@ export const state = () => ({
             ru: 'Напишите ответ здесь:',
             zh: '在这里写答案：'
           },
-          expected: 'El Teide',
+          expected: 'Teide',
           fromUser: ''
         }
       }, {
@@ -468,9 +467,10 @@ export const state = () => ({
         }]
       }
       ]
-      }, {
-        challengeId: 3,
-        pageStructure: [{
+    }, {
+      challengeId: 3,
+      pageStructure: [
+        {
           type: 'yrn-page-title',
           title: {
             en: 'Keep learning about the environment',
@@ -1972,6 +1972,388 @@ export const state = () => ({
           ]
         }
       ]
+    }, {
+      challengeId: 5,
+      pageStructure: [
+        {
+          type: 'yrn-page-title',
+          title: {
+            ar: 'ما هو اسم الحديقة الوطنية التي لدينا في لانزاروت؟',
+            ca: 'Com es diu el Parc Nacional que tenim a Lanzarote?',
+            de: 'Wie heißt der Nationalpark, den wir auf Lanzarote haben?',
+            en: 'What is the name of the National Park we have in Lanzarote?',
+            es: '¿Cómo se llama el Parque Nacional que tenemos en Lanzarote?',
+            eu: 'Zein da Lanzaroten dugun Parke Nazionalaren izena?',
+            fr: 'Quel est le nom du parc national que nous avons à Lanzarote?',
+            gl: 'Cal é o nome do Parque Nacional que temos en Lanzarote?',
+            it: 'Qual è il nome del Parco Nazionale che abbiamo a Lanzarote?',
+            ja: 'ランサローテにある国立公園の名前は何ですか？',
+            pt: 'Qual é o nome do Parque Nacional que temos em Lanzarote?',
+            ro: 'Care este numele Parcului Național pe care îl avem în Lanzarote?',
+            ru: 'Как называется Национальный парк, который у нас есть на Лансароте?',
+            zh: '我们在兰萨罗特的国家公园叫什么名字？'
+          }
+        }, {
+          type: 'yrn-image-simple',
+          alt: {
+            ar: 'صورة للحديقة الوطنية التي زارها المخرج في جزيرة لانزاروت.',
+            ca: 'Imatge del Parc Nacional que va visitar el director a l\'illa de Lanzarote.',
+            de: 'Bild des Nationalparks, den der Direktor auf der Insel Lanzarote besucht hat.',
+            en: 'Image of the National Park that the director visited on the island of Lanzarote.',
+            es: 'Imagen del Parque Nacional que visitó el director en la isla de Lanzarote.',
+            eu: 'Zuzendariak Lanzarote uhartean bisitatu zuen Parke Nazionalaren irudia.',
+            fr: 'Image du parc national que le directeur a visité sur l\'île de Lanzarote.',
+            gl: 'Imaxe do Parque Nacional que o director visitou na illa de Lanzarote.',
+            it: 'Immagine del Parco Nazionale che il direttore ha visitato sull\'isola di Lanzarote.',
+            ja: 'ディレクターがランサローテ島で訪れた国立公園の画像。',
+            pt: 'Imagem do Parque Nacional que o diretor visitou na ilha de Lanzarote.',
+            ro: 'Imaginea Parcului Național pe care directorul l-a vizitat pe insula Lanzarote.',
+            ru: 'Изображение национального парка, который посетил директор на острове Лансароте.',
+            zh: '董事在兰萨罗特岛访问的国家公园的图像。'
+          },
+          src: '/img/actividad-1/reto-5/imagen-de-cabecera.png'
+        }, {
+          type: 'yrn-exercise-solution-otp',
+          exerciseId: 1
+        }, {
+          type: 'yrn-find-shortest-path-game',
+          exerciseId: 2,
+          maxMoves: 9,
+          customBoard: [
+            [
+              {
+                up: false,
+                down: 1.5,
+                downIsHalfPath: true,
+                left: false,
+                right: 1.5,
+                "rightIsHalfPath": true,
+                rowIndex: "A",
+                columnIndex: "A",
+                nodeIndex: "AC",
+                "nodeIndexWeight": 3,
+                xAxisIndex: 0,
+                yAxisIndex: 0
+              }, {
+                up: false,
+                down: 1,
+                left: 1.5,
+                "leftIsHalfPath": true,
+                right: 5,
+                rowIndex: "A",
+                columnIndex: "B",
+                nodeIndex: "A",
+                xAxisIndex: 1,
+                yAxisIndex: 0
+              }, {
+                up: false,
+                down: 3,
+                left: 5,
+                right: false,
+                rowIndex: "A",
+                columnIndex: "C",
+                nodeIndex: "B",
+                xAxisIndex: 2,
+                yAxisIndex: 0
+              }, {
+                up: false,
+                down: false,
+                left: false,
+                right: false,
+                rowIndex: "A",
+                columnIndex: "D",
+                nodeIndex: "",
+                xAxisIndex: 3,
+                yAxisIndex: 0
+              }
+            ], [
+              {
+                up: 1.5,
+                down: 2,
+                downIsHalfPath: true,
+                left: false,
+                right: false,
+                rowIndex: "B",
+                columnIndex: "A",
+                nodeIndex: "C",
+                xAxisIndex: 0,
+                yAxisIndex: 1
+              }, {
+                up: 1,
+                down: 3,
+                left: false,
+                right: 2,
+                rowIndex: "B",
+                columnIndex: "B",
+                nodeIndex: "D",
+                xAxisIndex: 1,
+                yAxisIndex: 1
+              }, {
+                up: 3,
+                down: 2,
+                left: 2,
+                right: 3,
+                rowIndex: "B",
+                columnIndex: "C",
+                nodeIndex: "E",
+                xAxisIndex: 2,
+                yAxisIndex: 1
+              }, {
+                up: false,
+                down: 5,
+                left: 3,
+                right: false,
+                rowIndex: "B",
+                columnIndex: "D",
+                nodeIndex: "H",
+                xAxisIndex: 3,
+                yAxisIndex: 1
+              }
+            ], [
+              {
+                up: 2,
+                down: false,
+                left: false,
+                right: 2,
+                "rightIsHalfPath": true,
+                rowIndex: "C",
+                columnIndex: "A",
+                nodeIndex: "CF",
+                "nodeIndexWeight": 4,
+                xAxisIndex: 0,
+                yAxisIndex: 2
+              }, {
+                up: 3,
+                down: 1.5,
+                downIsHalfPath: true,
+                left: 2,
+                "leftIsHalfPath": true,
+                right: 4,
+                rowIndex: "C",
+                columnIndex: "B",
+                nodeIndex: "F",
+                xAxisIndex: 1,
+                yAxisIndex: 2
+              }, {
+                up: 2,
+                down: 3,
+                left: 4,
+                right: 6,
+                rowIndex: "C",
+                columnIndex: "D",
+                nodeIndex: "G",
+                xAxisIndex: 2,
+                yAxisIndex: 2
+              }, {
+                up: 5,
+                down: 1,
+                downIsHalfPath: true,
+                left: 6,
+                right: false,
+                rowIndex: "C",
+                columnIndex: "E",
+                nodeIndex: "J",
+                xAxisIndex: 3,
+                yAxisIndex: 2
+              }
+            ], [
+              {
+                up: false,
+                down: false,
+                left: false,
+                right: false,
+                rowIndex: "D",
+                columnIndex: "A",
+                nodeIndex: "",
+                xAxisIndex: 0,
+                yAxisIndex: 3
+              }, {
+                up: 1.5,
+                down: false,
+                left: false,
+                right: 1.5,
+                "rightIsHalfPath": true,
+                rowIndex: "D",
+                columnIndex: "B",
+                nodeIndex: "FI",
+                "nodeIndexWeight": 3,
+                xAxisIndex: 1,
+                yAxisIndex: 3
+              }, {
+                up: 3,
+                down: false,
+                left: 1.5,
+                "leftIsHalfPath": true,
+                right: 1,
+                "rightIsHalfPath": true,
+                rowIndex: "D",
+                columnIndex: "C",
+                nodeIndex: "I",
+                xAxisIndex: 2,
+                yAxisIndex: 3
+              }, {
+                up: 1,
+                "upIsHalfPath": true,
+                down: false,
+                left: 1,
+                "leftIsHalfPath": true,
+                right: false,
+                rowIndex: "D",
+                columnIndex: "E",
+                nodeIndex: "IJ",
+                "nodeIndexWeight": 2,
+                xAxisIndex: 3,
+                yAxisIndex: 3
+              }
+            ]
+          ]
+        }, {
+          type: 'yrn-exercise-solution-fill-text-gaps',
+          exerciseId: 3
+        }, {
+          type: 'yrn-image-simple',
+          maxHeight: 256,
+          src: '/img/memojis/director-explosion.png'
+        }, {
+          type: 'yrn-exercise',
+          class: 'yrn-math-problem',
+          exerciseId: 3
+        }
+      ],
+      exercises: [
+        {
+          exerciseId: 1,
+          solution: {
+            statement: {
+              ar: ':اكتب الجواب هنا',
+              ca: 'Escriviu ací la resposta:',
+              de: 'Schreiben Sie hier die Antwort:',
+              en: 'Write the answer here:',
+              es: 'Escriban aquí la respuesta:',
+              eu: 'Idatzi hemen erantzuna:',
+              fr: 'Écrivez la réponse ici :',
+              gl: 'Escribe aquí a resposta:',
+              it: 'Scrivi la risposta qui:',
+              ja: 'ここに回答を書いてください:',
+              pt: 'Escreva a resposta aqui:',
+              ro: 'Scrieți răspunsul aici:',
+              ru: 'Напишите ответ здесь:',
+              zh: '在这里写答案：'
+            },
+            expected: 'Timanfaya',
+            fromUser: ''
+          }
+        }, {
+          exerciseId: 2,
+          solution: {
+            expected: true,
+            fromUser: undefined
+          }
+        }, {
+          exerciseId: 3,
+          solution: {
+            statement: {
+              ar: 'دعونا نرى ما يمكن أن يخبرنا به المدير عن هذا المنتزه الذي يجعله فريدًا:',
+              ca: 'A veure que ens pot dir el director sobre aquest parc que el fa únic:',
+              de: 'Mal sehen, was der Direktor uns über diesen Park erzählen kann, das ihn einzigartig macht:',
+              en: 'Let\'s see what the director can tell us about this park that makes it unique: ',
+              es: 'A ver qué nos puede decir el director acerca de este parque que lo hace único:',
+              eu: 'Ikus dezagun zuzendariak parke honi buruz esan dezakeena, berezia egiten duena:',
+              fr: 'Voyons ce que le directeur peut nous dire sur ce parc qui le rend unique :',
+              gl: 'A ver que nos pode dicir o director sobre este parque que o fai único:',
+              it: 'Vediamo cosa ci può dire il direttore su questo parco che lo rende unico:',
+              ja: 'この公園がユニークである理由についてディレクターが何を教えてくれるか見てみましょう：',
+              pt: 'Vamos ver o que o diretor pode nos dizer sobre este parque que o torna único:',
+              ro: 'Să vedem ce ne poate spune directorul despre acest parc care îl face unic:',
+              ru: 'Посмотрим, что директор может рассказать нам об этом парке, что делает его уникальным:',
+              zh: '让我们看看导演能告诉我们这个公园什么使它与众不同：'
+            },
+            textToFillGaps: {
+              // eslint-disable-next-line no-template-curly-in-string
+              ar: 'يضم أكثر من ${{ a }}${{ b }} بركان، بعضها شهير مثل جبال النار، جبل راجادا أو كالديرا كورازونسيلو. في تيمانفايا، يمكن ملاحظة ترتيب البراكين وفقًا لاتجاه الشقوق العميقة التي يتصاعد من خلالها الصهارة. كما يقدم تنوعًا في أنواع المخاريط وفوهاتها المقابلة. لا تزال هناك نشاطات بركانية، حيث توجد نقاط حرارية على السطح تتراوح بين 100 درجة مئوية و120 درجة مئوية وعمق يصل بين 600 و${{ c }}${{ d }} متر. تواجد الساحل هو أحد العناصر التي تميز تيمانفايا عن بقية الحدائق الوطنية الكنارية. يشكل الساحل الغربي للحديقة شريط ساحلي في حالة جيدة من الحفظ.',
+              // eslint-disable-next-line no-template-curly-in-string
+              ca: 'Compta amb més de ${{ a }}${{ b }} volcans, alguns dels quals emblemàtics, com les Muntanyes del Foc, Montanya Rajada o la Caldera del Corazoncillo. A Timanfaya es pot observar l\'alineació dels volcans, seguint la direcció de les fractures profundes a través de les quals ascendeix el magma. També ofereix una variada tipologia de cons i els seus cràters corresponents. Encara presenta activitat volcànica, amb punts de calor a la superfície que arriben entre els 100ºC i els 120ºC i una profunditat d\'entre 600 i ${{ c }}${{ d }} metres. La presència de costa és un dels elements que distingeixen Timanfaya de la resta de parcs nacionals canaris. Tot el límit occidental del parc constitueix un litoral que es troba en molt bon estat de conservació.',
+              // eslint-disable-next-line no-template-curly-in-string
+              de: 'Es gibt mehr als ${{ a }}${{ b }} Vulkane, darunter einige berühmte wie die Feuerberge, Montaña Rajada oder die Caldera del Corazoncillo. In Timanfaya kann man die Ausrichtung der Vulkane beobachten, die der Richtung der tiefen Brüche folgt, durch die das Magma aufsteigt. Es gibt auch eine Vielzahl von Kegeln und den dazugehörigen Kratern. Es gibt immer noch vulkanische Aktivitäten, wobei es an der Oberfläche Wärmequellen gibt, die zwischen 100ºC und 120ºC erreichen und eine Tiefe von 600 bis ${{ c }}${{ d }} Metern erreichen. Die Küstenpräsenz ist eines der Elemente, die Timanfaya von den anderen kanarischen Nationalparks unterscheidet. Die gesamte westliche Grenze des Parks bildet eine Küstenlinie, die sich in einem sehr guten Erhaltungszustand befindet.',
+              // eslint-disable-next-line no-template-curly-in-string
+              en: 'It has more than ${{ a }}${{ b }} volcanoes, some of which are emblematic, such as the Fire Mountains, Montaña Rajada or the Caldera del Corazoncillo. In Timanfaya, the alignment of the volcanoes can be observed, following the direction of the deep fractures through which the magma rises. It also offers a varied typology of cones and their corresponding craters. There is still volcanic activity, with heat points on the surface reaching between 100ºC and 120ºC and a depth ranging from 600 to ${{ c }}${{ d }} meters. The presence of a coastline is one of the elements that distinguishes Timanfaya from the rest of the Canary Islands national parks. The entire western boundary of the park is a coastline that is in very good condition.',
+              // eslint-disable-next-line no-template-curly-in-string
+              es: 'Cuenta con más de ${{ a }}${{ b }} volcanes, siendo algunos emblemáticos, tales como las Montañas del Fuego, Montaña Rajada o la Caldera del Corazoncillo. En Timanfaya se observa la alineación de los volcanes, siguiendo la dirección de las fracturas profundas a través de las que se produce la ascensión del magma. También ofrece una variada tipología de conos y sus cráteres correspondientes. Aún presenta actividad volcánica, existiendo puntos de calor en la superficie que alcanzan entre los 100ºC y los 120ºC y una profundidad de entre 600 y ${{ c }}${{ d }} metros de profundidad. La presencia de costa es uno de los elementos que distinguen a Timanfaya del resto de parques nacionales canarios. Todo el límite occidental del parque lo constituye un litoral que se encuentra en muy buen estado de conservación.',
+              // eslint-disable-next-line no-template-curly-in-string
+              eu: 'Baditu ${{ a }}${{ b }} baino gehiago sumendi, batzuk sinbolikoak direnak, hala nola Suen Mendiak, Montaña Rajada edo Caldera del Corazoncillo. Timanfayan sumendien lerrokatzea ikusten da, magma igotzen den sakoneko hausturen norabidea jarraituz. Gainera, kono mota anitza eta haien kraterrak eskaintzen ditu. Oraindik ere jarduera bolkanikoa aurkezten du, gainazalean 100ºC eta 120ºC artean iristen diren bero puntu batzuekin eta 600 eta ${{ c }}${{ d }} metro arteko sakonerarekin. Kostaldearen presentzia da Timanfaya gainerako Kanarietako parke nazionaletatik bereizten duen elementuetako bat. Parkearen mendebaldeko muga osoa egoera onean dagoen kostalde bat da.',
+              // eslint-disable-next-line no-template-curly-in-string
+              fr: 'Il compte plus de ${{ a }}${{ b }} volcans, dont certains sont emblématiques, comme les Montagnes de Feu, Montaña Rajada ou la Caldera del Corazoncillo. À Timanfaya, on peut observer l\'alignement des volcans, suivant la direction des fractures profondes à travers lesquelles le magma monte. Il offre également une typologie variée de cônes et leurs cratères correspondants. Il y a encore une activité volcanique, avec des points de chaleur à la surface atteignant entre 100ºC et 120ºC et une profondeur allant de 600 à ${{ c }}${{ d }} mètres. La présence de la côte est l\'un des éléments qui distingue Timanfaya des autres parcs nationaux des Canaries. Toute la limite occidentale du parc est constituée d\'un littoral qui est en très bon état de conservation.',
+              // eslint-disable-next-line no-template-curly-in-string
+              gl: 'Conta con máis de ${{ a }}${{ b }} volcáns, sendo algúns emblemáticos, tales como as Montañas do Lume, Montaña Rajada ou a Caldeira do Corazoncillo. En Timanfaya obsérvase a aliñación dos volcáns, seguindo a dirección das fracturas profundas a través das que se produce a ascensión do magma. Tamén ofrece unha variada tipoloxía de conos e as súas correspondentes cráteres. Aínda presenta actividade volcánica, existindo puntos de calor na superficie que alcanzan entre os 100ºC e os 120ºC e unha profundidade de entre 600 e ${{ c }}${{ d }} metros de profundidade. A presenza de costa é un dos elementos que distinguen a Timanfaya do resto de parques nacionais canarios. Todo o límite occidental do parque constitúeo un litoral que se atopa en moi bo estado de conservación.',
+              // eslint-disable-next-line no-template-curly-in-string
+              it: 'Conta con più di ${{ a }}${{ b }} vulcani, alcuni dei quali emblematici, come le Montagne del Fuoco, Montaña Rajada o la Caldera del Corazoncillo. A Timanfaya si osserva l\'allineamento dei vulcani, seguendo la direzione delle fratture profonde attraverso le quali sale il magma. Offre anche una tipologia varia di coni e dei loro crateri corrispondenti. Presenta ancora attività vulcanica, con punti di calore sulla superficie che raggiungono tra i 100ºC e i 120ºC e una profondità compresa tra 600 e ${{ c }}${{ d }} metri. La presenza della costa è uno degli elementi che distinguono Timanfaya dagli altri parchi nazionali delle Canarie. L\'intero limite occidentale del parco è costituito da una costa che si trova in ottimo stato di conservazione.',
+              // eslint-disable-next-line no-template-curly-in-string
+              ja: 'ランサローテ島には${{ a }}${{ b }}以上の火山があり、その中には火山の山、モンターニャ・ラハダ、コラソンシージョ火口などの象徴的なものがあります。ティマンファヤでは、火山の配列が見られ、マグマが上昇する深部の亀裂の方向に従っています。また、さまざまな種類の円錐とそれに対応するクレーターも提供しています。現在も火山活動が続いており、表面の熱点は100ºCから120ºCの間で、深さは600メートルから${{ c }}${{ d }}メートルに達しています。海岸の存在は、ティマンファヤが他のカナリア諸島の国立公園と異なる要素の一つです。公園の西端全体は、非常に良好な状態で保存されている海岸線で構成されています。',
+              // eslint-disable-next-line no-template-curly-in-string
+              pt: 'Conta com mais de ${{ a }}${{ b }} vulcões, alguns dos quais emblemáticos, como as Montanhas de Fogo, Montanha Rajada ou a Caldeira do Corazoncillo. Em Timanfaya, pode-se observar o alinhamento dos vulcões, seguindo a direção das fraturas profundas através das quais o magma sobe. Também oferece uma tipologia variada de cones e seus respectivos crateras. Ainda apresenta atividade vulcânica, com pontos de calor na superfície que atingem entre 100ºC e 120ºC e uma profundidade que varia de 600 a ${{ c }}${{ d }} metros. A presença da costa é um dos elementos que distingue Timanfaya dos demais parques nacionais das Canárias. Todo o limite ocidental do parque é uma linha costeira que está em muito bom estado de conservação.',
+              // eslint-disable-next-line no-template-curly-in-string
+              ro: 'Are mai mult de ${{ a }}${{ b }} de vulcani, dintre care unii sunt emblematici, cum ar fi Munții de Foc, Montaña Rajada sau Caldera del Corazoncillo. În Timanfaya se observă alinierea vulcanilor, urmând direcția fracturilor adânci prin care urcă magma. De asemenea, oferă o tipologie variată de conuri și craterele lor corespunzătoare. Încă prezintă activitate vulcanică, existând puncte de căldură la suprafață care ating între 100ºC și 120ºC și o adâncime cuprinsă între 600 și ${{ c }}${{ d }} de metri. Prezența coastei este unul dintre elementele care diferențiază Timanfaya de restul parcurilor naționale din Canare. Întreaga limită vestică a parcului este o linie de coastă care se află într-o stare foarte bună de conservare.',
+              // eslint-disable-next-line no-template-curly-in-string
+              ru: 'В нем насчитывается более ${{ a }}${{ b }} вулканов, некоторые из которых являются знаковыми, такие как Горы Огня, Монтанья-Рахада или Кальдера дель Корасонсильо. В Тиманфайе можно наблюдать выравнивание вулканов в направлении глубоких трещин, через которые поднимается магма. Также предлагает разнообразные типы конусов и соответствующих им кратеров. Здесь все еще наблюдается вулканическая активность, с точками нагрева на поверхности, достигающими от 100ºC до 120ºC и на глубине от 600 до ${{ c }}${{ d }} метров. Наличие побережья является одной из особенностей, отличающих Тиманфайю от остальных национальных парков Канарских островов. Вся западная граница парка представляет собой береговую линию, находящуюся в очень хорошем состоянии.',
+              // eslint-disable-next-line no-template-curly-in-string
+              zh: '它拥有超过${{ a }}${{ b }}座火山，其中一些是标志性的，如火山山、拉哈达山或科拉松西洛火山口。在蒂曼法亚，可以观察到火山的排列，遵循深部裂缝的方向，岩浆通过这些裂缝上升。它还提供了各种各样的火山锥及其相应的火山口。这里仍然存在火山活动，表面的热点温度在100ºC到120ºC之间，深度在600到${{ c }}${{ d }}米之间。海岸的存在是蒂曼法亚与其他加那利群岛国家公园不同的元素之一。公园的整个西部边界是保存状况非常好的海岸线。'
+            },
+            expected: [{ a: '2' }, { b: '5' }, { c: '1' }, { d: '3' }],
+            fromUser: []
+          },
+          statement: {
+            ar: 'يبدو أن المخرج أخذ ملاحظات في هذه المناسبة ولم يفوته تقريبًا أي بيانات مهمة. دعونا نساعده في البيانات المفقودة حتى لا يفقد عقله تمامًا:',
+            ca: 'Sembla que en aquesta ocasió el director va prendre apunts i gairebé no li falten dades importants. Anem a ajudar-lo amb les dades que li falten perquè no es torni boig del tot:',
+            de: 'Es scheint, dass der Direktor dieses Mal Notizen gemacht hat und ihm fast keine wichtigen Daten fehlen. Helfen wir ihm mit den fehlenden Daten, damit er nicht völlig verrückt wird:',
+            en: 'It seems that this time the director took notes and almost did not miss any important data. Let\'s help him with the missing data so he doesn\'t go completely crazy:',
+            es: 'Parece que en esta ocasión el director cogió apuntes y casi no le faltan datos importantes. Vamos a ayudarle con los datos que le faltan para que no se chifle del todo:',
+            eu: 'Dirudienez, zuzendariak ohar batzuk hartu zituen oraingoan eta ia ez zaio datu garrantzitsurik falta. Lagunduko diogu falta zaizkion datuekin, erabat txoratuta gera ez dadin:',
+            fr: 'Il semble que cette fois-ci, le directeur a pris des notes et n\'a presque pas manqué de données importantes. Aidons-le avec les données manquantes pour qu\'il ne devienne pas complètement fou:',
+            gl: 'Parece que nesta ocasión o director tomou apuntamentos e case non lle faltan datos importantes. Imos axudarlle cos datos que lle faltan para que non se volva tolo de todo:',
+            it: 'Sembra che questa volta il direttore abbia preso appunti e quasi non gli mancano dati importanti. Aiutiamolo con i dati mancanti in modo che non impazzisca del tutto:',
+            ja: '今回はディレクターがメモを取り、重要なデータをほとんど見逃していないようです。完全に混乱しないように、彼に不足しているデータを提供しましょう：',
+            pt: 'Parece que desta vez o diretor fez anotações e quase não perdeu dados importantes. Vamos ajudá-lo com os dados que faltam para que ele não enlouqueça completamente:',
+            ro: 'Se pare că de data aceasta directorul a luat notițe și aproape că nu i-au lipsit date importante. Să-l ajutăm cu datele lipsă ca să nu-și piardă complet mințile:',
+            ru: 'Кажется, на этот раз директор сделал заметки и почти не пропустил важные данные. Давайте поможем ему с недостающими данными, чтобы он совсем не сошел с ума:',
+            zh: '看来这次导演记了笔记，几乎没有遗漏任何重要数据。让我们帮助他补全缺失的数据，以免他完全失去理智：'
+          },
+          sections: [
+            {
+              sectionId: 'a',
+              statement: '3 (x − 2) − 5 = 1 − 2 (x + 1)',
+              solution: {
+                expected: 2,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'b',
+              statement: '3 (2 - x) + 4 = 5 - (3x - 10) - x',
+              solution: {
+                expected: 5,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'c',
+              statement: '8 - (-2x + 5) = 4x + 1',
+              solution: {
+                expected: 1,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }, {
+              sectionId: 'd',
+              statement: '3 (x - 3) = -6 + 2x',
+              solution: {
+                expected: 3,
+                fromUser: undefined,
+                fromUserBySteps: undefined
+              }
+            }
+          ]
+        }
+      ]
     }]
   }],
   backgroundImage: '/img/background.png',
@@ -2358,16 +2740,19 @@ export const mutations = {
   setExerciseSolutionFromUser(state, { activityId, challengeId, exerciseId, solution }) {
     // eslint-disable-next-line eqeqeq
     const activity = state.activities.find((a) => a.activityId == activityId)
+    console.log("🚀 ~ setExerciseSolutionFromUser ~ activity:", activity)
 
     if (activity) {
       // eslint-disable-next-line eqeqeq
       const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
+      console.log("🚀 ~ setExerciseSolutionFromUser ~ challenge:", challenge)
 
       if (challenge) {
         // eslint-disable-next-line eqeqeq
         const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
 
         if (exercise && exercise.solution) {
+          console.log("🚀 ~ setExerciseSolutionFromUser ~ exercise:", exercise)
           set(exercise.solution, 'fromUser', solution)
         }
       }
