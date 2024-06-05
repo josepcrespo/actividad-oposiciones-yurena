@@ -1,46 +1,60 @@
 <i18n lang="yaml">
-es:
-  activity: "Actividad"
-  start: "Inicio"
-ca:
-  activity: "Activitat"
-  start: "Inici"
-en:
-  activity: "Activity"
-  start: "Start"
-de:
-  activity: "Aktivität"
-  start: "Start"
-ru:
-  activity: "Активность"
-  start: "Начать"
-fr:
-  activity: "Activité"
-  start: "Démarrer"
-it:
-  activity: "Attività"
-  start: "Inizia"
-eu:
-  activity: "Ekintza"
-  start: "Hasieratu"
-gl:
-  activity: "Actividade"
-  start: "Inicio"
-pt:
-  activity: "Atividade"
-  start: "Início"
-ar:
-  activity: "النشاط"
-  start: "ابدأ"
-zh:
-  activity: "活动"
-  start: "开始"
-ro:
-  activity: "Activitate"
-  start: "Începe"
-ja:
-  activity: "アクティビティ"
-  start: "始める"
+  ar:
+    activity: "النشاط"
+    challenge: "التحدي"
+    start: "ابدأ"
+  ca:
+    activity: "Activitat"
+    challenge: "Repte"
+    start: "Inici"
+  de:
+    activity: "Aktivität"
+    challenge: "Herausforderung"
+    start: "Start"
+  en:
+    activity: "Activity"
+    challenge: "Challenge"
+    start: "Start"
+  es:
+    activity: "Actividad"
+    challenge: "Reto"
+    start: "Inicio"
+  eu:
+    activity: "Ekintza"
+    challenge: "Erronka"
+    start: "Hasieratu"
+  fr:
+    activity: "Activité"
+    challenge: "Défi"
+    start: "Démarrer"
+  gl:
+    activity: "Actividade"
+    challenge: "Desafío"
+    start: "Inicio"
+  it:
+    activity: "Attività"
+    challenge: "Sfida"
+    start: "Inizia"
+  ja:
+    activity: "アクティビティ"
+    challenge: "チャレンジ"
+    start: "始める"
+  pt:
+    activity: "Atividade"
+    challenge: "Desafio"
+    start: "Início"
+  ro:
+    activity: "Activitate"
+    challenge: "Provocare"
+    start: "Începe"
+  ru:
+    activity: "Активность"
+    challenge: "Вызов"
+    start: "Начать"
+  zh:
+    activity: "活动"
+    challenge: "挑战"
+    start: "开始"
 </i18n>
 
 <template>
@@ -57,7 +71,7 @@ ja:
         router
         exact
       >
-        <v-list-item-action class="mr-4">
+        <v-list-item-action class="mr-8">
           <v-icon>
             mdi-apps
           </v-icon>
@@ -68,31 +82,43 @@ ja:
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item
-        v-for="(activityId, index) in activityIds"
-        :key="index"
-        :to="getListItemUrl(activityId)"
-        router
-        exact
+      <v-list-group
+        v-for="(activityId, activityIndex) in activityIds"
+        :key="activityIndex"
+        prepend-icon="mdi-text-box-edit-outline"
+        :value="true"
+        :color="$vuetify.theme.dark ? 'white' : 'black'"
       >
-        <v-list-item-action class="mr-4">
-          <v-icon>
-            mdi-text-box-edit-outline
-          </v-icon>
-        </v-list-item-action>
-        <v-list-item-content>
+        <template #activator>
           <v-list-item-title>
             {{ $t('activity') }} {{ activityId }}
           </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        </template>
+        <v-list-item
+          v-for="(challengeId, challengeIndex) in getChallengeIds(activityId)"
+          :key="challengeIndex"
+          :to="getListItemUrl(activityId, challengeId)"
+          router
+          exact
+        >
+          <v-list-item-action class="mr-8">
+            <v-icon>
+              mdi-circle-small
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ $t('challenge') }} {{ challengeId }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-group>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
 export default {
-  name: 'YrnNavigationDrawerLeft',
   data() {
     return {
       clipped: true
@@ -118,11 +144,14 @@ export default {
     }
   },
   methods: {
-    getListItemUrl(activityId) {
+    getChallengeIds(activityId) {
+      return this.$store?.getters['learningUnit/getChallengeIds'](activityId)
+    },
+    getListItemUrl(activityId, challengeId = 1) {
       return this.$store?.getters?.getLocaleActivityChallengeUrl(
         this.$i18n,
         activityId,
-        1
+        challengeId
       )
     }
   }
