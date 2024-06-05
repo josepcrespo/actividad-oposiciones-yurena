@@ -2,7 +2,7 @@
   <v-img
     class="yrn-image-simple"
     :alt="localizedAlt"
-    contain
+    :contain="contain"
     :max-height="maxHeight"
     :src="src"
   >
@@ -29,6 +29,11 @@ export default {
       default: () => null,
       required: false,
       type: Object
+    },
+    contain: {
+      default: false,
+      required: false,
+      type: Boolean
     },
     maxHeight: {
       default: undefined,
