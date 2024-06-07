@@ -2224,7 +2224,8 @@ export const state = () => ({
           exerciseId: 4
         }, {
           type: 'yrn-exercise-solution-otp',
-          exerciseId: 4
+          exerciseId: 4,
+          otpInput: false
         }
       ],
       exercises: [
@@ -2382,7 +2383,7 @@ export const state = () => ({
               ru: 'Напишите здесь общее количество людей, посетивших национальный парк Тиманфайя, включая директора:',
               zh: '请在这里写下参观蒂曼法亚国家公园的总人数，包括主任：'
             },
-            expected: '32',
+            expected: '6',
             fromUser: ''
           },
           statement: {
