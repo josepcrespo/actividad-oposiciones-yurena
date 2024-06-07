@@ -1,3 +1,48 @@
+<i18n lang="yaml">
+  ar:
+    required: 'اكتب الحل هنا.'
+    invalidSolution: 'الحل غير صحيح.'
+  ca:
+    required: 'Escriu aquí la solució.'
+    invalidSolution: 'La solució no és correcta.'
+  de:
+    required: 'Schreibe hier die Lösung.'
+    invalidSolution: 'Die Lösung ist nicht korrekt.'
+  en:
+    required: 'Write the solution here.'
+    invalidSolution: 'The solution is not correct.'
+  es:
+    required: 'Escribe aquí la solución.'
+    invalidSolution: 'La solución no es correcta.'
+  eu:
+    required: 'Idatzi hemen irtenbidea.'
+    invalidSolution: 'Irtenbidea ez da zuzena.'
+  fr:
+    required: 'Écrivez la solution ici.'
+    invalidSolution: "La solution n'est pas correcte."
+  gl:
+    required: 'Escribe aquí a solución.'
+    invalidSolution: 'A solución non é correcta.'
+  it:
+    required: 'Scrivi qui la soluzione.'
+    invalidSolution: 'La soluzione non è corretta.'
+  ja:
+    required: 'ここに解答を書いてください。'
+    invalidSolution: '解答が正しくありません。'
+  pt:
+    required: 'Escreva a solução aqui.'
+    invalidSolution: 'A solução não está correta.'
+  ro:
+    required: 'Scrieți soluția aici.'
+    invalidSolution: 'Soluția nu este corectă.'
+  ru:
+    required: 'Напишите решение здесь.'
+    invalidSolution: 'Решение неверное.'
+  zh:
+    required: '在此处填写解决方案。'
+    invalidSolution: '解决方案不正确。'
+</i18n>
+
 <template>
   <v-row class="yrn-exercise-solution-otp">
     <v-col>
@@ -5,12 +50,22 @@
         {{ exerciseSolutionStatement }}
       </h2>
       <v-otp-input
+        v-if="otpInput"
         v-model="model"
         :length="exerciseSolutionExpected.length"
         :disabled="loading"
         :type="type"
         @finish="onFinish"
       />
+      <v-form v-else>
+        <v-text-field
+        v-model="model"
+        :disabled="loading"
+        :rules="[rules.required, rules.validSolution]"
+        outlined
+        @change="onFinish(model)"
+        />
+      </v-form>
     </v-col>
   </v-row>
 </template>
@@ -30,6 +85,11 @@ export default {
     exerciseId: {
       required: true,
       type: [Number, String]
+    },
+    otpInput: {
+      default: true,
+      required: false,
+      type: Boolean
     }
   },
   data() {
@@ -37,7 +97,13 @@ export default {
       loading: false,
       model: '',
       simulatedTimeout: 1500,
-      type: 'text'
+      type: 'text',
+      rules: {
+        required: (value) => !!value || this.$t('required'),
+        validSolution: value => {
+          return value === this.exerciseSolutionExpected || this.$t('invalidSolution')
+        }
+      }
     }
   },
   computed: {
@@ -58,7 +124,9 @@ export default {
     }
   },
   mounted() {
-    this.model = this.exerciseSolutionMask
+    if (this.exerciseSolutionMask) {
+      this.model = this.exerciseSolutionMask
+    }
   },
   methods: {
     getExercise(activityId, challengeId, exerciseId) {
@@ -68,7 +136,7 @@ export default {
         exerciseId
       )
     },
-    onFinish(response) {
+    onFinish(response = this.model) {
       this.loading = true
       this.$store?.commit('setPageLoadingOverlay', true)
       this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
@@ -80,7 +148,7 @@ export default {
       setTimeout(() => {
         const i18n = this.$i18n
         // Ensure case-insensitive validation, comparing both values in lowercase.
-        const success = response.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
+        const success = this.validateSolution(response)
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
@@ -108,6 +176,13 @@ export default {
           }, this.simulatedTimeout)
         }
       }, this.simulatedTimeout)
+    },
+    validateSolution(userSolution) {
+      if(this.otpInput) {
+        return userSolution.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
+      } else {
+        return userSolution === this.exerciseSolutionExpected
+      }
     }
   }
 }
