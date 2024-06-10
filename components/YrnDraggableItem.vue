@@ -128,6 +128,10 @@ export default {
     transition-duration: 0.28s;
     transition-property: box-shadow, opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      cursor: grab;
+    }
   }
   
   .v-chip {
