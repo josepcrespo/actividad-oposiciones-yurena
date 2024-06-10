@@ -163,7 +163,7 @@ export default {
                 }
                 exercisesArray.push(exerciseItem)
                 // eslint-disable-next-line eqeqeq
-                if (exercise.solution?.expected == exercise.solution?.fromUser) {
+                if (this.isExerciseSolved(activity, challenge, exercise)) {
                   activeItems.push(exerciseTreeviewId)
                 }
               })
@@ -177,6 +177,15 @@ export default {
       })
 
       return { items, activeItems }
+    }
+  },
+  methods: {
+    isExerciseSolved(activity, challenge, exercise) {
+      return this.$store?.getters?.['learningUnit/isExerciseSolved'](
+        activity.activityId,
+        challenge.challengeId,
+        exercise.exerciseId
+      )
     }
   }
 }
