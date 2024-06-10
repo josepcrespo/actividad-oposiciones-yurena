@@ -29,7 +29,7 @@
           <v-chip
             v-for="(element, index1) in list1"
             :key="getVForKey(index1)"
-            class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
+            class="yrn-drag-and-drop-with-two-lists__list-group-item mb-1 py-5 rounded-xxl d-flex"
           >
             <v-icon
               v-if="element.icon"
@@ -74,7 +74,7 @@
             <v-chip
               v-for="(element, index2) in list2"
               :key="getVForKey(index2)"
-              class="yrn-drag-and-drop-with-two-lists__list-group-item my-2 py-6 rounded-xxl d-flex"
+              class="yrn-drag-and-drop-with-two-lists__list-group-item mb-1 py-5 rounded-xxl d-flex"
             >
               <v-icon
                 v-if="element.icon"
@@ -135,9 +135,14 @@ export default {
       required: true,
       type: Object
     },
-    items: {
+    listOne: {
       required: true,
       type: Array
+    },
+    listTwo: {
+      default: () =>[],
+      required: false,
+      type: Array,
     },
     visibleProperty: {
       default: 'name',
@@ -168,7 +173,8 @@ export default {
     window.removeEventListener('resize', this.updateComponentWidth)
   },
   created() {
-    this.list1 = this.items
+    this.list1 = this.listOne
+    this.list2 = this.listTwo
   },
   methods: {
     getElementVisibleProperty(element) {
