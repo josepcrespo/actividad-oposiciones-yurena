@@ -76,7 +76,7 @@
   <!-- https://www.w3schools.com/vue/ref_transition.php -->
   <transition name="vue-transition-fade">
     <v-row
-      v-if="exerciseSections.length === exerciseSectionsWellSolved.length"
+      v-if="showComponent"
       class="yrn-custom-drag-and-drop rounded-lg mt-4 mx-0"
     >
       <v-col class="yrn-custom-drag-and-drop__title-and-settings d-flex align-center">
@@ -205,6 +205,10 @@ export default {
       required: true,
       type: [Number, String]
     },
+    showIfExerciseId: {
+      required: true,
+      type: [Number, String]
+    },
     scrollToElement: {
       default: '',
       required: false,
@@ -219,6 +223,13 @@ export default {
     }
   },
   computed: {
+    showIfExercise() {
+      return this.$store?.getters['learningUnit/getExercise'](
+        this.activityId,
+        this.challengeId,
+        this.showIfExerciseId
+      )
+    },
     exercise() {
       return this.$store?.getters['learningUnit/getExercise'](
         this.activityId,
@@ -227,20 +238,23 @@ export default {
       )
     },
     exerciseSolutionStatement() {
-      return this.exercise?.solution?.statement?.[this.$i18n.locale]
+      return this.exercise?.statement?.[this.$i18n.locale]
     },
-    exerciseSections() {
+    showIfExerciseSections() {
       return this.exercise?.sections ?? []
     },
-    exerciseSectionsWellSolved() {
+    showIfExerciseSectionsWellSolved() {
       return this.getExerciseSectionsWellSolved(
         this.activityId,
         this.challengeId,
-        this.exerciseId
+        this.showIfExerciseId
       )
     },
     reShuffledItemsWithUuids() {
       return this.idsWithUuid(this.$shuffleArray(this.items))
+    },
+    showComponent() {
+      return this.showIfExerciseSections.length === this.showIfExerciseSectionsWellSolved.length
     }
   },
   created() {
@@ -249,7 +263,7 @@ export default {
         this.activityId,
         this.challengeId,
         this.exerciseId
-      )?.solution?.items ?? []
+      )?.items ?? []
     )
   },
   methods: {
@@ -287,7 +301,7 @@ export default {
         if (this.pairCollectionStatus !== undefined) {
           this.pairCollectionStatus = undefined
         }
-      }, 2000)
+      }, 3000)
     },
     dispatchNotification() {
       const memojiName = this.pairCollectionStatus
