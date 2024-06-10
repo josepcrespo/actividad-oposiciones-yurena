@@ -180,7 +180,7 @@
         <v-col
           xl="4"
           lg="4"
-          md="4"
+          md="5"
           sm="12"
           xs="12"
           cols="12"
@@ -192,7 +192,8 @@
             ref="dragAndDropComponent"
             :draggable-items-title="draggableItemsTitle"
             :drop-area-title="dropAreaTitle"
-            :items="gameUIButtons"
+            :list-one="gameUIButtons"
+            :list-two="listTwo"
             visible-property="title"
           >
             <template #bottom>
@@ -247,7 +248,7 @@
         <v-col
           xl="8"
           lg="8"
-          md="8"
+          md="7"
           sm="12"
           xs="12"
           cols="12"
@@ -274,6 +275,10 @@ export default {
       type: [Number, String]
     },
     exerciseId: {
+      required: true,
+      type: [Number, String]
+    },
+    showIfExerciseId: {
       required: true,
       type: [Number, String]
     },
@@ -432,8 +437,20 @@ export default {
         this.exerciseId
       )?.solution ?? {}
     },
+    listTwo() {
+      return this.exerciseSolution.isValid
+        ? this.exerciseSolution.expected
+        : []
+    },
+    showIfExerciseSolution() {
+      return this.$store?.getters['learningUnit/getExercise'](
+        this.activityId,
+        this.challengeId,
+        this.showIfExerciseId
+      )?.solution ?? {}
+    },
     showComponent() {
-      return this.exerciseSolution?.isValid ?? false
+      return this.showIfExerciseSolution?.isValid ?? false
     }
   },
   created() {
@@ -1269,11 +1286,11 @@ export default {
         this.gameDone = true
         scene.time.delayedCall(2000, () => {
           this.fillPhaserCarBatteryIndicator(scene)
-          this.$store?.commit('learningUnit/setExerciseGameIsSolved', {
+          this.$store?.commit('learningUnit/setExerciseSolutionIsValid', {
             activityId: this.activityId,
             challengeId: this.challengeId,
             exerciseId: this.exerciseId,
-            gameIsSolved: true
+            isValid: true
           })
           this.$store?.dispatch('snackbarNotification/show', {
             i18n: this.$i18n,
@@ -1285,11 +1302,11 @@ export default {
         this.makePhaserElementBlink(this.car, 10, scene, () => {
           this.resetGame()
         })
-        this.$store?.commit('learningUnit/setExerciseGameIsSolved', {
+        this.$store?.commit('learningUnit/setExerciseSolutionIsValid', {
           activityId: this.activityId,
           challengeId: this.challengeId,
           exerciseId: this.exerciseId,
-          gameIsSolved: false
+          isValid: false
         })
         this.$store?.dispatch('snackbarNotification/show', {
           i18n: this.$i18n,
