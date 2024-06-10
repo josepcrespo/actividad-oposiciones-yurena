@@ -81,7 +81,7 @@ export default {
   layout(context) {
     return context?.$vuetify?.breakpoint?.xs ? 'default-mobile' : 'default'
   },
-  // middleware: 'activity-challenge', TODO: temporally disabled for rapid development.
+  // middleware: 'activity-challenge', // Comment this line for rapid development.
   async asyncData({ params, store }) {
     const { activityId, challengeId } = params
     // This line adds translations for all app static URL slugs.
