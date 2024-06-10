@@ -92,9 +92,13 @@ export default {
       required: true,
       type: [Number, String]
     },
-    exerciseId: {
+    showIfExerciseId: {
       required: true,
       type: [Number, String]
+    },
+    cards: {
+      required: true,
+      type: Array
     },
     maxMemojiWidth: {
       default: '66%',
@@ -119,18 +123,15 @@ export default {
     }
   },
   computed: {
-    cards() {
-      return this.exerciseSolution?.items ?? []
-    },
-    exerciseSolution() {
+    showIfExerciseSolution() {
       return this.$store?.getters['learningUnit/getExercise'](
         this.activityId,
         this.challengeId,
-        this.exerciseId
+        this.showIfExerciseId
       )?.solution ?? {}
     },
     showComponent() {
-      return this.exerciseSolution?.isValid ?? false
+      return this.showIfExerciseSolution?.isValid ?? false
     }
   },
   methods: {
