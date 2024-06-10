@@ -112,6 +112,14 @@ export default {
         ?? this.section?.statement
     }
   },
+  mounted() {
+    const solutionFromUser = this.section.solution?.fromUser?.trim().replace(/\s+/g, ' ')
+    // eslint-disable-next-line eqeqeq
+    if (solutionFromUser == this.section.solution?.expected) {
+      this.$set(this.solution, 'user', this.section.solution.fromUser)
+      this.$set(this.solution, 'bySteps', this.section.solution.fromUserBySteps)
+    }
+  },
   methods: {
     handleTextFieldInput(value) {
       // Si quisiéramos guardar solo cuando el resultado es válido:
