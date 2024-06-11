@@ -25,6 +25,61 @@ export default ({ app }, inject) => {
   })
 
   /**
+   * Downloads a markdown file.
+   */
+  inject('downloadMarkdown', (filename, markdownContent) => {
+    // Crear un Blob con el contenido markdown
+    const blob = new Blob([markdownContent], { type: 'text/markdown' })
+
+    // Crear un enlace de descarga
+    const url = window?.URL?.createObjectURL(blob)
+    const link = window?.document?.createElement('a')
+    link.href = url
+    link.download = filename
+
+    // Añadir el enlace al documento y hacer clic en él
+    window?.document?.body?.appendChild(link)
+    link.click()
+
+    // Limpiar el DOM y liberar el objeto URL
+    window?.document?.body?.removeChild(link)
+    window?.URL?.revokeObjectURL(url)
+  })
+
+  /**
+   * Get exercise solutions from user, as markdown.
+   */
+  inject('getExerciseSectionsAsMarkdown', (activityId, challengeId, exerciseId) => {
+    let markdownContent =
+      `# Actividad ${activityId} / ` +
+      `Reto ${challengeId} / ` +
+      `Ejercicio ${exerciseId}
+` // NO TOCAR LA TABULACIÓN.
+    
+    app.store?.getters['learningUnit/getExercise'](
+      activityId,
+      challengeId,
+      exerciseId
+    )?.sections?.forEach(section => {
+      /**
+       * Mantener la tabulación actual en la construcción del string literal,
+       * es necesario para obtener un markdown válido.
+       * 
+       * NO TOCAR LA TABULACIÓN.
+       */
+      markdownContent += 
+      `## ${section.sectionId}) ${section.statement}
+- Desarrollo:
+> ${app.$getCompatibleMdLineBreaks(section.solution.fromUserBySteps, '> ')}
+- Solución:
+> x = ${section.solution.fromUser}
+`
+    })
+
+    return markdownContent
+  })
+
+  /**
    * Returns a random boolean.
    * 
    * @returns {boolean} The random boolean.
@@ -42,6 +97,18 @@ export default ({ app }, inject) => {
    */
   inject('getRandomInt', (min, max) => {
     return window?.Math?.floor(window?.Math?.random() * (max - min + 1)) + min
+  })
+
+  /**
+   * Replaces all line breaks ('\n') from the string parameter with two trailing whitespace ('  ').
+   * 
+   * @param {string} string - The string to replace line breaks from.
+   * @param {string} [appendToLineBreak=' '] - The string to append to each line break.
+   * @returns {string} The string with line breaks replaced.
+   */
+  inject('getCompatibleMdLineBreaks', (string, appendToLineBreak = '') => {
+    return string?.replace(/\n/g, `  
+` + appendToLineBreak)
   })
 
   /**
