@@ -1,46 +1,74 @@
 <i18n lang="yaml">
   ar:
     continueBtn: 'متابعة'
-    printChallengeBtn: 'طباعة التحدي'
+    exercise: 'تمرين'
+    printBtn: 'طباعة'
+    printBtnTooltip: 'قم بتنزيل التمارين التي تم حلها بشكل صحيح للمراجعة اللاحقة'
   ca:
     continueBtn: 'Continuar'
-    printChallengeBtn: 'Imprimir repte'
+    exercise: 'Exercici'
+    printBtn: 'Imprimir'
+    printBtnTooltip: 'Descarrega els exercicis que estiguin correctament resolts per a la seva posterior revisió'
   de:
     continueBtn: 'Fortsetzen'
-    printChallengeBtn: 'Herausforderung drucken'
+    exercise: 'Übung'
+    printBtn: 'Drucken'
+    printBtnTooltip: 'Laden Sie die korrekt gelösten Übungen für die spätere Überprüfung herunter'
   en:
     continueBtn: 'Continue'
-    printChallengeBtn: 'Print Challenge'
+    exercise: 'Exercise'
+    printBtn: 'Print'
+    printBtnTooltip: 'Download the correctly solved exercises for later review'
   es:
     continueBtn: 'Continuar'
-    printChallengeBtn: 'Imprimir reto'
+    exercise: 'Ejercicio'
+    printBtn: 'Imprimir'
+    printBtnTooltip: 'Descarga los ejercicios que estén correctamente resueltos para su posterior revisión'
   eu:
     continueBtn: 'Jarraitu'
-    printChallengeBtn: 'Erronka inprimatu'
+    exercise: 'Ariketa'
+    printBtn: 'Inprimatu'
+    printBtnTooltip: 'Eginak zuzen dauden ariketak deskargatu, ondorengo berrikuspenerako'
   fr:
     continueBtn: 'Continuer'
-    printChallengeBtn: 'Imprimer le défi'
+    exercise: 'Exercice'
+    printBtn: 'Imprimer'
+    printBtnTooltip: 'Téléchargez les exercices correctement résolus pour une révision ultérieure'
   gl:
     continueBtn: 'Continuar'
-    printChallengeBtn: 'Imprimir reto'
+    exercise: 'Exercicio'
+    printBtn: 'Imprimir'
+    printBtnTooltip: 'Descarga os exercicios que estean correctamente resoltos para a súa revisión posterior'
   it:
     continueBtn: 'Continua'
-    printChallengeBtn: 'Stampare la sfida'
+    exercise: 'Esercizio'
+    printBtn: 'Stampare'
+    printBtnTooltip: 'Scarica gli esercizi risolti correttamente per una successiva revisione'
   ja:
     continueBtn: '続行'
-    printChallengeBtn: 'チャレンジを印刷する'
+    exercise: 'エクササイズ'
+    printBtn: '印刷する'
+    printBtnTooltip: '後で確認するために正しく解決された演習をダウンロードしてください'
   pt:
     continueBtn: 'Continuar'
-    printChallengeBtn: 'Imprimir desafio'
+    exercise: 'Exercício'
+    printBtn: 'Imprimir'
+    printBtnTooltip: 'Baixe os exercícios resolvidos corretamente para revisão posterior'
   ro:
     continueBtn: 'Continuați'
-    printChallengeBtn: 'Imprimați provocarea'
+    exercise: 'Exercițiu'
+    printBtn: 'Imprimați'
+    printBtnTooltip: 'Descărcați exercițiile rezolvate corect pentru revizuirea ulterioară'
   ru:
     continueBtn: 'Продолжить'
-    printChallengeBtn: 'Печать вызова'
+    exercise: 'Упражнение'
+    printBtn: 'Печать'
+    printBtnTooltip: 'Скачайте правильно решенные упражнения для последующей проверки'
   zh:
     continueBtn: '继续'
-    printChallengeBtn: '打印挑战'
+    exercise: '练习'
+    printBtn: '打印'
+    printBtnTooltip: '下载正确解决的练习以供以后检查'
 </i18n>
 
 <template>
@@ -63,15 +91,50 @@
     >
       {{ $t('continueBtn') }}
     </v-btn>
-    <v-btn
-      v-if="continuePath !== $route.path"
-      class="my-10 mr-2"
-      :class="{ 'float-right': $i18n.locale !== 'ar' ? true : false }"
-      color="default"
-      :disabled="!isChallengeWellDone"
+    <v-menu
+      close-on-click
+      close-on-content-click
+      :disabled="challengeExercisesSolved.length === 0"
+      offset-y
+      top
     >
-      {{ $t('printChallengeBtn') }}
-    </v-btn>
+      <template #activator="{ on: menu, attrs }">
+        <v-tooltip
+          :left="$i18n.locale !== 'ar'"
+          :right="$i18n.locale === 'ar'"
+        >
+          <template #activator="{ on: tooltip }">
+            <v-btn
+              class="my-10 mr-2"
+              :class="{ 'float-right': $i18n.locale !== 'ar' ? true : false }"
+              color="default"
+              :disabled="challengeExercisesSolved.length === 0"
+              v-bind="attrs"
+              v-on="{ ...tooltip, ...menu }"
+            >
+              {{ $t('printBtn') }}
+            </v-btn>
+          </template>
+          <span>
+            {{ $t('printBtnTooltip') }}
+          </span>
+        </v-tooltip>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(exercise, index) in challengeExercisesSolved"
+          :key="index"
+          @click="$downloadMarkdown(
+            getMarkdownFilename(exercise.exerciseId),
+            $getExerciseSectionsAsMarkdown(activityId, challengeId, exercise.exerciseId)
+          )"
+        >
+          <v-list-item-title>
+            {{ $t('exercise') }} {{ exercise.exerciseId }}
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-container>
 </template>
 
@@ -88,6 +151,11 @@ export default {
     await store.dispatch('i18n/setRouteParams', store.state.routeParams)
     return await { activityId, challengeId }
   },
+  data() {
+    return {
+      showPrintMenu: false
+    }
+  },
   head() {
     return {
       titleTemplate: `%s - ${this.activityTranslation} ${this.activityId}, ` +
@@ -100,6 +168,12 @@ export default {
         this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity
       
       return translation.charAt(0).toUpperCase() + translation.slice(1)
+    },
+    challenge() {
+      return this.$store?.getters['learningUnit/getChallenge'](this.activityId, this.challengeId)
+    },
+    challengeExercisesSolved() {
+      return this.challenge?.exercises.filter(e => this.isExerciseSolved(e.exerciseId)) ?? []
     },
     challengeTranslation() {
       return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.challenge
@@ -151,6 +225,9 @@ export default {
     )
   },
   methods: {
+    getMarkdownFilename(exerciseId) {
+      return `situacion-de-aprendizaje--${this.activityId}.${this.challengeId}.${exerciseId}.md`
+    },
     getPageStructure(activityId, challengeId) {
       return this.$store
         ?.getters['learningUnit/getChallenge'](activityId, challengeId)
@@ -160,6 +237,13 @@ export default {
       this.handleWindowResize = this.$store.dispatch(
         'windowResize/initializeWindowResize',
         this
+      )
+    },
+    isExerciseSolved(exerciseId) {
+      return this.$store?.getters?.['learningUnit/isExerciseSolved'](
+        this.activityId,
+        this.challengeId,
+        exerciseId
       )
     }
   }
