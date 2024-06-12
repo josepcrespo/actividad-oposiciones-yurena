@@ -59,6 +59,7 @@ zh:
         </v-icon>
       </v-btn>
       <yrn-memoji
+        v-if="memojiName"
         class="yrn-snackbar-notification__memoji"
         height="128"
         :memoji-name="memojiName"
