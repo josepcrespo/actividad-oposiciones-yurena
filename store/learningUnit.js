@@ -150,8 +150,8 @@ export const state = () => ({
             ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
             zh: '使用方程式的解在此处写入秘钥：'
           },
-          expected: '1044-271/3222-420-1',
-          expectedMask: 'aabcddefffghhiijkll',
+          expected: '1044-271222-420-1',
+          expectedMask: 'aabcddefghhiijkkll',
           fromUser: ''
         },
         statement: {
@@ -214,7 +214,7 @@ export const state = () => ({
           sectionId: 'f',
           statement: '5x - 7 = 2 - 4x',
           solution: {
-            expected: '1/3',
+            expected: '1',
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -230,7 +230,7 @@ export const state = () => ({
           sectionId: 'h',
           statement: '3x + x + 4 = 2x + 30',
           solution: {
-            expected: 22,
+            expected: 13,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -238,7 +238,7 @@ export const state = () => ({
           sectionId: 'i',
           statement: '4x + 7 - x = 5 + 2x',
           solution: {
-            expected: -4,
+            expected: -2,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -246,7 +246,7 @@ export const state = () => ({
           sectionId: 'j',
           statement: '4 - 2x + 13 = 10 - 9x + 7',
           solution: {
-            expected: 2,
+            expected: 0,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -254,7 +254,7 @@ export const state = () => ({
           sectionId: 'k',
           statement: '7x - 10 + x - 2 = 6x - 3 + 3x - 1',
           solution: {
-            expected: 0,
+            expected: -8,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
@@ -262,7 +262,7 @@ export const state = () => ({
           sectionId: 'l',
           statement: '5x - 7 + 2x = 3x - 3 + 4x - 5 + x',
           solution: {
-            expected: -1,
+            expected: 1,
             fromUser: undefined,
             fromUserBySteps: undefined
           }
