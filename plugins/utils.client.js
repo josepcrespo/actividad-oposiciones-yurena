@@ -68,9 +68,13 @@ export default ({ app }, inject) => {
        * NO TOCAR LA TABULACIÓN.
        */
       markdownContent += 
-      `## ${section.sectionId}) ${section.statement}
+        `
+
+## ${section.sectionId}) ${section.statement}
+
 - Desarrollo:
 > ${app.$getCompatibleMdLineBreaks(section.solution.fromUserBySteps, '> ')}
+
 - Solución:
 > x = ${section.solution.fromUser}
 `
