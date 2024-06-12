@@ -188,7 +188,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'c',
-          statement: '8x – 5x = x + 8',
+          statement: '8x - 5x = x + 8',
           solution: {
             expected: 4,
             fromUser: undefined,
@@ -212,7 +212,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'f',
-          statement: '5x – 7 = 2 – 4x',
+          statement: '5x - 7 = 2 - 4x',
           solution: {
             expected: '1/3',
             fromUser: undefined,
@@ -220,7 +220,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'g',
-          statement: '5x – 8 + 2x = 7 + 4x – 9',
+          statement: '5x - 8 + 2x = 7 + 4x - 9',
           solution: {
             expected: 2,
             fromUser: undefined,
@@ -236,7 +236,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'i',
-          statement: '4x + 7 – x = 5 + 2x',
+          statement: '4x + 7 - x = 5 + 2x',
           solution: {
             expected: -4,
             fromUser: undefined,
@@ -244,7 +244,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'j',
-          statement: '4 – 2x + 13 = 10 – 9x + 7',
+          statement: '4 - 2x + 13 = 10 - 9x + 7',
           solution: {
             expected: 2,
             fromUser: undefined,
@@ -252,7 +252,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'k',
-          statement: '7x – 10 + x – 2 = 6x – 3 + 3x – 1',
+          statement: '7x - 10 + x - 2 = 6x - 3 + 3x - 1',
           solution: {
             expected: 0,
             fromUser: undefined,
@@ -260,7 +260,7 @@ export const state = () => ({
           }
         }, {
           sectionId: 'l',
-          statement: '5x – 7 + 2x = 3x – 3 + 4x – 5 + x',
+          statement: '5x - 7 + 2x = 3x - 3 + 4x - 5 + x',
           solution: {
             expected: -1,
             fromUser: undefined,
