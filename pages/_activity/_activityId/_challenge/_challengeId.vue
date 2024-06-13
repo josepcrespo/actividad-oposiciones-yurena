@@ -82,7 +82,7 @@
       :challenge-id="challengeId"
     />
     <v-btn
-      v-if="continuePath !== $route.path"
+      v-if="showContinueBtn"
       class="my-10"
       :class="{ 'float-right': $i18n.locale !== 'ar' ? true : false }"
       color="primary"
@@ -144,7 +144,7 @@ export default {
   layout(context) {
     return context?.$vuetify?.breakpoint?.xs ? 'default-mobile' : 'default'
   },
-  // middleware: 'activity-challenge', // Comment this line for rapid development.
+  middleware: 'activity-challenge', // Comment this line for rapid development.
   async asyncData({ params, store }) {
     const { activityId, challengeId } = params
     // This line adds translations for all app static URL slugs.
@@ -211,8 +211,21 @@ export default {
         this.challengeId
       )
     },
+    isLastTypeExerciseSolutionOtp() {
+      if (!Array.isArray(this.pageStructure)) {
+        return false
+      }
+
+      const lastObject = this.pageStructure[this.pageStructure.length - 1]
+
+      return lastObject?.type === 'yrn-exercise-solution-otp'
+    },
     pageStructure() {
       return this.getPageStructure(this.activityId, this.challengeId)
+    },
+    showContinueBtn() {
+      return this.continuePath !== this.$route.path &&
+        this.isLastTypeExerciseSolutionOtp === false
     }
   },
   beforeMount() {
