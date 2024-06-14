@@ -70,11 +70,17 @@ export default ({ app }, inject) => {
 - Solución:
 > ${exercise.solution.fromUser}
 `
+    } else if (exercise?.solution?.isValid) {
+      exercise?.solution?.fromUser?.forEach((solution) => {
+        markdownContent += `
+        
+- Pareja:
+> ${solution.images?.[0]?.scientificName} - ${solution.images?.[0]?.name?.es}  
+> ${solution.images?.[0]?.image}  
+`
+      })
     } else if (exercise?.sections?.length) {
-      
-      const sections = exercise?.sections
-      
-      sections?.forEach(section => {
+      exercise?.sections?.forEach(section => {
         /**
          * Mantener la tabulación actual en la construcción del string literal,
          * es necesario para obtener un markdown válido.
