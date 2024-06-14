@@ -241,7 +241,7 @@ export default {
       return this.exercise?.statement?.[this.$i18n.locale]
     },
     showIfExerciseSections() {
-      return this.exercise?.sections ?? []
+      return this.showIfExercise?.sections ?? []
     },
     showIfExerciseSectionsWellSolved() {
       return this.getExerciseSectionsWellSolved(
