@@ -50,6 +50,20 @@ export default ({ app }, inject) => {
    * Get exercise solutions from user, as markdown.
    */
   inject('getExerciseSolutionAsMarkdown', (activityId, challengeId, exerciseId) => {
+    const iconToEmoji = (carDirection) => {
+      switch (carDirection) {
+        case 'mdi-arrow-up':
+          return '⬆️'
+        case 'mdi-arrow-right-top':
+          return '➡️'
+        case 'mdi-arrow-down':
+          return '⬇️'
+        case 'mdi-arrow-left-top':
+          return '⬅️'
+        default:
+          return ''
+      }
+    }
     const exercise = app.store?.getters['learningUnit/getExercise'](
       activityId,
       challengeId,
@@ -70,7 +84,10 @@ export default ({ app }, inject) => {
 - Solución:
 > ${exercise.solution.fromUser}
 `
-    } else if (exercise?.solution?.isValid) {
+    } else if (
+      exercise?.solution?.isValid &&
+      exercise?.solution?.fromUser !== undefined
+    ) {
       exercise?.solution?.fromUser?.forEach((solution) => {
         markdownContent += `
         
@@ -78,6 +95,14 @@ export default ({ app }, inject) => {
 > ${solution.images?.[0]?.scientificName} - ${solution.images?.[0]?.name?.es}  
 > ${solution.images?.[0]?.image}  
 `
+      })
+    } else if (exercise?.solution?.isValid) {
+      markdownContent += `
+- Movimientos:  
+`
+      exercise?.solution?.expected?.forEach((solution) => {
+        markdownContent += `
+> ${iconToEmoji(solution.icon)} ${solution.title?.es}  `
       })
     } else if (exercise?.sections?.length) {
       exercise?.sections?.forEach(section => {
