@@ -126,7 +126,7 @@
           :key="index"
           @click="$downloadMarkdown(
             getMarkdownFilename(exercise.exerciseId),
-            $getExerciseSectionsAsMarkdown(activityId, challengeId, exercise.exerciseId)
+            $getExerciseSolutionAsMarkdown(activityId, challengeId, exercise.exerciseId)
           )"
         >
           <v-list-item-title>

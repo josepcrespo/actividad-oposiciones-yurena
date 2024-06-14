@@ -49,26 +49,40 @@ export default ({ app }, inject) => {
   /**
    * Get exercise solutions from user, as markdown.
    */
-  inject('getExerciseSectionsAsMarkdown', (activityId, challengeId, exerciseId) => {
+  inject('getExerciseSolutionAsMarkdown', (activityId, challengeId, exerciseId) => {
+    const exercise = app.store?.getters['learningUnit/getExercise'](
+      activityId,
+      challengeId,
+      exerciseId
+    )
+    
+    if (!exercise) return
+
     let markdownContent =
       `# Actividad ${activityId} / ` +
       `Reto ${challengeId} / ` +
       `Ejercicio ${exerciseId}
 ` // NO TOCAR LA TABULACIÓN.
     
-    app.store?.getters['learningUnit/getExercise'](
-      activityId,
-      challengeId,
-      exerciseId
-    )?.sections?.forEach(section => {
-      /**
-       * Mantener la tabulación actual en la construcción del string literal,
-       * es necesario para obtener un markdown válido.
-       * 
-       * NO TOCAR LA TABULACIÓN.
-       */
-      markdownContent += 
-        `
+    if (exercise?.solution?.fromUser === exercise?.solution?.expected) {
+      markdownContent += `
+
+- Solución:
+> ${exercise.solution.fromUser}
+`
+    } else if (exercise?.sections?.length) {
+      
+      const sections = exercise?.sections
+      
+      sections?.forEach(section => {
+        /**
+         * Mantener la tabulación actual en la construcción del string literal,
+         * es necesario para obtener un markdown válido.
+         * 
+         * NO TOCAR LA TABULACIÓN.
+         */
+        markdownContent +=
+          `
 
 ## ${section.sectionId}) ${section.statement}
 
@@ -78,7 +92,8 @@ export default ({ app }, inject) => {
 - Solución:
 > x = ${section.solution.fromUser}
 `
-    })
+      })
+    }
 
     return markdownContent
   })
