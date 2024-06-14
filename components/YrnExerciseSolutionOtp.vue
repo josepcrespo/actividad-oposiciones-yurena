@@ -113,6 +113,9 @@ export default {
     exerciseSolutionExpected() {
       return this.exercise?.solution?.expected
     },
+    exerciseSolutionFromUser() {
+      return this.exercise?.solution?.expected
+    },
     exerciseSolutionMask() {
       return this.exercise?.solution?.expectedMask
     },
@@ -126,6 +129,8 @@ export default {
   mounted() {
     if (this.exerciseSolutionMask) {
       this.model = this.exerciseSolutionMask
+    } else if (this.exerciseSolutionExpected === this.exerciseSolutionFromUser) {
+      this.model = this.exerciseSolutionExpected
     }
   },
   methods: {
@@ -136,7 +141,8 @@ export default {
         exerciseId
       )
     },
-    onFinish(response = this.model) {
+    onFinish(response) {
+      response = response || this.model
       this.loading = true
       this.$store?.commit('setPageLoadingOverlay', true)
       this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
