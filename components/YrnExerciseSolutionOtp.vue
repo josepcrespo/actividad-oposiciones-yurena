@@ -3,7 +3,7 @@
     required: 'اكتب الحل هنا.'
     invalidSolution: 'الحل غير صحيح.'
   ca:
-    required: 'Escriu aquí la solució.'
+    required: 'Escriu ací la solució.'
     invalidSolution: 'La solució no és correcta.'
   de:
     required: 'Schreibe hier die Lösung.'
@@ -63,7 +63,7 @@
         :disabled="loading"
         :rules="[rules.required, rules.validSolution]"
         outlined
-        @change="onFinish(model)"
+        @input="onFinish(model)"
         />
       </v-form>
     </v-col>
@@ -100,7 +100,7 @@ export default {
       type: 'text',
       rules: {
         required: (value) => !!value || this.$t('required'),
-        validSolution: value => {
+        validSolution: (value) => {
           return value === this.exerciseSolutionExpected || this.$t('invalidSolution')
         }
       }
@@ -114,7 +114,7 @@ export default {
       return this.exercise?.solution?.expected
     },
     exerciseSolutionFromUser() {
-      return this.exercise?.solution?.expected
+      return this.exercise?.solution?.fromUser
     },
     exerciseSolutionMask() {
       return this.exercise?.solution?.expectedMask
