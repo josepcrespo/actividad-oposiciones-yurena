@@ -2186,7 +2186,7 @@ export const state = () => ({
               zh: '输入正确的密钥，您将知道导演在哪里，然后可以继续下一个挑战。'
             },
             expected: 'LANZAROTE',
-            expectedMask: 'abcdefghi',
+            expectedMask: 'aecdefghi',
             fromUser: ''
           },
           statement: {
@@ -3315,6 +3315,12 @@ export const getters = {
     ) {
       return exercise.solution.isValid
     } else if (
+      exercise.solution !== undefined &&
+      typeof exercise.solution.expected === 'string'
+    ) {
+      // eslint-disable-next-line eqeqeq
+      return exercise.solution?.expected == exercise.solution?.fromUser
+    } else if (
       exercise.sections !== undefined &&
       window?.Array.isArray(exercise.sections) &&
       exercise.solution !== undefined &&
@@ -3331,12 +3337,6 @@ export const getters = {
     ) {
       return exercise.sections.length ===
         getters.getExerciseSectionsWellSolved(activityId, challengeId, exerciseId)?.length
-    } else if (
-      exercise.solution !== undefined &&
-      typeof exercise.solution.expected === 'string'
-    ) {
-      // eslint-disable-next-line eqeqeq
-      return exercise.solution?.expected == exercise.solution?.fromUser
     } else {
       return false
     }
