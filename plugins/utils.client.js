@@ -69,7 +69,6 @@ export default ({ app }, inject) => {
       challengeId,
       exerciseId
     )
-    
     if (!exercise) return
 
     let markdownContent =
@@ -78,11 +77,15 @@ export default ({ app }, inject) => {
       `Ejercicio ${exerciseId}
 ` // NO TOCAR LA TABULACIÓN.
     
-    if (exercise?.solution?.fromUser === exercise?.solution?.expected) {
+    if (
+      exercise?.solution?.fromUser !== undefined &&
+      exercise?.solution?.textToFillGaps === undefined &&
+      exercise?.solution?.fromUser?.toLowerCase() === exercise?.solution?.expected?.toLowerCase()
+    ) {
       markdownContent += `
 
 - Solución:
-> ${exercise.solution.fromUser}
+> ${exercise.solution?.fromUser?.toUpperCase()}
 `
     } else if (
       exercise?.solution?.isValid &&
