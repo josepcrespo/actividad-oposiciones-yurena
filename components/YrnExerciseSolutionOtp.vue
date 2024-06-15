@@ -134,7 +134,7 @@ export default {
   mounted() {
     if (this.exerciseSolutionMask) {
       this.model = this.exerciseSolutionMask
-    } else if (this.exerciseSolutionExpected === this.exerciseSolutionFromUser) {
+    } else if (this.exerciseSolutionExpected.toLowerCase() === this.exerciseSolutionFromUser.toLowerCase()) {
       this.model = this.exerciseSolutionExpected
     }
   },
@@ -146,8 +146,8 @@ export default {
         exerciseId
       )
     },
-    onFinish(response) {
-      response = response || this.model
+    onFinish() {
+      // response = response || this.model
       this.loading = true
       this.$store?.commit('setPageLoadingOverlay', true)
       this.$store?.commit('learningUnit/setExerciseSolutionFromUser', {
@@ -159,7 +159,7 @@ export default {
       setTimeout(() => {
         const i18n = this.$i18n
         // Ensure case-insensitive validation, comparing both values in lowercase.
-        const success = this.validateSolution(response)
+        const success = this.validateSolution(this.model)
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
@@ -189,11 +189,7 @@ export default {
       }, this.simulatedTimeout)
     },
     validateSolution(userSolution) {
-      if(this.otpInput) {
-        return userSolution.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
-      } else {
-        return userSolution === this.exerciseSolutionExpected
-      }
+      return userSolution.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
     }
   }
 }
