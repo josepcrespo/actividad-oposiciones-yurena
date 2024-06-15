@@ -224,8 +224,8 @@ export default {
       return this.getPageStructure(this.activityId, this.challengeId)
     },
     showContinueBtn() {
-      return this.continuePath !== this.$route.path &&
-        this.isLastTypeExerciseSolutionOtp === false
+      return this.continuePath !== this.$route.path /* &&
+        this.isLastTypeExerciseSolutionOtp === false */
     }
   },
   beforeMount() {
