@@ -125,34 +125,13 @@ export const state = () => ({
         exerciseId: 1
       }, {
         type: 'yrn-exercise-solution-otp',
-        exerciseId: 1
+        exerciseId: 2
       }],
       exercises: [{
         exerciseId: 1,
         routerRedirection: {
           activityId: 1,
           challengeId: 2
-        },
-        solution: {
-          statement: {
-            ar: ':الكتابة هنا مفتاح السر باستخدام حلول المعادلات',
-            ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
-            de: 'Schreiben Sie hier den geheimen Schlüssel unter Verwendung der Lösungen der Gleichungen:',
-            en: 'Write the secret key here using the solutions of the equations:',
-            es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',
-            eu: 'Idatzi hemen sekretu gakoa ekuazioen soluzioak erabiliz:',
-            fr: 'Écrivez ici la clé secrète en utilisant les solutions des équations:',
-            gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:',
-            it: 'Scrivi qui la chiave segreta usando le soluzioni delle equazioni:',
-            ja: 'ここに方程式の解を使用して秘密鍵を書いてください:',
-            pt: 'Escreva a chave secreta aqui usando as soluções das equações:',
-            ro: 'Scrieți aici cheia secretă folosind soluțiile ecuațiilor:',
-            ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
-            zh: '使用方程式的解在此处写入秘钥：'
-          },
-          expected: '1044-271222-420-1',
-          expectedMask: 'aabcddefghhiijkkll',
-          fromUser: ''
         },
         statement: {
           ar: ':حل المعادلات من الدرجة الأولى التالية للعثور على المفتاح السري الذي تحتاجونه لاكتشاف أول إشارة',
@@ -267,6 +246,33 @@ export const state = () => ({
             fromUserBySteps: undefined
           }
         }]
+      }, {
+        exerciseId: 2,
+        routerRedirection: {
+          activityId: 1,
+          challengeId: 2
+        },
+        solution: {
+          statement: {
+            ar: ':الكتابة هنا مفتاح السر باستخدام حلول المعادلات',
+            ca: 'Escriviu ací la clau secreta usant les solucions de les equacions:',
+            de: 'Schreiben Sie hier den geheimen Schlüssel unter Verwendung der Lösungen der Gleichungen:',
+            en: 'Write the secret key here using the solutions of the equations:',
+            es: 'Escriban aquí la clave secreta usando las soluciones de las ecuaciones:',
+            eu: 'Idatzi hemen sekretu gakoa ekuazioen soluzioak erabiliz:',
+            fr: 'Écrivez ici la clé secrète en utilisant les solutions des équations:',
+            gl: 'Escriba aquí la clave secreta usando as solucións das ecuacións:',
+            it: 'Scrivi qui la chiave segreta usando le soluzioni delle equazioni:',
+            ja: 'ここに方程式の解を使用して秘密鍵を書いてください:',
+            pt: 'Escreva a chave secreta aqui usando as soluções das equações:',
+            ro: 'Scrieți aici cheia secretă folosind soluțiile ecuațiilor:',
+            ru: 'Напишите сюда секретный ключ, используя решения уравнений:',
+            zh: '使用方程式的解在此处写入秘钥：'
+          },
+          expected: '1044-271213-20-81',
+          expectedMask: 'aabcddefghhiijkkl',
+          fromUser: ''
+        }
       }]
     }, {
       challengeId: 2,
@@ -2158,37 +2164,12 @@ export const state = () => ({
           ]
         }, {
           type: 'yrn-exercise-solution-otp',
-          exerciseId: 1
+          exerciseId: 2
         }
       ],
       exercises: [
         {
           exerciseId: 1,
-          routerRedirection: {
-            activityId: 1,
-            challengeId: 5
-          },
-          solution: {
-            statement: {
-              ar: 'أدخل المفتاح الصحيح، ستعرف أين المخرج وستتمكن من متابعة التحدي التالي.',
-              ca: 'Introdueix la clau correcta, sabràs on és el director i podràs continuar al següent repte.',
-              de: 'Gib den richtigen Schlüssel ein, du wirst wissen, wo der Regisseur ist, und du kannst mit der nächsten Herausforderung fortfahren.',
-              en: 'Enter the correct key, you will know where the director is and you can continue to the next challenge.',
-              es: 'Introduce la clave correcta, sabrás dónde está el director y podrás continuar al siguiente reto.',
-              eu: 'Sartu giltza zuzena, zuzendaria non dagoen jakingo duzu eta hurrengo erronkarekin jarraitu ahal izango duzu.',
-              fr: 'Entrez la clé correcte, vous saurez où se trouve le réalisateur et vous pourrez continuer au défi suivant.',
-              gl: 'Introduce a clave correcta, saberás onde está o director e poderás continuar ao seguinte reto.',
-              it: 'Inserisci la chiave corretta, saprai dove si trova il regista e potrai continuare con la prossima sfida.',
-              ja: '正しいキーを入力すると、監督がどこにいるかがわかり、次の課題に進むことができます。',
-              pt: 'Digite a chave correta, você saberá onde está o diretor e poderá continuar para o próximo desafio.',
-              ro: 'Introduceți cheia corectă, veți ști unde este regizorul și puteți continua la următoarea provocare.',
-              ru: 'Введите правильный ключ, вы узнаете, где находится режиссер, и сможете продолжить к следующему испытанию.',
-              zh: '输入正确的密钥，您将知道导演在哪里，然后可以继续下一个挑战。'
-            },
-            expected: 'LANZAROTE',
-            expectedMask: 'aecdefghi',
-            fromUser: ''
-          },
           statement: {
             ar: 'دعونا نكتشف إلى أي جزيرة سافر عن طريق حل المعادلات من الدرجة الأولى التالية مع الأقواس:',
             ca: 'Averigüem a quina illa ha viatjat trobant la sol·lució a les següents equacions de primer grau amb parèntesis:',
@@ -2280,6 +2261,33 @@ export const state = () => ({
               }
             }
           ]
+        }, {
+          exerciseId: 2,
+          routerRedirection: {
+            activityId: 1,
+            challengeId: 5
+          },
+          solution: {
+            statement: {
+              ar: 'أدخل المفتاح الصحيح، ستعرف أين المخرج وستتمكن من متابعة التحدي التالي.',
+              ca: 'Introdueix la clau correcta, sabràs on és el director i podràs continuar al següent repte.',
+              de: 'Gib den richtigen Schlüssel ein, du wirst wissen, wo der Regisseur ist, und du kannst mit der nächsten Herausforderung fortfahren.',
+              en: 'Enter the correct key, you will know where the director is and you can continue to the next challenge.',
+              es: 'Introduce la clave correcta, sabrás dónde está el director y podrás continuar al siguiente reto.',
+              eu: 'Sartu giltza zuzena, zuzendaria non dagoen jakingo duzu eta hurrengo erronkarekin jarraitu ahal izango duzu.',
+              fr: 'Entrez la clé correcte, vous saurez où se trouve le réalisateur et vous pourrez continuer au défi suivant.',
+              gl: 'Introduce a clave correcta, saberás onde está o director e poderás continuar ao seguinte reto.',
+              it: 'Inserisci la chiave corretta, saprai dove si trova il regista e potrai continuare con la prossima sfida.',
+              ja: '正しいキーを入力すると、監督がどこにいるかがわかり、次の課題に進むことができます。',
+              pt: 'Digite a chave correta, você saberá onde está o diretor e poderá continuar para o próximo desafio.',
+              ro: 'Introduceți cheia corectă, veți ști unde este regizorul și puteți continua la următoarea provocare.',
+              ru: 'Введите правильный ключ, вы узнаете, где находится режиссер, и сможете продолжить к следующему испытанию.',
+              zh: '输入正确的密钥，您将知道导演在哪里，然后可以继续下一个挑战。'
+            },
+            expected: 'LANZAROTE',
+            expectedMask: 'aecdefghi',
+            fromUser: ''
+          }
         }
       ]
     }, {
@@ -3319,7 +3327,7 @@ export const getters = {
       typeof exercise.solution.expected === 'string'
     ) {
       // eslint-disable-next-line eqeqeq
-      return exercise.solution?.expected == exercise.solution?.fromUser
+      return exercise.solution?.expected.toLowerCase() === exercise.solution?.fromUser.toLowerCase()
     } else if (
       exercise.sections !== undefined &&
       window?.Array.isArray(exercise.sections) &&
