@@ -59,11 +59,11 @@
       />
       <v-form v-else>
         <v-text-field
-        v-model="model"
-        :disabled="loading"
-        :rules="[rules.required, rules.validSolution]"
-        outlined
-        @input="onFinish(model)"
+          v-model="model"
+          :disabled="loading"
+          :rules="[rules.required, rules.validSolution]"
+          outlined
+          @input="debouncedOnFinish"
         />
       </v-form>
     </v-col>
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash'
+
 export default {
   name: 'YrnExerciseSolutionOtp',
   props: {
@@ -103,7 +105,10 @@ export default {
         validSolution: (value) => {
           return value === this.exerciseSolutionExpected || this.$t('invalidSolution')
         }
-      }
+      },
+      debouncedOnFinish: debounce((response) => {
+        this.onFinish(response)
+      }, 2000)
     }
   },
   computed: {
