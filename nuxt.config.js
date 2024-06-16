@@ -100,7 +100,7 @@ export default {
       short_name: "Situación de aprendizaje",
       description: "Situación didáctica de aprendizaje para la asignatura de Matemáticas.",
       lang: "es",
-      start_url: "/actividad-oposiciones-yurena/",
+      start_url: process.env.NUXT_ENV_ROUTER_BASE_PATH || '/',
       display: "standalone",
       background_color: "#ffffff",
       theme_color: "#000000",
@@ -119,7 +119,7 @@ export default {
   },
 
   router: {
-    base: '/actividad-oposiciones-yurena/'
+    base: process.env.NUXT_ENV_ROUTER_BASE_PATH || '/'
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
