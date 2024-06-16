@@ -96,8 +96,30 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'es',
+      name: "Situación de aprendizaje: Flora + Fauna = Álgebra",
+      short_name: "Situación de aprendizaje",
+      description: "Situación didáctica de aprendizaje para la asignatura de Matemáticas.",
+      lang: "es",
+      start_url: "/actividad-oposiciones-yurena/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#000000",
+      icons: [
+        {
+          "src": "/icon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }, {
+          "src": "/icon@2x.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
     },
+  },
+
+  router: {
+    base: '/actividad-oposiciones-yurena/'
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
