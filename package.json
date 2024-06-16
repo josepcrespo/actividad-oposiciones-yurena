@@ -1,5 +1,7 @@
 {
-  "name": "actividad-oposiciones-yurena",
+  "name": "situacion-de-aprendizaje",
+  "description": "Situación didáctica de aprendizaje para la asignatura de Matemáticas.",
+  "author": "Yurena Cabrera Hernández",
   "version": "1.0.0",
   "private": true,
   "scripts": {
