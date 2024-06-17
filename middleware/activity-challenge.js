@@ -33,6 +33,8 @@ export default function ({ app, from, redirect, route, store }) {
   }
   
   if (!isChallengeSolved) {
+    const activitySlugTranslation = app?.state?.routeParams?.[app?.i18n?.locale]?.activity
+    const challengeSlugTranslation = app?.state?.routeParams?.[app?.i18n?.locale]?.challenge
     let localizedRedirectionPath = ''
 
     if (prevChallengeId === 0 && prevActivityId === 0) {
@@ -53,7 +55,7 @@ export default function ({ app, from, redirect, route, store }) {
       // https://i18n.nuxtjs.org/v7/api#localepath
       // Por alguna extraña razón, algunos métodos de la biblioteca i18n
       // se encuentran disponibles en `app` y no en `app.i18n`.
-      const redirectionPath = `/activity/${prevActivity.activityId}/challenge/${prevChallenge.challengeId}`
+      const redirectionPath = `/${activitySlugTranslation}/${prevActivity.activityId}/${challengeSlugTranslation}/${prevChallenge.challengeId}`
       localizedRedirectionPath =
         app?.localePath(redirectionPath, app?.i18n?.localeProperties?.code)
     } else if (prevChallenge) {
@@ -62,7 +64,7 @@ export default function ({ app, from, redirect, route, store }) {
       // https://i18n.nuxtjs.org/v7/api#localepath
       // Por alguna extraña razón, los métodos de la biblioteca i18n
       // se encuentran disponibles en `app` y no en `app.i18n`.
-      const redirectionPath = `/activity/${activityId}/challenge/${prevChallengeId}`
+      const redirectionPath = `/${activitySlugTranslation}/${activityId}/${challengeSlugTranslation}/${prevChallengeId}`
       localizedRedirectionPath =
         app?.localePath(redirectionPath, app?.i18n?.localeProperties?.code)
     }
