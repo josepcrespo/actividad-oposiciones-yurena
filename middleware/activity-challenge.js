@@ -33,8 +33,8 @@ export default function ({ app, from, redirect, route, store }) {
   }
   
   if (!isChallengeSolved) {
-    const activitySlugTranslation = app?.state?.routeParams?.[app?.i18n?.locale]?.activity
-    const challengeSlugTranslation = app?.state?.routeParams?.[app?.i18n?.locale]?.challenge
+    const activitySlugTranslation = store?.state?.routeParams?.[app?.i18n?.locale]?.activity
+    const challengeSlugTranslation = store?.state?.routeParams?.[app?.i18n?.locale]?.challenge
     let localizedRedirectionPath = ''
 
     if (prevChallengeId === 0 && prevActivityId === 0) {
