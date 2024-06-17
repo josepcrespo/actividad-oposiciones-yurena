@@ -15,7 +15,8 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{
+      rel: 'icon', type: 'image/x-icon', href: `${process.env.NUXT_ENV_ROUTER_BASE_PATH}favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -100,23 +101,23 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      name: "Situación de aprendizaje: Flora + Fauna = Álgebra",
-      short_name: "Situación de aprendizaje",
-      description: "Situación didáctica de aprendizaje para la asignatura de Matemáticas.",
-      lang: "es",
+      name: 'Situación de aprendizaje: Flora + Fauna = Álgebra',
+      short_name: 'Situación de aprendizaje',
+      description: 'Situación didáctica de aprendizaje para la asignatura de Matemáticas.',
+      lang: 'es',
       start_url: process.env.NUXT_ENV_ROUTER_BASE_PATH || '/',
-      display: "standalone",
-      background_color: "#ffffff",
-      theme_color: "#000000",
+      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#000000',
       icons: [
         {
-          "src": "/icon.png",
-          "sizes": "512x512",
-          "type": "image/png"
+          src: `${process.env.NUXT_ENV_ROUTER_BASE_PATH}icon.png`,
+          sizes: '512x512',
+          type: "image/png"
         }, {
-          "src": "/icon@2x.png",
-          "sizes": "512x512",
-          "type": "image/png"
+          src: `${process.env.NUXT_ENV_ROUTER_BASE_PATH}icon@2x.png`,
+          sizes: '512x512',
+          type: "image/png"
         }
       ]
     },
