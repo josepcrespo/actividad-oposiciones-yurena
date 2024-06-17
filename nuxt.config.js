@@ -16,7 +16,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{
-      rel: 'icon', type: 'image/x-icon', href: `${process.env.NUXT_ENV_ROUTER_BASE_PATH}favicon.ico' }],
+      rel: 'icon', type: 'image/x-icon', href: `${process.env.NUXT_ENV_ROUTER_BASE_PATH}favicon.ico` }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
