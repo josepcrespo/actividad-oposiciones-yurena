@@ -31,6 +31,10 @@ export default {
     '~/plugins/utils.client.js'
   ],
 
+  publicRuntimeConfig: {
+    baseURL: process.env.NUXT_ENV_ROUTER_BASE_PATH.slice(0, -1) || '/'
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 

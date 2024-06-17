@@ -757,7 +757,7 @@ export default {
       })
     },
     changeCarSprite(direction) {
-      const newSpriteSheet = `/img/phaserjs/top-down-vehicles/${this.carModel}/` +
+      const newSpriteSheet = `${this.$config.baseURL}/img/phaserjs/top-down-vehicles/${this.carModel}/` +
         `${this.carColor}/MOVE/${direction}/${this.carColor}_${this.carModel}` +
         `_CLEAN_${direction}_000-sheet.png`
       this.car.anims.stop()
@@ -1104,14 +1104,14 @@ export default {
 
       gameScene.preload = () => {
         // Preload de la textura
-        gameScene.load.image(this.textureKeys.carElectricCharger, '/img/phaserjs/car-stations/100x100/car-electric-charger.png')
-        gameScene.load.image(this.textureKeys.minecraftDeepFloor, '/img/phaserjs/textures/100x100/minecraft-deep-floor.jpg')
-        gameScene.load.image(this.textureKeys.sceneBackground, '/img/phaserjs/backgrounds/main.jpg')
+        gameScene.load.image(this.textureKeys.carElectricCharger, `${this.$config.baseURL}/img/phaserjs/car-stations/100x100/car-electric-charger.png`)
+        gameScene.load.image(this.textureKeys.minecraftDeepFloor, `${this.$config.baseURL}/img/phaserjs/textures/100x100/minecraft-deep-floor.jpg`)
+        gameScene.load.image(this.textureKeys.sceneBackground, `${this.$config.baseURL}/img/phaserjs/backgrounds/main.jpg`)
 
         Object.values(this.carDirections).forEach((direction) => {
           gameScene.load.spritesheet(
             `car_spritesheet_${direction}`,
-            `/img/phaserjs/top-down-vehicles/${this.carModel}/${this.carColor}/` +
+            `${this.$config.baseURL}/img/phaserjs/top-down-vehicles/${this.carModel}/${this.carColor}/` +
             `MOVE/${direction}/${this.carColor}_${this.carModel}` +
             `_CLEAN_${direction}_000-sheet.png`, {
             frameWidth: 100,

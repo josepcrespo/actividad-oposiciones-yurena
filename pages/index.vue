@@ -16,7 +16,7 @@
           max-height="320"
           max-width="320"
           :alt="imageAlt"
-          :src="imageSrc"
+          :src="`${$config.baseURL}${imageSrc}`"
         />
         <h3>
           <em>{{ author }}</em>

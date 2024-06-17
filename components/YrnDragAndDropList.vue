@@ -25,7 +25,7 @@
         >
           <v-img
             v-if="visibleProperty === 'image'"
-            :src="item.image"
+            :src="`${$config.baseURL}${item.image}`"
           />
           <v-chip
             v-else

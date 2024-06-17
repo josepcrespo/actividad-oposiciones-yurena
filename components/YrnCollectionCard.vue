@@ -9,7 +9,7 @@
     rounded="xl"
   >
     <v-img
-      :src="image"
+      :src="`${$config.baseURL}${image}`"
       height="200px"
       @mouseover="handleMouseOver"
     />

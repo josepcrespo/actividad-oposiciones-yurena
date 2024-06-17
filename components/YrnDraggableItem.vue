@@ -30,7 +30,7 @@
       draggable
       :width="$vuetify.breakpoint.xs ? 64 : 128"
       :height="$vuetify.breakpoint.xs ? 64 : 128"
-      :src="item.image"
+      :src="`${$config.baseURL}${item.image}`"
       @mouseover="onMouseOver"
       @mouseleave="onMouseLeave"
       @dragend="onDragEnd()"

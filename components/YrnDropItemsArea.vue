@@ -67,7 +67,7 @@
             :min-width="$vuetify.breakpoint.xs ? 64 : 128"
             :height="$vuetify.breakpoint.xs ? 64 : 128"
             :width="$vuetify.breakpoint.xs ? 64 : 128"
-            :src="imageItem.image"
+            :src="`${$config.baseURL}${imageItem.image}`"
           />
         </v-col>
         <v-col

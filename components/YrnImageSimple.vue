@@ -4,7 +4,7 @@
     :alt="localizedAlt"
     :contain="contain"
     :max-height="maxHeight"
-    :src="src"
+    :src="`${$config.baseURL}${src}`"
   >
     <template #placeholder>
       <v-row

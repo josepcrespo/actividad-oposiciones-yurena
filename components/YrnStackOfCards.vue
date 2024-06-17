@@ -43,7 +43,7 @@
                 'top-card-moved-right': isCardMovedRight,
                 'top-card-stopped': isCardStopped,
               }"
-              :image="card.image"
+              :image="`${$config.baseURL}${card.image}`"
               :link="card.link"
               :subtitle="card.scientificName"
               :text="card.description?.[$i18n.locale]"
@@ -53,12 +53,18 @@
           </template>
           <template #nav="{ onNext, onPrevious }">
             <nav>
-              <v-btn icon @click="onPrevious">
+              <v-btn
+                icon
+                @click="onPrevious"
+              >
                 <v-icon>
                   mdi-chevron-left
                 </v-icon>
               </v-btn>
-              <v-btn icon @click="onNext">
+              <v-btn
+                icon
+                @click="onNext"
+              >
                 <v-icon>
                   mdi-chevron-right
                 </v-icon>

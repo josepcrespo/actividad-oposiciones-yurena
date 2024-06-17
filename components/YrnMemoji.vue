@@ -3,7 +3,7 @@
     :height="height"
     :max-height="maxHeight"
     :max-width="maxWidth"
-    :src="`/img/memojis/${memojiName}.png`"
+    :src="`${$config.baseURL}/img/memojis/${memojiName}.png`"
     :width="width"
     contain
   />

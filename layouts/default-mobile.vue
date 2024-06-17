@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <yrn-app-bar />
-    <v-main :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
+    <v-main :style="{ backgroundImage: `url(${$config.baseURL}${backgroundImageUrl})` }">
       <Nuxt />
     </v-main>
     <yrn-bottom-navigation />

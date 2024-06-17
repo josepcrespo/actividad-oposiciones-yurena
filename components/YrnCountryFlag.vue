@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getRegionalFlagSrc(flagCode) {
-      let flagIconSrc = '/img/flags/'
+      let flagIconSrc = `${this.$config.baseURL}/img/flags/`
 
       switch (flagCode) {
         case 'es-eu':
