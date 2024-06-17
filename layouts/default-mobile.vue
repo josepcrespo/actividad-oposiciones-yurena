@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     backgroundImageUrl() {
-      return this.$store?.state?.learningUnit?.backgroundImage
+      return `${this.$config.baseURL}${this.$store?.state?.learningUnit?.backgroundImage}`
     },
     isRtlLanguage() {
       return this.$i18n?.localeProperties?.dir === 'rtl'
