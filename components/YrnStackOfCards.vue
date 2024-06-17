@@ -43,7 +43,7 @@
                 'top-card-moved-right': isCardMovedRight,
                 'top-card-stopped': isCardStopped,
               }"
-              :image="`${$config.baseURL}${card.image}`"
+              :image="card.image"
               :link="card.link"
               :subtitle="card.scientificName"
               :text="card.description?.[$i18n.locale]"
