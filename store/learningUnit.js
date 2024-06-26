@@ -1651,20 +1651,20 @@ export const state = () => ({
           fromUser: []
         },
         statement: {
-          ar: "سيقوم المدير بالتحقق مما إذا كانوا قد قاموا بمطابقة كل مصطلح مع صورته المقابلة بشكل جيد وسيخبرهم بمزيد من التفاصيل حول هذه الكائنات الحيوية والنباتات.",
-          ca: "El Director comprovarà si han emparellat bé cada terme amb la imatge corresponent i els explicarà més sobre aquestes espècies animals i vegetals.",
-          de: "Der Direktor wird überprüfen, ob sie jeden Begriff gut mit seinem entsprechenden Bild abgeglichen haben, und ihnen mehr über diese Tier- und Pflanzenarten erzählen.",
-          en: "The Director will check if they have matched each term well with its corresponding image and will tell them more about these animal and plant species.",
-          es: 'El Director comprobará si han emparejado bien cada término con su correspondiente imágen y les contará más acerca de estas especies animales y vegetales.',
-          eu: "Zuzendaria egiaztatuko du ea ondo elkartu duten bakoitzeko terminoa bere irudiekin eta espezie animal eta landareei buruz gehiago kontatuko die.",
-          fr: "Le Directeur vérifiera s'ils ont bien associé chaque terme à son image correspondante et leur en dira plus sur ces espèces animales et végétales.",
-          gl: "O Director comprobará se emparellaron ben cada termo coa súa imaxe correspondente e lles contará máis sobre estas especies animais e vexetais.",
-          it: "Il Direttore verificherà se hanno abbinato bene ogni termine con la sua immagine corrispondente e racconterà loro di più su queste specie animali e vegetali.",
-          ja: "ディレクターは、各用語を対応する画像とよく一致させたかどうかを確認し、これらの動植物についてさらに詳しく語ります。",
-          pt: "O Diretor verificará se eles combinaram bem cada termo com sua imagem correspondente e contará mais sobre essas espécies animais e vegetais.",
-          ro: "Directorul va verifica dacă au potrivit bine fiecare termen cu imaginea sa corespunzătoare și le va spune mai multe despre aceste specii de animale și plante.",
-          ru: "Директор проверит, правильно ли они соотнесли каждый термин с его соответствующим изображением, и расскажет им больше об этих видах животных и растений.",
-          zh: "主管将检查他们是否将每个术语与其相应的图像匹配得很好，并将告诉他们更多关于这些动植物物种的信息。"
+          ar: "سيقوم المدير بالتحقق مما إذا كانوا قد قاموا بمطابقة كل مصطلح مع صورته المقابلة بشكل جيد وسيخبرهم بمزيد من التفاصيل حول هذه الكائنات الحيوية والنباتات. انقر فوق الزر \"تحقق من الأزواج\" للتحقق من التمرين ومواصلة إذا كنت قد قمت بحله بشكل صحيح.",
+          ca: "El Director comprovarà si han emparellat bé cada terme amb la imatge corresponent i els explicarà més sobre aquestes espècies animals i vegetals. Fes clic al botó \"COMPROVAR PARELLES\" per validar l'exercici i poder continuar si ho has resolt correctament.",
+          de: "Der Direktor wird überprüfen, ob sie jeden Begriff gut mit seinem entsprechenden Bild abgeglichen haben, und ihnen mehr über diese Tier- und Pflanzenarten erzählen. Klicken Sie auf die Schaltfläche \"PAARE ÜBERPRÜFEN\", um die Übung zu validieren und fortzufahren, wenn Sie sie richtig gelöst haben.",
+          en: "The Director will check if they have matched each term well with its corresponding image and will tell them more about these animal and plant species. Click the \"CHECK PAIRS\" button to validate the exercise and continue if you have solved it correctly.",
+          es: "El Director comprobará si han emparejado bien cada término con su correspondiente imagen y les contará más acerca de estas especies animales y vegetales. Haz clic en el botón \"COMPROBAR PAREJAS\" para validar el ejercicio y poder continuar si lo has resuelto correctamente.",
+          eu: "Zuzendaria egiaztatuko du ea ondo elkartu duten bakoitzeko terminoa bere irudiekin eta espezie animal eta landareei buruz gehiago kontatuko die. Egin klik \"BIKOITZAK EGIAZTATU\" botoian ariketa balioztatzeko eta ondo ebatzi baduzu jarraitzeko.",
+          fr: "Le Directeur vérifiera s'ils ont bien associé chaque terme à son image correspondante et leur en dira plus sur ces espèces animales et végétales. Cliquez sur le bouton \"VÉRIFIER LES PAIRES\" pour valider l'exercice et continuer si vous l'avez bien résolu.",
+          gl: "O Director comprobará se emparellaron ben cada termo coa súa imaxe correspondente e lles contará máis sobre estas especies animais e vexetais. Fai clic no botón \"COMPROBAR PARELLAS\" para validar o exercicio e poder continuar se o resolviches correctamente.",
+          it: "Il Direttore verificherà se hanno abbinato bene ogni termine con la sua immagine corrispondente e racconterà loro di più su queste specie animali e vegetali. Clicca sul pulsante \"VERIFICARE LE COPPIE\" per convalidare l'esercizio e continuare se lo hai risolto correttamente.",
+          ja: "ディレクターは、各用語を対応する画像とよく一致させたかどうかを確認し、これらの動植物についてさらに詳しく語ります。「ペアを確認」ボタンをクリックして演習を検証し、正しく解決した場合は続行します。",
+          pt: "O Diretor verificará se eles combinaram bem cada termo com sua imagem correspondente e contará mais sobre essas espécies animais e vegetais. Clique no botão \"VERIFICAR PARES\" para validar o exercício e continuar se você o resolveu corretamente.",
+          ro: "Directorul va verifica dacă au potrivit bine fiecare termen cu imaginea sa corespunzătoare și le va spune mai multe despre aceste specii de animale și plante. Faceți clic pe butonul \"VERIFICAȚI PERECHILE\" pentru a valida exercițiul și a continua dacă l-ați rezolvat corect.",
+          ru: "Директор проверит, правильно ли они соотнесли каждый термин с его соответствующим изображением, и расскажет им больше об этих видах животных и растений. Нажмите кнопку \"ПРОВЕРИТЬ ПАРЫ\", чтобы проверить упражнение и продолжить, если вы правильно его решили.",
+          zh: "主管将检查他们是否将每个术语与其相应的图像匹配得很好，并将告诉他们更多关于这些动植物物种的信息。单击“检查配对”按钮以验证练习，如果正确解决，则继续。"
         }
       }, {
         exerciseId: 3,
