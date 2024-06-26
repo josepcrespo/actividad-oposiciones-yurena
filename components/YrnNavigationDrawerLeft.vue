@@ -1,58 +1,58 @@
 <i18n lang="yaml">
   ar:
-    activity: "النشاط"
+    activity: "نشاط المدير"
     challenge: "التحدي"
     start: "ابدأ"
   ca:
-    activity: "Activitat"
+    activity: "Activitat del director"
     challenge: "Repte"
     start: "Inici"
   de:
-    activity: "Aktivität"
+    activity: "Aktivität des Direktors"
     challenge: "Herausforderung"
     start: "Start"
   en:
-    activity: "Activity"
+    activity: "Director's Activity"
     challenge: "Challenge"
     start: "Start"
   es:
-    activity: "Actividad"
+    activity: "Actividad del director"
     challenge: "Reto"
     start: "Inicio"
   eu:
-    activity: "Ekintza"
+    activity: "Zuzendariaren ekintza"
     challenge: "Erronka"
     start: "Hasieratu"
   fr:
-    activity: "Activité"
+    activity: "Activité du directeur"
     challenge: "Défi"
     start: "Démarrer"
   gl:
-    activity: "Actividade"
+    activity: "Actividade do director"
     challenge: "Desafío"
     start: "Inicio"
   it:
-    activity: "Attività"
+    activity: "Attività del direttore"
     challenge: "Sfida"
     start: "Inizia"
   ja:
-    activity: "アクティビティ"
+    activity: "ディレクターのアクティビティ"
     challenge: "チャレンジ"
     start: "始める"
   pt:
-    activity: "Atividade"
+    activity: "Atividade do diretor"
     challenge: "Desafio"
     start: "Início"
   ro:
-    activity: "Activitate"
+    activity: "Activitatea directorului"
     challenge: "Provocare"
     start: "Începe"
   ru:
-    activity: "Активность"
+    activity: "Активность директора"
     challenge: "Вызов"
     start: "Начать"
   zh:
-    activity: "活动"
+    activity: "导演的活动"
     challenge: "挑战"
     start: "开始"
 </i18n>
@@ -63,6 +63,7 @@
     class="yrn-navigation-drawer-left"
     :clipped="clipped"
     :right="rtlLanguage"
+    width="320"
     app
   >
     <v-list>
@@ -91,7 +92,12 @@
       >
         <template #activator>
           <v-list-item-title>
-            {{ $t('activity') }} {{ activityId }}
+            <span
+              v-if="activityIds.length > 1"
+              class="mr-1"
+            >
+              {{ activityId }}.
+            </span>{{ $t('activity') }}
           </v-list-item-title>
         </template>
         <v-list-item
