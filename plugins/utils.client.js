@@ -2,7 +2,7 @@
 export default ({ app }, inject) => {
   /**
    * Capitalize the first letter of each word in a string.
-   * 
+   *
    * @param {string} string - The string to capitalize.
    * @returns {string} The capitalized string.
    */
@@ -13,7 +13,7 @@ export default ({ app }, inject) => {
 
   /**
    * Converts an index to a character.
-   * 
+   *
    * @param {number} index - The index to convert to a character.
    * @param {boolean} [capitalized=false] - Whether to capitalize the character.
    * @returns {string} The character.
@@ -76,12 +76,20 @@ export default ({ app }, inject) => {
       `Reto ${challengeId} / ` +
       `Ejercicio ${exerciseId}
 ` // NO TOCAR LA TABULACIÓN.
-    
+
     if (
       exercise?.solution?.fromUser !== undefined &&
       exercise?.solution?.textToFillGaps === undefined &&
       exercise?.solution?.fromUser?.toLowerCase() === exercise?.solution?.expected?.toLowerCase()
     ) {
+      const solutionBySteps = 'fromUserBySteps' in exercise?.solution ? exercise?.solution?.fromUserBySteps : ''
+      if (solutionBySteps) {
+        markdownContent += `
+
+- Desarrollo:
+> ${app.$getCompatibleMdLineBreaks(solutionBySteps, '> ')}
+`
+      }
       markdownContent += `
 
 - Solución:
@@ -93,15 +101,15 @@ export default ({ app }, inject) => {
     ) {
       exercise?.solution?.fromUser?.forEach((solution) => {
         markdownContent += `
-        
+
 - Pareja:
-> ${solution.images?.[0]?.scientificName} - ${solution.images?.[0]?.name?.es}  
-> ${solution.images?.[0]?.image}  
+> ${solution.images?.[0]?.scientificName} - ${solution.images?.[0]?.name?.es}
+> ${solution.images?.[0]?.image}
 `
       })
     } else if (exercise?.solution?.isValid) {
       markdownContent += `
-- Movimientos:  
+- Movimientos:
 `
       exercise?.solution?.expected?.forEach((solution) => {
         markdownContent += `
@@ -112,7 +120,7 @@ export default ({ app }, inject) => {
         /**
          * Mantener la tabulación actual en la construcción del string literal,
          * es necesario para obtener un markdown válido.
-         * 
+         *
          * NO TOCAR LA TABULACIÓN.
          */
         markdownContent +=
@@ -134,7 +142,7 @@ export default ({ app }, inject) => {
 
   /**
    * Returns a random boolean.
-   * 
+   *
    * @returns {boolean} The random boolean.
    */
   inject('getRandomBoolean', () => {
@@ -143,7 +151,7 @@ export default ({ app }, inject) => {
 
   /**
    * Returns a random integer between min (inclusive) and max (inclusive).
-   * 
+   *
    * @param {number} min - The minimum value (inclusive).
    * @param {number} max - The maximum value (inclusive).
    * @returns {number} The random integer.
@@ -154,19 +162,19 @@ export default ({ app }, inject) => {
 
   /**
    * Replaces all line breaks ('\n') from the string parameter with two trailing whitespace ('  ').
-   * 
+   *
    * @param {string} string - The string to replace line breaks from.
    * @param {string} [appendToLineBreak=' '] - The string to append to each line break.
    * @returns {string} The string with line breaks replaced.
    */
   inject('getCompatibleMdLineBreaks', (string, appendToLineBreak = '') => {
-    return string?.replace(/\n/g, `  
+    return string?.replace(/\n/g, `
 ` + appendToLineBreak)
   })
 
   /**
    * Shuffles an array.
-   * 
+   *
    * @param {Array} array - The array to shuffle.
    * @returns {Array} The shuffled array.
    */
@@ -191,7 +199,7 @@ export default ({ app }, inject) => {
 
   /**
    * Scrolls to an element with the given selector.
-   * 
+   *
    * @param {string} selector - The selector of the element to scroll to.
    */
   inject('scrollToElement', (selector) => {
