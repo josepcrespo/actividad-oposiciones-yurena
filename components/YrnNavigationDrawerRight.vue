@@ -1,74 +1,74 @@
 <i18n lang="yaml">
-es:
-  drawerTitle: "Progreso"
-  activityElement: "Actividad {activityId}"
-  challengeElement: "Reto {challengeId}"
-  exerciseElement: "Ejercicio {exerciseId}"
-ca:
-  drawerTitle: "Progrés"
-  activityElement: "Activitat {activityId}"
-  challengeElement: "Reto {challengeId}"
-  exerciseElement: "Exercici {exerciseId}"
-en:
-  drawerTitle: "Progress"
-  activityElement: "Activity {activityId}"
-  challengeElement: "Challenge {challengeId}"
-  exerciseElement: "Exercise {exerciseId}"
-de:
-  drawerTitle: "Fortschritt"
-  activityElement: "Aktivität {activityId}"
-  challengeElement: "Herausforderung {challengeId}"
-  exerciseElement: "Übung {exerciseId}"
-ru:
-  drawerTitle: "Прогресс"
-  activityElement: "Активность {activityId}"
-  challengeElement: "Задание {challengeId}"
-  exerciseElement: "Упражнение {exerciseId}"
-fr:
-  drawerTitle: "Progrès"
-  activityElement: "Activité {activityId}"
-  challengeElement: "Défi {challengeId}"
-  exerciseElement: "Exercice {exerciseId}"
-it:
-  drawerTitle: "Progresso"
-  activityElement: "Attività {activityId}"
-  challengeElement: "Sfida {challengeId}"
-  exerciseElement: "Esercizio {exerciseId}"
-eu:
-  drawerTitle: "Egiten"
-  activityElement: "Jarduer {activityId}"
-  challengeElement: "Erronka {challengeId}"
-  exerciseElement: "Ariketa {exerciseId}"
-gl:
-  drawerTitle: "Progreso"
-  activityElement: "Actividade {activityId}"
-  challengeElement: "Desafío {challengeId}"
-  exerciseElement: "Exercicio {exerciseId}"
-pt:
-  drawerTitle: "Progresso"
-  activityElement: "Atividade {activityId}"
-  challengeElement: "Desafio {challengeId}"
-  exerciseElement: "Exercício {exerciseId}"
-ar:
-  drawerTitle: "التقدم"
-  activityElement: "{activityId} النشاط"
-  challengeElement: "{challengeId} التحدي"
-  exerciseElement: "{exerciseId} التمرين"
-zh:
-  drawerTitle: "进展"
-  activityElement: "活动 {activityId}"
-  challengeElement: "挑战 {challengeId}"
-  exerciseElement: "练习 {exerciseId}"
-ro:
-  drawerTitle: "Progres"
-  activityElement: "Activitate {activityId}"
-  challengeElement: "Provocare {challengeId}"
-  exerciseElement: "Exercițiu {exerciseId}"
-ja:
-  drawerTitle: "プログレソ"
-  activityElement: "アクティビティ {activityId}"
-  challengeElement: "チャレンジ {challengeId}"
-  exerciseElement: "エクササイズ {exerciseId}"
+  ar:
+    activityElement: "نشاط المدير"
+    challengeElement: "{challengeId} التحدي"
+    drawerTitle: "التقدم"
+    exerciseElement: "{exerciseId} التمرين"
+  ca:
+    activityElement: "Activitat del director"
+    challengeElement: "Reto {challengeId}"
+    drawerTitle: "Progrés"
+    exerciseElement: "Exercici {exerciseId}"
+  de:
+    activityElement: "Aktivität des Direktors"
+    challengeElement: "Herausforderung {challengeId}"
+    drawerTitle: "Fortschritt"
+    exerciseElement: "Übung {exerciseId}"
+  en:
+    activityElement: "Director's activity"
+    challengeElement: "Challenge {challengeId}"
+    drawerTitle: "Progress"
+    exerciseElement: "Exercise {exerciseId}"
+  es:
+    activityElement: "Actividad del director"
+    challengeElement: "Reto {challengeId}"
+    drawerTitle: "Progreso"
+    exerciseElement: "Ejercicio {exerciseId}"
+  eu:
+    activityElement: "Zuzendariaren jarduera"
+    challengeElement: "Erronka {challengeId}"
+    drawerTitle: "Egiten"
+    exerciseElement: "Ariketa {exerciseId}"
+  fr:
+    activityElement: "Activité du directeur"
+    challengeElement: "Défi {challengeId}"
+    drawerTitle: "Progrès"
+    exerciseElement: "Exercice {exerciseId}"
+  gl:
+    activityElement: "Actividade do director"
+    challengeElement: "Desafío {challengeId}"
+    drawerTitle: "Progreso"
+    exerciseElement: "Exercicio {exerciseId}"
+  it:
+    activityElement: "Attività del direttore"
+    challengeElement: "Sfida {challengeId}"
+    drawerTitle: "Progresso"
+    exerciseElement: "Esercizio {exerciseId}"
+  ja:
+    activityElement: "ディレクターの活動"
+    challengeElement: "チャレンジ {challengeId}"
+    drawerTitle: "プログレソ"
+    exerciseElement: "エクササイズ {exerciseId}"
+  pt:
+    activityElement: "Atividade do diretor"
+    challengeElement: "Desafio {challengeId}"
+    drawerTitle: "Progresso"
+    exerciseElement: "Exercício {exerciseId}"
+  ro:
+    activityElement: "Activitatea directorului"
+    challengeElement: "Provocare {challengeId}"
+    drawerTitle: "Progres"
+    exerciseElement: "Exercițiu {exerciseId}"
+  ru:
+    activityElement: "Активность директора"
+    challengeElement: "{challengeId} задание"
+    drawerTitle: "Прогресс"
+    exerciseElement: "{exerciseId} упражнение"
+  zh:
+    activityElement: "主任活动"
+    challengeElement: "挑战 {challengeId}"
+    drawerTitle: "进展"
+    exerciseElement: "练习 {exerciseId}"
 </i18n>
 
 <template>
