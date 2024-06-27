@@ -2727,7 +2727,8 @@ export const state = () => ({
               zh: '请在这里写下参观蒂曼法亚国家公园的总人数，包括主任：'
             },
             expected: '6',
-            fromUser: ''
+            fromUser: '',
+            fromUserBySteps: undefined
           },
           statement: {
             ar: `<p>نعلم أن تذاكر الدخول إلى حديقة تيمانفايا الوطنية للبالغين المقيمين في جزر الكناري تكلف <em class="font-weight-black">9,60€</em>.</p><p>للذهاب إلى الحديقة من أريثيفي، استقل المدير وأصدقاؤه الحافلة <em class="font-weight-black">53</em> التي تتركهم على بعد <em class="font-weight-black">30</em> دقيقة من الحديقة. تكلفة كل تذكرة حافلة <em class="font-weight-black">3€</em>.</p><p>بالمجمل، تكلفت الزيارة والحافلة لجميع الزوار <em class="font-weight-black">75,60€</em>.</p><p>كم عدد الأشخاص الذين ذهبوا مع مديرنا؟</p>`,
@@ -3161,6 +3162,24 @@ export const mutations = {
 
         if (exercise && exercise.solution) {
           set(exercise.solution, 'fromUser', solution)
+        }
+      }
+    }
+  },
+  setExerciseSolutionFromUserBySteps(state, { activityId, challengeId, exerciseId, solutionBySteps }) {
+    // eslint-disable-next-line eqeqeq
+    const activity = state.activities.find((a) => a.activityId == activityId)
+
+    if (activity) {
+      // eslint-disable-next-line eqeqeq
+      const challenge = activity.challenges.find((c) => c.challengeId == challengeId)
+
+      if (challenge) {
+        // eslint-disable-next-line eqeqeq
+        const exercise = challenge.exercises.find((ex) => ex.exerciseId == exerciseId)
+
+        if (exercise && exercise.solution) {
+          set(exercise.solution, 'fromUserBySteps', solutionBySteps)
         }
       }
     }
