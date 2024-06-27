@@ -1,3 +1,34 @@
+<i18n lang="yaml">
+  ar:
+    activityElement: "نشاط المدير"
+  ca:
+    activityElement: "Activitat del director"
+  de:
+    activityElement: "Aktivität des Direktors"
+  en:
+    activityElement: "Director's activity"
+  es:
+    activityElement: "Actividad del director"
+  eu:
+    activityElement: "Zuzendariaren jarduera"
+  fr:
+    activityElement: "Activité du directeur"
+  gl:
+    activityElement: "Actividade do director"
+  it:
+    activityElement: "Attività del direttore"
+  ja:
+    activityElement: "ディレクターの活動"
+  pt:
+    activityElement: "Atividade do diretor"
+  ro:
+    activityElement: "Activitatea directorului"
+  ru:
+    activityElement: "Директорская активность"
+  zh:
+    activityElement: "指导者活动"
+</i18n>
+
 <template>
   <div class="yrn-top-menu-title d-flex">
     <v-toolbar-title
@@ -12,7 +43,7 @@
     >
       {{ subtitle }}
     </div>
-</div>  
+</div>
 </template>
 
 <script>
@@ -33,8 +64,10 @@ export default {
       let subtitle
 
       if (activityId && challengeId) {
-        subtitle = this.$capitalizeWords(
-          `${this.activityTranslation} ${activityId} / ` +
+          subtitle = this.$capitalizeWords(
+          // `${this.activityTranslation} ${activityId} / ` +
+          // The project owner required to set a static value for the activity.
+          `${this.$t('activityElement')} / ` +
           `${this.challengeTranslation} ${challengeId}`
         )
       } else {
