@@ -1,72 +1,72 @@
 <i18n lang="yaml">
-ar:
-  achievements: "الإنجازات"
-  language: "اللغة"
-  progress: "التقدم"
-  theme: "المظهر"
-ca:
-  achievements: "Assoliments"
-  language: "Idioma"
-  progress: "Progrés"
-  theme: "Apariència"
-de:
-  achievements: "Erfolge"
-  language: "Sprache"
-  progress: "Fortschritt"
-  theme: "Erscheinungsbild"
-es:
-  achievements: "Logros"
-  language: "Idioma"
-  progress: "Progreso"
-  theme: "Apariencia"
-eu:
-  achievements: "Lortuak"
-  language: "Hizkuntza"
-  progress: "Aurrerapena"
-  theme: "Itxura"
-fr:
-  achievements: "Réalisations"
-  language: "Langue"
-  progress: "Progrès"
-  theme: "Apparence"
-gl:
-  achievements: "Logros"
-  language: "Lingua"
-  progress: "Progreso"
-  theme: "Apariencia"
-it:
-  achievements: "Realizzazioni"
-  language: "Lingua"
-  progress: "Progresso"
-  theme: "Aspetto"
-ja:
-  achievements: "実績"
-  language: "言語"
-  progress: "進捗"
-  theme: "外観"
-pt:
-  achievements: "Conquistas"
-  language: "Idioma"
-  progress: "Progresso"
-  theme: "Aparência"
-ro:
-  achievements: "Realizări"
-  language: "Limbă"
-  progress: "Progres"
-  theme: "Aspect"
-ru:
-  achievements: "Достижения"
-  language: "Язык"
-  progress: "Прогресс"
-  theme: "Внешний вид"
-zh:
-  achievements: "成就"
-  language: "语言"
-  progress: "进度"
-  theme: "外观"
+  ar:
+    achievements: "الإنجازات"
+    language: "اللغة"
+    progress: "التقدم"
+    theme: "المظهر"
+  ca:
+    achievements: "Assoliments"
+    language: "Idioma"
+    progress: "Progrés"
+    theme: "Apariència"
+  de:
+    achievements: "Erfolge"
+    language: "Sprache"
+    progress: "Fortschritt"
+    theme: "Erscheinungsbild"
+  es:
+    achievements: "Logros"
+    language: "Idioma"
+    progress: "Progreso"
+    theme: "Apariencia"
+  eu:
+    achievements: "Lortuak"
+    language: "Hizkuntza"
+    progress: "Aurrerapena"
+    theme: "Itxura"
+  fr:
+    achievements: "Réalisations"
+    language: "Langue"
+    progress: "Progrès"
+    theme: "Apparence"
+  gl:
+    achievements: "Logros"
+    language: "Lingua"
+    progress: "Progreso"
+    theme: "Apariencia"
+  it:
+    achievements: "Realizzazioni"
+    language: "Lingua"
+    progress: "Progresso"
+    theme: "Aspetto"
+  ja:
+    achievements: "実績"
+    language: "言語"
+    progress: "進捗"
+    theme: "外観"
+  pt:
+    achievements: "Conquistas"
+    language: "Idioma"
+    progress: "Progresso"
+    theme: "Aparência"
+  ro:
+    achievements: "Realizări"
+    language: "Limbă"
+    progress: "Progres"
+    theme: "Aspect"
+  ru:
+    achievements: "Достижения"
+    language: "Язык"
+    progress: "Прогресс"
+    theme: "Внешний вид"
+  zh:
+    achievements: "成就"
+    language: "语言"
+    progress: "进度"
+    theme: "外观"
 </i18n>
 
-<template>  
+<template>
   <v-bottom-navigation
     v-model="vBottomNavigation.value"
     :app="vBottomNavigation.app"
@@ -122,6 +122,9 @@ export default {
     }
   },
   methods: {
+    toggleAchievementsDialog() {
+      this.$store?.commit('setAchievementsDialog', true)
+    },
     toggleLanguageSwitcherDialog() {
       this.$store?.commit('setLanguageSwitcherDialog', true)
     },
@@ -143,6 +146,7 @@ export default {
           this.toggleTheme()
           break
         case 'achievements':
+          this.toggleAchievementsDialog()
           break
         case 'progress':
           this.toggleNavigationDrawerRight()
