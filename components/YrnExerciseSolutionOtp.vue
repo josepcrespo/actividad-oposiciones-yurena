@@ -236,6 +236,7 @@ export default {
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
+        if (!success) { this.$store.commit('increaseErrorsCount') }
         this.loading = false
         this.$store?.commit('setPageLoadingOverlay', false)
         this.$store?.dispatch('snackbarNotification/show', {

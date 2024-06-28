@@ -88,6 +88,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  increaseErrorsCount(state) {
+    state.errorsCount += 1
+  },
   setAchievementsDialog(state, payload) {
     state.achievementsDialog = payload
   },

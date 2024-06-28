@@ -10,7 +10,7 @@
           {{ title }}
         </h1>
         <h2 class="mb-4">
-          {{ subtitle }}  
+          {{ subtitle }}
         </h2>
         <v-img
           max-height="320"
@@ -107,6 +107,7 @@ export default {
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
+        if (!success) { this.$store.commit('increaseErrorsCount') }
         this.otp.loading = false
         this.$store?.commit('setPageLoadingOverlay', false)
         this.$store?.dispatch('snackbarNotification/show', {
@@ -121,6 +122,7 @@ export default {
             )
           } else {
             this.otp.model = ''
+            this.$store.commit('increaseErrorsCount')
           }
         }, this.simulatedTimeout)
       }, this.simulatedTimeout)

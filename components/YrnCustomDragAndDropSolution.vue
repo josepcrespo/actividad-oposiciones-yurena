@@ -273,7 +273,7 @@ export default {
       this.pairCollectionStatus = this.$refs?.dropAreas?.every(dropArea => {
         const names = dropArea.images.map(image => image.name[this.$i18n.locale])
         const hasUniquePairs = names.every(name => !existingNames.has(name))
-        
+
         names.forEach(name => existingNames.add(name))
 
         return dropArea.hasTwinsPair === true && hasUniquePairs
@@ -308,6 +308,8 @@ export default {
         ? 'director-bien'
         : 'director-mal'
       const success = this.pairCollectionStatus
+
+      if (!success) { this.$store.commit('increaseErrorsCount') }
 
       this.$store.dispatch('snackbarNotification/show', {
         i18n: this.$i18n,

@@ -332,7 +332,7 @@ export default {
       currentTile: {
         spriteDirection: 'SOUTH',
         x: 1,
-        y: 0 
+        y: 0
       },
       draggableItemsTitle: {
         ar: ':التنقلات المتوفرة',
@@ -794,7 +794,7 @@ export default {
             const endOfPathY = posY - this.tileSize - (this.offsetY / 5) * 3
             this.addPhaserPathStartImage(scene, endOfPathX, endOfPathY, 0.7)
           }
-          
+
           // Añadir imagen de fin de camino.
           if (rowIndex === lastRowIndex - 2 && columnIndex === lastColumnIndex) {
             const endOfPathX = posX + this.offsetX / 2
@@ -1247,7 +1247,7 @@ export default {
                 )
                 this.updatePhaserCarBatteryIndicator(true, moveCost)
               }
-              
+
               const toX = toNode.xAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetX
               const toY = toNode.yAxisIndex * this.tileSize + this.tileSize / 2 + this.offsetY
               this.currentTile.x = toNode.xAxisIndex
@@ -1327,6 +1327,7 @@ export default {
           this.makePhaserElementBlink(this.car, 10, scene, () => {
             this.resetGame()
           })
+          this.$store.commit('increaseErrorsCount')
           this.$store?.dispatch('snackbarNotification/show', {
             i18n: this.$i18n,
             memojiName: 'director-mal',
@@ -1624,7 +1625,7 @@ export default {
           duration: 500,
           ease: 'Power1',
           onComplete: () => {
-            if (currentBatteryLevel === 100) { 
+            if (currentBatteryLevel === 100) {
               this.makePhaserElementBlink(this.usedBatteryIndicator)
             }
           }
@@ -1664,6 +1665,7 @@ export default {
         this.makePhaserElementBlink(this.car, 10, scene, () => {
           this.resetGame()
         })
+        this.$store.commit('increaseErrorsCount')
         this.$store?.commit('learningUnit/setExerciseSolutionIsValid', {
           activityId: this.activityId,
           challengeId: this.challengeId,

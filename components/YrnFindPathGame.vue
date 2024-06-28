@@ -353,7 +353,7 @@ export default {
       currentTile: {
         spriteDirection: 'SOUTH',
         x: 0,
-        y: 0 
+        y: 0
       },
       draggableItemsTitle: {
         ar: ':التنقلات المتوفرة',
@@ -1302,6 +1302,7 @@ export default {
         this.makePhaserElementBlink(this.car, 10, scene, () => {
           this.resetGame()
         })
+        this.$store.commit('increaseErrorsCount')
         this.$store?.commit('learningUnit/setExerciseSolutionIsValid', {
           activityId: this.activityId,
           challengeId: this.challengeId,

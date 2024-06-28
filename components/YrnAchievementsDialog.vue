@@ -180,10 +180,10 @@
                   class="mx-auto my-4"
                   color="cyan accent-4"
                   :size="100"
-                  :value="33"
+                  :value="percentageOfchallengesSolved(challengesSolved)"
                   :width="20"
                 >
-                  33
+                  {{ challengesSolved }}
                 </v-progress-circular>
                 <p class="text-h6 text-center">
                   {{ $t('challengesCompleted') }}
@@ -194,10 +194,10 @@
                   class="mx-auto my-4"
                   color="green accent-4"
                   :size="100"
-                  :value="33"
+                  :value="activitiesSolved ? 100 : 0"
                   :width="20"
                 >
-                  33
+                  {{ activitiesSolved ? '1' : '0' }}
                 </v-progress-circular>
                 <p class="text-h6 text-center">
                   {{ $t('activitiesCompleted') }}
@@ -211,7 +211,7 @@
                   :value="100"
                   :width="20"
                 >
-                  0
+                  {{ $store.state.errorsCount }}
                 </v-progress-circular>
                 <p class="text-h6 text-center mb-0">
                   {{ $t('errors') }}
@@ -232,6 +232,9 @@
 export default {
   name: 'YrnAchievementsDialog',
   computed: {
+    activitiesSolved() {
+      return this.challengesSolved.length === this.challengeIds.length
+    },
     dialogModel: {
       get() {
         return this.$store?.state?.achievementsDialog
@@ -239,6 +242,22 @@ export default {
       set(value) {
         this.$store?.commit('setAchievementsDialog', value)
       }
+    },
+    challengesSolved() {
+      const challengesSolved = this.challengeIds.filter(challengeId => {
+        return this.$store?.getters?.['learningUnit/isChallengeSolved'](challengeId) === true
+      })
+
+      return challengesSolved.length
+    },
+    challengeIds() {
+      const activityId = 1
+      return this.$store?.getters['learningUnit/getChallengeIds'](activityId) ?? []
+    }
+  },
+  methods: {
+    percentageOfchallengesSolved(challengesSolved) {
+      return Math.round((challengesSolved / this.challengeIds.length) * 100)
     }
   }
 }
