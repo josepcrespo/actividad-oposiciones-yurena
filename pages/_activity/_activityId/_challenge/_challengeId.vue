@@ -73,6 +73,10 @@
 
 <template>
   <v-container>
+    <nuxt-content
+      v-if="challengeId == lastChallengeId"
+      :document="document"
+    />
     <component
       :is="item.type"
       v-for="(item, index) in pageStructure"
@@ -105,6 +109,7 @@
         >
           <template #activator="{ on: tooltip }">
             <v-btn
+              v-if="challengeId != lastChallengeId"
               class="my-10 mr-2"
               :class="{ 'float-right': $i18n.locale !== 'ar' ? true : false }"
               color="default"
@@ -145,14 +150,23 @@ export default {
     return context?.$vuetify?.breakpoint?.xs ? 'default-mobile' : 'default'
   },
   middleware: 'activity-challenge', // Comment this line for rapid development.
-  async asyncData({ params, store }) {
+  async asyncData({ $content, app, params, store }) {
     const { activityId, challengeId } = params
+    const currentLocale = app.i18n.locale || 'es'
+    const lastChallengeId = 6
+    let document = null
+
+    // eslint-disable-next-line eqeqeq
+    if (challengeId == lastChallengeId) {
+      document = await $content(`/${currentLocale}/last-challenge`).fetch()
+    }
     // This line adds translations for all app static URL slugs.
     await store.dispatch('i18n/setRouteParams', store.state.routeParams)
-    return await { activityId, challengeId }
+    return await { activityId, challengeId, document }
   },
   data() {
     return {
+      lastChallengeId: 6,
       showPrintMenu: false
     }
   },
@@ -166,7 +180,7 @@ export default {
     activityTranslation() {
       const translation =
         this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity
-      
+
       return translation.charAt(0).toUpperCase() + translation.slice(1)
     },
     challenge() {
@@ -262,3 +276,40 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.nuxt-content {
+  blockquote {
+    border-left: 5px solid grey;
+    margin-left: 30px;
+    padding: 15px 20px 1px;
+    margin-right: 400px;
+  }
+
+  ul {
+    margin-left: 20px;
+  }
+
+  video {
+    border-radius: 10px;
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--dark {
+  .nuxt-content {
+    blockquote {
+      background: rgba(255 255 255 / 10%);
+    }
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.theme--light {
+  .nuxt-content {
+    blockquote {
+      background: rgba(0 0 0 / 10%);
+    }
+  }
+}
+</style>
