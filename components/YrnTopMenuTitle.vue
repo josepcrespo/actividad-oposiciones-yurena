@@ -63,6 +63,11 @@
 <script>
 export default {
   name: 'YrnTopMenuTitle',
+  data() {
+    return {
+      lastChallengeId: 6
+    }
+  },
   computed: {
     activityTranslation() {
       return this?.$store?.state?.routeParams?.[this.$i18n.locale]?.activity ?? ''
@@ -84,7 +89,7 @@ export default {
             `${this.$t('activityElement')} / `
           )
           // eslint-disable-next-line eqeqeq
-          if (challengeId != 6) {
+          if (challengeId != this.lastChallengeId) {
             subtitle += `${this.challengeTranslation} ${challengeId}`
           } else {
             subtitle += this.$t('lastChallenge')
