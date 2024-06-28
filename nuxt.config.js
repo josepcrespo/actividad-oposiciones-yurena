@@ -127,7 +127,7 @@ export default {
     base: process.env.NUXT_ENV_ROUTER_BASE_PATH || '/'
   },
 
-  // Content module configuration: https://go.nuxtjs.dev/config-content
+  // Content module configuration: https://v2.nuxt.com/docs/directory-structure/content/
   content: {},
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
