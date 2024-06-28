@@ -2,6 +2,8 @@
 export const strict = false
 
 export const state = () => ({
+  achievementsDialog: false,
+  errorsCount: 0,
   isDraggingAnItem: false,
   languageSwitcherDialog: false,
   navigationDrawerLeft: true,
@@ -86,6 +88,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setAchievementsDialog(state, payload) {
+    state.achievementsDialog = payload
+  },
   setIsDraggingAnItem(state, payload) {
     state.isDraggingAnItem = payload
   },
