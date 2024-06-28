@@ -1,46 +1,46 @@
 <i18n lang="yaml">
-ar:
-  buttonTitle: "الإنجازات"
-  buttonTooltip: "عرض الإنجازات المحققة"
-ca:
-  buttonTitle: "Premis"
-  buttonTooltip: "Mostra els assoliments aconseguits"
-de:
-  buttonTitle: "Errungenschaften"
-  buttonTooltip: "Zeige erreichte Erfolge"
-en:
-  buttonTitle: "Achievements"
-  buttonTooltip: "Show achieved achievements"
-es:
-  buttonTitle: "Logros"
-  buttonTooltip: "Muestra los logros conseguidos"
-eu:
-  buttonTitle: "Arrakasta"
-  buttonTooltip: "Lortutako arrakasta erakutsi"
-fr:
-  buttonTitle: "Réalisations"
-  buttonTooltip: "Afficher les réalisations obtenues"
-gl:
-  buttonTitle: "Logros"
-  buttonTooltip: "Amosar os logros acadados"
-it:
-  buttonTitle: "Risultati"
-  buttonTooltip: "Mostra i risultati ottenuti"
-ja:
-  buttonTitle: "実績"
-  buttonTooltip: "達成した実績を表示"
-pt:
-  buttonTitle: "Conquistas"
-  buttonTooltip: "Mostrar conquistas alcançadas"
-ro:
-  buttonTitle: "Realizări"
-  buttonTooltip: "Afișează realizările obținute"
-ru:
-  buttonTitle: "Достижения"
-  buttonTooltip: "Показать достигнутые достижения"
-zh:
-  buttonTitle: "成就"
-  buttonTooltip: "显示已实现的成就"
+  ar:
+    buttonTitle: "الإنجازات"
+    buttonTooltip: "عرض الإنجازات المحققة"
+  ca:
+    buttonTitle: "Premis"
+    buttonTooltip: "Mostra els assoliments aconseguits"
+  de:
+    buttonTitle: "Errungenschaften"
+    buttonTooltip: "Zeige erreichte Erfolge"
+  en:
+    buttonTitle: "Achievements"
+    buttonTooltip: "Show achieved achievements"
+  es:
+    buttonTitle: "Logros"
+    buttonTooltip: "Muestra los logros conseguidos"
+  eu:
+    buttonTitle: "Arrakasta"
+    buttonTooltip: "Lortutako arrakasta erakutsi"
+  fr:
+    buttonTitle: "Réalisations"
+    buttonTooltip: "Afficher les réalisations obtenues"
+  gl:
+    buttonTitle: "Logros"
+    buttonTooltip: "Amosar os logros acadados"
+  it:
+    buttonTitle: "Risultati"
+    buttonTooltip: "Mostra i risultati ottenuti"
+  ja:
+    buttonTitle: "実績"
+    buttonTooltip: "達成した実績を表示"
+  pt:
+    buttonTitle: "Conquistas"
+    buttonTooltip: "Mostrar conquistas alcançadas"
+  ro:
+    buttonTitle: "Realizări"
+    buttonTooltip: "Afișează realizările obținute"
+  ru:
+    buttonTitle: "Достижения"
+    buttonTooltip: "Показать достигнутые достижения"
+  zh:
+    buttonTitle: "成就"
+    buttonTooltip: "显示已实现的成就"
 </i18n>
 
 <template>
@@ -52,6 +52,7 @@ zh:
         text
         v-bind="attrs"
         v-on="on"
+        @click="dialogModel = !dialogModel"
       >
         <v-icon>
           mdi-star-face
@@ -67,7 +68,17 @@ zh:
 
 <script>
 export default {
-  name: 'YrnAchievementsToggle'
+  name: 'YrnAchievementsToggle',
+  computed: {
+    dialogModel: {
+      get() {
+        return this.$store?.state?.achievementsDialog
+      },
+      set(value) {
+        this.$store?.commit('setAchievementsDialog', value)
+      }
+    }
+  }
 }
 </script>
 
