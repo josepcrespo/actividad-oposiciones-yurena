@@ -10,6 +10,7 @@
     <yrn-navigation-drawer-right />
     <yrn-page-loading-overlay />
     <yrn-snackbar-notification />
+    <yrn-achievements-dialog />
   </v-app>
 </template>
 
