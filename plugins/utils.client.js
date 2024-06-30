@@ -77,13 +77,11 @@ export default ({ app }, inject) => {
     const usernameHash = window?.btoa?.(username)
     if (!exercise) return
 
-    let markdownContent =
-      `${username} - ${usernameHash}
+    let markdownContent = `${username} - ${usernameHash}
 
-      # Actividad ${activityId} / ` +
-      `Reto ${challengeId} / ` +
-      `Ejercicio ${exerciseId}
-` // NO TOCAR LA TABULACIÓN.
+# Actividad ${activityId} / Reto ${challengeId} / Ejercicio ${exerciseId}
+`
+// NO TOCAR LA TABULACIÓN.
 
     if (
       exercise?.solution?.fromUser !== undefined &&
