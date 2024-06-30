@@ -373,17 +373,17 @@ export const state = () => ({
             // eslint-disable-next-line no-template-curly-in-string
             de: 'Dieser Nationalpark, der sich auf der Insel Teneriffa befindet, wurde im Jahr ${{ a }}${{ b }}${{ c }}${{ d }} als erster auf den Kanarischen Inseln anerkannt und wird vom Teide ({{ e }}${{ f }}${{ a }}${{ g }} Meter), dem höchsten Gipfel Spaniens, präsidiert. Mit zahlreichen endemischen Arten und einer Ausdehnung von ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} Hektar ist er heute der meistbesuchte Nationalpark der Kanaren, Spaniens und Europas, da er eine der beeindruckendsten geologischen Shows der Welt beherbergt, aufgrund der Schwierigkeit, in einem so begrenzten Raum eine solche Vielfalt zu finden.',
             // eslint-disable-next-line no-template-curly-in-string
-            en: 'This National Park, located on the island of Tenerife, was the first recognized in the Canary Archipelago, in the year ${{ a }}${{ b }}${{ c }}${{ d }} and is presided over by El Teide (${{ e }}${{ f }}${{ a }}${{ g }} meters), the highest peak in Spain. With numerous endemic species and an extension of ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, it is, to this day, the most visited National Park in the Canary Islands, Spain, and Europe as it hosts one of the most impressive geological spectacles in the world, due to the difficulty of finding in such a reduced space, a set of these characteristics.',
+            en: 'This National Park, located on the island of Tenerife, was the first recognized in the Canary Archipelago, in the year ${{ a }}${{ b }}${{ c }}${{ d }} and is presided over by the Teide (${{ e }}${{ f }}${{ a }}${{ g }} meters), the highest peak in Spain. With numerous endemic species and an extension of ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, it is, to this day, the most visited National Park in the Canary Islands, Spain, and Europe as it hosts one of the most impressive geological spectacles in the world, due to the difficulty of finding in such a reduced space, a set of these characteristics.',
             // eslint-disable-next-line no-template-curly-in-string
             es: 'Este Parque Nacional, situado en la isla de Tenerife, fue el primer reconocido del Archipiélago Canario, en el año ${{ a }}${{ b }}${{ c }}${{ d }} y está presidido por el Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), el pico más alto de España. Con numerosas especies endémicas y una extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, es, a día de hoy, el Parque Nacional más visitado de Canarias, España y Europa ya que alberga uno de los más impresionantes espectáculos geológicos del mundo por la dificultad de encontrar en un espacio tan reducido un conjunto de estas características.',
             // eslint-disable-next-line no-template-curly-in-string
-            eu: 'Tenerife uhartean kokatutako Parke Nazional hau, Kanariar Arxipelagoan lehenengo agertu zen, ${{ a }}${{ b }}${{ c }}${{ d }} urtean, eta El Teidek (${{ e }}${{ f }}${{ a }}${{ g }} metro) zuzendua du. Espainiako mendi altuena da. Espezie endemiko ugarirekin eta ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hektareko zabalerarekin, gaur egun Kanarietako, Espainiako eta Europako Parke Nazionalik bisitatuenetarikoa da, munduko geologia ikusgarrienetakoenetako bat ospatzen baitu, espazio hain estu batean, ezaugarrien talde bat aurkitzearen zailtasunagatik.',
+            eu: 'Tenerife uhartean kokatutako Parke Nazional hau, Kanariar Arxipelagoan lehenengo agertu zen, ${{ a }}${{ b }}${{ c }}${{ d }} urtean, eta el Teidek (${{ e }}${{ f }}${{ a }}${{ g }} metro) zuzendua du. Espainiako mendi altuena da. Espezie endemiko ugarirekin eta ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hektareko zabalerarekin, gaur egun Kanarietako, Espainiako eta Europako Parke Nazionalik bisitatuenetarikoa da, munduko geologia ikusgarrienetakoenetako bat ospatzen baitu, espazio hain estu batean, ezaugarrien talde bat aurkitzearen zailtasunagatik.',
             // eslint-disable-next-line no-template-curly-in-string
-            fr: 'Ce parc national, situé sur l\'île de Tenerife, a été le premier reconnu de l\'archipel des Canaries, en ${{ a }}${{ b }}${{ c }}${{ d }} et est présidé par El Teide ({{ e }}${{ f }}${{ a }}${{ g }} mètres), le plus haut sommet d\'Espagne. Avec de nombreuses espèces endémiques et une superficie de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, c\'est, à ce jour, le parc national le plus visité des îles Canaries, d\'Espagne et d\'Europe, car il abrite l\'un des spectacles géologiques les plus impressionnants du monde en raison de la difficulté de trouver dans un espace aussi réduit, un ensemble de ces caractéristiques.',
+            fr: 'Ce parc national, situé sur l\'île de Tenerife, a été le premier reconnu de l\'archipel des Canaries, en ${{ a }}${{ b }}${{ c }}${{ d }} et est présidé par el Teide ({{ e }}${{ f }}${{ a }}${{ g }} mètres), le plus haut sommet d\'Espagne. Avec de nombreuses espèces endémiques et une superficie de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectares, c\'est, à ce jour, le parc national le plus visité des îles Canaries, d\'Espagne et d\'Europe, car il abrite l\'un des spectacles géologiques les plus impressionnants du monde en raison de la difficulté de trouver dans un espace aussi réduit, un ensemble de ces caractéristiques.',
             // eslint-disable-next-line no-template-curly-in-string
             gl: 'Este Parque Nacional, situado na illa de Tenerife, foi o primeiro recoñecido do Arquipélago Canario, no ano ${{ a }}${{ b }}${{ c }}${{ d }} e está presidido polo Teide (${{ e }}${{ f }}${{ a }}${{ g }} metros), o pico máis alto de España. Con numerosas especies endémicas e unha extensión de ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} hectáreas, é, a día de hoxe, o Parque Nacional máis visitado das Canarias, de España e de Europa xa que alberga un dos máis impresionantes espectáculos xeolóxicos do mundo pola dificultade de atopar nun espazo tan reducido, un conxunto destas características.',
             // eslint-disable-next-line no-template-curly-in-string
-            it: 'Questo Parco Nazionale, situato sull\'isola di Tenerife, è stato il primo riconosciuto nell\'Arcipelago delle Canarie, nell\'anno ${{ a }}${{ b }}${{ c }}${{ d }} ed è presieduto da El Teide ({{ e }}${{ f }}${{ a }}${{ g }} metri), la vetta più alta della Spagna. Con numerose specie endemiche e un\'estensione di ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ettari, è, fino ad oggi, il Parco Nazionale più visitato delle Canarie, della Spagna e dell\'Europa in quanto ospita uno degli spettacoli geologici più impressionanti al mondo, data la difficoltà di trovare in uno spazio così ridotto, un insieme di queste caratteristiche.',
+            it: 'Questo Parco Nazionale, situato sull\'isola di Tenerife, è stato il primo riconosciuto nell\'Arcipelago delle Canarie, nell\'anno ${{ a }}${{ b }}${{ c }}${{ d }} ed è presieduto da el Teide ({{ e }}${{ f }}${{ a }}${{ g }} metri), la vetta più alta della Spagna. Con numerose specie endemiche e un\'estensione di ${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ettari, è, fino ad oggi, il Parco Nazionale più visitato delle Canarie, della Spagna e dell\'Europa in quanto ospita uno degli spettacoli geologici più impressionanti al mondo, data la difficoltà di trovare in uno spazio così ridotto, un insieme di queste caratteristiche.',
             // eslint-disable-next-line no-template-curly-in-string
             ja: 'テネリフェ島にあるこの国立公園は、${{ a }}${{ b }}${{ c }}${{ d }} 年にカナリア諸島で最初に認定され、管理されています。スペイン最高峰のテイデ（${{ e }}${{ f }}${{ a }}${{ g }} メートル）を越えます。 数多くの固有種が生息し、${{ a }}${{ e }}${{ c }}${{ a }}${{ f }} ヘクタールの面積を誇るこの公園は、現在国立公園となっています。このような小さな空間で一連の特徴を見つけるのは難しいため、世界で最も印象的な地質学的光景の 1 つがあるため、カナリア諸島、スペイン、ヨーロッパで最も多くの人が訪れます。',
             // eslint-disable-next-line no-template-curly-in-string
@@ -928,10 +928,10 @@ export const state = () => ({
               'Nach seinem Besuch am Teide muss der Direktor sein Elektroauto aufladen.'
             ],
             en: [
-              'After his visit to El Teide, the director needs to recharge his electric car.'
+              'After his visit to the Teide, the director needs to recharge his electric car.'
             ],
             es: [
-              'Después de su visita a El Teide el director necesita recargar su coche eléctrico.'
+              'Después de su visita al Teide el director necesita recargar su coche eléctrico.'
             ],
             eu: [
               'Teidera bisita egin ondoren, zuzendariak bere auto elektrikoa kargatu behar du.'
@@ -1994,7 +1994,7 @@ export const state = () => ({
           paragraphs: {
             ar: [
               'مديرنا لا يتوقف عن السفر.',
-              'أحب كثيرا منتزه تيد الوطني، ولذلك قرر زيارة منتزه آخر من المنتزهات الوطنية الأربعة التي لدينا في جزر الكناري.'
+              'أحب متنزه تيد الوطني كثيرًا، لذلك قرر زيارة أحد المتنزهات الوطنية الأربعة الأخرى التي لدينا في جزر الكناري.'
             ],
             ca: [
               'El nostre director no para de viatjar.',
@@ -2002,11 +2002,11 @@ export const state = () => ({
             ],
             de: [
               'Unser Regisseur hört nicht auf zu reisen.',
-              'Er mochte den Nationalpark El Teide wirklich sehr, deshalb hat er beschlossen, einen weiteren der vier Nationalparks auf den Kanarischen Inseln zu besuchen.'
+              'Ihm hat der Nationalpark Teide sehr gefallen, deshalb hat er beschlossen, einen der anderen vier Nationalparks auf den Kanarischen Inseln zu besuchen.'
             ],
             en: [
               'Our director does not stop traveling.',
-              'He really liked the El Teide National Park, which is why he decided to visit another of the four National Parks that we have in the Canary Islands.'
+              'He really liked the Teide National Park, so he has decided to visit another one of the four National Parks we have in the Canary Islands.'
             ],
             es: [
               'Nuestro director no para la pata.',
@@ -2014,11 +2014,11 @@ export const state = () => ({
             ],
             eu: [
               'Gure zuzendariak ez du bidaiatzeari uzten.',
-              'El Teide Parke Nazionala asko gustatu zitzaion eta horregatik Kanarietako lau Parke Nazionaletako beste bat bisitatzea erabaki zuen.'
+              'Teide Parke Nazionala asko gustatu zitzaion, horregatik erabaki du Kanarietako Uharteetan ditugun lau Parke Nazionaletatik beste bat bisitatzea.'
             ],
             fr: [
               'Notre réalisateur ne cesse de voyager.',
-              'Il a beaucoup aimé le parc national du Teide, c’est pourquoi il a décidé de visiter un autre des quatre parcs nationaux que nous avons aux îles Canaries.'
+              'Il a beaucoup aimé le Parc National du Teide, c’est pourquoi il a décidé de visiter un autre des quatre Parcs Nationaux que nous avons aux Îles Canaries.'
             ],
             gl: [
               'O noso director non para de viaxar.',
@@ -2026,27 +2026,27 @@ export const state = () => ({
             ],
             it: [
               'Il nostro regista non smette di viaggiare.',
-              'Gli è piaciuto molto il Parco Nazionale del Teide, motivo per cui ha deciso di visitare un altro dei quattro Parchi Nazionali che abbiamo nelle Isole Canarie.'
+              'Gli è piaciuto molto il Parco Nazionale del Teide, perciò ha deciso di visitare un altro dei quattro Parchi Nazionali che abbiamo nelle Isole Canarie.'
             ],
             ja: [
               '私たちの監督は旅行を止めません。',
-              '彼はテイデ国立公園がとても気に入り、カナリア諸島にある他の4つの国立公園の1つを訪れることにしました。'
+              '彼はテイデ国立公園がとても気に入ったので、カナリア諸島にある他の4つの国立公園のうちの1つを訪れることにしました。'
             ],
             pt: [
               'O nosso diretor não para de viajar.',
-              'Ele gostou muito do Parque Nacional do Teide, por isso decidiu visitar outro dos quatro Parques Nacionais que temos nas Ilhas Canárias.'
+              'Gostou muito do Parque Nacional do Teide, por isso decidiu visitar outro dos quatro Parques Nacionais que temos nas Ilhas Canárias.'
             ],
             ro: [
               'Regizorul nostru nu se oprește din călătorit.',
-              'I-a plăcut foarte mult Parcul Național El Teide, de aceea a decis să viziteze un altul dintre cele patru Parcuri Naționale pe care le avem în Insulele Canare.'
+              'I-a plăcut foarte mult Parcul Național Teide, de aceea a decis să viziteze un altul dintre cele patru Parcuri Naționale pe care le avem în Insulele Canare.'
             ],
             ru: [
               'Наш режиссёр не перестаёт путешествовать.',
-              'Ему очень понравился Национальный парк Эль-Тейде, поэтому он решил посетить еще один из четырех Национальных парков на Канарских островах.'
+              'Ему очень понравился Национальный парк Тейде, поэтому он решил посетить один из четырех других Национальных парков на Канарских островах.'
             ],
             zh: [
               '我们的导演不停地旅行。',
-              '他非常喜欢泰德国家公园，因此他决定参观我们在加那利群岛的四个国家公园中的另一个。'
+              '他非常喜欢泰德国家公园，因此决定参观我们在加那利群岛的另外四个国家公园之一。'
             ]
           }
         }, {
@@ -3316,6 +3316,22 @@ export const getters = {
     }
 
     return section
+  },
+  getTotalExercises: (state) => {
+    return state.activities.reduce((total, activity) => {
+      return total + activity.challenges.reduce((accumulator, challenge) => {
+        return accumulator + challenge.exercises.length;
+      }, 0)
+    }, 0)
+  },
+  getTotalExercisesSolved: (state, getters) => {
+    return state.activities.reduce((total, activity) => {
+      return total + activity.challenges.reduce((accumulator, challenge) => {
+        return accumulator + challenge.exercises.filter(exercise => {
+          return getters.isExerciseSolved(activity.activityId, challenge.challengeId, exercise.exerciseId)
+        }).length
+      }, 0)
+    }, 0)
   },
   isChallengeSolved: (state, getters) => (activityId, challengeId) => {
     const challenge = getters.getChallenge(activityId, challengeId)
