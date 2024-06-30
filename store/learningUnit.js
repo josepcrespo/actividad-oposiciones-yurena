@@ -2839,7 +2839,26 @@ export const state = () => ({
       ro: 'Situație de învățare',
       ru: 'Образовательная ситуация',
       zh: '学习情境'
-    }
+    },
+    username: {
+      statement: {
+        ar: 'أدخل اسمك الكامل، بما في ذلك اسم العائلة:',
+        ca: 'Introdueix el teu nom complet, cognoms inclosos:',
+        de: 'Geben Sie Ihren vollständigen Namen ein, einschließlich Nachname:',
+        en: 'Enter your full name, including last name:',
+        es: 'Introduce tu nombre completo, apellidos incluidos:',
+        eu: 'Sartu zure izen osoa, abizenak barne:',
+        fr: 'Entrez votre nom complet, y compris les noms de famille:',
+        gl: 'Introduce o teu nome completo, incluídos os apelidos:',
+        it: 'Inserisci il tuo nome completo, compresi i cognomi:',
+        ja: 'フルネーム（姓を含む）を入力してください:',
+        pt: 'Insira seu nome completo, incluindo os sobrenomes:',
+        ro: 'Introduceți numele dvs. complet, inclusiv numele de familie:',
+        ru: 'Введите ваше полное имя, включая фамилию:',
+        zh: '请输入您的全名，包括姓氏：'
+      },
+      fromUser: ''
+    },
   },
   languages: [{
     code: 'ar',
@@ -3215,6 +3234,9 @@ export const mutations = {
         }
       }
     }
+  },
+  setUsernameFromUser(state, payload) {
+    state.indexPage.username.fromUser = payload
   }
 }
 

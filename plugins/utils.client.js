@@ -69,10 +69,18 @@ export default ({ app }, inject) => {
       challengeId,
       exerciseId
     )
+    const username = app.store?.state?.learningUnit?.indexPage?.username?.fromUser
+    // JavaScript native method to encode a string to base64:
+    // https://www.w3schools.com/jsref/met_win_btoa.asp
+    // Decode base64 to string:
+    // https://www.w3schools.com/jsref/met_win_atob.asp
+    const usernameHash = window?.btoa?.(username)
     if (!exercise) return
 
     let markdownContent =
-      `# Actividad ${activityId} / ` +
+      `${username} - ${usernameHash}
+
+      # Actividad ${activityId} / ` +
       `Reto ${challengeId} / ` +
       `Ejercicio ${exerciseId}
 ` // NO TOCAR LA TABULACIÓN.
