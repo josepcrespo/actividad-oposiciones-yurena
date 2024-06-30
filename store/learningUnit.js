@@ -343,8 +343,9 @@ export const state = () => ({
             ru: 'Напишите ответ здесь:',
             zh: '在这里写答案：'
           },
-          expected: 'Teide',
-          fromUser: ''
+          expected: 'ElTeide',
+          fromUser: '',
+          whiteSpacesMask: '**X****'
         }
       }, {
         exerciseId: 2,

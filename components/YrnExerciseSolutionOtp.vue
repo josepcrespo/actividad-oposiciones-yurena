@@ -93,6 +93,7 @@
       </h2>
       <v-otp-input
         v-if="otpInput"
+        ref="otpInput"
         v-model="solution.final"
         :length="exerciseSolutionExpected.length"
         :disabled="loading"
@@ -186,6 +187,9 @@ export default {
     exerciseSolutionMask() {
       return this.exercise?.solution?.expectedMask
     },
+    exerciseSolutionWhiteSpacesMask() {
+      return this.exercise?.solution?.whiteSpacesMask
+    },
     exerciseRouterRedirection() {
       return this.exercise?.routerRedirection ?? null
     },
@@ -194,6 +198,9 @@ export default {
     }
   },
   mounted() {
+    if (this.exerciseSolutionWhiteSpacesMask) {
+      this.applyMaskForWhiteSpacesOnOtp()
+    }
     if (this.exerciseSolutionMask) {
       this.$set(this.solution, 'final', this.exerciseSolutionMask)
     } else if (this.exerciseSolutionExpected.toLowerCase() === this.exerciseSolutionFromUser.toLowerCase()) {
@@ -261,6 +268,13 @@ export default {
           }, this.simulatedTimeout)
         }
       }, this.simulatedTimeout)
+    },
+    applyMaskForWhiteSpacesOnOtp() {
+      this.exerciseSolutionWhiteSpacesMask.split('').forEach((char, index) => {
+        if (char.toUpperCase() === 'X') {
+          this.$refs.otpInput.$refs.input[index].closest('.v-input').style.marginLeft = '48px'
+        }
+      })
     },
     validateSolution(userSolution) {
       return userSolution.toLowerCase() === this.exerciseSolutionExpected.toLowerCase()
