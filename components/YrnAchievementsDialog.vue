@@ -166,10 +166,10 @@
                   class="mx-auto my-4"
                   color="purple accent-4"
                   :size="100"
-                  :value="7"
+                  :value="percentageOfSolved(exercisesSolved, totalExercises)"
                   :width="20"
                 >
-                  7
+                  {{ exercisesSolved }}
                 </v-progress-circular>
                 <p class="text-h6 text-center">
                   {{ $t('exercisesCompleted') }}
@@ -180,7 +180,7 @@
                   class="mx-auto my-4"
                   color="cyan accent-4"
                   :size="100"
-                  :value="percentageOfchallengesSolved(challengesSolved)"
+                  :value="percentageOfSolved(challengesSolved, challengeIds.length)"
                   :width="20"
                 >
                   {{ challengesSolved }}
@@ -253,11 +253,17 @@ export default {
     challengeIds() {
       const activityId = 1
       return this.$store?.getters['learningUnit/getChallengeIds'](activityId) ?? []
+    },
+    exercisesSolved() {
+      return this.$store?.getters?.['learningUnit/getTotalExercisesSolved']
+    },
+    totalExercises() {
+      return this.$store?.getters?.['learningUnit/getTotalExercises']
     }
   },
   methods: {
-    percentageOfchallengesSolved(challengesSolved) {
-      return Math.round((challengesSolved / this.challengeIds.length) * 100)
+    percentageOfSolved(itemsSolved, totalItems) {
+      return Math.round((itemsSolved / totalItems) * 100)
     }
   }
 }
