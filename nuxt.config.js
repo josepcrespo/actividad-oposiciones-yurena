@@ -21,6 +21,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@mdi/font/css/materialdesignicons.min.css',
+    'vuetify/dist/vuetify.min.css',
     '~/assets/scss/main.scss'
   ],
 
@@ -134,10 +136,14 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
+    defaultAssets: {
+      font: false,
+      icons: 'mdi'
+    },
     // Debe asignarse dinámicamente al cargar la página por primera vez.
     rtl: false,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -147,9 +153,10 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-        },
-      },
+        }
+      }
     },
+    treeShake: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
