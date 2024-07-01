@@ -163,7 +163,7 @@ export default {
       this.$store?.commit('learningUnit/setPasswordFromUser', response)
       setTimeout(() => {
         const i18n = this.$i18n
-        const success = response === this.otp.expected
+        const success = response === this.otp.expected && this.$refs.form?.validate()
         const memojiName = success
           ? 'director-bien'
           : 'director-mal'
