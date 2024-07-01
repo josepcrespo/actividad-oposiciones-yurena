@@ -5,6 +5,27 @@ p {
   min-width: 250px;
 }
 
+@keyframes updateanimationkeyframes {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.play-update-animation {
+  animation-name: updateanimationkeyframes;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+}
+
 .v-application {
   .v-app-bar {
     // This is important to see the top menu bar using the full viewport width,
@@ -22,7 +43,7 @@ p {
       backdrop-filter: blur(8px);
     }
   }
-  
+
   .v-menu__content {
     .v-list-item {
       cursor: pointer;
