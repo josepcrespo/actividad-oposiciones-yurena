@@ -15,7 +15,8 @@ export default ({ store }) => {
     key: 'app.vuex.state',
     paths: [
       'index',
-      'learningUnit'
+      'learningUnit',
+      'timeTracker'
     ]
   })(store)
 }

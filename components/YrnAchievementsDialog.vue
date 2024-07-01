@@ -8,6 +8,7 @@
     errorsSubtitle: "كلما قلت كان أفضل!"
     knowsTheSecretCode: "أنت تعرف الكود السري الذي يفتح النشاط التوجيهي!"
     knowsTheSecretCodeSubtitle: "تذكر أن الكود يمكنك استخراجه من الرقم با (π)"
+    timeSpent: "الوقت المستخدم"
   ca:
     dialogTitle: "Premis"
     exercisesCompleted: "Exercicis completats"
@@ -17,6 +18,7 @@
     errorsSubtitle: "Com menys millor!"
     knowsTheSecretCode: "Coneixes el codi secret que desbloqueja l'activitat del director!"
     knowsTheSecretCodeSubtitle: "Recorda que el codi el pots extreure del número Pi (π)"
+    timeSpent: "Temps utilitzat"
   de:
     dialogTitle: "Errungenschaften"
     exercisesCompleted: "Abgeschlossene Übungen"
@@ -26,6 +28,7 @@
     errorsSubtitle: "Je weniger, desto besser!"
     knowsTheSecretCode: "Du kennst den Geheimcode, der die Direktorenaktivität freischaltet!"
     knowsTheSecretCodeSubtitle: "Denke daran, dass du den Code aus der Zahl Pi (π) extrahieren kannst"
+    timeSpent: "Verwendete Zeit"
   en:
     dialogTitle: "Achievements"
     exercisesCompleted: "Exercises completed"
@@ -35,6 +38,7 @@
     errorsSubtitle: "The fewer, the better!"
     knowsTheSecretCode: "You know the secret code that unlocks the director's activity!"
     knowsTheSecretCodeSubtitle: "Remember that you can extract the code from the number Pi (π)"
+    timeSpent: "Time spent"
   es:
     dialogTitle: "Logros"
     exercisesCompleted: "Ejercicios completados"
@@ -44,6 +48,7 @@
     errorsSubtitle: "¡Cuantos menos mejor!"
     knowsTheSecretCode: "¡Conoces el código secreto que desbloquea la actividad del director!"
     knowsTheSecretCodeSubtitle: "Recuerda que el código lo puedes extraer desde el número Pi (π)"
+    timeSpent: "Tiempo utilizado"
   eu:
     dialogTitle: "Arrakasta"
     exercisesCompleted: "Osatutako ariketak"
@@ -53,6 +58,7 @@
     errorsSubtitle: "Zenbat eta gutxiago, hobeto!"
     knowsTheSecretCode: "Zuzendariaren jarduera desblokeatzen duen kode sekretua dakizu!"
     knowsTheSecretCodeSubtitle: "Gogoratu kodea Pi (π) zenbakitik atera dezakezula"
+    timeSpent: "Erabilitako denbora"
   fr:
     dialogTitle: "Réalisations"
     exercisesCompleted: "Exercices complétés"
@@ -62,6 +68,7 @@
     errorsSubtitle: "Le moins sera le mieux!"
     knowsTheSecretCode: "Vous connaissez le code secret qui débloque l'activité du directeur!"
     knowsTheSecretCodeSubtitle: "Souvenez-vous que vous pouvez extraire le code du nombre Pi (π)"
+    timeSpent: "Temps utilisé"
   gl:
     dialogTitle: "Logros"
     exercisesCompleted: "Exercicios completados"
@@ -71,6 +78,7 @@
     errorsSubtitle: "Cantos menos mellor!"
     knowsTheSecretCode: "Coñeces o código secreto que desbloquea a actividade do director!"
     knowsTheSecretCodeSubtitle: "Lembra que o código podes extraelo do número Pi (π)"
+    timeSpent: "Tempo utilizado"
   it:
     dialogTitle: "Risultati"
     exercisesCompleted: "Esercizi completati"
@@ -80,6 +88,7 @@
     errorsSubtitle: "Meno sono, meglio è!"
     knowsTheSecretCode: "Conosci il codice segreto che sblocca l'attività del direttore!"
     knowsTheSecretCodeSubtitle: "Ricorda che puoi estrarre il codice dal numero Pi (π)"
+    timeSpent: "Tempo utilizzato"
   ja:
     dialogTitle: "実績"
     exercisesCompleted: "完了した演習"
@@ -89,6 +98,7 @@
     errorsSubtitle: "少なければ少ないほど良い！"
     knowsTheSecretCode: "ディレクターのアクティビティをアンロックする秘密のコードを知っています！"
     knowsTheSecretCodeSubtitle: "コードは円周率（π）から抽出できることを忘れないでください"
+    timeSpent: "使用時間"
   pt:
     dialogTitle: "Conquistas"
     exercisesCompleted: "Exercícios concluídos"
@@ -98,6 +108,7 @@
     errorsSubtitle: "Quanto menos, melhor!"
     knowsTheSecretCode: "Você conhece o código secreto que desbloqueia a atividade do diretor!"
     knowsTheSecretCodeSubtitle: "Lembre-se de que você pode extrair o código do número Pi (π)"
+    timeSpent: "Tempo utilizado"
   ro:
     dialogTitle: "Realizări"
     exercisesCompleted: "Exerciții finalizate"
@@ -107,6 +118,7 @@
     errorsSubtitle: "Cu cât mai puține, cu atât mai bine!"
     knowsTheSecretCode: "Cunoști codul secret care deblochează activitatea directorului!"
     knowsTheSecretCodeSubtitle: "Amintește-ți că poți extrage codul din numărul Pi (π)"
+    timeSpent: "Timp utilizat"
   ru:
     dialogTitle: "Достижения"
     exercisesCompleted: "Завершенные упражнения"
@@ -116,6 +128,7 @@
     errorsSubtitle: "Чем меньше, тем лучше!"
     knowsTheSecretCode: "Вы знаете секретный код, который разблокирует активность директора!"
     knowsTheSecretCodeSubtitle: "Помните, что вы можете извлечь код из числа Пи (π)"
+    timeSpent: "Использованное время"
   zh:
     dialogTitle: "成就"
     exercisesCompleted: "完成的练习"
@@ -125,6 +138,7 @@
     errorsSubtitle: "越少越好！"
     knowsTheSecretCode: "你知道解锁董事活动的秘密代码！"
     knowsTheSecretCodeSubtitle: "请记住，您可以从数字 Pi (π) 中提取代码"
+    timeSpent: "使用时间"
 </i18n>
 
 <template>
@@ -220,6 +234,21 @@
                   {{ $t('errorsSubtitle') }}
                 </p>
               </v-col>
+              <v-col class="d-flex flex-column">
+                <v-icon
+                  class="mx-auto my-4"
+                  contain
+                  size="100"
+                >
+                  ⏱️
+                </v-icon>
+                <p class="text-h6 text-center mb-0">
+                  {{ $t('timeSpent') }}
+                </p>
+                <p class="subtitle-2 text-center font-weight-thin">
+                  {{ totalTimeSpent }}
+                </p>
+              </v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -257,6 +286,9 @@ export default {
     exercisesSolved() {
       return this.$store?.getters?.['learningUnit/getTotalExercisesSolved']
     },
+    totalTimeSpent() {
+      return this.$store?.getters?.['timeTracker/getLocalTotalTime'](this.$i18n.locale)
+    },
     totalExercises() {
       return this.$store?.getters?.['learningUnit/getTotalExercises']
     }
@@ -273,6 +305,10 @@ export default {
 .yrn-achievements-dialog {
   .v-progress-circular {
     font-family: monospace;
+  }
+
+  .v-icon {
+    font-style: normal;
   }
 }
 </style>

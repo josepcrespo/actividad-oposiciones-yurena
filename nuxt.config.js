@@ -29,6 +29,7 @@ export default {
     '~/plugins/i18n.js',
     '~/plugins/persistedState.client.js',
     '~/plugins/textToSpeech.client.js',
+    '~/plugins/timeTracker.client.js',
     '~/plugins/utils.client.js'
   ],
 
